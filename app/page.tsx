@@ -5,13 +5,30 @@
 
 "use client"
 
+import { useEffect, useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { PublicHeader } from "@/components/layout/public-header"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { CheckCircle2, Brain, Target, TrendingUp, BookOpen } from "lucide-react"
 
 export default function HomePage() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const images = [
+    "/car-sales.png",
+    "/house-sales.png",
+    "/professional-sales.png"
+  ]
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length)
+    }, 3000) // Change image every 3 seconds
+
+    return () => clearInterval(interval)
+  }, [images.length])
+
   return (
     <div className="min-h-screen bg-background">
       <PublicHeader />
@@ -19,18 +36,60 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-brand-green/10 via-emerald-50 to-brand-orange/10 py-20 md:py-32">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center space-y-8">
-            <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
-              Why <span className="text-brand-orange">Personality</span> Matters in{" "}
-              <span className="text-brand-green">Sales</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
-              Strengthen entrepreneurial and sales success through personality trait assessment with the Big 5 Model
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-              <Button asChild size="lg" className="bg-brand-orange hover:bg-[#e64a19] text-white text-lg px-8">
-                <Link href="/demo">Try Module 0</Link>
-              </Button>
+          <div className="max-w-7xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              {/* Left side - Text content */}
+              <div className="space-y-8">
+                <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
+                  Why <span className="text-brand-orange">Personality</span> Matters in{" "}
+                  <span className="text-brand-green">Sales</span>
+                </h1>
+                <p className="text-xl md:text-2xl text-muted-foreground">
+                  Strengthen entrepreneurial and sales success through personality trait assessment with the Big 5 Model
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                  <Button asChild size="lg" className="bg-brand-orange hover:bg-[#e64a19] text-white text-lg px-8">
+                    <Link href="/demo">Try Module 0</Link>
+                  </Button>
+                </div>
+              </div>
+
+              {/* Right side - Image slideshow */}
+              <div className="relative w-full aspect-square max-w-lg mx-auto">
+                <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl">
+                  {images.map((image, index) => (
+                    <div
+                      key={image}
+                      className={`absolute inset-0 transition-opacity duration-1000 ${
+                        index === currentImageIndex ? "opacity-100" : "opacity-0"
+                      }`}
+                    >
+                      <Image
+                        src={image}
+                        alt={`Sales scenario ${index + 1}`}
+                        fill
+                        className="object-cover"
+                        priority={index === 0}
+                      />
+                    </div>
+                  ))}
+                </div>
+                {/* Slideshow indicators */}
+                <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex gap-2">
+                  {images.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentImageIndex(index)}
+                      className={`w-2 h-2 rounded-full transition-all ${
+                        index === currentImageIndex
+                          ? "bg-brand-orange w-8"
+                          : "bg-gray-400 hover:bg-gray-600"
+                      }`}
+                      aria-label={`Go to slide ${index + 1}`}
+                    />
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
