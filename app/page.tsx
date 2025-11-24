@@ -101,22 +101,15 @@ export default function HomePage() {
           <div className="max-w-4xl mx-auto space-y-12">
             <div className="text-center space-y-4">
               <h2 className="text-4xl font-bold">About Swiftcourse</h2>
-              <p className="text-xl text-muted-foreground">
-                Everything we do is designed to strengthen entrepreneurial and sales success through personality trait
-                assessment
-              </p>
             </div>
 
             <Card className="border-2 border-brand-green/20">
-              <CardContent className="pt-6">
-                <p className="text-lg leading-relaxed mb-4">
-                  Our application of the Big 5 Personality Assessment identifies specific strategies entrepreneurs
-                  should leverage to increase their success. Additionally, The Big 5 identifies where your personality
-                  traits can hold you back.
-                </p>
+              <CardContent className="space-y-4">
                 <p className="text-lg leading-relaxed">
-                  So, if you are the type of person who always looks for a competitive edge, then a look inside yourself
-                  may be the answer.
+                  Our mission is to equip sales teams with the skills to outgrow their default traits and operate with disciplined, repeatable negotiation behaviors. We use the Big 10 Aspects Model to reveal each salesperson's instinctive patterns, then train them to counterbalance these tendencies through Jim Camp's systematic thinking, Chris Voss's tactical empathy, and a metrics-driven approach to productive activity.
+                </p>
+                <p className="text-lg leading-relaxed font-semibold text-brand-green">
+                  We aim to build salespeople who can stay calm, assertive, and in control—no matter their personality—so they can navigate complex conversations and drive meaningful results.
                 </p>
               </CardContent>
             </Card>
