@@ -86,7 +86,7 @@ export default function Module1Page() {
       // Update URL to reflect new section
       const nextSection = sections[nextIndex]
       if (nextSection) {
-        router.push(`/module-1?section=${nextSection.id}`)
+        router.push(`/course/module-1?section=${nextSection.id}`)
       }
       window.scrollTo({ top: 0, behavior: "smooth" })
     }

@@ -83,7 +83,7 @@ export default function Module2Page() {
       setCurrentSectionIndex(nextIndex)
       const nextSection = sections[nextIndex]
       if (nextSection) {
-        router.push(`/module-2?section=${nextSection.id}`)
+        router.push(`/course/module-2?section=${nextSection.id}`)
       }
       window.scrollTo({ top: 0, behavior: "smooth" })
     }
