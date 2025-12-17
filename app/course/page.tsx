@@ -22,6 +22,7 @@ export default function DashboardPage() {
   const module3 = progress.modules?.find((m) => m.id === "module-3")
   const module4 = progress.modules?.find((m) => m.id === "module-4")
   const module5 = progress.modules?.find((m) => m.id === "module-5")
+  const module6 = progress.modules?.find((m) => m.id === "module-6")
 
   const module0Progress = {
     completed: module0?.sections.filter((s) => s.completed).length || 0,
@@ -53,8 +54,13 @@ export default function DashboardPage() {
     total: module5?.sections.length || 7,
   }
 
-  const totalCompleted = module0Progress.completed + module1Progress.completed + module2Progress.completed + module3Progress.completed + module4Progress.completed + module5Progress.completed
-  const totalSections = module0Progress.total + module1Progress.total + module2Progress.total + module3Progress.total + module4Progress.total + module5Progress.total
+  const module6Progress = {
+    completed: module6?.sections.filter((s) => s.completed).length || 0,
+    total: module6?.sections.length || 8,
+  }
+
+  const totalCompleted = module0Progress.completed + module1Progress.completed + module2Progress.completed + module3Progress.completed + module4Progress.completed + module5Progress.completed + module6Progress.completed
+  const totalSections = module0Progress.total + module1Progress.total + module2Progress.total + module3Progress.total + module4Progress.total + module5Progress.total + module6Progress.total
   const completionRate = totalSections > 0 ? Math.round((totalCompleted / totalSections) * 100) : 0
 
   const moduleStatus0 =
@@ -99,6 +105,13 @@ export default function DashboardPage() {
         ? "Completed"
         : "In Progress"
 
+  const moduleStatus6 =
+    module6Progress.completed === 0
+      ? "Not Started"
+      : module6Progress.completed === module6Progress.total
+        ? "Completed"
+        : "In Progress"
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -124,8 +137,8 @@ export default function DashboardPage() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">
-                {moduleStatus0 === "In Progress" || moduleStatus1 === "In Progress" || moduleStatus2 === "In Progress" || moduleStatus3 === "In Progress" || moduleStatus4 === "In Progress"
-                  ? "1-5"
+                {moduleStatus0 === "In Progress" || moduleStatus1 === "In Progress" || moduleStatus2 === "In Progress" || moduleStatus3 === "In Progress" || moduleStatus4 === "In Progress" || moduleStatus5 === "In Progress" || moduleStatus6 === "In Progress"
+                  ? "1-6"
                   : "1"}
               </div>
               <p className="text-xs text-muted-foreground">
@@ -137,7 +150,13 @@ export default function DashboardPage() {
                       ? "Module 2 in progress"
                       : moduleStatus3 === "In Progress"
                         ? "Module 3 in progress"
-                        : "Ready to start"}
+                        : moduleStatus4 === "In Progress"
+                          ? "Module 4 in progress"
+                          : moduleStatus5 === "In Progress"
+                            ? "Module 5 in progress"
+                            : moduleStatus6 === "In Progress"
+                              ? "Module 6 in progress"
+                              : "Ready to start"}
               </p>
             </CardContent>
           </Card>
@@ -309,6 +328,27 @@ export default function DashboardPage() {
                       : module5Progress.completed === module5Progress.total
                         ? "Review Module 5"
                         : "Continue Module 5"}
+                  </Button>
+                </Link>
+              </div>
+
+              {/* Module 6 */}
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="font-semibold">Module 6: Measurement and Accountability</h3>
+                  <span className="text-sm text-muted-foreground">{moduleStatus6}</span>
+                </div>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Track transformation across personality, mindset, change agency, and sales activity with the 4D Growth Framework
+                </p>
+                <ProgressBar current={module6Progress.completed} total={module6Progress.total} showPercentage={false} />
+                <Link href="/course/module-6">
+                  <Button className="mt-4 bg-brand-orange hover:bg-[#e64a19] text-white">
+                    {module6Progress.completed === 0
+                      ? "Start Module 6"
+                      : module6Progress.completed === module6Progress.total
+                        ? "Review Module 6"
+                        : "Continue Module 6"}
                   </Button>
                 </Link>
               </div>

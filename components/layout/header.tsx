@@ -66,6 +66,12 @@ export function Header() {
           >
             Module 5
           </Link>
+          <Link
+            href="/course/module-6"
+            className="text-sm font-medium text-foreground hover:text-brand-orange transition-colors"
+          >
+            Module 6
+          </Link>
         </nav>
 
         <div className="flex items-center gap-2">

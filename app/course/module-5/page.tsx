@@ -482,22 +482,26 @@ export default function Module5Page() {
               </Card>
 
               <ComparisonCard
-                leftTitle="Lagging Indicators (Outcomes)"
-                leftItems={[
-                  "Deals closed",
-                  "Revenue generated",
-                  "Win rate",
-                  "Average deal size",
-                  "Sales cycle length",
-                ]}
-                rightTitle="Leading Indicators (Behaviors)"
-                rightItems={[
-                  "Daily prospecting completion rate",
-                  "Number of calibrated questions asked",
-                  "Mission statements documented",
-                  '"No\'s" received per week',
-                  "Camp/Voss technique usage frequency",
-                ]}
+                leftSide={{
+                  title: "Lagging Indicators (Outcomes)",
+                  items: [
+                    "Deals closed",
+                    "Revenue generated",
+                    "Win rate",
+                    "Average deal size",
+                    "Sales cycle length",
+                  ],
+                }}
+                rightSide={{
+                  title: "Leading Indicators (Behaviors)",
+                  items: [
+                    "Daily prospecting completion rate",
+                    "Number of calibrated questions asked",
+                    "Mission statements documented",
+                    '"No\'s" received per week',
+                    "Camp/Voss technique usage frequency",
+                  ],
+                }}
               />
 
               <Card className="p-6">

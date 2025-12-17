@@ -112,5 +112,19 @@ export const courseStructure: CourseStructure = {
         { id: "module-assessment", title: "Module Assessment", completed: false },
       ],
     },
+    {
+      id: "module-6",
+      title: "Module 6: Measurement and Accountability",
+      sections: [
+        { id: "module-overview", title: "Module Overview", completed: false },
+        { id: "d1-personality", title: "D1: Personality Work", completed: false },
+        { id: "d2-mindset", title: "D2: Mindset Shifts", completed: false },
+        { id: "d3-change-agency", title: "D3: Change Agency", completed: false },
+        { id: "d4-sales-activity", title: "D4: Sales Activity", completed: false },
+        { id: "composite-score", title: "The SwiftCourse Transformation Index", completed: false },
+        { id: "module-summary", title: "Module Summary", completed: false },
+        { id: "module-assessment", title: "Module Assessment", completed: false },
+      ],
+    },
   ],
 }
