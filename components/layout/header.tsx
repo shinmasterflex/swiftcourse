@@ -48,6 +48,24 @@ export function Header() {
           >
             Module 2
           </Link>
+          <Link
+            href="/course/module-3"
+            className="text-sm font-medium text-foreground hover:text-brand-orange transition-colors"
+          >
+            Module 3
+          </Link>
+          <Link
+            href="/course/module-4"
+            className="text-sm font-medium text-foreground hover:text-brand-orange transition-colors"
+          >
+            Module 4
+          </Link>
+          <Link
+            href="/course/module-5"
+            className="text-sm font-medium text-foreground hover:text-brand-orange transition-colors"
+          >
+            Module 5
+          </Link>
         </nav>
 
         <div className="flex items-center gap-2">

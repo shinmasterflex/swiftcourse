@@ -41,8 +41,8 @@ export default function HomePage() {
               {/* Left side - Text content */}
               <div className="space-y-8">
                 <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
-                  Why <span className="text-brand-orange">Personality</span> Matters in{" "}
-                  <span className="text-brand-green">Sales</span>
+                  <span className="text-brand-orange">Personality Traits</span> Are Not{" "}
+                  <span className="text-brand-green">Limitations</span>
                 </h1>
                 <p className="text-xl md:text-2xl text-muted-foreground">
                   Strengthen entrepreneurial and sales success through personality trait assessment with the Big 5 Model

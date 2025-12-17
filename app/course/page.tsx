@@ -19,6 +19,9 @@ export default function DashboardPage() {
   const module0 = progress.modules?.find((m) => m.id === "module-0")
   const module1 = progress.modules?.find((m) => m.id === "module-1")
   const module2 = progress.modules?.find((m) => m.id === "module-2")
+  const module3 = progress.modules?.find((m) => m.id === "module-3")
+  const module4 = progress.modules?.find((m) => m.id === "module-4")
+  const module5 = progress.modules?.find((m) => m.id === "module-5")
 
   const module0Progress = {
     completed: module0?.sections.filter((s) => s.completed).length || 0,
@@ -35,8 +38,23 @@ export default function DashboardPage() {
     total: module2?.sections.length || 14,
   }
 
-  const totalCompleted = module0Progress.completed + module1Progress.completed + module2Progress.completed
-  const totalSections = module0Progress.total + module1Progress.total + module2Progress.total
+  const module3Progress = {
+    completed: module3?.sections.filter((s) => s.completed).length || 0,
+    total: module3?.sections.length || 5,
+  }
+
+  const module4Progress = {
+    completed: module4?.sections.filter((s) => s.completed).length || 0,
+    total: module4?.sections.length || 11,
+  }
+
+  const module5Progress = {
+    completed: module5?.sections.filter((s) => s.completed).length || 0,
+    total: module5?.sections.length || 7,
+  }
+
+  const totalCompleted = module0Progress.completed + module1Progress.completed + module2Progress.completed + module3Progress.completed + module4Progress.completed + module5Progress.completed
+  const totalSections = module0Progress.total + module1Progress.total + module2Progress.total + module3Progress.total + module4Progress.total + module5Progress.total
   const completionRate = totalSections > 0 ? Math.round((totalCompleted / totalSections) * 100) : 0
 
   const moduleStatus0 =
@@ -57,6 +75,27 @@ export default function DashboardPage() {
     module2Progress.completed === 0
       ? "Not Started"
       : module2Progress.completed === module2Progress.total
+        ? "Completed"
+        : "In Progress"
+
+  const moduleStatus3 =
+    module3Progress.completed === 0
+      ? "Not Started"
+      : module3Progress.completed === module3Progress.total
+        ? "Completed"
+        : "In Progress"
+
+  const moduleStatus4 =
+    module4Progress.completed === 0
+      ? "Not Started"
+      : module4Progress.completed === module4Progress.total
+        ? "Completed"
+        : "In Progress"
+
+  const moduleStatus5 =
+    module5Progress.completed === 0
+      ? "Not Started"
+      : module5Progress.completed === module5Progress.total
         ? "Completed"
         : "In Progress"
 
@@ -85,8 +124,8 @@ export default function DashboardPage() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">
-                {moduleStatus0 === "In Progress" || moduleStatus1 === "In Progress" || moduleStatus2 === "In Progress"
-                  ? "1-3"
+                {moduleStatus0 === "In Progress" || moduleStatus1 === "In Progress" || moduleStatus2 === "In Progress" || moduleStatus3 === "In Progress" || moduleStatus4 === "In Progress"
+                  ? "1-5"
                   : "1"}
               </div>
               <p className="text-xs text-muted-foreground">
@@ -94,7 +133,11 @@ export default function DashboardPage() {
                   ? "Module 0 in progress"
                   : moduleStatus1 === "In Progress"
                     ? "Module 1 in progress"
-                    : "Ready to start"}
+                    : moduleStatus2 === "In Progress"
+                      ? "Module 2 in progress"
+                      : moduleStatus3 === "In Progress"
+                        ? "Module 3 in progress"
+                        : "Ready to start"}
               </p>
             </CardContent>
           </Card>
@@ -206,6 +249,69 @@ export default function DashboardPage() {
                   </Button>
                 </Link>
               </div>
+
+              {/* Module 3 */}
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="font-semibold">Module 3: Win With NO</h3>
+                  <span className="text-sm text-muted-foreground">{moduleStatus3}</span>
+                </div>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Master Jim Camp's "Start With No" and Chris Voss's FBI negotiation tactics
+                </p>
+                <ProgressBar current={module3Progress.completed} total={module3Progress.total} showPercentage={false} />
+                <Link href="/course/module-3">
+                  <Button className="mt-4 bg-brand-green hover:bg-[#143d31] text-white">
+                    {module3Progress.completed === 0
+                      ? "Start Module 3"
+                      : module3Progress.completed === module3Progress.total
+                        ? "Review Module 3"
+                        : "Continue Module 3"}
+                  </Button>
+                </Link>
+              </div>
+
+              {/* Module 4 */}
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="font-semibold">Module 4: Integrating Big 10 with Camp & Voss</h3>
+                  <span className="text-sm text-muted-foreground">{moduleStatus4}</span>
+                </div>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Learn how to override personality traits with systematic negotiation skills
+                </p>
+                <ProgressBar current={module4Progress.completed} total={module4Progress.total} showPercentage={false} />
+                <Link href="/course/module-4">
+                  <Button className="mt-4 bg-brand-orange hover:bg-[#e64a19] text-white">
+                    {module4Progress.completed === 0
+                      ? "Start Module 4"
+                      : module4Progress.completed === module4Progress.total
+                        ? "Review Module 4"
+                        : "Continue Module 4"}
+                  </Button>
+                </Link>
+              </div>
+
+              {/* Module 5 */}
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="font-semibold">Module 5: Change Agency</h3>
+                  <span className="text-sm text-muted-foreground">{moduleStatus5}</span>
+                </div>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Design environments and systems that make behavioral change sustainable in sales teams
+                </p>
+                <ProgressBar current={module5Progress.completed} total={module5Progress.total} showPercentage={false} />
+                <Link href="/course/module-5">
+                  <Button className="mt-4 bg-brand-green hover:bg-[#143d31] text-white">
+                    {module5Progress.completed === 0
+                      ? "Start Module 5"
+                      : module5Progress.completed === module5Progress.total
+                        ? "Review Module 5"
+                        : "Continue Module 5"}
+                  </Button>
+                </Link>
+              </div>
             </CardContent>
           </Card>
 
@@ -228,7 +334,7 @@ export default function DashboardPage() {
                   </div>
                   <div className="flex justify-between mb-2">
                     <span className="text-muted-foreground">Modules</span>
-                    <span className="font-medium">7 Total</span>
+                    <span className="font-medium">6 Total</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Level</span>
