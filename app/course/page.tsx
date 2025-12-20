@@ -5,13 +5,13 @@
 
 "use client"
 
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { Header } from "@/components/layout/header"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ProgressBar } from "@/components/learning/progress-bar"
-import { FlipCard } from "@/components/learning/flip-card"
 import { BookOpen, Target, TrendingUp, Award } from "lucide-react"
 import { useProgress } from "@/hooks/use-progress"
 import { cn } from "@/lib/utils"
@@ -19,6 +19,11 @@ import { cn } from "@/lib/utils"
 export default function DashboardPage() {
   const router = useRouter()
   const progress = useProgress()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const module0 = progress.modules?.find((m) => m.id === "module-0")
   const module1 = progress.modules?.find((m) => m.id === "module-1")
@@ -141,12 +146,12 @@ export default function DashboardPage() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">
-                {moduleStatus0 === "In Progress" || moduleStatus1 === "In Progress" || moduleStatus2 === "In Progress" || moduleStatus3 === "In Progress" || moduleStatus4 === "In Progress" || moduleStatus5 === "In Progress" || moduleStatus6 === "In Progress"
+                {!mounted ? "1" : moduleStatus0 === "In Progress" || moduleStatus1 === "In Progress" || moduleStatus2 === "In Progress" || moduleStatus3 === "In Progress" || moduleStatus4 === "In Progress" || moduleStatus5 === "In Progress" || moduleStatus6 === "In Progress"
                   ? "1-6"
                   : "1"}
               </div>
               <p className="text-xs text-muted-foreground">
-                {moduleStatus0 === "In Progress"
+                {!mounted ? "Ready to start" : moduleStatus0 === "In Progress"
                   ? "Module 0 in progress"
                   : moduleStatus1 === "In Progress"
                     ? "Module 1 in progress"
@@ -171,9 +176,9 @@ export default function DashboardPage() {
               <TrendingUp className="h-4 w-4 text-brand-orange" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{completionRate}%</div>
+              <div className="text-2xl font-bold">{mounted ? completionRate : 0}%</div>
               <p className="text-xs text-muted-foreground">
-                {completionRate === 0 ? "Start learning today" : "Keep up the great work!"}
+                {!mounted ? "Start learning today" : completionRate === 0 ? "Start learning today" : "Keep up the great work!"}
               </p>
             </CardContent>
           </Card>
@@ -203,340 +208,311 @@ export default function DashboardPage() {
 
         {/* Course Overview */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Main Course Card */}
-          <Card className="lg:col-span-2">
-            <CardContent className="grid grid-cols-1 gap-6 pt-6">
-              {/* Phase 1 Header */}
-              <div>
-                <h3 className="text-2xl font-bold text-brand-green mb-4">Phase 1: Personality Traits and Introduction to Neurobiology</h3>
-              </div>
+          {/* Phase Cards */}
+          <div className="lg:col-span-2 space-y-6">
+            {/* Phase 1 Card */}
+            <Card>
+              <CardContent className="grid grid-cols-1 gap-6 pt-6">
+                {/* Phase 1 Header */}
+                <div>
+                  <h3 className="text-2xl font-bold text-brand-orange mb-4">Phase 1: Personality Traits and Introduction to Neurobiology</h3>
+                </div>
 
               {/* Module 0 */}
-              <FlipCard
-                className="min-h-80"
-                frontTitle="Module 0"
-                frontContent={
-                  <div className="text-center space-y-3">
-                    <h4 className="text-2xl font-bold text-brand-orange">Introduction</h4>
+              <Card>
+                <CardHeader>
+                  <div className="flex items-center justify-between">
+                    <CardTitle className="text-2xl">Module 0</CardTitle>
+                    <span className={cn(
+                      "inline-block px-3 py-1 rounded-full text-xs font-semibold",
+                      moduleStatus0 === "Completed" ? "bg-green-100 text-green-800" :
+                      moduleStatus0 === "In Progress" ? "bg-orange-100 text-orange-800" :
+                      "bg-gray-100 text-gray-800"
+                    )}>
+                      {moduleStatus0}
+                    </span>
+                  </div>
+                  <CardDescription className="text-xl text-brand-green font-semibold">Introduction</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <p className="text-sm">
+                    Learn about the Big Five personality model and how it applies to sales success
+                  </p>
+                  <div className="space-y-2">
                     <p className="text-sm text-muted-foreground">
                       {module0Progress.completed} of {module0Progress.total} sections complete
                     </p>
                     <ProgressBar current={module0Progress.completed} total={module0Progress.total} showPercentage={true} />
-                    <div className="pt-2">
-                      <span className={cn(
-                        "inline-block px-3 py-1 rounded-full text-xs font-semibold",
-                        moduleStatus0 === "Completed" ? "bg-green-100 text-green-800" :
-                        moduleStatus0 === "In Progress" ? "bg-orange-100 text-orange-800" :
-                        "bg-gray-100 text-gray-800"
-                      )}>
-                        {moduleStatus0}
-                      </span>
-                    </div>
                   </div>
-                }
-                backTitle="Module 0: Introduction"
-                backContent={
-                  <div className="space-y-4">
-                    <p className="text-sm">
-                      Learn about the Big Five personality model and how it applies to sales success
-                    </p>
-                    <div className="pt-4">
-                      <Button 
-                        onClick={() => router.push("/course/module-0")} 
-                        className="w-full bg-brand-orange hover:bg-[#e64a19] text-white"
-                      >
-                        {module0Progress.completed === 0
-                          ? "Start Module 0"
-                          : module0Progress.completed === module0Progress.total
-                            ? "Review Module 0"
-                            : "Continue Module 0"}
-                      </Button>
-                    </div>
-                  </div>
-                }
-              />
+                  <Button 
+                    onClick={() => router.push("/course/module-0")} 
+                    className="w-full bg-brand-green hover:bg-[#143d31] text-white"
+                  >
+                    {module0Progress.completed === 0
+                      ? "Start Module 0"
+                      : module0Progress.completed === module0Progress.total
+                        ? "Review Module 0"
+                        : "Continue Module 0"}
+                  </Button>
+                </CardContent>
+              </Card>
 
               {/* Module 1 */}
-              <FlipCard
-                className="min-h-80"
-                frontTitle="Module 1"
-                frontContent={
-                  <div className="text-center space-y-3">
-                    <h4 className="text-2xl font-bold text-brand-green">Neurobiology & Growth Mindset</h4>
+              <Card>
+                <CardHeader>
+                  <div className="flex items-center justify-between">
+                    <CardTitle className="text-2xl">Module 1</CardTitle>
+                    <span className={cn(
+                      "inline-block px-3 py-1 rounded-full text-xs font-semibold",
+                      moduleStatus1 === "Completed" ? "bg-green-100 text-green-800" :
+                      moduleStatus1 === "In Progress" ? "bg-orange-100 text-orange-800" :
+                      "bg-gray-100 text-gray-800"
+                    )}>
+                      {moduleStatus1}
+                    </span>
+                  </div>
+                  <CardDescription className="text-xl text-brand-green font-semibold">Neurobiology & Growth Mindset</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <p className="text-sm">
+                    Understand the brain science behind goal achievement and develop a growth mindset
+                  </p>
+                  <div className="space-y-2">
                     <p className="text-sm text-muted-foreground">
                       {module1Progress.completed} of {module1Progress.total} sections complete
                     </p>
                     <ProgressBar current={module1Progress.completed} total={module1Progress.total} showPercentage={true} />
-                    <div className="pt-2">
-                      <span className={cn(
-                        "inline-block px-3 py-1 rounded-full text-xs font-semibold",
-                        moduleStatus1 === "Completed" ? "bg-green-100 text-green-800" :
-                        moduleStatus1 === "In Progress" ? "bg-orange-100 text-orange-800" :
-                        "bg-gray-100 text-gray-800"
-                      )}>
-                        {moduleStatus1}
-                      </span>
-                    </div>
                   </div>
-                }
-                backTitle="Module 1: Neurobiology & Growth Mindset"
-                backContent={
-                  <div className="space-y-4">
-                    <p className="text-sm">
-                      Understand the brain science behind goal achievement and develop a growth mindset
-                    </p>
-                    <div className="pt-4">
-                      <Button 
-                        onClick={() => router.push("/course/module-1")} 
-                        className="w-full bg-brand-green hover:bg-[#143d31] text-white"
-                      >
-                        {module1Progress.completed === 0
-                          ? "Start Module 1"
-                          : module1Progress.completed === module1Progress.total
-                            ? "Review Module 1"
-                            : "Continue Module 1"}
-                      </Button>
-                    </div>
-                  </div>
-                }
-              />
+                  <Button 
+                    onClick={() => router.push("/course/module-1")} 
+                    className="w-full bg-brand-green hover:bg-[#143d31] text-white"
+                  >
+                    {module1Progress.completed === 0
+                      ? "Start Module 1"
+                      : module1Progress.completed === module1Progress.total
+                        ? "Review Module 1"
+                        : "Continue Module 1"}
+                  </Button>
+                </CardContent>
+              </Card>
+              </CardContent>
+            </Card>
 
-              {/* Phase 2 Header */}
-              <div className="mt-8">
-                <h3 className="text-2xl font-bold text-brand-orange mb-4">Phase 2: Growth Mindset and Growth Perspectives</h3>
-              </div>
+            {/* Phase 2 Card */}
+            <Card>
+              <CardContent className="grid grid-cols-1 gap-6 pt-6">
+                {/* Phase 2 Header */}
+                <div>
+                  <h3 className="text-2xl font-bold text-brand-orange mb-4">Phase 2: Growth Mindset and Growth Perspectives</h3>
+                </div>
 
               {/* Module 2 */}
-              <FlipCard
-                className="min-h-80"
-                frontTitle="Module 2"
-                frontContent={
-                  <div className="text-center space-y-3">
-                    <h4 className="text-2xl font-bold text-brand-orange">Learning, Habits & Measurement</h4>
+              <Card>
+                <CardHeader>
+                  <div className="flex items-center justify-between">
+                    <CardTitle className="text-2xl">Module 2</CardTitle>
+                    <span className={cn(
+                      "inline-block px-3 py-1 rounded-full text-xs font-semibold",
+                      moduleStatus2 === "Completed" ? "bg-green-100 text-green-800" :
+                      moduleStatus2 === "In Progress" ? "bg-orange-100 text-orange-800" :
+                      "bg-gray-100 text-gray-800"
+                    )}>
+                      {moduleStatus2}
+                    </span>
+                  </div>
+                  <CardDescription className="text-xl text-brand-green font-semibold">Learning, Habits & Measurement</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <p className="text-sm">
+                    Master the learning process, build lasting habits, and track your progress with KPIs
+                  </p>
+                  <div className="space-y-2">
                     <p className="text-sm text-muted-foreground">
                       {module2Progress.completed} of {module2Progress.total} sections complete
                     </p>
                     <ProgressBar current={module2Progress.completed} total={module2Progress.total} showPercentage={true} />
-                    <div className="pt-2">
-                      <span className={cn(
-                        "inline-block px-3 py-1 rounded-full text-xs font-semibold",
-                        moduleStatus2 === "Completed" ? "bg-green-100 text-green-800" :
-                        moduleStatus2 === "In Progress" ? "bg-orange-100 text-orange-800" :
-                        "bg-gray-100 text-gray-800"
-                      )}>
-                        {moduleStatus2}
-                      </span>
-                    </div>
                   </div>
-                }
-                backTitle="Module 2: Learning, Habits & Measurement"
-                backContent={
-                  <div className="space-y-4">
-                    <p className="text-sm">
-                      Master the learning process, build lasting habits, and track your progress with KPIs
-                    </p>
-                    <div className="pt-4">
-                      <Button 
-                        onClick={() => router.push("/course/module-2")} 
-                        className="w-full bg-brand-orange hover:bg-[#e64a19] text-white"
-                      >
-                        {module2Progress.completed === 0
-                          ? "Start Module 2"
-                          : module2Progress.completed === module2Progress.total
-                            ? "Review Module 2"
-                            : "Continue Module 2"}
-                      </Button>
-                    </div>
-                  </div>
-                }
-              />
+                  <Button 
+                    onClick={() => router.push("/course/module-2")} 
+                    className="w-full bg-brand-green hover:bg-[#143d31] text-white"
+                  >
+                    {module2Progress.completed === 0
+                      ? "Start Module 2"
+                      : module2Progress.completed === module2Progress.total
+                        ? "Review Module 2"
+                        : "Continue Module 2"}
+                  </Button>
+                </CardContent>
+              </Card>
 
               {/* Module 3 */}
-              <FlipCard
-                className="min-h-80"
-                frontTitle="Module 3"
-                frontContent={
-                  <div className="text-center space-y-3">
-                    <h4 className="text-2xl font-bold text-brand-green">Win With NO</h4>
+              <Card>
+                <CardHeader>
+                  <div className="flex items-center justify-between">
+                    <CardTitle className="text-2xl">Module 3</CardTitle>
+                    <span className={cn(
+                      "inline-block px-3 py-1 rounded-full text-xs font-semibold",
+                      moduleStatus3 === "Completed" ? "bg-green-100 text-green-800" :
+                      moduleStatus3 === "In Progress" ? "bg-orange-100 text-orange-800" :
+                      "bg-gray-100 text-gray-800"
+                    )}>
+                      {moduleStatus3}
+                    </span>
+                  </div>
+                  <CardDescription className="text-xl text-brand-green font-semibold">Win With NO</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <p className="text-sm">
+                    Master Jim Camp's "Start With No" and Chris Voss's FBI negotiation tactics
+                  </p>
+                  <div className="space-y-2">
                     <p className="text-sm text-muted-foreground">
                       {module3Progress.completed} of {module3Progress.total} sections complete
                     </p>
                     <ProgressBar current={module3Progress.completed} total={module3Progress.total} showPercentage={true} />
-                    <div className="pt-2">
-                      <span className={cn(
-                        "inline-block px-3 py-1 rounded-full text-xs font-semibold",
-                        moduleStatus3 === "Completed" ? "bg-green-100 text-green-800" :
-                        moduleStatus3 === "In Progress" ? "bg-orange-100 text-orange-800" :
-                        "bg-gray-100 text-gray-800"
-                      )}>
-                        {moduleStatus3}
-                      </span>
-                    </div>
                   </div>
-                }
-                backTitle="Module 3: Win With NO"
-                backContent={
-                  <div className="space-y-4">
-                    <p className="text-sm">
-                      Master Jim Camp's "Start With No" and Chris Voss's FBI negotiation tactics
-                    </p>
-                    <div className="pt-4">
-                      <Button 
-                        onClick={() => router.push("/course/module-3")} 
-                        className="w-full bg-brand-green hover:bg-[#143d31] text-white"
-                      >
-                        {module3Progress.completed === 0
-                          ? "Start Module 3"
-                          : module3Progress.completed === module3Progress.total
-                            ? "Review Module 3"
-                            : "Continue Module 3"}
-                      </Button>
-                    </div>
-                  </div>
-                }
-              />
+                  <Button 
+                    onClick={() => router.push("/course/module-3")} 
+                    className="w-full bg-brand-green hover:bg-[#143d31] text-white"
+                  >
+                    {module3Progress.completed === 0
+                      ? "Start Module 3"
+                      : module3Progress.completed === module3Progress.total
+                        ? "Review Module 3"
+                        : "Continue Module 3"}
+                  </Button>
+                </CardContent>
+              </Card>
 
               {/* Module 4 */}
-              <FlipCard
-                className="min-h-80"
-                frontTitle="Module 4"
-                frontContent={
-                  <div className="text-center space-y-3">
-                    <h4 className="text-2xl font-bold text-brand-orange">Integrating Big 10 with Camp & Voss</h4>
+              <Card>
+                <CardHeader>
+                  <div className="flex items-center justify-between">
+                    <CardTitle className="text-2xl">Module 4</CardTitle>
+                    <span className={cn(
+                      "inline-block px-3 py-1 rounded-full text-xs font-semibold",
+                      moduleStatus4 === "Completed" ? "bg-green-100 text-green-800" :
+                      moduleStatus4 === "In Progress" ? "bg-orange-100 text-orange-800" :
+                      "bg-gray-100 text-gray-800"
+                    )}>
+                      {moduleStatus4}
+                    </span>
+                  </div>
+                  <CardDescription className="text-xl text-brand-green font-semibold">Integrating Big 10 with Camp & Voss</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <p className="text-sm">
+                    Learn how to override personality traits with systematic negotiation skills
+                  </p>
+                  <div className="space-y-2">
                     <p className="text-sm text-muted-foreground">
                       {module4Progress.completed} of {module4Progress.total} sections complete
                     </p>
                     <ProgressBar current={module4Progress.completed} total={module4Progress.total} showPercentage={true} />
-                    <div className="pt-2">
-                      <span className={cn(
-                        "inline-block px-3 py-1 rounded-full text-xs font-semibold",
-                        moduleStatus4 === "Completed" ? "bg-green-100 text-green-800" :
-                        moduleStatus4 === "In Progress" ? "bg-orange-100 text-orange-800" :
-                        "bg-gray-100 text-gray-800"
-                      )}>
-                        {moduleStatus4}
-                      </span>
-                    </div>
                   </div>
-                }
-                backTitle="Module 4: Integrating Big 10 with Camp & Voss"
-                backContent={
-                  <div className="space-y-4">
-                    <p className="text-sm">
-                      Learn how to override personality traits with systematic negotiation skills
-                    </p>
-                    <div className="pt-4">
-                      <Button 
-                        onClick={() => router.push("/course/module-4")} 
-                        className="w-full bg-brand-orange hover:bg-[#e64a19] text-white"
-                      >
-                        {module4Progress.completed === 0
-                          ? "Start Module 4"
-                          : module4Progress.completed === module4Progress.total
-                            ? "Review Module 4"
-                            : "Continue Module 4"}
-                      </Button>
-                    </div>
-                  </div>
-                }
-              />
+                  <Button 
+                    onClick={() => router.push("/course/module-4")} 
+                    className="w-full bg-brand-green hover:bg-[#143d31] text-white"
+                  >
+                    {module4Progress.completed === 0
+                      ? "Start Module 4"
+                      : module4Progress.completed === module4Progress.total
+                        ? "Review Module 4"
+                        : "Continue Module 4"}
+                  </Button>
+                </CardContent>
+              </Card>
+              </CardContent>
+            </Card>
 
-              {/* Phase 3 Header */}
-              <div className="mt-8">
-                <h3 className="text-2xl font-bold text-brand-green mb-4">Phase 3: Implementation and Change Agency</h3>
-              </div>
+            {/* Phase 3 Card */}
+            <Card>
+              <CardContent className="grid grid-cols-1 gap-6 pt-6">
+                {/* Phase 3 Header */}
+                <div>
+                  <h3 className="text-2xl font-bold text-brand-orange mb-4">Phase 3: Implementation and Change Agency</h3>
+                </div>
 
               {/* Module 5 */}
-              <FlipCard
-                className="min-h-80"
-                frontTitle="Module 5"
-                frontContent={
-                  <div className="text-center space-y-3">
-                    <h4 className="text-2xl font-bold text-brand-green">Change Agency</h4>
+              <Card>
+                <CardHeader>
+                  <div className="flex items-center justify-between">
+                    <CardTitle className="text-2xl">Module 5</CardTitle>
+                    <span className={cn(
+                      "inline-block px-3 py-1 rounded-full text-xs font-semibold",
+                      moduleStatus5 === "Completed" ? "bg-green-100 text-green-800" :
+                      moduleStatus5 === "In Progress" ? "bg-orange-100 text-orange-800" :
+                      "bg-gray-100 text-gray-800"
+                    )}>
+                      {moduleStatus5}
+                    </span>
+                  </div>
+                  <CardDescription className="text-xl text-brand-green font-semibold">Change Agency</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <p className="text-sm">
+                    Design environments and systems that make behavioral change sustainable in sales teams
+                  </p>
+                  <div className="space-y-2">
                     <p className="text-sm text-muted-foreground">
                       {module5Progress.completed} of {module5Progress.total} sections complete
                     </p>
                     <ProgressBar current={module5Progress.completed} total={module5Progress.total} showPercentage={true} />
-                    <div className="pt-2">
-                      <span className={cn(
-                        "inline-block px-3 py-1 rounded-full text-xs font-semibold",
-                        moduleStatus5 === "Completed" ? "bg-green-100 text-green-800" :
-                        moduleStatus5 === "In Progress" ? "bg-orange-100 text-orange-800" :
-                        "bg-gray-100 text-gray-800"
-                      )}>
-                        {moduleStatus5}
-                      </span>
-                    </div>
                   </div>
-                }
-                backTitle="Module 5: Change Agency"
-                backContent={
-                  <div className="space-y-4">
-                    <p className="text-sm">
-                      Design environments and systems that make behavioral change sustainable in sales teams
-                    </p>
-                    <div className="pt-4">
-                      <Button 
-                        onClick={() => router.push("/course/module-5")} 
-                        className="w-full bg-brand-green hover:bg-[#143d31] text-white"
-                      >
-                        {module5Progress.completed === 0
-                          ? "Start Module 5"
-                          : module5Progress.completed === module5Progress.total
-                            ? "Review Module 5"
-                            : "Continue Module 5"}
-                      </Button>
-                    </div>
-                  </div>
-                }
-              />
+                  <Button 
+                    onClick={() => router.push("/course/module-5")} 
+                    className="w-full bg-brand-green hover:bg-[#143d31] text-white"
+                  >
+                    {module5Progress.completed === 0
+                      ? "Start Module 5"
+                      : module5Progress.completed === module5Progress.total
+                        ? "Review Module 5"
+                        : "Continue Module 5"}
+                  </Button>
+                </CardContent>
+              </Card>
 
               {/* Module 6 */}
-              <FlipCard
-                className="min-h-80"
-                frontTitle="Module 6"
-                frontContent={
-                  <div className="text-center space-y-3">
-                    <h4 className="text-2xl font-bold text-brand-orange">Measurement and Accountability</h4>
+              <Card>
+                <CardHeader>
+                  <div className="flex items-center justify-between">
+                    <CardTitle className="text-2xl">Module 6</CardTitle>
+                    <span className={cn(
+                      "inline-block px-3 py-1 rounded-full text-xs font-semibold",
+                      moduleStatus6 === "Completed" ? "bg-green-100 text-green-800" :
+                      moduleStatus6 === "In Progress" ? "bg-orange-100 text-orange-800" :
+                      "bg-gray-100 text-gray-800"
+                    )}>
+                      {moduleStatus6}
+                    </span>
+                  </div>
+                  <CardDescription className="text-xl text-brand-green font-semibold">Measurement and Accountability</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <p className="text-sm">
+                    Track transformation across personality, mindset, change agency, and sales activity with the 4D Growth Framework
+                  </p>
+                  <div className="space-y-2">
                     <p className="text-sm text-muted-foreground">
                       {module6Progress.completed} of {module6Progress.total} sections complete
                     </p>
                     <ProgressBar current={module6Progress.completed} total={module6Progress.total} showPercentage={true} />
-                    <div className="pt-2">
-                      <span className={cn(
-                        "inline-block px-3 py-1 rounded-full text-xs font-semibold",
-                        moduleStatus6 === "Completed" ? "bg-green-100 text-green-800" :
-                        moduleStatus6 === "In Progress" ? "bg-orange-100 text-orange-800" :
-                        "bg-gray-100 text-gray-800"
-                      )}>
-                        {moduleStatus6}
-                      </span>
-                    </div>
                   </div>
-                }
-                backTitle="Module 6: Measurement and Accountability"
-                backContent={
-                  <div className="space-y-4">
-                    <p className="text-sm">
-                      Track transformation across personality, mindset, change agency, and sales activity with the 4D Growth Framework
-                    </p>
-                    <div className="pt-4">
-                      <Button 
-                        onClick={() => router.push("/course/module-6")} 
-                        className="w-full bg-brand-orange hover:bg-[#e64a19] text-white"
-                      >
-                        {module6Progress.completed === 0
-                          ? "Start Module 6"
-                          : module6Progress.completed === module6Progress.total
-                            ? "Review Module 6"
-                            : "Continue Module 6"}
-                      </Button>
-                    </div>
-                  </div>
-                }
-              />
-            </CardContent>
-          </Card>
+                  <Button 
+                    onClick={() => router.push("/course/module-6")} 
+                    className="w-full bg-brand-green hover:bg-[#143d31] text-white"
+                  >
+                    {module6Progress.completed === 0
+                      ? "Start Module 6"
+                      : module6Progress.completed === module6Progress.total
+                        ? "Review Module 6"
+                        : "Continue Module 6"}
+                  </Button>
+                </CardContent>
+              </Card>
+              </CardContent>
+            </Card>
+          </div>
 
           {/* Sidebar Info */}
           <div className="space-y-6">

@@ -19,6 +19,7 @@ import { useProgress } from "@/hooks/use-progress"
 import { MatchingGame } from "@/components/learning/matching-game"
 import { MultipleChoice } from "@/components/learning/multiple-choice"
 import { FlipCard } from "@/components/learning/flip-card"
+import { Slider } from "@/components/ui/slider"
 
 export default function Module4Page() {
   const router = useRouter()
@@ -26,6 +27,16 @@ export default function Module4Page() {
   const { markSectionComplete, setCurrentPosition, getCompletedSections, getCourseStructure } = useProgress()
 
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0)
+  const [compassionLevel, setCompassionLevel] = useState([50])
+  const [politenessLevel, setPolitenessLevel] = useState([50])
+  const [industriousnessLevel, setIndustriousnessLevel] = useState([50])
+  const [orderlinessLevel, setOrderlinessLevel] = useState([50])
+  const [enthusiasmLevel, setEnthusiasmLevel] = useState([50])
+  const [assertivenessLevel, setAssertivenessLevel] = useState([50])
+  const [intellectLevel, setIntellectLevel] = useState([50])
+  const [opennessToExperienceLevel, setOpennessToExperienceLevel] = useState([50])
+  const [volatilityLevel, setVolatilityLevel] = useState([50])
+  const [withdrawalLevel, setWithdrawalLevel] = useState([50])
   const [quizResults, setQuizResults] = useState<{
     matching: boolean
     quiz1: boolean
@@ -202,64 +213,513 @@ export default function Module4Page() {
                 </p>
               </Card>
 
-              <GridDisplay
-                title="The Big 10 Breakdown"
-                items={[
-                  {
-                    title: "Openness",
-                    description: "Intellect (analytical thinking) / Openness to Experience (creativity, novelty)",
-                  },
-                  {
-                    title: "Conscientiousness",
-                    description: "Industriousness (work ethic) / Orderliness (organization, perfectionism)",
-                  },
-                  {
-                    title: "Extraversion",
-                    description: "Enthusiasm (positive energy) / Assertiveness (dominance, control)",
-                  },
-                  {
-                    title: "Agreeableness",
-                    description: "Compassion (empathy, warmth) / Politeness (respect, conflict avoidance)",
-                  },
-                  {
-                    title: "Neuroticism",
-                    description: "Volatility (emotional reactivity) / Withdrawal (anxiety, social avoidance)",
-                  },
-                ]}
-              />
-
-              <Card className="p-6 bg-gradient-to-br from-brand-orange/10 to-brand-green/10">
-                <h3 className="text-xl font-semibold mb-3 text-brand-orange">Key Sales Problems by Aspect</h3>
-                <div className="space-y-3">
-                  <div className="p-3 bg-white rounded">
-                    <strong>High Compassion:</strong> Avoids conflict, struggles to say "no," fears pushing prospects
-                  </div>
-                  <div className="p-3 bg-white rounded">
-                    <strong>High Orderliness:</strong> Over-preparation, avoids imperfect action
-                  </div>
-                  <div className="p-3 bg-white rounded">
-                    <strong>Low Industriousness:</strong> Inconsistent prospecting
-                  </div>
-                  <div className="p-3 bg-white rounded">
-                    <strong>Low Assertiveness:</strong> Weak control of conversation
-                  </div>
-                  <div className="p-3 bg-white rounded">
-                    <strong>High Volatility:</strong> Takes rejection personally
-                  </div>
-                  <div className="p-3 bg-white rounded">
-                    <strong>High Withdrawal:</strong> Avoids outreach
-                  </div>
-                  <div className="p-3 bg-white rounded">
-                    <strong>High Openness:</strong> Too many ideas, not enough execution
-                  </div>
-                  <div className="p-3 bg-white rounded">
-                    <strong>High Intellect:</strong> Overthinking objections
-                  </div>
-                  <div className="p-3 bg-white rounded">
-                    <strong>High Enthusiasm:</strong> Talks too much, listens too little
-                  </div>
+              <div className="space-y-4">
+                <h3 className="text-2xl font-bold text-brand-green">The Big 10 Breakdown</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <FlipCard
+                    frontTitle="Openness"
+                    frontContent={
+                      <div className="flex items-center justify-center h-full">
+                        <div className="text-8xl">🌟</div>
+                      </div>
+                    }
+                    backTitle="Openness Aspects"
+                    backContent={
+                      <p className="text-sm">
+                        <strong>Intellect:</strong> Analytical thinking<br />
+                        <strong>Openness to Experience:</strong> Creativity, novelty
+                      </p>
+                    }
+                  />
+                  <FlipCard
+                    frontTitle="Conscientiousness"
+                    frontContent={
+                      <div className="flex items-center justify-center h-full">
+                        <div className="text-8xl">✅</div>
+                      </div>
+                    }
+                    backTitle="Conscientiousness Aspects"
+                    backContent={
+                      <p className="text-sm">
+                        <strong>Industriousness:</strong> Work ethic<br />
+                        <strong>Orderliness:</strong> Organization, perfectionism
+                      </p>
+                    }
+                  />
+                  <FlipCard
+                    frontTitle="Extraversion"
+                    frontContent={
+                      <div className="flex items-center justify-center h-full">
+                        <div className="text-8xl">🎉</div>
+                      </div>
+                    }
+                    backTitle="Extraversion Aspects"
+                    backContent={
+                      <p className="text-sm">
+                        <strong>Enthusiasm:</strong> Positive energy<br />
+                        <strong>Assertiveness:</strong> Dominance, control
+                      </p>
+                    }
+                  />
+                  <FlipCard
+                    frontTitle="Agreeableness"
+                    frontContent={
+                      <div className="flex items-center justify-center h-full">
+                        <div className="text-8xl">🤝</div>
+                      </div>
+                    }
+                    backTitle="Agreeableness Aspects"
+                    backContent={
+                      <p className="text-sm">
+                        <strong>Compassion:</strong> Empathy, warmth<br />
+                        <strong>Politeness:</strong> Respect, conflict avoidance
+                      </p>
+                    }
+                  />
+                  <FlipCard
+                    frontTitle="Neuroticism"
+                    frontContent={
+                      <div className="flex items-center justify-center h-full">
+                        <div className="text-8xl">🌊</div>
+                      </div>
+                    }
+                    backTitle="Neuroticism Aspects"
+                    backContent={
+                      <p className="text-sm">
+                        <strong>Volatility:</strong> Emotional reactivity<br />
+                        <strong>Withdrawal:</strong> Anxiety, social avoidance
+                      </p>
+                    }
+                  />
                 </div>
-              </Card>
+              </div>
+
+              <div className="space-y-6">
+                <h3 className="text-2xl font-semibold text-brand-orange">Key Sales Problems by Aspect</h3>
+                <p className="text-sm text-muted-foreground">Both extremes of each aspect create distinct sales challenges</p>
+                
+                <div className="space-y-6">
+                  {/* Agreeableness */}
+                  <Card className="p-6 bg-gradient-to-br from-brand-orange/10 to-brand-green/10">
+                    <h4 className="text-xl font-semibold text-brand-green mb-4">Agreeableness</h4>
+                    <div className="space-y-6">
+                      <div>
+                        <h5 className="font-semibold text-brand-orange mb-4">Compassion</h5>
+                        <div className="space-y-4">
+                          <div className="px-4">
+                            <Slider
+                              value={compassionLevel}
+                              onValueChange={setCompassionLevel}
+                              min={0}
+                              max={100}
+                              step={1}
+                              className="w-full"
+                            />
+                            <div className="flex justify-between text-xs text-muted-foreground mt-2">
+                              <span>Low</span>
+                              <span>Medium</span>
+                              <span>High</span>
+                            </div>
+                          </div>
+                          <div className="p-4 bg-white rounded-lg shadow-sm min-h-[80px]">
+                            {compassionLevel[0] < 33 ? (
+                              <div>
+                                <strong className="text-black">Low Compassion:</strong>
+                                <p className="mt-1">Comes across as cold, dismisses prospect concerns, damages rapport</p>
+                              </div>
+                            ) : compassionLevel[0] < 67 ? (
+                              <div>
+                                <strong className="text-black">Medium Compassion:</strong>
+                                <p className="mt-1">Balanced empathy and directness, builds rapport while maintaining boundaries</p>
+                              </div>
+                            ) : (
+                              <div>
+                                <strong className="text-black">High Compassion:</strong>
+                                <p className="mt-1">Avoids conflict, struggles to say "no," fears pushing prospects</p>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div>
+                        <h5 className="font-semibold text-brand-orange mb-4">Politeness</h5>
+                        <div className="space-y-4">
+                          <div className="px-4">
+                            <Slider
+                              value={politenessLevel}
+                              onValueChange={setPolitenessLevel}
+                              min={0}
+                              max={100}
+                              step={1}
+                              className="w-full"
+                            />
+                            <div className="flex justify-between text-xs text-muted-foreground mt-2">
+                              <span>Low</span>
+                              <span>Medium</span>
+                              <span>High</span>
+                            </div>
+                          </div>
+                          <div className="p-4 bg-white rounded-lg shadow-sm min-h-[80px]">
+                            {politenessLevel[0] < 33 ? (
+                              <div>
+                                <strong className="text-black">Low Politeness:</strong>
+                                <p className="mt-1">Blunt delivery alienates prospects, creates unnecessary tension</p>
+                              </div>
+                            ) : politenessLevel[0] < 67 ? (
+                              <div>
+                                <strong className="text-black">Medium Politeness:</strong>
+                                <p className="mt-1">Respectful yet direct, maintains professionalism while being assertive</p>
+                              </div>
+                            ) : (
+                              <div>
+                                <strong className="text-black">High Politeness:</strong>
+                                <p className="mt-1">Accepts "maybe," tolerates disrespect, avoids directness</p>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </Card>
+
+                  {/* Conscientiousness */}
+                  <Card className="p-6 bg-gradient-to-br from-brand-orange/10 to-brand-green/10">
+                    <h4 className="text-xl font-semibold text-brand-green mb-4">Conscientiousness</h4>
+                    <div className="space-y-6">
+                      <div>
+                        <h5 className="font-semibold text-brand-orange mb-4">Industriousness</h5>
+                        <div className="space-y-4">
+                          <div className="px-4">
+                            <Slider
+                              value={industriousnessLevel}
+                              onValueChange={setIndustriousnessLevel}
+                              min={0}
+                              max={100}
+                              step={1}
+                              className="w-full"
+                            />
+                            <div className="flex justify-between text-xs text-muted-foreground mt-2">
+                              <span>Low</span>
+                              <span>Medium</span>
+                              <span>High</span>
+                            </div>
+                          </div>
+                          <div className="p-4 bg-white rounded-lg shadow-sm min-h-[80px]">
+                            {industriousnessLevel[0] < 33 ? (
+                              <div>
+                                <strong className="text-black">Low Industriousness:</strong>
+                                <p className="mt-1">Inconsistent prospecting, unreliable follow-up</p>
+                              </div>
+                            ) : industriousnessLevel[0] < 67 ? (
+                              <div>
+                                <strong className="text-black">Medium Industriousness:</strong>
+                                <p className="mt-1">Balanced work ethic, sustainable effort with strategic focus</p>
+                              </div>
+                            ) : (
+                              <div>
+                                <strong className="text-black">High Industriousness:</strong>
+                                <p className="mt-1">Overworks without strategy, burns out team members</p>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div>
+                        <h5 className="font-semibold text-brand-orange mb-4">Orderliness</h5>
+                        <div className="space-y-4">
+                          <div className="px-4">
+                            <Slider
+                              value={orderlinessLevel}
+                              onValueChange={setOrderlinessLevel}
+                              min={0}
+                              max={100}
+                              step={1}
+                              className="w-full"
+                            />
+                            <div className="flex justify-between text-xs text-muted-foreground mt-2">
+                              <span>Low</span>
+                              <span>Medium</span>
+                              <span>High</span>
+                            </div>
+                          </div>
+                          <div className="p-4 bg-white rounded-lg shadow-sm min-h-[80px]">
+                            {orderlinessLevel[0] < 33 ? (
+                              <div>
+                                <strong className="text-black">Low Orderliness:</strong>
+                                <p className="mt-1">Disorganized pipeline, missed follow-ups, sloppy CRM</p>
+                              </div>
+                            ) : orderlinessLevel[0] < 67 ? (
+                              <div>
+                                <strong className="text-black">Medium Orderliness:</strong>
+                                <p className="mt-1">Organized yet flexible, maintains structure without perfectionism</p>
+                              </div>
+                            ) : (
+                              <div>
+                                <strong className="text-black">High Orderliness:</strong>
+                                <p className="mt-1">Over-preparation, perfectionism blocks action</p>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </Card>
+
+                  {/* Extraversion */}
+                  <Card className="p-6 bg-gradient-to-br from-brand-orange/10 to-brand-green/10">
+                    <h4 className="text-xl font-semibold text-brand-green mb-4">Extraversion</h4>
+                    <div className="space-y-6">
+                      <div>
+                        <h5 className="font-semibold text-brand-orange mb-4">Enthusiasm</h5>
+                        <div className="space-y-4">
+                          <div className="px-4">
+                            <Slider
+                              value={enthusiasmLevel}
+                              onValueChange={setEnthusiasmLevel}
+                              min={0}
+                              max={100}
+                              step={1}
+                              className="w-full"
+                            />
+                            <div className="flex justify-between text-xs text-muted-foreground mt-2">
+                              <span>Low</span>
+                              <span>Medium</span>
+                              <span>High</span>
+                            </div>
+                          </div>
+                          <div className="p-4 bg-white rounded-lg shadow-sm min-h-[80px]">
+                            {enthusiasmLevel[0] < 33 ? (
+                              <div>
+                                <strong className="text-black">Low Enthusiasm:</strong>
+                                <p className="mt-1">Flat delivery, fails to build excitement, low engagement</p>
+                              </div>
+                            ) : enthusiasmLevel[0] < 67 ? (
+                              <div>
+                                <strong className="text-black">Medium Enthusiasm:</strong>
+                                <p className="mt-1">Balanced energy, engaging without overwhelming prospects</p>
+                              </div>
+                            ) : (
+                              <div>
+                                <strong className="text-black">High Enthusiasm:</strong>
+                                <p className="mt-1">Talks too much, oversells, burns trust with excessive energy</p>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div>
+                        <h5 className="font-semibold text-brand-orange mb-4">Assertiveness</h5>
+                        <div className="space-y-4">
+                          <div className="px-4">
+                            <Slider
+                              value={assertivenessLevel}
+                              onValueChange={setAssertivenessLevel}
+                              min={0}
+                              max={100}
+                              step={1}
+                              className="w-full"
+                            />
+                            <div className="flex justify-between text-xs text-muted-foreground mt-2">
+                              <span>Low</span>
+                              <span>Medium</span>
+                              <span>High</span>
+                            </div>
+                          </div>
+                          <div className="p-4 bg-white rounded-lg shadow-sm min-h-[80px]">
+                            {assertivenessLevel[0] < 33 ? (
+                              <div>
+                                <strong className="text-black">Low Assertiveness:</strong>
+                                <p className="mt-1">Weak control of conversation, gets walked over by prospects</p>
+                              </div>
+                            ) : assertivenessLevel[0] < 67 ? (
+                              <div>
+                                <strong className="text-black">Medium Assertiveness:</strong>
+                                <p className="mt-1">Confident yet respectful, guides conversations without dominating</p>
+                              </div>
+                            ) : (
+                              <div>
+                                <strong className="text-black">High Assertiveness:</strong>
+                                <p className="mt-1">Pushiness creates resistance, dominates instead of listens</p>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </Card>
+
+                  {/* Openness */}
+                  <Card className="p-6 bg-gradient-to-br from-brand-orange/10 to-brand-green/10">
+                    <h4 className="text-xl font-semibold text-brand-green mb-4">Openness</h4>
+                    <div className="space-y-6">
+                      <div>
+                        <h5 className="font-semibold text-brand-orange mb-4">Intellect</h5>
+                        <div className="space-y-4">
+                          <div className="px-4">
+                            <Slider
+                              value={intellectLevel}
+                              onValueChange={setIntellectLevel}
+                              min={0}
+                              max={100}
+                              step={1}
+                              className="w-full"
+                            />
+                            <div className="flex justify-between text-xs text-muted-foreground mt-2">
+                              <span>Low</span>
+                              <span>Medium</span>
+                              <span>High</span>
+                            </div>
+                          </div>
+                          <div className="p-4 bg-white rounded-lg shadow-sm min-h-[80px]">
+                            {intellectLevel[0] < 33 ? (
+                              <div>
+                                <strong className="text-black">Low Intellect:</strong>
+                                <p className="mt-1">Misses nuance, struggles with complex deals, shallow discovery</p>
+                              </div>
+                            ) : intellectLevel[0] < 67 ? (
+                              <div>
+                                <strong className="text-black">Medium Intellect:</strong>
+                                <p className="mt-1">Analytical yet action-oriented, asks thoughtful questions without overthinking</p>
+                              </div>
+                            ) : (
+                              <div>
+                                <strong className="text-black">High Intellect:</strong>
+                                <p className="mt-1">Overthinks objections, analyzes instead of asks</p>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div>
+                        <h5 className="font-semibold text-brand-orange mb-4">Openness to Experience</h5>
+                        <div className="space-y-4">
+                          <div className="px-4">
+                            <Slider
+                              value={opennessToExperienceLevel}
+                              onValueChange={setOpennessToExperienceLevel}
+                              min={0}
+                              max={100}
+                              step={1}
+                              className="w-full"
+                            />
+                            <div className="flex justify-between text-xs text-muted-foreground mt-2">
+                              <span>Low</span>
+                              <span>Medium</span>
+                              <span>High</span>
+                            </div>
+                          </div>
+                          <div className="p-4 bg-white rounded-lg shadow-sm min-h-[80px]">
+                            {opennessToExperienceLevel[0] < 33 ? (
+                              <div>
+                                <strong className="text-black">Low Openness to Experience:</strong>
+                                <p className="mt-1">Rigid scripts, resists adaptation, struggles with objections</p>
+                              </div>
+                            ) : opennessToExperienceLevel[0] < 67 ? (
+                              <div>
+                                <strong className="text-black">Medium Openness to Experience:</strong>
+                                <p className="mt-1">Flexible yet consistent, adapts strategies while maintaining core methodology</p>
+                              </div>
+                            ) : (
+                              <div>
+                                <strong className="text-black">High Openness to Experience:</strong>
+                                <p className="mt-1">Too many ideas, constant strategy shifts, inconsistent execution</p>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </Card>
+
+                  {/* Neuroticism */}
+                  <Card className="p-6 bg-gradient-to-br from-brand-orange/10 to-brand-green/10">
+                    <h4 className="text-xl font-semibold text-brand-green mb-4">Neuroticism</h4>
+                    <div className="space-y-6">
+                      <div>
+                        <h5 className="font-semibold text-brand-orange mb-4">Volatility</h5>
+                        <div className="space-y-4">
+                          <div className="px-4">
+                            <Slider
+                              value={volatilityLevel}
+                              onValueChange={setVolatilityLevel}
+                              min={0}
+                              max={100}
+                              step={1}
+                              className="w-full"
+                            />
+                            <div className="flex justify-between text-xs text-muted-foreground mt-2">
+                              <span>Low</span>
+                              <span>Medium</span>
+                              <span>High</span>
+                            </div>
+                          </div>
+                          <div className="p-4 bg-white rounded-lg shadow-sm min-h-[80px]">
+                            {volatilityLevel[0] < 33 ? (
+                              <div>
+                                <strong className="text-black">Low Volatility:</strong>
+                                <p className="mt-1">May lack urgency, doesn't respond to competitive threats</p>
+                              </div>
+                            ) : volatilityLevel[0] < 67 ? (
+                              <div>
+                                <strong className="text-black">Medium Volatility:</strong>
+                                <p className="mt-1">Emotionally stable with appropriate urgency, responds calmly to challenges</p>
+                              </div>
+                            ) : (
+                              <div>
+                                <strong className="text-black">High Volatility:</strong>
+                                <p className="mt-1">Emotional spikes, takes rejection personally, defensive reactions</p>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div>
+                        <h5 className="font-semibold text-brand-orange mb-4">Withdrawal</h5>
+                        <div className="space-y-4">
+                          <div className="px-4">
+                            <Slider
+                              value={withdrawalLevel}
+                              onValueChange={setWithdrawalLevel}
+                              min={0}
+                              max={100}
+                              step={1}
+                              className="w-full"
+                            />
+                            <div className="flex justify-between text-xs text-muted-foreground mt-2">
+                              <span>Low</span>
+                              <span>Medium</span>
+                              <span>High</span>
+                            </div>
+                          </div>
+                          <div className="p-4 bg-white rounded-lg shadow-sm min-h-[80px]">
+                            {withdrawalLevel[0] < 33 ? (
+                              <div>
+                                <strong className="text-black">Low Withdrawal:</strong>
+                                <p className="mt-1">May push too hard after rejection, doesn't respect boundaries</p>
+                              </div>
+                            ) : withdrawalLevel[0] < 67 ? (
+                              <div>
+                                <strong className="text-black">Medium Withdrawal:</strong>
+                                <p className="mt-1">Confident outreach with respect for boundaries, handles rejection constructively</p>
+                              </div>
+                            ) : (
+                              <div>
+                                <strong className="text-black">High Withdrawal:</strong>
+                                <p className="mt-1">Avoids outreach due to fear, inconsistent pipeline building</p>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </Card>
+                </div>
+              </div>
 
               <Button onClick={handleSectionComplete} size="lg" className="w-full sm:w-auto">
                 Continue <ArrowRight className="ml-2 h-5 w-5" />
@@ -267,61 +727,134 @@ export default function Module4Page() {
             </div>
           )}
 
-          {/* Section 2: The Counterweight System */}
+          {/* Section 2: The Swiftcourse Overcoming Framework */}
           {currentSectionIndex === 2 && (
-            <div className="space-y-6" id="counterweight-system">
-              <h2 className="text-3xl font-bold text-brand-green">The Counterweight System</h2>
+            <div className="space-y-6" id="swiftcourse-framework">
+              <h2 className="text-3xl font-bold text-brand-green">The Swiftcourse Overcoming Framework</h2>
 
               <Card className="p-6 bg-gradient-to-br from-brand-green/10 to-brand-orange/10">
+                <h3 className="text-xl font-semibold mb-3 text-brand-orange">Core Philosophy</h3>
                 <p className="text-lg leading-relaxed">
-                  <strong>Swiftcourse's philosophy:</strong> Camp and Voss skills are the counterweights—tools for
-                  transcending your default traits so you can perform with discipline, control, and emotional
-                  neutrality.
+                  Your personality traits create tendencies, not destiny. The Swiftcourse framework gives you a systematic method to override unproductive impulses with disciplined execution.
                 </p>
               </Card>
 
-              <ComparisonCard
-                leftTitle="Jim Camp Systems"
-                leftItems={[
-                  "Mission first, ego last",
-                  '"No" leads to safety and truth',
-                  "Emotional detachment",
-                  "Checklist thinking",
-                  "Clear boundaries",
-                  "Never seek approval",
-                ]}
-                rightTitle="Chris Voss Tools"
-                rightItems={[
-                  "Label the emotion",
-                  "Mirror to slow conversation",
-                  "Calibrated questions",
-                  "Accusation audits",
-                  "Late-night FM DJ tone",
-                  "Tactical empathy",
-                ]}
-              />
+              <div className="space-y-6">
+                <h3 className="text-2xl font-semibold text-brand-green">The Three-Part System</h3>
 
-              <div className="grid md:grid-cols-2 gap-6">
+                {/* Part 1: Self-Awareness */}
                 <Card className="p-6">
-                  <h3 className="text-xl font-semibold mb-3 text-brand-green">Camp = Override Agreeableness</h3>
-                  <p className="mb-3">Use Camp's tools to counter agreeable tendencies:</p>
-                  <ul className="space-y-2">
-                    <li>• Mission over relationship</li>
-                    <li>• Boundaries over accommodation</li>
-                    <li>• "No" as a productive tool</li>
-                  </ul>
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-brand-green/10 flex items-center justify-center">
+                      <span className="text-2xl font-bold text-brand-green">1</span>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-xl font-semibold text-brand-green mb-3">Self-Awareness</h4>
+                      <p className="text-lg mb-4">Identify your Big 10 tendencies</p>
+                      <div className="bg-muted p-4 rounded-lg mb-4">
+                        <p className="font-semibold mb-2">Ask: "Where am I predictable?"</p>
+                        <p className="text-sm text-muted-foreground">
+                          High Compassion = avoids conflict. High Assertiveness = talks too much. Low Withdrawal = pushes too hard.
+                        </p>
+                      </div>
+                      <div className="space-y-2">
+                        <p className="font-semibold text-brand-orange">Tools for Self-Assessment:</p>
+                        <ul className="space-y-2 ml-4">
+                          <li>• Self-assessment questionnaire</li>
+                          <li>• Peer feedback sessions</li>
+                          <li>• Call recording pattern analysis</li>
+                          <li>• Manager observations</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
                 </Card>
 
+                {/* Part 2: Camp Systems */}
                 <Card className="p-6">
-                  <h3 className="text-xl font-semibold mb-3 text-brand-orange">Voss = Override Volatility</h3>
-                  <p className="mb-3">Use Voss's tools to manage emotional reactions:</p>
-                  <ul className="space-y-2">
-                    <li>• Labeling for self-awareness</li>
-                    <li>• Tactical empathy for control</li>
-                    <li>• Calm listening over reacting</li>
-                  </ul>
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-brand-orange/10 flex items-center justify-center">
+                      <span className="text-2xl font-bold text-brand-orange">2</span>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-xl font-semibold text-brand-orange mb-3">Jim Camp Systems</h4>
+                      <p className="text-lg mb-4">Structure and discipline to override personality defaults</p>
+                      
+                      <div className="bg-gradient-to-br from-brand-green/5 to-brand-orange/5 p-4 rounded-lg mb-4">
+                        <p className="font-semibold mb-2">Core Principles:</p>
+                        <ul className="space-y-1 text-sm">
+                          <li>• Mission first, ego last</li>
+                          <li>• "No" leads to safety and truth</li>
+                          <li>• Emotional detachment</li>
+                          <li>• Checklist thinking</li>
+                          <li>• Clear boundaries</li>
+                          <li>• Never seek approval</li>
+                        </ul>
+                      </div>
+
+                      <div className="bg-muted p-4 rounded-lg">
+                        <p className="font-semibold mb-2">Example Application:</p>
+                        <p className="text-sm">
+                          <strong>Tendency:</strong> High Compassion rep avoids asking for commitments.<br />
+                          <strong>Camp Override:</strong> Mission-first mindset + "No" framework = Ask direct commitment questions without guilt.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+
+                {/* Part 3: Voss Tools */}
+                <Card className="p-6">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-brand-green/10 flex items-center justify-center">
+                      <span className="text-2xl font-bold text-brand-green">3</span>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-xl font-semibold text-brand-green mb-3">Chris Voss Tools</h4>
+                      <p className="text-lg mb-4">Emotional control techniques for real-time regulation</p>
+                      
+                      <div className="bg-gradient-to-br from-brand-green/5 to-brand-orange/5 p-4 rounded-lg mb-4">
+                        <p className="font-semibold mb-2">Core Techniques:</p>
+                        <ul className="space-y-1 text-sm">
+                          <li>• Label the emotion</li>
+                          <li>• Mirror to slow conversation</li>
+                          <li>• Calibrated questions</li>
+                          <li>• Accusation audits</li>
+                          <li>• Late-night FM DJ tone</li>
+                          <li>• Tactical empathy</li>
+                        </ul>
+                      </div>
+
+                      <div className="bg-muted p-4 rounded-lg">
+                        <p className="font-semibold mb-2">Example Application:</p>
+                        <p className="text-sm">
+                          <strong>Tendency:</strong> High Enthusiasm rep oversells and talks too much.<br />
+                          <strong>Voss Override:</strong> Mirroring + labeling excitement = Forces listening, creates space for prospect to talk.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </Card>
               </div>
+
+              {/* Key Integration Points */}
+              <Card className="p-6 bg-gradient-to-br from-brand-green/10 to-brand-orange/10">
+                <h3 className="text-xl font-semibold mb-4 text-brand-orange">How The Three Parts Work Together</h3>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <span className="text-brand-green font-bold">→</span>
+                    <p><strong>Self-Awareness</strong> identifies the specific tendency you need to override</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-brand-green font-bold">→</span>
+                    <p><strong>Camp Systems</strong> provide the structural discipline and framework to counter the tendency</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-brand-green font-bold">→</span>
+                    <p><strong>Voss Tools</strong> give you real-time emotional control techniques to execute in the moment</p>
+                  </div>
+                </div>
+              </Card>
 
               <Button onClick={handleSectionComplete} size="lg" className="w-full sm:w-auto">
                 Continue <ArrowRight className="ml-2 h-5 w-5" />

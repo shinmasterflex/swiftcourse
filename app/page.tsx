@@ -165,23 +165,27 @@ export default function HomePage() {
               <Card className="border-2 border-destructive/20">
                 <CardContent className="pt-6 space-y-4">
                   <p className="text-lg">
-                    Most sales training programs focus on techniques and scripts, but they ignore a fundamental truth:
+                    Most sales training programs focus on techniques and scripts, but they ignore three fundamental challenges:
                   </p>
                   <p className="text-xl font-semibold text-brand-orange">
-                    Your personality traits significantly influence your sales success
+                    Personality defaults, lack of systematic approaches, and no sustained change framework
                   </p>
                   <ul className="space-y-2 ml-6">
                     <li className="flex items-start gap-2">
                       <span className="text-destructive mt-1">✗</span>
-                      <span>Generic advice that doesn&apos;t fit your natural strengths</span>
+                      <span>Your personality traits create blind spots and inconsistent behaviors in high-pressure situations</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-destructive mt-1">✗</span>
-                      <span>Blind spots that hold you back without you realizing it</span>
+                      <span>Without systematic negotiation skills, you react emotionally instead of strategically</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-destructive mt-1">✗</span>
-                      <span>Struggling to maintain consistency in your sales approach</span>
+                      <span>No clear measurement system to track growth across personality, mindset, and sales activity</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-destructive mt-1">✗</span>
+                      <span>Change doesn&apos;t stick because there&apos;s no environment or agency supporting new habits</span>
                     </li>
                   </ul>
                 </CardContent>
@@ -193,35 +197,31 @@ export default function HomePage() {
               <Card className="border-2 border-brand-green/20">
                 <CardContent className="pt-6 space-y-4">
                   <p className="text-lg">
-                    Swiftcourse uses the Big 5 personality model to create a personalized action plan that works with
-                    your natural traits, not against them.
+                    Swiftcourse uses the Big 10 Aspects Model combined with systematic negotiation training and change agency frameworks to build salespeople who can override their personality defaults and operate with discipline.
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="h-5 w-5 text-brand-green mt-0.5 flex-shrink-0" />
                       <span>
-                        <strong>Identify your strengths:</strong> Discover which personality traits naturally support
-                        your sales success
+                        <strong>Phase 1 - Personality & Neurobiology:</strong> Understand your Big 10 traits and the neuroscience of goal-seeking and growth mindset
                       </span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="h-5 w-5 text-brand-green mt-0.5 flex-shrink-0" />
                       <span>
-                        <strong>Address your challenges:</strong> Learn specific strategies to overcome personality-based
-                        obstacles
+                        <strong>Phase 2 - Systematic Negotiation:</strong> Master Jim Camp&apos;s "Start With No" and Chris Voss&apos;s FBI tactics to stay calm and in control
                       </span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="h-5 w-5 text-brand-green mt-0.5 flex-shrink-0" />
                       <span>
-                        <strong>Build sustainable habits:</strong> Create sales practices that align with who you are
+                        <strong>Phase 3 - Change Agency & Measurement:</strong> Design environments for sustained behavior change and track progress with the 4D Growth Framework
                       </span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="h-5 w-5 text-brand-green mt-0.5 flex-shrink-0" />
                       <span>
-                        <strong>Neuroscience-backed approach:</strong> Apply research on goal-seeking, growth mindset,
-                        and habit formation
+                        <strong>Neuroscience-backed approach:</strong> Build context-independent habits through deliberate practice and 21-day protocols
                       </span>
                     </li>
                   </ul>
@@ -244,6 +244,11 @@ export default function HomePage() {
             </div>
 
             <div className="space-y-6">
+              {/* Phase 1 */}
+              <div className="pt-4">
+                <h3 className="text-2xl font-bold text-brand-green mb-4">Phase 1: Personality Traits and Introduction to Neurobiology</h3>
+              </div>
+
               <Card>
                 <CardHeader>
                   <div className="flex items-start gap-4">
@@ -251,19 +256,19 @@ export default function HomePage() {
                       <BookOpen className="h-6 w-6 text-brand-green" />
                     </div>
                     <div className="flex-1">
-                      <CardTitle className="text-2xl mb-2">Module 0: Introduction to Swiftcourse</CardTitle>
+                      <CardTitle className="text-2xl mb-2">Module 0: Introduction</CardTitle>
                       <CardDescription className="text-base">
-                        Understanding the Big 5 personality model and how it applies to sales success
+                        Understanding the Big Five personality model and how it applies to sales success
                       </CardDescription>
                     </div>
                   </div>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2 ml-6">
-                    <li>• The science behind personality-based sales strategies</li>
-                    <li>• Introduction to the Big 5 OCEAN model</li>
-                    <li>• How personality traits affect your sales approach</li>
-                    <li>• Creating your personalized action plan</li>
+                    <li>• The Big Five OCEAN model and 10 personality aspects</li>
+                    <li>• How personality traits predict sales behaviors</li>
+                    <li>• Identifying your natural strengths and blind spots</li>
+                    <li>• Creating your personalized development plan</li>
                   </ul>
                 </CardContent>
               </Card>
@@ -277,7 +282,7 @@ export default function HomePage() {
                     <div className="flex-1">
                       <CardTitle className="text-2xl mb-2">Module 1: Neurobiology & Growth Mindset</CardTitle>
                       <CardDescription className="text-base">
-                        The neuroscience of goal-seeking and developing a growth mindset for sales
+                        The neuroscience of goal-seeking and developing a growth mindset
                       </CardDescription>
                     </div>
                   </div>
@@ -285,12 +290,17 @@ export default function HomePage() {
                 <CardContent>
                   <ul className="space-y-2 ml-6">
                     <li>• Neural mechanisms of goal-seeking behavior</li>
-                    <li>• Developing a growth mindset vs. fixed mindset</li>
-                    <li>• Managing stress for peak performance</li>
+                    <li>• Growth mindset vs. fixed mindset in sales</li>
+                    <li>• Managing stress and the autonomic nervous system</li>
                     <li>• MAD Analysis: Motivation, Ability, and Discipline</li>
                   </ul>
                 </CardContent>
               </Card>
+
+              {/* Phase 2 */}
+              <div className="pt-8">
+                <h3 className="text-2xl font-bold text-brand-orange mb-4">Phase 2: Growth Mindset and Growth Perspectives</h3>
+              </div>
 
               <Card>
                 <CardHeader>
@@ -301,7 +311,7 @@ export default function HomePage() {
                     <div className="flex-1">
                       <CardTitle className="text-2xl mb-2">Module 2: Learning, Habits & Measurement</CardTitle>
                       <CardDescription className="text-base">
-                        Building sustainable habits and measuring your progress effectively
+                        Building sustainable habits and measuring progress with KPIs
                       </CardDescription>
                     </div>
                   </div>
@@ -312,6 +322,107 @@ export default function HomePage() {
                     <li>• Creating context-independent habits</li>
                     <li>• The 21-day habit formation protocol</li>
                     <li>• Overcoming perfectionism and self-judgment</li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <div className="flex items-start gap-4">
+                    <div className="bg-brand-orange/10 p-3 rounded-lg">
+                      <TrendingUp className="h-6 w-6 text-brand-orange" />
+                    </div>
+                    <div className="flex-1">
+                      <CardTitle className="text-2xl mb-2">Module 3: Win With NO</CardTitle>
+                      <CardDescription className="text-base">
+                        Mastering Jim Camp&apos;s and Chris Voss&apos;s negotiation frameworks
+                      </CardDescription>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-2 ml-6">
+                    <li>• Jim Camp&apos;s "Start With No" system and decision-based commitment</li>
+                    <li>• Chris Voss&apos;s tactical empathy and calibrated questions</li>
+                    <li>• Mirroring, labeling, and accusation audits</li>
+                    <li>• Creating "That&apos;s right" moments for genuine agreement</li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <div className="flex items-start gap-4">
+                    <div className="bg-brand-green/10 p-3 rounded-lg">
+                      <Brain className="h-6 w-6 text-brand-green" />
+                    </div>
+                    <div className="flex-1">
+                      <CardTitle className="text-2xl mb-2">Module 4: Integrating Big 10 with Camp & Voss</CardTitle>
+                      <CardDescription className="text-base">
+                        Using systematic skills to override personality defaults
+                      </CardDescription>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-2 ml-6">
+                    <li>• How each personality aspect affects negotiation behaviors</li>
+                    <li>• Tactical responses to counterbalance trait tendencies</li>
+                    <li>• Building calm, assertive presence under pressure</li>
+                    <li>• Systematic thinking vs. emotional reactivity</li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              {/* Phase 3 */}
+              <div className="pt-8">
+                <h3 className="text-2xl font-bold text-brand-green mb-4">Phase 3: Implementation and Change Agency</h3>
+              </div>
+
+              <Card>
+                <CardHeader>
+                  <div className="flex items-start gap-4">
+                    <div className="bg-brand-orange/10 p-3 rounded-lg">
+                      <Target className="h-6 w-6 text-brand-orange" />
+                    </div>
+                    <div className="flex-1">
+                      <CardTitle className="text-2xl mb-2">Module 5: Change Agency</CardTitle>
+                      <CardDescription className="text-base">
+                        Designing environments that support sustained behavioral change
+                      </CardDescription>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-2 ml-6">
+                    <li>• Systems thinking for behavior change in sales teams</li>
+                    <li>• Environmental design for habit formation</li>
+                    <li>• Social accountability and team culture</li>
+                    <li>• Routine architecture and deliberate practice structures</li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <div className="flex items-start gap-4">
+                    <div className="bg-brand-green/10 p-3 rounded-lg">
+                      <TrendingUp className="h-6 w-6 text-brand-green" />
+                    </div>
+                    <div className="flex-1">
+                      <CardTitle className="text-2xl mb-2">Module 6: Measurement and Accountability</CardTitle>
+                      <CardDescription className="text-base">
+                        The 4D Growth Framework for tracking transformation
+                      </CardDescription>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-2 ml-6">
+                    <li>• D1: SCTI personality reassessment for trait awareness</li>
+                    <li>• D2: Mindset tracking (growth vs. fixed)</li>
+                    <li>• D3: Change agency metrics (habits, environment, accountability)</li>
+                    <li>• D4: Sales activity KPIs (calls, meetings, proposals)</li>
                   </ul>
                 </CardContent>
               </Card>

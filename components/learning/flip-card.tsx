@@ -21,19 +21,19 @@ interface FlipCardProps {
 
 /**
  * FlipCard component with 3D rotation around X-axis
- * Click to flip between high and low trait ratings
+ * Hover to flip between high and low trait ratings
  * Front side: Light background with brand colors
  * Back side: Black background with white text for maximum readability
  */
 export function FlipCard({ frontTitle, frontContent, backTitle, backContent, className }: FlipCardProps) {
   const [isFlipped, setIsFlipped] = useState(false)
 
-  const handleFlip = () => {
-    setIsFlipped((prev) => !prev)
-  }
-
   return (
-    <div className={cn("perspective-1000 cursor-pointer h-80", className)} onClick={handleFlip}>
+    <div 
+      className={cn("perspective-1000 cursor-pointer h-80", className)} 
+      onMouseEnter={() => setIsFlipped(true)}
+      onMouseLeave={() => setIsFlipped(false)}
+    >
       <div
         className="relative h-full transition-transform duration-700 transform-style-3d"
         style={{
@@ -49,7 +49,6 @@ export function FlipCard({ frontTitle, frontContent, backTitle, backContent, cla
           <div className="flex flex-col h-full">
             <div className="text-center mb-4">
               <h3 className="text-xl font-bold font-heading text-brand-green">{frontTitle}</h3>
-              <p className="text-xs uppercase tracking-wide text-muted-foreground mt-1">Click to flip</p>
             </div>
 
             <div className="flex-1 overflow-y-auto">{frontContent}</div>
@@ -66,7 +65,6 @@ export function FlipCard({ frontTitle, frontContent, backTitle, backContent, cla
           <div className="flex flex-col h-full">
             <div className="text-center mb-4">
               <h3 className="text-xl font-bold font-heading text-brand-orange">{backTitle}</h3>
-              <p className="text-xs uppercase tracking-wide opacity-90 mt-1">Click to flip back</p>
             </div>
 
             <div className="flex-1 overflow-y-auto [&_p]:text-white [&_p]:opacity-90 [&_h4]:text-white">

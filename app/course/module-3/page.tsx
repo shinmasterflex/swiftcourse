@@ -87,6 +87,19 @@ export default function Module3Page() {
     localStorage.setItem(`${MODULE_ID}-quiz-results`, JSON.stringify(quizResults))
   }, [quizResults])
 
+  const allQuizComplete = Object.values(quizResults).every((result) => result === true)
+
+  useEffect(() => {
+    // Mark the module-assessment section as complete when all quiz questions are answered correctly
+    if (allQuizComplete && currentSectionIndex === 4) {
+      const assessmentSection = sections[4]
+      if (assessmentSection && assessmentSection.id === "module-assessment") {
+        markSectionComplete(MODULE_ID, assessmentSection.id)
+        setCurrentPosition(MODULE_ID, assessmentSection.id)
+      }
+    }
+  }, [allQuizComplete, currentSectionIndex, sections, markSectionComplete, setCurrentPosition])
+
   const handleSectionComplete = () => {
     const currentSection = sections[currentSectionIndex]
     if (currentSection) {
@@ -104,8 +117,6 @@ export default function Module3Page() {
       window.scrollTo({ top: 0, behavior: "smooth" })
     }
   }
-
-  const allQuizComplete = Object.values(quizResults).every((result) => result === true)
 
   const handleQuizComplete = (quizKey: keyof typeof quizResults, correct: boolean) => {
     setQuizResults((prev) => ({
@@ -793,15 +804,15 @@ export default function Module3Page() {
                   options={[
                     {
                       id: "a",
-                      text: "To create emotional investment in the deal",
+                      text: "To establish your authority and expertise in the negotiation",
                       isCorrect: false,
-                      feedback: "A Mission and Purpose is designed to prevent emotional investment, not create it.",
+                      feedback: "While authority matters, Mission and Purpose focuses on emotional neutrality and serving others, not establishing dominance.",
                     },
                     {
                       id: "b",
-                      text: "To pressure the counterpart into making a decision",
+                      text: "To clearly communicate your value proposition to the counterpart",
                       isCorrect: false,
-                      feedback: "Camp's system explicitly rejects pressure tactics.",
+                      feedback: "Mission and Purpose is internal guidance for you, not a message to deliver to the counterpart.",
                     },
                     {
                       id: "c",
@@ -811,12 +822,11 @@ export default function Module3Page() {
                     },
                     {
                       id: "d",
-                      text: "To maximize profit at all costs",
+                      text: "To outline your minimum acceptable terms before negotiation begins",
                       isCorrect: false,
-                      feedback: "Mission and Purpose is about serving others, not maximizing profit.",
+                      feedback: "Mission and Purpose is about behavioral discipline and emotional control, not setting price floors or minimums.",
                     },
                   ]}
-                  explanation="A Mission and Purpose defines why you are in the negotiation and who you serve. It keeps you emotionally neutral, prevents you from chasing the deal, and forces you to behave in ways aligned with discipline, clarity, and responsibility—not neediness."
                   onAnswer={(correct) => handleQuizComplete("campQ1", correct)}
                 />
 
@@ -825,30 +835,29 @@ export default function Module3Page() {
                   options={[
                     {
                       id: "a",
-                      text: '"No" means the deal is permanently dead',
+                      text: '"No" reveals the counterpart\'s negotiating position and opens the door to compromise',
                       isCorrect: false,
-                      feedback: '"No" is not the end—it\'s clarity about the current situation.',
+                      feedback: 'Camp doesn\'t focus on compromise or positioning—"No" is about clarity, safety, and avoiding false commitments.',
                     },
                     {
                       id: "b",
-                      text: '"No" is a valid decision that reveals boundaries and prevents wasted time pursuing a "maybe"',
+                      text: '"No" is a valid decision that prevents wasted time pursuing a "maybe" or a counterfeit yes and allows the adversary to feel safe',
                       isCorrect: true,
                       feedback: 'Correct! "No" is a valid decision that reveals boundaries, concerns, or lack of fit. It prevents wasted time pursuing a "maybe" or a counterfeit yes. It protects you from emotional attachment and allows the adversary to feel safe.',
                     },
                     {
                       id: "c",
-                      text: '"No" should be avoided at all costs',
+                      text: '"No" creates urgency that motivates the counterpart to reconsider their position',
                       isCorrect: false,
-                      feedback: 'Camp teaches the opposite—"No" should be welcomed as clarity.',
+                      feedback: 'Camp rejects using urgency or pressure. "No" provides clarity and emotional safety, not motivation through scarcity.',
                     },
                     {
                       id: "d",
-                      text: '"No" means you need to try harder to convince them',
+                      text: '"No" provides leverage to negotiate better terms in the next round',
                       isCorrect: false,
-                      feedback: 'Trying harder shows neediness. "No" is a decision to respect.',
+                      feedback: 'Camp views "No" as a final decision worthy of respect, not a tactical move for leverage in future rounds.',
                     },
                   ]}
-                  explanation='"No" is a valid decision that reveals boundaries, concerns, or lack of fit. It prevents wasted time pursuing a "maybe" or a counterfeit yes. It protects you from emotional attachment and allows the adversary to feel safe.'
                   onAnswer={(correct) => handleQuizComplete("campQ2", correct)}
                 />
 
@@ -863,24 +872,23 @@ export default function Module3Page() {
                     },
                     {
                       id: "b",
-                      text: "It makes you appear disinterested and unprofessional",
+                      text: "It creates emotional detachment that allows you to negotiate more aggressively",
                       isCorrect: false,
-                      feedback: "Not needing the deal shows confidence, not disinterest.",
+                      feedback: "Not needing the deal isn't about aggression—it's about calm rationality and preventing manipulation, not increasing aggressive behavior.",
                     },
                     {
                       id: "c",
-                      text: "It encourages you to walk away from every negotiation",
+                      text: "It reduces your motivation to thoroughly understand the adversary's needs",
                       isCorrect: false,
-                      feedback: "Not needing doesn't mean walking away—it means negotiating from strength.",
+                      feedback: "Not needing doesn't reduce diligence—it actually allows you to listen more objectively without emotional interference.",
                     },
                     {
                       id: "d",
-                      text: "It makes you appear desperate for any deal",
+                      text: "It builds confidence by ensuring you always have alternative options ready",
                       isCorrect: false,
-                      feedback: "This is the opposite—neediness creates desperation.",
+                      feedback: "While alternatives help, the principle is about emotional neutrality regardless of options, not just having a Plan B.",
                     },
                   ]}
-                  explanation="When you do not need the deal, you remain calm, rational, and focused. It eliminates emotional pressure, which reduces mistakes, and it increases your power because you cannot be manipulated by urgency, deadlines, or neediness."
                   onAnswer={(correct) => handleQuizComplete("campQ3", correct)}
                 />
 
@@ -889,21 +897,21 @@ export default function Module3Page() {
                   options={[
                     {
                       id: "a",
-                      text: "They are the same thing",
+                      text: "Pain is the immediate symptom; Problem is the root cause you must address",
                       isCorrect: false,
-                      feedback: "Pain and problem are distinct concepts in Camp's system.",
+                      feedback: "While this sounds logical, Camp defines them differently: Pain is emotional impact, Problem is the structural issue—both must be understood, not just root causes.",
                     },
                     {
                       id: "b",
-                      text: "Pain is worse than a problem",
+                      text: "Pain is what motivates action; Problem is what requires a solution",
                       isCorrect: false,
-                      feedback: "It's not about severity—they are different dimensions of the same issue.",
+                      feedback: "Both pain and problem are important, but the key distinction is emotional vs. logical dimensions, not motivation vs. solution.",
                     },
                     {
                       id: "c",
-                      text: "Problem is what the client says; Pain is what you assume",
+                      text: "Problem is what the adversary can articulate; Pain is the deeper concern they may not express",
                       isCorrect: false,
-                      feedback: "Camp forbids assumptions. Both pain and problem must be discovered through questions.",
+                      feedback: "Both must be explicitly discovered through questions—Camp forbids assumptions about unstated concerns.",
                     },
                     {
                       id: "d",
@@ -912,7 +920,6 @@ export default function Module3Page() {
                       feedback: "Correct! Pain = the emotional impact or discomfort the adversary feels. Problem = the logical, structural issue causing the pain. You must identify both because value is only meaningful when tied to the adversary's emotional motivation and the underlying issue.",
                     },
                   ]}
-                  explanation="Pain = the emotional impact or discomfort the adversary feels. Problem = the logical, structural issue causing the pain. You must identify both because value is only meaningful when tied to the adversary's emotional motivation and the underlying issue."
                   onAnswer={(correct) => handleQuizComplete("campQ4", correct)}
                 />
 
@@ -921,15 +928,15 @@ export default function Module3Page() {
                   options={[
                     {
                       id: "a",
-                      text: "The enemy you must defeat to win",
+                      text: "The decision-maker who controls whether the deal moves forward",
                       isCorrect: false,
-                      feedback: "Camp rejects adversarial thinking—it's not about defeating anyone.",
+                      feedback: "While identifying decision-makers matters, Camp defines the adversary more broadly as the person you serve, not just control.",
                     },
                     {
                       id: "b",
-                      text: "Someone to manipulate into agreement",
+                      text: "A neutral party whose interests you must balance with your own",
                       isCorrect: false,
-                      feedback: "Camp's system explicitly rejects manipulation.",
+                      feedback: "Camp's system isn't about balancing interests—it's about serving the adversary by making their world better.",
                     },
                     {
                       id: "c",
@@ -939,12 +946,11 @@ export default function Module3Page() {
                     },
                     {
                       id: "d",
-                      text: "A competitor to outmaneuver",
+                      text: "The individual or group with opposing objectives in the negotiation",
                       isCorrect: false,
-                      feedback: "This is adversarial thinking. Camp teaches service, not competition.",
+                      feedback: "This frames negotiation as opposition. Camp teaches that your role is service and guidance, not opposition.",
                     },
                   ]}
-                  explanation="The adversary is simply the person on the other side of the negotiation—not an enemy. Your responsibility is to make their world better, clarify their decisions, protect them from bad decisions, and guide them toward clarity without manipulation."
                   onAnswer={(correct) => handleQuizComplete("campQ5", correct)}
                 />
 
@@ -953,15 +959,15 @@ export default function Module3Page() {
                   options={[
                     {
                       id: "a",
-                      text: "Assumptions save time and are usually correct",
+                      text: "Assumptions save time and help you move negotiations forward faster",
                       isCorrect: false,
-                      feedback: "Assumptions are rarely correct and create false narratives.",
+                      feedback: "Assumptions rarely save time—they create false narratives that lead to mistakes and wasted effort.",
                     },
                     {
                       id: "b",
-                      text: "Assumptions should be made early in the process",
+                      text: "Assumptions are necessary to show expertise and industry knowledge",
                       isCorrect: false,
-                      feedback: "Camp forbids assumptions at any stage of negotiation.",
+                      feedback: "Camp values real data over assumed expertise. Assumptions create emotional errors, not credibility.",
                     },
                     {
                       id: "c",
@@ -971,12 +977,11 @@ export default function Module3Page() {
                     },
                     {
                       id: "d",
-                      text: "Assumptions are necessary for quick decisions",
+                      text: "Assumptions should only be avoided in the early stages of negotiation",
                       isCorrect: false,
-                      feedback: "Quick decisions based on assumptions lead to errors. Camp prioritizes accuracy.",
+                      feedback: "Camp forbids assumptions at all stages of negotiation—they create false narratives and emotional errors throughout the process.",
                     },
                   ]}
-                  explanation="Assumptions create false narratives, emotional errors, and bad decisions. Instead, Camp recommends asking questions, letting the adversary talk, hearing real data, maintaining emotional detachment, and listening for what is actually said."
                   onAnswer={(correct) => handleQuizComplete("campQ6", correct)}
                 />
 
@@ -985,9 +990,9 @@ export default function Module3Page() {
                   options={[
                     {
                       id: "a",
-                      text: "You should be invisible in the negotiation",
+                      text: "You should remain invisible and let the adversary do all the talking",
                       isCorrect: false,
-                      feedback: "It's not about invisibility—it's about focus on the adversary's needs.",
+                      feedback: "Being invisible isn't the point—you still guide the conversation, but the focus is on the adversary's world.",
                     },
                     {
                       id: "b",
@@ -997,18 +1002,17 @@ export default function Module3Page() {
                     },
                     {
                       id: "c",
-                      text: "Your feelings don't matter at all",
+                      text: "Your emotions and feelings don't matter in negotiations",
                       isCorrect: false,
-                      feedback: "Your emotional control matters, but the negotiation content focuses on them.",
+                      feedback: "Your emotional control does matter, but 'It's never about you' means the negotiation content focuses on their needs, not yours.",
                     },
                     {
                       id: "d",
-                      text: "You should always agree with the counterpart",
+                      text: "You should always prioritize the adversary's interests over your own",
                       isCorrect: false,
-                      feedback: "This isn't about agreement—it's about understanding their perspective.",
+                      feedback: "It's not about prioritizing their interests—it's about focusing the negotiation discussion on their world to serve them effectively.",
                     },
                   ]}
-                  explanation="The negotiation is entirely about the adversary's problems, constraints, risks, and mission—not your goals. This forces you to stop selling, start asking, stay curious, avoid self-focused behavior, and make decisions based only on their real situation."
                   onAnswer={(correct) => handleQuizComplete("campQ7", correct)}
                 />
 
@@ -1017,9 +1021,9 @@ export default function Module3Page() {
                   options={[
                     {
                       id: "a",
-                      text: "Success is measured only by closing the deal",
+                      text: "Success is reaching an agreement that benefits both parties equally",
                       isCorrect: false,
-                      feedback: "Camp measures success by behavior, not outcomes.",
+                      feedback: "Camp doesn't focus on equal benefits or balanced outcomes—success is about your disciplined behavior and process adherence.",
                     },
                     {
                       id: "b",
@@ -1029,18 +1033,17 @@ export default function Module3Page() {
                     },
                     {
                       id: "c",
-                      text: "Success is determined by the size of the deal",
+                      text: "Success means achieving your mission while maintaining emotional control throughout",
                       isCorrect: false,
-                      feedback: "Deal size is irrelevant to Camp's definition of success.",
+                      feedback: "Emotional control is key, but success is defined by following the process—even if the deal doesn't close and the mission isn't achieved.",
                     },
                     {
                       id: "d",
-                      text: "Success requires getting a yes every time",
+                      text: "Success is measured by how well you understood and addressed the adversary's pain and problem",
                       isCorrect: false,
-                      feedback: "Camp teaches that 'No' can also be success if it brings clarity.",
+                      feedback: "Understanding pain and problem is part of the process, but Camp defines success by your disciplined behavior, not just understanding.",
                     },
                   ]}
-                  explanation="Success is defined by your behavior, not the deal. If you follow the system—mission, purpose, discipline, questions, data-gathering—you win regardless of outcome. The process protects you from emotional errors, even if the deal does not close."
                   onAnswer={(correct) => handleQuizComplete("campQ8", correct)}
                 />
               </div>
@@ -1054,21 +1057,21 @@ export default function Module3Page() {
                   options={[
                     {
                       id: "a",
-                      text: "Being friendly and similar to the other person",
+                      text: "Building genuine rapport by finding common ground with the counterpart",
                       isCorrect: false,
-                      feedback: "Tactical Empathy is more strategic than simple friendliness.",
+                      feedback: "While rapport helps, Tactical Empathy is specifically about understanding and verbalizing emotions strategically, not just building common ground.",
                     },
                     {
                       id: "b",
-                      text: "Agreeing with everything they say",
+                      text: "Demonstrating sympathy for the counterpart's difficult situation",
                       isCorrect: false,
-                      feedback: "Tactical Empathy is about understanding, not agreement.",
+                      feedback: "Tactical Empathy isn't sympathy or feeling sorry for them—it's strategic understanding and verbalization of their emotions to guide behavior.",
                     },
                     {
                       id: "c",
-                      text: "Mirroring their body language",
+                      text: "Adapting your communication style to match the counterpart's personality type",
                       isCorrect: false,
-                      feedback: "Body language mirroring is different from Tactical Empathy, which focuses on emotions.",
+                      feedback: "Adaptation is useful, but Tactical Empathy specifically involves understanding and verbalizing emotions, not just matching communication styles.",
                     },
                     {
                       id: "d",
@@ -1077,7 +1080,6 @@ export default function Module3Page() {
                       feedback: "Correct! Tactical Empathy is the deliberate act of understanding the other person's emotions, fears, pressures, and perspective—and demonstrating that understanding verbally. Unlike rapport-building, it is not friendliness or similarity; it is psychological insight used to guide behavior.",
                     },
                   ]}
-                  explanation="Tactical Empathy is the deliberate act of understanding the other person's emotions, fears, pressures, and perspective—and demonstrating that understanding verbally. Unlike rapport-building, it is not friendliness or similarity; it is psychological insight used to guide behavior."
                   onAnswer={(correct) => handleQuizComplete("vossQ1", correct)}
                 />
 
@@ -1092,24 +1094,23 @@ export default function Module3Page() {
                     },
                     {
                       id: "b",
-                      text: "They confuse the counterpart into revealing information",
+                      text: "Mirroring validates their position; labeling reframes it in your terms",
                       isCorrect: false,
-                      feedback: "These techniques create safety, not confusion.",
+                      feedback: "Labeling doesn't reframe in your terms—it identifies their emotions to create safety and trigger disclosure.",
                     },
                     {
                       id: "c",
-                      text: "They are the same technique used differently",
+                      text: "Labeling establishes rapport; mirroring maintains it throughout the conversation",
                       isCorrect: false,
-                      feedback: "Mirroring and labeling are distinct techniques with different purposes.",
+                      feedback: "Both are active techniques that work simultaneously—mirroring encourages expansion while labeling identifies emotions for safety.",
                     },
                     {
                       id: "d",
-                      text: "They force the counterpart to agree with you",
+                      text: "Mirroring shows active listening; labeling demonstrates your expertise",
                       isCorrect: false,
-                      feedback: "Voss's techniques guide, not force, behavior.",
+                      feedback: "Labeling isn't about showing expertise—it identifies emotions to reduce defensiveness and create psychological safety.",
                     },
                   ]}
-                  explanation="Mirroring keeps the other person talking and encourages them to expand. Labeling identifies emotions or dynamics, reducing defensiveness and creating emotional safety. Used together, they trigger deeper disclosure and reveal motive, pressure points, and hidden concerns."
                   onAnswer={(correct) => handleQuizComplete("vossQ2", correct)}
                 />
 
@@ -1118,9 +1119,9 @@ export default function Module3Page() {
                   options={[
                     {
                       id: "a",
-                      text: "'That's right' is just another way of saying yes",
+                      text: "'That's right' confirms factual accuracy and moves the conversation forward",
                       isCorrect: false,
-                      feedback: "'That's right' is much more powerful than a simple yes.",
+                      feedback: "That's a confirmation yes. 'That's right' is deeper—it signals they feel fully understood and psychologically aligned, not just factually correct.",
                     },
                     {
                       id: "b",
@@ -1130,18 +1131,17 @@ export default function Module3Page() {
                     },
                     {
                       id: "c",
-                      text: "'That's right' means they're confused",
+                      text: "'That's right' indicates agreement with your proposed solution or next steps",
                       isCorrect: false,
-                      feedback: "'That's right' is a sign of clarity, not confusion.",
+                      feedback: "'That's right' isn't about agreement with proposals—it signals they feel understood after you've summarized their perspective accurately.",
                     },
                     {
                       id: "d",
-                      text: "'That's right' should be avoided in negotiations",
+                      text: "'That's right' shows the counterpart is ready to commit to action",
                       isCorrect: false,
-                      feedback: "'That's right' is the exact phrase you want to hear.",
+                      feedback: "'That's right' indicates psychological alignment and understanding, but doesn't necessarily mean commitment to action yet.",
                     },
                   ]}
-                  explanation="'That's right' indicates the counterpart feels fully understood and aligned. It is a psychological breakthrough that reduces resistance. Most 'yes' responses are counterfeit or premature, while 'That's right' signals true collaboration."
                   onAnswer={(correct) => handleQuizComplete("vossQ3", correct)}
                 />
 
@@ -1150,15 +1150,15 @@ export default function Module3Page() {
                   options={[
                     {
                       id: "a",
-                      text: "All three types of yes are equally valuable",
+                      text: "Conditional (requires negotiation), Tentative (needs more information), Final (closes the deal)",
                       isCorrect: false,
-                      feedback: "Only one type of yes truly matters in negotiation.",
+                      feedback: "Voss categorizes yes differently: Counterfeit (avoids pressure), Confirmation (factual), and Commitment (tied to action).",
                     },
                     {
                       id: "b",
-                      text: "There is only one type of yes in negotiation",
+                      text: "Emotional (based on feeling), Logical (based on reasoning), Strategic (based on calculated advantage)",
                       isCorrect: false,
-                      feedback: "Voss identifies three distinct types of yes.",
+                      feedback: "Voss doesn't categorize yes by motivation source—his categories are Counterfeit, Confirmation, and Commitment based on intent and follow-through.",
                     },
                     {
                       id: "c",
@@ -1168,12 +1168,11 @@ export default function Module3Page() {
                     },
                     {
                       id: "d",
-                      text: "The first yes is always the most important",
+                      text: "Verbal (spoken explicitly), Implicit (shown through behavior), Written (formally documented)",
                       isCorrect: false,
-                      feedback: "The first yes is often a counterfeit yes to avoid pressure.",
+                      feedback: "Voss's categories are about the quality and intent of yes: Counterfeit, Confirmation, and Commitment—not the format.",
                     },
                   ]}
-                  explanation="Counterfeit Yes: Used to avoid pressure or end the conversation. Confirmation Yes: A factual acknowledgment with no commitment. Commitment Yes: The only yes tied to action and follow-through. Only the commitment yes matters because it reflects real alignment and willingness to proceed with a how to proceed."
                   onAnswer={(correct) => handleQuizComplete("vossQ4", correct)}
                 />
 
@@ -1182,21 +1181,21 @@ export default function Module3Page() {
                   options={[
                     {
                       id: "a",
-                      text: "They avoid responsibility completely",
+                      text: "They transfer ownership of the problem from you to the counterpart",
                       isCorrect: false,
-                      feedback: "Calibrated questions don't avoid responsibility—they invite collaboration.",
+                      feedback: "Calibrated questions don't transfer ownership—they invite collaboration where the counterpart helps solve the problem together.",
                     },
                     {
                       id: "b",
-                      text: "They show weakness and lack of preparation",
+                      text: "They demonstrate transparency about your constraints, building trust",
                       isCorrect: false,
-                      feedback: "Calibrated questions actually demonstrate strategic thinking, not weakness.",
+                      feedback: "While transparency can help, the primary function is to make the counterpart explain demands and participate in problem-solving.",
                     },
                     {
                       id: "c",
-                      text: "They confuse the counterpart into giving up",
+                      text: "They create negotiating space by revealing your limitations without saying no",
                       isCorrect: false,
-                      feedback: "The goal is clarity and collaboration, not confusion.",
+                      feedback: "This is a benefit, but the key shift is forcing the counterpart to explain demands, reveal their constraints, and help solve the problem.",
                     },
                     {
                       id: "d",
@@ -1205,7 +1204,6 @@ export default function Module3Page() {
                       feedback: "Correct! Calibrated questions force the counterpart to explain their demands, reveal constraints, and participate in solving the problem. They reduce pressure and invite collaboration by making the counterpart reconsider their position.",
                     },
                   ]}
-                  explanation="Calibrated questions force the counterpart to explain their demands, reveal constraints, and participate in solving the problem. They reduce pressure and invite collaboration by making the counterpart reconsider their position."
                   onAnswer={(correct) => handleQuizComplete("vossQ5", correct)}
                 />
 
@@ -1220,24 +1218,23 @@ export default function Module3Page() {
                     },
                     {
                       id: "b",
-                      text: "They are not more effective",
+                      text: 'They lower expectations, making any positive response feel like a win',
                       isCorrect: false,
-                      feedback: "No-oriented questions are significantly more effective than yes-oriented ones.",
+                      feedback: 'No-oriented questions aren\'t about managing expectations—they work by giving autonomy and removing the pressure to say yes.',
                     },
                     {
                       id: "c",
-                      text: "They end conversations more quickly",
+                      text: 'They reverse psychology, making people more likely to agree',
                       isCorrect: false,
-                      feedback: "No-oriented questions actually keep conversations going by creating safety.",
+                      feedback: 'This isn\'t reverse psychology or manipulation—no-oriented questions create genuine safety by allowing the counterpart to say no without fear.',
                     },
                     {
                       id: "d",
-                      text: "They confuse the counterpart",
+                      text: 'They demonstrate respect for the counterpart\'s time and priorities',
                       isCorrect: false,
-                      feedback: "No-oriented questions create clarity, not confusion.",
+                      feedback: 'While respect is a benefit, the primary effectiveness comes from deactivating defensive behavior and removing fear of commitment.',
                     },
                   ]}
-                  explanation='People feel safer, more autonomous, and more in control when allowed to say "no." No-oriented questions deactivate defensive behavior and remove the fear of commitment associated with "yes."'
                   onAnswer={(correct) => handleQuizComplete("vossQ6", correct)}
                 />
 
@@ -1246,15 +1243,15 @@ export default function Module3Page() {
                   options={[
                     {
                       id: "a",
-                      text: "It makes you sound unprofessional",
+                      text: "It creates a casual atmosphere that makes the counterpart more comfortable sharing",
                       isCorrect: false,
-                      feedback: "The late-night FM DJ voice is a professional technique for managing tone.",
+                      feedback: "While comfort helps, the specific function is lowering tension, signaling confidence, and building trust through tone—not just casualness.",
                     },
                     {
                       id: "b",
-                      text: "It puts people to sleep",
+                      text: "It slows down the conversation, giving you more time to think strategically",
                       isCorrect: false,
-                      feedback: "The tone creates calm, not sleepiness—it keeps people engaged.",
+                      feedback: "While pacing helps, the primary role is psychological—the calm, reassuring tone lowers tension and increases trust.",
                     },
                     {
                       id: "c",
@@ -1264,12 +1261,11 @@ export default function Module3Page() {
                     },
                     {
                       id: "d",
-                      text: "It should only be used at night",
+                      text: "It projects authority and seriousness about the negotiation stakes",
                       isCorrect: false,
-                      feedback: "The name is metaphorical—this technique works any time.",
+                      feedback: "The late-night FM DJ voice isn't about projecting authority—it's about calm reassurance that lowers tension and builds trust.",
                     },
                   ]}
-                  explanation="The late-night FM DJ voice is calm, slow, and reassuring. It instantly lowers tension, signals confidence, and increases trust. Tone often matters more than the actual words."
                   onAnswer={(correct) => handleQuizComplete("vossQ7", correct)}
                 />
 
@@ -1278,21 +1274,21 @@ export default function Module3Page() {
                   options={[
                     {
                       id: "a",
-                      text: "A way to accuse the counterpart of lying",
+                      text: "A way to point out the counterpart's mistakes and lies",
                       isCorrect: false,
                       feedback: "An accusation audit addresses their perceptions of you, not accusations against them.",
                     },
                     {
                       id: "b",
-                      text: "A review of past failed negotiations",
+                      text: "A review of all past failed negotiations to learn from mistakes",
                       isCorrect: false,
-                      feedback: "An accusation audit is forward-looking, not retrospective.",
+                      feedback: "An accusation audit is forward-looking and used in current negotiations, not a retrospective analysis.",
                     },
                     {
                       id: "c",
-                      text: "A technique used only in hostile situations",
+                      text: "A technique to avoid difficult conversations by staying silent",
                       isCorrect: false,
-                      feedback: "Accusation audits can be used in any negotiation to reduce defensiveness.",
+                      feedback: "An accusation audit is the opposite—it proactively addresses negatives before making a request.",
                     },
                     {
                       id: "d",
@@ -1301,7 +1297,6 @@ export default function Module3Page() {
                       feedback: "Correct! An accusation audit is a proactive list of every negative the counterpart may think about you. It is deployed before presenting an ask or sensitive request. This disarms fear, reduces defensiveness, and makes the counterpart more willing to listen.",
                     },
                   ]}
-                  explanation="An accusation audit is a proactive list of every negative the counterpart may think about you. It is deployed before presenting an ask or sensitive request. This disarms fear, reduces defensiveness, and makes the counterpart more willing to listen."
                   onAnswer={(correct) => handleQuizComplete("vossQ8", correct)}
                 />
               </div>
