@@ -1027,20 +1027,24 @@ export default function Module5Page() {
               />
 
               {allQuizComplete && (
-                <Card className="p-6 bg-gradient-to-br from-brand-green/20 to-brand-orange/20 border-2 border-brand-green">
-                  <div className="flex items-center gap-3 mb-4">
-                    <CheckCircle2 className="h-8 w-8 text-brand-green" />
-                    <h3 className="text-2xl font-bold text-brand-green">Module Complete!</h3>
+                <Card className="p-6 bg-green-50 dark:bg-green-950 border-2 border-green-500">
+                  <div className="flex items-start gap-4">
+                    <CheckCircle2 className="h-8 w-8 text-green-600 flex-shrink-0 mt-1" />
+                    <div className="flex-1">
+                      <h3 className="text-xl font-semibold text-green-900 dark:text-green-100 mb-2">
+                        🎉 Module 5 Complete!
+                      </h3>
+                      <p className="text-green-800 dark:text-green-200 mb-4">
+                        Congratulations! You've mastered the Change Agency framework. You now understand why behavioral
+                        change is difficult, how to design environments that support new behaviors, and how to implement
+                        sustainable change in sales teams using the four-part framework: Make It Obvious, Make It
+                        Attractive, Make It Easy, and Make It Satisfying.
+                      </p>
+                      <Button onClick={() => router.push("/course")} className="bg-brand-green hover:bg-[#143d31] text-white">
+                        Return to Dashboard
+                      </Button>
+                    </div>
                   </div>
-                  <p className="text-lg mb-4">
-                    Congratulations! You've mastered the Change Agency framework. You now understand why behavioral
-                    change is difficult, how to design environments that support new behaviors, and how to implement
-                    sustainable change in sales teams using the four-part framework: Make It Obvious, Make It
-                    Attractive, Make It Easy, and Make It Satisfying.
-                  </p>
-                  <Button onClick={handleSectionComplete} size="lg" className="w-full sm:w-auto">
-                    Complete Module <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
                 </Card>
               )}
             </div>
