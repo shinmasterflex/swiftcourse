@@ -874,66 +874,161 @@ export default function Module6Page() {
               <MultipleChoice
                 question="What is the primary purpose of measurement in the SwiftCourse framework?"
                 options={[
-                  "To judge and rank participants",
-                  "To create pressure and competition",
-                  "To see reality clearly enough to change it and eliminate self-deception",
-                  "To satisfy training requirements",
+                  {
+                    id: "a",
+                    text: "To judge and rank participants",
+                    isCorrect: false,
+                    feedback: "Judgment and ranking are not the purpose—measurement is about clarity, not comparison.",
+                  },
+                  {
+                    id: "b",
+                    text: "To create pressure and competition",
+                    isCorrect: false,
+                    feedback: "Pressure and competition are byproducts, not the purpose of measurement.",
+                  },
+                  {
+                    id: "c",
+                    text: "To see reality clearly enough to change it and eliminate self-deception",
+                    isCorrect: true,
+                    feedback: "Correct! Measurement is about seeing reality clearly enough to change it. It eliminates willful blindness, rationalization, and false progress—not about judgment or pressure.",
+                  },
+                  {
+                    id: "d",
+                    text: "To satisfy training requirements",
+                    isCorrect: false,
+                    feedback: "Compliance is not the purpose—creating clarity and enabling change is.",
+                  },
                 ]}
-                correctAnswer={2}
                 explanation="Measurement is about seeing reality clearly enough to change it. It eliminates willful blindness, rationalization, and false progress—not about judgment or pressure."
-                onComplete={(correct) => handleQuizComplete("q1", correct)}
+                onAnswer={(correct) => handleQuizComplete("q1", correct)}
               />
 
               <MultipleChoice
                 question="In the Big 10 Integration Index (D1), what does a score of 4 represent?"
                 options={[
-                  "Basic awareness of personality traits",
-                  "Ability to recognize traits but not regulate them",
-                  "Inconsistent attempts at self-regulation",
-                  "Full self-management in high-stress sales contexts",
+                  {
+                    id: "a",
+                    text: "Basic awareness of personality traits",
+                    isCorrect: false,
+                    feedback: "Basic awareness is score 1—score 4 represents full mastery.",
+                  },
+                  {
+                    id: "b",
+                    text: "Ability to recognize traits but not regulate them",
+                    isCorrect: false,
+                    feedback: "Recognition without regulation is score 2—score 4 requires full self-management.",
+                  },
+                  {
+                    id: "c",
+                    text: "Inconsistent attempts at self-regulation",
+                    isCorrect: false,
+                    feedback: "Inconsistent regulation is score 3—score 4 demonstrates consistent mastery.",
+                  },
+                  {
+                    id: "d",
+                    text: "Full self-management in high-stress sales contexts",
+                    isCorrect: true,
+                    feedback: "Correct! A score of 4 in D1 represents full mastery: the ability to manage trait-driven tendencies even in high-stress sales situations, using effective compensation strategies.",
+                  },
                 ]}
-                correctAnswer={3}
                 explanation="A score of 4 in D1 represents full mastery: the ability to manage trait-driven tendencies even in high-stress sales situations, using effective compensation strategies."
-                onComplete={(correct) => handleQuizComplete("q2", correct)}
+                onAnswer={(correct) => handleQuizComplete("q2", correct)}
               />
 
               <MultipleChoice
                 question="Which of these is NOT one of the five core mindset shifts measured in D2?"
                 options={[
-                  "From outcome-focused to process-focused",
-                  "From fear of 'No' to using 'No' as a resource",
-                  "From high activity to high conversion rates",
-                  "From emotional reactivity to tactical empathy and curiosity",
+                  {
+                    id: "a",
+                    text: "From outcome-focused to process-focused",
+                    isCorrect: false,
+                    feedback: "This is one of the five core mindset shifts measured in D2.",
+                  },
+                  {
+                    id: "b",
+                    text: "From fear of 'No' to using 'No' as a resource",
+                    isCorrect: false,
+                    feedback: "This is one of the five core mindset shifts measured in D2.",
+                  },
+                  {
+                    id: "c",
+                    text: "From high activity to high conversion rates",
+                    isCorrect: true,
+                    feedback: "Correct! The five mindset shifts focus on cognitive and behavioral patterns, not conversion outcomes. They measure shifts in thinking (process vs outcome, using 'No', tactical empathy, etc.), not results metrics.",
+                  },
+                  {
+                    id: "d",
+                    text: "From emotional reactivity to tactical empathy and curiosity",
+                    isCorrect: false,
+                    feedback: "This is one of the five core mindset shifts measured in D2.",
+                  },
                 ]}
-                correctAnswer={2}
                 explanation="The five mindset shifts focus on cognitive and behavioral patterns, not conversion outcomes. They measure shifts in thinking (process vs outcome, using 'No', tactical empathy, etc.), not results metrics."
-                onComplete={(correct) => handleQuizComplete("q3", correct)}
+                onAnswer={(correct) => handleQuizComplete("q3", correct)}
               />
 
               <MultipleChoice
                 question="What does the D4 (Sales Activity) score primarily reward?"
                 options={[
-                  "Number of deals closed and revenue generated",
-                  "Behavior quality and mission-driven activity, not outcomes",
-                  "Win rate and average deal size",
-                  "Meeting quota targets",
+                  {
+                    id: "a",
+                    text: "Number of deals closed and revenue generated",
+                    isCorrect: false,
+                    feedback: "D4 rewards behavior, not outcomes—deals closed are lagging indicators.",
+                  },
+                  {
+                    id: "b",
+                    text: "Behavior quality and mission-driven activity, not outcomes",
+                    isCorrect: true,
+                    feedback: "Correct! D4 is designed to reward behavior, not results, consistent with Jim Camp's principles. It measures activity quality, discipline, and proper execution of the system—not deals closed.",
+                  },
+                  {
+                    id: "c",
+                    text: "Win rate and average deal size",
+                    isCorrect: false,
+                    feedback: "Win rate and deal size are outcome metrics, not behaviors—D4 measures behaviors.",
+                  },
+                  {
+                    id: "d",
+                    text: "Meeting quota targets",
+                    isCorrect: false,
+                    feedback: "Quota is an outcome metric—D4 measures the behaviors that lead to quota.",
+                  },
                 ]}
-                correctAnswer={1}
                 explanation="D4 is designed to reward behavior, not results, consistent with Jim Camp's principles. It measures activity quality, discipline, and proper execution of the system—not deals closed."
-                onComplete={(correct) => handleQuizComplete("q4", correct)}
+                onAnswer={(correct) => handleQuizComplete("q4", correct)}
               />
 
               <MultipleChoice
                 question="A participant with an SCTI score of 2.9 falls into which category?"
                 options={[
-                  "Needs Intensive Coaching (0-1.7)",
-                  "Emerging Capability (1.8-2.5)",
-                  "Strong Growth (2.6-3.4)",
-                  "Transformational (3.5-4.0)",
+                  {
+                    id: "a",
+                    text: "Needs Intensive Coaching (0-1.7)",
+                    isCorrect: false,
+                    feedback: "This range is for those needing intensive coaching—2.9 is higher.",
+                  },
+                  {
+                    id: "b",
+                    text: "Emerging Capability (1.8-2.5)",
+                    isCorrect: false,
+                    feedback: "This range is for emerging capability—2.9 is above this threshold.",
+                  },
+                  {
+                    id: "c",
+                    text: "Strong Growth (2.6-3.4)",
+                    isCorrect: true,
+                    feedback: "Correct! A score of 2.9 falls in the Strong Growth category (2.6-3.4), indicating reliable application of principles with occasional regression under stress and periodic coaching needs.",
+                  },
+                  {
+                    id: "d",
+                    text: "Transformational (3.5-4.0)",
+                    isCorrect: false,
+                    feedback: "This is the highest category—2.9 hasn't reached transformational level yet.",
+                  },
                 ]}
-                correctAnswer={2}
                 explanation="A score of 2.9 falls in the Strong Growth category (2.6-3.4), indicating reliable application of principles with occasional regression under stress and periodic coaching needs."
-                onComplete={(correct) => handleQuizComplete("q5", correct)}
+                onAnswer={(correct) => handleQuizComplete("q5", correct)}
               />
 
               {allQuizComplete && (

@@ -709,131 +709,321 @@ export default function Module5Page() {
               <MultipleChoice
                 question="Why does most sales training fail to produce lasting behavioral change?"
                 options={[
-                  "Reps don't pay attention during training",
-                  "Training focuses on knowledge transfer rather than creating environmental support for new behaviors",
-                  "The concepts taught are too complex",
-                  "Sales managers don't follow up enough",
+                  {
+                    id: "a",
+                    text: "Reps don't pay attention during training",
+                    isCorrect: false,
+                    feedback: "Attention isn't the issue—most reps pay attention but lack environmental support to change behavior.",
+                  },
+                  {
+                    id: "b",
+                    text: "Training focuses on knowledge transfer rather than creating environmental support for new behaviors",
+                    isCorrect: true,
+                    feedback: "Correct! Most sales training fails because it focuses on transferring knowledge (concepts, theories) without creating the environmental structures, accountability systems, and feedback loops necessary to support new behaviors. Knowledge alone doesn't create action.",
+                  },
+                  {
+                    id: "c",
+                    text: "The concepts taught are too complex",
+                    isCorrect: false,
+                    feedback: "Complexity isn't the problem—the lack of environmental support for behavior change is.",
+                  },
+                  {
+                    id: "d",
+                    text: "Sales managers don't follow up enough",
+                    isCorrect: false,
+                    feedback: "Follow-up helps, but without environmental design, even follow-up won't create lasting change.",
+                  },
                 ]}
-                correctAnswer={1}
                 explanation="Most sales training fails because it focuses on transferring knowledge (concepts, theories) without creating the environmental structures, accountability systems, and feedback loops necessary to support new behaviors. Knowledge alone doesn't create action."
-                onComplete={(correct) => handleQuizComplete("q1", correct)}
+                onAnswer={(correct) => handleQuizComplete("q1", correct)}
               />
 
               <MultipleChoice
                 question="According to the Change Agency framework, what does 'Make It Obvious' mean?"
                 options={[
-                  "Tell people exactly what to do",
-                  "Design the environment so the right behavior is visible, easy to start, and hard to avoid",
-                  "Make training presentations clearer",
-                  "Send daily reminder emails",
+                  {
+                    id: "a",
+                    text: "Tell people exactly what to do",
+                    isCorrect: false,
+                    feedback: "Telling isn't enough—the environment must be designed to make the behavior visible and easy.",
+                  },
+                  {
+                    id: "b",
+                    text: "Design the environment so the right behavior is visible, easy to start, and hard to avoid",
+                    isCorrect: true,
+                    feedback: "Correct! 'Make It Obvious' means designing the physical, digital, and social environment so that the desired behavior is clearly visible and the easiest action to take. This includes visual cues, pre-scheduled activities, templates, and environmental triggers.",
+                  },
+                  {
+                    id: "c",
+                    text: "Make training presentations clearer",
+                    isCorrect: false,
+                    feedback: "Clearer presentations are about knowledge transfer, not environmental design.",
+                  },
+                  {
+                    id: "d",
+                    text: "Send daily reminder emails",
+                    isCorrect: false,
+                    feedback: "Reminder emails are a form of environmental cue, but 'Make It Obvious' is much broader.",
+                  },
                 ]}
-                correctAnswer={1}
                 explanation="'Make It Obvious' means designing the physical, digital, and social environment so that the desired behavior is clearly visible and the easiest action to take. This includes visual cues, pre-scheduled activities, templates, and environmental triggers."
-                onComplete={(correct) => handleQuizComplete("q2", correct)}
+                onAnswer={(correct) => handleQuizComplete("q2", correct)}
               />
 
               <MultipleChoice
                 question="What is a 'keystone behavior' in the context of change agency?"
                 options={[
-                  "The most important skill in sales",
-                  "A single foundational behavior that creates momentum and makes subsequent changes easier",
-                  "The first thing taught in training",
-                  "The behavior that generates the most revenue",
+                  {
+                    id: "a",
+                    text: "The most important skill in sales",
+                    isCorrect: false,
+                    feedback: "A keystone behavior is about creating momentum for change, not just importance.",
+                  },
+                  {
+                    id: "b",
+                    text: "A single foundational behavior that creates momentum and makes subsequent changes easier",
+                    isCorrect: true,
+                    feedback: "Correct! A keystone behavior is one foundational behavior that, when mastered, creates momentum and proves that change is possible. This makes subsequent behavior changes easier. Examples include daily prospecting or starting calls with mission clarity.",
+                  },
+                  {
+                    id: "c",
+                    text: "The first thing taught in training",
+                    isCorrect: false,
+                    feedback: "The first thing taught may not be a keystone behavior—keystone behaviors are strategic choices.",
+                  },
+                  {
+                    id: "d",
+                    text: "The behavior that generates the most revenue",
+                    isCorrect: false,
+                    feedback: "Keystone behaviors create momentum for change, not necessarily the most revenue.",
+                  },
                 ]}
-                correctAnswer={1}
                 explanation="A keystone behavior is one foundational behavior that, when mastered, creates momentum and proves that change is possible. This makes subsequent behavior changes easier. Examples include daily prospecting or starting calls with mission clarity."
-                onComplete={(correct) => handleQuizComplete("q3", correct)}
+                onAnswer={(correct) => handleQuizComplete("q3", correct)}
               />
 
               <MultipleChoice
                 question="Why should you measure 'leading indicators' rather than just 'lagging indicators'?"
                 options={[
-                  "Leading indicators are easier to measure",
-                  "Leading indicators (behaviors) can be corrected immediately, while lagging indicators (outcomes) appear too late to adjust",
-                  "Lagging indicators are not important",
-                  "Leading indicators are more impressive to executives",
+                  {
+                    id: "a",
+                    text: "Leading indicators are easier to measure",
+                    isCorrect: false,
+                    feedback: "Leading indicators aren't necessarily easier—they're more useful for behavior change.",
+                  },
+                  {
+                    id: "b",
+                    text: "Leading indicators (behaviors) can be corrected immediately, while lagging indicators (outcomes) appear too late to adjust",
+                    isCorrect: true,
+                    feedback: "Correct! Leading indicators measure the behaviors that drive outcomes. They provide early feedback, allowing for immediate course correction. Lagging indicators (like deals closed) appear too late to adjust behavior during the change process.",
+                  },
+                  {
+                    id: "c",
+                    text: "Lagging indicators are not important",
+                    isCorrect: false,
+                    feedback: "Lagging indicators are important for outcomes, but leading indicators drive behavior change.",
+                  },
+                  {
+                    id: "d",
+                    text: "Leading indicators are more impressive to executives",
+                    isCorrect: false,
+                    feedback: "The value of leading indicators is in enabling behavior change, not impressing executives.",
+                  },
                 ]}
-                correctAnswer={1}
                 explanation="Leading indicators measure the behaviors that drive outcomes. They provide early feedback, allowing for immediate course correction. Lagging indicators (like deals closed) appear too late to adjust behavior during the change process."
-                onComplete={(correct) => handleQuizComplete("q4", correct)}
+                onAnswer={(correct) => handleQuizComplete("q4", correct)}
               />
 
               <MultipleChoice
                 question="What does 'habit stacking' mean in the implementation strategy?"
                 options={[
-                  "Learning multiple habits at the same time",
-                  "Layering new behaviors on top of existing routines using a trigger-behavior-reward sequence",
-                  "Stacking books about habits on your desk",
-                  "Teaching habits in a specific order",
+                  {
+                    id: "a",
+                    text: "Learning multiple habits at the same time",
+                    isCorrect: false,
+                    feedback: "Habit stacking is about linking habits sequentially, not learning them simultaneously.",
+                  },
+                  {
+                    id: "b",
+                    text: "Layering new behaviors on top of existing routines using a trigger-behavior-reward sequence",
+                    isCorrect: true,
+                    feedback: "Correct! Habit stacking is the practice of linking a new behavior to an existing routine using the formula: 'After [EXISTING BEHAVIOR], I will [NEW BEHAVIOR], followed by [REWARD].' This leverages existing neural pathways to make new behaviors stick.",
+                  },
+                  {
+                    id: "c",
+                    text: "Stacking books about habits on your desk",
+                    isCorrect: false,
+                    feedback: "This is a literal interpretation—habit stacking is about linking behaviors.",
+                  },
+                  {
+                    id: "d",
+                    text: "Teaching habits in a specific order",
+                    isCorrect: false,
+                    feedback: "While order matters, habit stacking specifically refers to linking new behaviors to existing ones.",
+                  },
                 ]}
-                correctAnswer={1}
                 explanation="Habit stacking is the practice of linking a new behavior to an existing routine using the formula: 'After [EXISTING BEHAVIOR], I will [NEW BEHAVIOR], followed by [REWARD].' This leverages existing neural pathways to make new behaviors stick."
-                onComplete={(correct) => handleQuizComplete("q5", correct)}
+                onAnswer={(correct) => handleQuizComplete("q5", correct)}
               />
 
               <MultipleChoice
                 question="What is the most critical warning sign that a rep is regressing to old behaviors?"
                 options={[
-                  "They miss one day of the new behavior",
-                  "Consistency drops below 4/5 days for two consecutive weeks",
-                  "They ask questions during training",
-                  "They achieve lower results in one week",
+                  {
+                    id: "a",
+                    text: "They miss one day of the new behavior",
+                    isCorrect: false,
+                    feedback: "Missing one day isn't necessarily a critical sign—look for sustained patterns.",
+                  },
+                  {
+                    id: "b",
+                    text: "Consistency drops below 4/5 days for two consecutive weeks",
+                    isCorrect: true,
+                    feedback: "Correct! When consistency drops below 4/5 days for two consecutive weeks, it indicates the behavior is not becoming automatic and regression is likely. This requires immediate intervention with 1-on-1 coaching.",
+                  },
+                  {
+                    id: "c",
+                    text: "They ask questions during training",
+                    isCorrect: false,
+                    feedback: "Asking questions is a sign of engagement, not regression.",
+                  },
+                  {
+                    id: "d",
+                    text: "They achieve lower results in one week",
+                    isCorrect: false,
+                    feedback: "One week of lower results may be normal variation—watch for sustained behavioral patterns.",
+                  },
                 ]}
-                correctAnswer={1}
                 explanation="When consistency drops below 4/5 days for two consecutive weeks, it indicates the behavior is not becoming automatic and regression is likely. This requires immediate intervention with 1-on-1 coaching."
-                onComplete={(correct) => handleQuizComplete("q6", correct)}
+                onAnswer={(correct) => handleQuizComplete("q6", correct)}
               />
 
               <MultipleChoice
                 question="Why is environmental support more important than willpower in creating change?"
                 options={[
-                  "Because willpower doesn't exist",
-                  "Because willpower is a limited resource that depletes, while environmental design makes desired behaviors automatic",
-                  "Because environmental support is cheaper",
-                  "Because managers prefer environmental changes",
+                  {
+                    id: "a",
+                    text: "Because willpower doesn't exist",
+                    isCorrect: false,
+                    feedback: "Willpower exists but is limited—environmental design is more reliable.",
+                  },
+                  {
+                    id: "b",
+                    text: "Because willpower is a limited resource that depletes, while environmental design makes desired behaviors automatic",
+                    isCorrect: true,
+                    feedback: "Correct! Willpower is a limited cognitive resource that depletes throughout the day. Environmental design creates structures where the desired behavior becomes the path of least resistance, requiring minimal willpower to maintain.",
+                  },
+                  {
+                    id: "c",
+                    text: "Because environmental support is cheaper",
+                    isCorrect: false,
+                    feedback: "Cost isn't the issue—effectiveness and sustainability are.",
+                  },
+                  {
+                    id: "d",
+                    text: "Because managers prefer environmental changes",
+                    isCorrect: false,
+                    feedback: "Manager preference isn't the reason—neuroscience supports environmental design.",
+                  },
                 ]}
-                correctAnswer={1}
                 explanation="Willpower is a limited cognitive resource that depletes throughout the day. Environmental design creates structures where the desired behavior becomes the path of least resistance, requiring minimal willpower to maintain."
-                onComplete={(correct) => handleQuizComplete("q7", correct)}
+                onAnswer={(correct) => handleQuizComplete("q7", correct)}
               />
 
               <MultipleChoice
                 question="What should managers celebrate during the behavior change process?"
                 options={[
-                  "Only closed deals",
-                  "Both process adherence (correct behavior execution) and results",
-                  "Only revenue numbers",
-                  "Only reps who exceed quota",
+                  {
+                    id: "a",
+                    text: "Only closed deals",
+                    isCorrect: false,
+                    feedback: "Closed deals matter, but celebrating only outcomes can discourage reps during the learning phase.",
+                  },
+                  {
+                    id: "b",
+                    text: "Both process adherence (correct behavior execution) and results",
+                    isCorrect: true,
+                    feedback: "Correct! Managers should celebrate process adherence as much as results. A rep who perfectly follows the Camp/Voss system but doesn't close deals this week should be recognized, as consistent process execution will eventually drive results.",
+                  },
+                  {
+                    id: "c",
+                    text: "Only revenue numbers",
+                    isCorrect: false,
+                    feedback: "Revenue is important, but celebrating only revenue ignores the behaviors that drive it.",
+                  },
+                  {
+                    id: "d",
+                    text: "Only reps who exceed quota",
+                    isCorrect: false,
+                    feedback: "This overlooks reps who are executing behaviors correctly and building toward quota.",
+                  },
                 ]}
-                correctAnswer={1}
                 explanation="Managers should celebrate process adherence as much as results. A rep who perfectly follows the Camp/Voss system but doesn't close deals this week should be recognized, as consistent process execution will eventually drive results."
-                onComplete={(correct) => handleQuizComplete("q8", correct)}
+                onAnswer={(correct) => handleQuizComplete("q8", correct)}
               />
 
               <MultipleChoice
                 question="Why is 'Make It Satisfying' important in the four-part framework?"
                 options={[
-                  "It keeps people happy",
-                  "The brain needs immediate feedback and rewards to reinforce new behaviors and create positive associations",
-                  "It makes training more fun",
-                  "It reduces complaints",
+                  {
+                    id: "a",
+                    text: "It keeps people happy",
+                    isCorrect: false,
+                    feedback: "Happiness is a bonus, but the real purpose is neurological reinforcement.",
+                  },
+                  {
+                    id: "b",
+                    text: "The brain needs immediate feedback and rewards to reinforce new behaviors and create positive associations",
+                    isCorrect: true,
+                    feedback: "Correct! 'Make It Satisfying' provides immediate feedback loops and rewards so the brain gets reinforcement for the new behavior. This creates positive associations and accelerates habit formation through dopamine release.",
+                  },
+                  {
+                    id: "c",
+                    text: "It makes training more fun",
+                    isCorrect: false,
+                    feedback: "Fun is good, but the purpose is to create neurological reinforcement for behavior change.",
+                  },
+                  {
+                    id: "d",
+                    text: "It reduces complaints",
+                    isCorrect: false,
+                    feedback: "Reducing complaints isn't the goal—creating brain-based habit reinforcement is.",
+                  },
                 ]}
-                correctAnswer={1}
                 explanation="'Make It Satisfying' provides immediate feedback loops and rewards so the brain gets reinforcement for the new behavior. This creates positive associations and accelerates habit formation through dopamine release."
-                onComplete={(correct) => handleQuizComplete("q9", correct)}
+                onAnswer={(correct) => handleQuizComplete("q9", correct)}
               />
 
               <MultipleChoice
                 question="What is the biggest pitfall when implementing behavioral change in sales teams?"
                 options={[
-                  "Not having enough budget for training",
-                  "Trying to change too many behaviors at once without environmental support or feedback systems",
-                  "Choosing the wrong behaviors to change",
-                  "Not having a good CRM system",
+                  {
+                    id: "a",
+                    text: "Not having enough budget for training",
+                    isCorrect: false,
+                    feedback: "Budget helps, but behavioral change requires environmental design, not just funding.",
+                  },
+                  {
+                    id: "b",
+                    text: "Trying to change too many behaviors at once without environmental support or feedback systems",
+                    isCorrect: true,
+                    feedback: "Correct! The biggest pitfall is attempting to change too many behaviors simultaneously without creating environmental support structures or feedback systems. This cognitive overload leads to failure. Focus on one keystone behavior at a time with proper environmental design.",
+                  },
+                  {
+                    id: "c",
+                    text: "Choosing the wrong behaviors to change",
+                    isCorrect: false,
+                    feedback: "Behavior selection matters, but even correct behaviors fail without environmental support.",
+                  },
+                  {
+                    id: "d",
+                    text: "Not having a good CRM system",
+                    isCorrect: false,
+                    feedback: "CRMs are tools, but behavioral change requires environmental design and support systems.",
+                  },
                 ]}
-                correctAnswer={1}
                 explanation="The biggest pitfall is attempting to change too many behaviors simultaneously without creating environmental support structures or feedback systems. This cognitive overload leads to failure. Focus on one keystone behavior at a time with proper environmental design."
-                onComplete={(correct) => handleQuizComplete("q10", correct)}
+                onAnswer={(correct) => handleQuizComplete("q10", correct)}
               />
 
               {allQuizComplete && (

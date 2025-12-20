@@ -926,131 +926,321 @@ export default function Module4Page() {
               <MultipleChoice
                 question="Swiftcourse views the Big 10 personality aspects as:"
                 options={[
-                  "Fixed traits that limit performance",
-                  "Predictors of long-term success",
-                  "Tendencies that can be overridden with systems",
-                  "Indicators of natural sales talent",
+                  {
+                    id: "a",
+                    text: "Fixed traits that limit performance",
+                    isCorrect: false,
+                    feedback: "Swiftcourse views traits as tendencies that can be managed, not fixed limitations.",
+                  },
+                  {
+                    id: "b",
+                    text: "Predictors of long-term success",
+                    isCorrect: false,
+                    feedback: "Traits predict tendencies but not ultimate success—systems determine success.",
+                  },
+                  {
+                    id: "c",
+                    text: "Tendencies that can be overridden with systems",
+                    isCorrect: true,
+                    feedback: "Correct! Swiftcourse treats personality traits as tendencies—not limitations. They can be overridden with disciplined systems from Camp and emotional-control tools from Voss.",
+                  },
+                  {
+                    id: "d",
+                    text: "Indicators of natural sales talent",
+                    isCorrect: false,
+                    feedback: "Traits indicate tendencies, but talent comes from applying systems consistently.",
+                  },
                 ]}
-                correctAnswer={2}
                 explanation="Swiftcourse treats personality traits as tendencies—not limitations. They can be overridden with disciplined systems from Camp and emotional-control tools from Voss."
-                onComplete={(correct) => handleQuizComplete("quiz1", correct)}
+                onAnswer={(correct) => handleQuizComplete("quiz1", correct)}
               />
 
               <MultipleChoice
                 question="High Orderliness most commonly leads to which sales problem?"
                 options={[
-                  "Poor listening",
-                  "Analysis paralysis and over-preparation",
-                  "Overselling too early",
-                  "Aggressive pushiness",
+                  {
+                    id: "a",
+                    text: "Poor listening",
+                    isCorrect: false,
+                    feedback: "Poor listening is typically associated with high Enthusiasm, not Orderliness.",
+                  },
+                  {
+                    id: "b",
+                    text: "Analysis paralysis and over-preparation",
+                    isCorrect: true,
+                    feedback: "Correct! High Orderliness creates perfectionism, over-preparation, and fear of imperfect action, leading to analysis paralysis.",
+                  },
+                  {
+                    id: "c",
+                    text: "Overselling too early",
+                    isCorrect: false,
+                    feedback: "Overselling is typically linked to high Enthusiasm or low Politeness.",
+                  },
+                  {
+                    id: "d",
+                    text: "Aggressive pushiness",
+                    isCorrect: false,
+                    feedback: "Aggressive pushiness is more related to high Assertiveness or low Agreeableness.",
+                  },
                 ]}
-                correctAnswer={1}
                 explanation="High Orderliness creates perfectionism, over-preparation, and fear of imperfect action, leading to analysis paralysis."
-                onComplete={(correct) => handleQuizComplete("quiz2", correct)}
+                onAnswer={(correct) => handleQuizComplete("quiz2", correct)}
               />
 
               <MultipleChoice
                 question="Which Camp/Voss countermeasure best helps a highly volatile salesperson remain stable?"
                 options={[
-                  "Mirroring",
-                  "Detachment from the mission",
-                  "Tactical Empathy to focus only on customer needs",
-                  "Asking for the 'No'",
+                  {
+                    id: "a",
+                    text: "Mirroring",
+                    isCorrect: false,
+                    feedback: "Mirroring helps with gathering information, but doesn't directly stabilize volatile emotions.",
+                  },
+                  {
+                    id: "b",
+                    text: "Detachment from the mission",
+                    isCorrect: false,
+                    feedback: "Detachment from the mission would undermine the negotiation—Camp teaches attachment to mission, detachment from outcome.",
+                  },
+                  {
+                    id: "c",
+                    text: "Tactical Empathy to focus only on customer needs",
+                    isCorrect: true,
+                    feedback: "Correct! Tactical empathy, combined with Camp's emotional detachment and Voss's labeling, helps volatile salespeople focus on customer needs instead of emotional reactions.",
+                  },
+                  {
+                    id: "d",
+                    text: "Asking for the 'No'",
+                    isCorrect: false,
+                    feedback: "Asking for 'No' creates clarity but doesn't directly stabilize emotional volatility.",
+                  },
                 ]}
-                correctAnswer={2}
                 explanation="Tactical empathy, combined with Camp's emotional detachment and Voss's labeling, helps volatile salespeople focus on customer needs instead of emotional reactions."
-                onComplete={(correct) => handleQuizComplete("quiz3", correct)}
+                onAnswer={(correct) => handleQuizComplete("quiz3", correct)}
               />
 
               <MultipleChoice
                 question="High Agreeableness–Compassion tends to create what behavioral pattern in sales?"
                 options={[
-                  "Talking too much",
-                  "Avoiding necessary tension and commitment questions",
-                  "Refusing to prepare",
-                  "Oversimplifying objections",
+                  {
+                    id: "a",
+                    text: "Talking too much",
+                    isCorrect: false,
+                    feedback: "Talking too much is associated with high Enthusiasm, not Compassion.",
+                  },
+                  {
+                    id: "b",
+                    text: "Avoiding necessary tension and commitment questions",
+                    isCorrect: true,
+                    feedback: "Correct! High Compassion leads to avoiding tension, fearing commitment questions, and struggling to push prospects when necessary.",
+                  },
+                  {
+                    id: "c",
+                    text: "Refusing to prepare",
+                    isCorrect: false,
+                    feedback: "Refusing to prepare is more related to low Industriousness or low Orderliness.",
+                  },
+                  {
+                    id: "d",
+                    text: "Oversimplifying objections",
+                    isCorrect: false,
+                    feedback: "Oversimplifying objections might be linked to low Intellect or high Enthusiasm.",
+                  },
                 ]}
-                correctAnswer={1}
                 explanation="High Compassion leads to avoiding tension, fearing commitment questions, and struggling to push prospects when necessary."
-                onComplete={(correct) => handleQuizComplete("quiz4", correct)}
+                onAnswer={(correct) => handleQuizComplete("quiz4", correct)}
               />
 
               <MultipleChoice
                 question="Which tool helps counter high Enthusiasm and talking too much?"
                 options={[
-                  "Accusation Audit",
-                  "2-second pause + labeling yourself",
-                  "Late-night FM DJ tone and calibrated questions",
-                  "Boundary statements",
+                  {
+                    id: "a",
+                    text: "Accusation Audit",
+                    isCorrect: false,
+                    feedback: "Accusation Audit addresses negative perceptions, not over-talking.",
+                  },
+                  {
+                    id: "b",
+                    text: "2-second pause + labeling yourself",
+                    isCorrect: false,
+                    feedback: "While pausing helps, the combination of tone and calibrated questions is more effective.",
+                  },
+                  {
+                    id: "c",
+                    text: "Late-night FM DJ tone and calibrated questions",
+                    isCorrect: true,
+                    feedback: "Correct! Late-night FM DJ tone and calibrated questions slow down the conversation and force listening, countering the tendency to over-talk.",
+                  },
+                  {
+                    id: "d",
+                    text: "Boundary statements",
+                    isCorrect: false,
+                    feedback: "Boundary statements set limits but don't directly counter over-talking.",
+                  },
                 ]}
-                correctAnswer={2}
                 explanation="Late-night FM DJ tone and calibrated questions slow down the conversation and force listening, countering the tendency to over-talk."
-                onComplete={(correct) => handleQuizComplete("quiz5", correct)}
+                onAnswer={(correct) => handleQuizComplete("quiz5", correct)}
               />
 
               <MultipleChoice
                 question="Low Industriousness most often results in:"
                 options={[
-                  "Too many ideas",
-                  "Inconsistent prospecting activity",
-                  "Overthinking objections",
-                  "Overselling without listening",
+                  {
+                    id: "a",
+                    text: "Too many ideas",
+                    isCorrect: false,
+                    feedback: "Too many ideas is more associated with high Openness or Intellect.",
+                  },
+                  {
+                    id: "b",
+                    text: "Inconsistent prospecting activity",
+                    isCorrect: true,
+                    feedback: "Correct! Low Industriousness creates inconsistent work patterns and prospecting activity.",
+                  },
+                  {
+                    id: "c",
+                    text: "Overthinking objections",
+                    isCorrect: false,
+                    feedback: "Overthinking objections is linked to high Intellect or high Orderliness.",
+                  },
+                  {
+                    id: "d",
+                    text: "Overselling without listening",
+                    isCorrect: false,
+                    feedback: "Overselling without listening is typically from high Enthusiasm.",
+                  },
                 ]}
-                correctAnswer={1}
                 explanation="Low Industriousness creates inconsistent work patterns and prospecting activity."
-                onComplete={(correct) => handleQuizComplete("quiz6", correct)}
+                onAnswer={(correct) => handleQuizComplete("quiz6", correct)}
               />
 
               <MultipleChoice
                 question="What is the purpose of Jim Camp's mission-focused thinking in this system?"
                 options={[
-                  "To create emotional investment",
-                  "To eliminate the need for listening",
-                  "To anchor behavior in process instead of emotion",
-                  "To maximize enthusiasm",
+                  {
+                    id: "a",
+                    text: "To create emotional investment",
+                    isCorrect: false,
+                    feedback: "Camp's mission creates emotional detachment, not investment.",
+                  },
+                  {
+                    id: "b",
+                    text: "To eliminate the need for listening",
+                    isCorrect: false,
+                    feedback: "Mission-focused thinking enhances listening by removing emotional distractions.",
+                  },
+                  {
+                    id: "c",
+                    text: "To anchor behavior in process instead of emotion",
+                    isCorrect: true,
+                    feedback: "Correct! Camp's mission-focused thinking anchors behavior in process instead of emotion, creating stability regardless of natural wiring.",
+                  },
+                  {
+                    id: "d",
+                    text: "To maximize enthusiasm",
+                    isCorrect: false,
+                    feedback: "Mission-focused thinking controls enthusiasm rather than maximizing it.",
+                  },
                 ]}
-                correctAnswer={2}
                 explanation="Camp's mission-focused thinking anchors behavior in process instead of emotion, creating stability regardless of natural wiring."
-                onComplete={(correct) => handleQuizComplete("quiz7", correct)}
+                onAnswer={(correct) => handleQuizComplete("quiz7", correct)}
               />
 
               <MultipleChoice
                 question="Which Voss tool slows down fast-talking, over-enthusiastic reps?"
                 options={[
-                  "Mirroring",
-                  "'Why' questions",
-                  "High-energy tone",
-                  "Long explanations",
+                  {
+                    id: "a",
+                    text: "Mirroring",
+                    isCorrect: true,
+                    feedback: "Correct! Mirroring forces listening and slows down the conversation, helping over-enthusiastic reps to pause and reflect.",
+                  },
+                  {
+                    id: "b",
+                    text: "'Why' questions",
+                    isCorrect: false,
+                    feedback: "'Why' questions can make people defensive—Voss recommends 'How' and 'What' questions instead.",
+                  },
+                  {
+                    id: "c",
+                    text: "High-energy tone",
+                    isCorrect: false,
+                    feedback: "High-energy tone would accelerate the conversation, not slow it down.",
+                  },
+                  {
+                    id: "d",
+                    text: "Long explanations",
+                    isCorrect: false,
+                    feedback: "Long explanations come from the rep—mirroring gets the prospect talking.",
+                  },
                 ]}
-                correctAnswer={0}
                 explanation="Mirroring forces listening and slows down the conversation, helping over-enthusiastic reps to pause and reflect."
-                onComplete={(correct) => handleQuizComplete("quiz8", correct)}
+                onAnswer={(correct) => handleQuizComplete("quiz8", correct)}
               />
 
               <MultipleChoice
                 question="High Intellect in the Big 10 model often results in:"
                 options={[
-                  "Overanalyzing objections instead of asking questions",
-                  "Emotional breakdowns",
-                  "A refusal to use scripts",
-                  "Avoiding outreach completely",
+                  {
+                    id: "a",
+                    text: "Overanalyzing objections instead of asking questions",
+                    isCorrect: true,
+                    feedback: "Correct! High Intellect leads to overthinking and overanalyzing objections instead of simply asking calibrated questions.",
+                  },
+                  {
+                    id: "b",
+                    text: "Emotional breakdowns",
+                    isCorrect: false,
+                    feedback: "Emotional breakdowns are more associated with high Volatility or Withdrawal.",
+                  },
+                  {
+                    id: "c",
+                    text: "A refusal to use scripts",
+                    isCorrect: false,
+                    feedback: "While high Intellect might resist structure, this isn't the primary sales problem.",
+                  },
+                  {
+                    id: "d",
+                    text: "Avoiding outreach completely",
+                    isCorrect: false,
+                    feedback: "Avoiding outreach is more related to high Withdrawal.",
+                  },
                 ]}
-                correctAnswer={0}
                 explanation="High Intellect leads to overthinking and overanalyzing objections instead of simply asking calibrated questions."
-                onComplete={(correct) => handleQuizComplete("quiz9", correct)}
+                onAnswer={(correct) => handleQuizComplete("quiz9", correct)}
               />
 
               <MultipleChoice
                 question="The goal of integrating Big 10 + Camp + Voss in Swiftcourse is:"
                 options={[
-                  "To make personality traits irrelevant to performance",
-                  "To create a personality-based selling style",
-                  "To categorize reps into fixed roles",
-                  "To eliminate the need for structure",
+                  {
+                    id: "a",
+                    text: "To make personality traits irrelevant to performance",
+                    isCorrect: true,
+                    feedback: "Correct! The goal is to make personality traits irrelevant to performance by using systems and tools to override natural tendencies.",
+                  },
+                  {
+                    id: "b",
+                    text: "To create a personality-based selling style",
+                    isCorrect: false,
+                    feedback: "Swiftcourse rejects personality-based selling in favor of system-based selling.",
+                  },
+                  {
+                    id: "c",
+                    text: "To categorize reps into fixed roles",
+                    isCorrect: false,
+                    feedback: "Swiftcourse aims to transcend personality limitations, not categorize people by them.",
+                  },
+                  {
+                    id: "d",
+                    text: "To eliminate the need for structure",
+                    isCorrect: false,
+                    feedback: "Swiftcourse requires more structure, not less, to override personality tendencies.",
+                  },
                 ]}
-                correctAnswer={0}
                 explanation="The goal is to make personality traits irrelevant to performance by using systems and tools to override natural tendencies."
-                onComplete={(correct) => handleQuizComplete("quiz10", correct)}
+                onAnswer={(correct) => handleQuizComplete("quiz10", correct)}
               />
 
               <MatchingGame
