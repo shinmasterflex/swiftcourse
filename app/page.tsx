@@ -299,7 +299,7 @@ export default function HomePage() {
 
               {/* Phase 2 */}
               <div className="pt-8">
-                <h3 className="text-2xl font-bold text-brand-orange mb-4">Phase 2: Growth Mindset and Growth Perspectives</h3>
+                <h3 className="text-2xl font-bold text-brand-green mb-4">Phase 2: Growth Mindset and Growth Perspectives</h3>
               </div>
 
               <Card>

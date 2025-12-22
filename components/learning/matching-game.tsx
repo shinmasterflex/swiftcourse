@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
@@ -20,10 +20,10 @@ interface MatchingGameProps {
 
 export function MatchingGame({ title, pairs, onComplete }: MatchingGameProps) {
   // Shuffle definitions for the game
-  const [shuffledDefinitions] = useState(() => {
+  const shuffledDefinitions = useMemo(() => {
     const defs = pairs.map((p) => ({ id: p.id, text: p.definition }))
     return defs.sort(() => Math.random() - 0.5)
-  })
+  }, [pairs])
 
   const [matches, setMatches] = useState<Record<string, string>>({}) // termId -> definitionId
   const [selectedTerm, setSelectedTerm] = useState<string | null>(null)
@@ -175,7 +175,7 @@ export function MatchingGame({ title, pairs, onComplete }: MatchingGameProps) {
                 onClick={() => handleTermClick(pair.id)}
                 disabled={isCorrect || isComplete}
                 className={cn(
-                  "w-full p-4 text-left rounded-lg border-2 transition-all",
+                  "w-full p-4 text-left rounded-lg border-2 transition-all min-h-[80px]",
                   "hover:border-primary hover:bg-primary/5",
                   isSelected && "border-primary bg-primary/10 ring-2 ring-primary/20",
                   isMatched && !matchFeedback && "border-muted-foreground/30 bg-muted/20",
@@ -209,11 +209,11 @@ export function MatchingGame({ title, pairs, onComplete }: MatchingGameProps) {
                 onClick={() => handleDefinitionClick(def.id)}
                 disabled={!selectedTerm || isComplete || isCorrectlyMatched}
                 className={cn(
-                  "w-full p-4 text-left rounded-lg border-2 transition-all",
+                  "w-full p-4 text-left rounded-lg border-2 transition-all min-h-[80px]",
                   "hover:border-primary hover:bg-primary/5",
                   !selectedTerm && !isComplete && "opacity-50 cursor-not-allowed",
                   isMatched && !isCorrectlyMatched && !isIncorrectlyMatched && "border-muted-foreground/30 bg-muted/20",
-                  isCorrectlyMatched && "border-green-500 bg-green-50 dark:bg-green-950/50 cursor-not-allowed",
+                  isCorrectlyMatched && "border-green-500 bg-green-50 dark:bg-green-950/50 cursor-not-allowed opacity-100",
                   isIncorrectlyMatched && "border-red-500 bg-red-50 dark:bg-red-950/50",
                   isComplete && !isCorrectlyMatched && "opacity-50",
                 )}

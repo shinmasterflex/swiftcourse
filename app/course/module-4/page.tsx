@@ -92,6 +92,18 @@ export default function Module4Page() {
     localStorage.setItem(`${MODULE_ID}-quiz-results`, JSON.stringify(quizResults))
   }, [quizResults])
 
+  const allQuizComplete = Object.values(quizResults).every((result) => result === true)
+
+  useEffect(() => {
+    if (allQuizComplete && currentSectionIndex === 9) {
+      const assessmentSection = sections[9]
+      if (assessmentSection) {
+        markSectionComplete(MODULE_ID, assessmentSection.id)
+        setCurrentPosition(MODULE_ID, assessmentSection.id)
+      }
+    }
+  }, [allQuizComplete, currentSectionIndex, sections, MODULE_ID, markSectionComplete, setCurrentPosition])
+
   const handleSectionComplete = () => {
     const currentSection = sections[currentSectionIndex]
     if (currentSection) {
@@ -109,8 +121,6 @@ export default function Module4Page() {
       window.scrollTo({ top: 0, behavior: "smooth" })
     }
   }
-
-  const allQuizComplete = Object.values(quizResults).every((result) => result === true)
 
   const handleQuizComplete = (quizKey: keyof typeof quizResults, correct: boolean) => {
     setQuizResults((prev) => ({
@@ -189,6 +199,48 @@ export default function Module4Page() {
                   </p>
                 </Card>
               </div>
+
+              <Card className="p-6">
+                <h3 className="text-xl font-semibold mb-3 text-brand-orange">When the Big 10 model + Camp + Voss are mastered:</h3>
+                <ul className="space-y-2">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-brand-green mt-0.5 flex-shrink-0" />
+                    <div>
+                      <span className="font-semibold">Personality → Income Disconnect:</span> Your personality no longer determines your income.
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-brand-green mt-0.5 flex-shrink-0" />
+                    <div>
+                      <span className="font-semibold">Emotional Stability:</span> Emotional volatility disappears from your calls.
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-brand-green mt-0.5 flex-shrink-0" />
+                    <div>
+                      <span className="font-semibold">Boundary Respect:</span> Prospects respect your boundaries.
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-brand-green mt-0.5 flex-shrink-0" />
+                    <div>
+                      <span className="font-semibold">Mission-Driven Control:</span> You become a calm, controlled, mission-driven negotiator.
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-brand-green mt-0.5 flex-shrink-0" />
+                    <div>
+                      <span className="font-semibold">Cleaner Pipeline:</span> You stop chasing, start qualifying, and create a cleaner pipeline.
+                    </div>
+                  </li>
+                </ul>
+              </Card>
+
+              <Card className="p-6 bg-gradient-to-br from-brand-orange/20 to-brand-green/20 border-2 border-brand-green">
+                <p className="text-xl font-semibold text-center text-brand-green">
+                  This is where Swiftcourse becomes identity-changing, not just skill-changing.
+                </p>
+              </Card>
 
               <Button onClick={handleSectionComplete} size="lg" className="w-full sm:w-auto">
                 Continue <ArrowRight className="ml-2 h-5 w-5" />
@@ -2095,117 +2147,13 @@ export default function Module4Page() {
             </div>
           )}
 
-          {/* Section 8: The Overcoming Framework */}
+          {/* Section 8: Daily Practice */}
           {currentSectionIndex === 8 && (
-            <div className="space-y-6" id="overcoming-framework">
-              <h2 className="text-3xl font-bold text-brand-green">The Swiftcourse Overcoming Framework</h2>
-
-              <Card className="p-6 bg-gradient-to-br from-brand-green/10 to-brand-orange/10">
-                <p className="text-lg leading-relaxed">
-                  This is the core three-part system that transcends natural personality tendencies.
-                </p>
-              </Card>
-
-              <div className="grid md:grid-cols-3 gap-6">
-                <Card className="p-6">
-                  <h3 className="text-xl font-semibold mb-3 text-brand-green">1. Self-Awareness</h3>
-                  <p className="mb-3">Identify your Big 10 tendencies.</p>
-                  <p className="font-semibold mb-2">Ask: "Where am I predictable?"</p>
-                  <ul className="space-y-2 text-sm">
-                    <li>• Self-assessment questionnaire</li>
-                    <li>• Peer feedback</li>
-                    <li>• Call recording pattern analysis</li>
-                  </ul>
-                </Card>
-
-                <Card className="p-6">
-                  <h3 className="text-xl font-semibold mb-3 text-brand-orange">2. Camp Systems</h3>
-                  <p className="mb-3">Jim Camp's principles turn your traits into non-issues:</p>
-                  <ul className="space-y-2 text-sm">
-                    <li>• Mission first, ego last</li>
-                    <li>• "No" leads to safety and truth</li>
-                    <li>• Emotional detachment</li>
-                    <li>• Checklist thinking</li>
-                    <li>• Clear boundaries</li>
-                    <li>• Never seek approval</li>
-                  </ul>
-                </Card>
-
-                <Card className="p-6">
-                  <h3 className="text-xl font-semibold mb-3 text-brand-green">3. Voss Tools</h3>
-                  <p className="mb-3">Chris Voss gives you emotional control:</p>
-                  <ul className="space-y-2 text-sm">
-                    <li>• Label the emotion</li>
-                    <li>• Mirror to slow conversation</li>
-                    <li>• Calibrated questions</li>
-                    <li>• Accusation audits</li>
-                    <li>• Late-night FM DJ tone</li>
-                    <li>• Tactical empathy</li>
-                  </ul>
-                </Card>
-              </div>
-
-              <Card className="p-6">
-                <h3 className="text-xl font-semibold mb-4">Trait → Problem → Countermeasure Matrix</h3>
-                <div className="overflow-x-auto">
-                  <table className="w-full text-sm">
-                    <thead className="bg-brand-green/10">
-                      <tr>
-                        <th className="p-2 text-left">Trait</th>
-                        <th className="p-2 text-left">Sales Problem</th>
-                        <th className="p-2 text-left">Camp System</th>
-                        <th className="p-2 text-left">Voss Tool</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y">
-                      <tr>
-                        <td className="p-2">High Compassion</td>
-                        <td className="p-2">Avoids hard questions</td>
-                        <td className="p-2">Detach from outcome with "No" questions</td>
-                        <td className="p-2">Calibrated Questions</td>
-                      </tr>
-                      <tr>
-                        <td className="p-2">High Orderliness</td>
-                        <td className="p-2">Over-prep</td>
-                        <td className="p-2">Checklist</td>
-                        <td className="p-2">Mirroring</td>
-                      </tr>
-                      <tr>
-                        <td className="p-2">High Volatility</td>
-                        <td className="p-2">Emotional reactions</td>
-                        <td className="p-2">Mission</td>
-                        <td className="p-2">Accusation audit</td>
-                      </tr>
-                      <tr>
-                        <td className="p-2">High Enthusiasm</td>
-                        <td className="p-2">Talking too much</td>
-                        <td className="p-2">Pause discipline</td>
-                        <td className="p-2">Mirror to talk less</td>
-                      </tr>
-                      <tr>
-                        <td className="p-2">Low Industriousness</td>
-                        <td className="p-2">Inconsistent work</td>
-                        <td className="p-2">Activity metrics</td>
-                        <td className="p-2">Task bracket</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </Card>
-
-              <Button onClick={handleSectionComplete} size="lg" className="w-full sm:w-auto">
-                Continue <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </div>
-          )}
-
-          {/* Section 9: Daily Practice */}
-          {currentSectionIndex === 9 && (
             <div className="space-y-6" id="daily-practice">
               <h2 className="text-3xl font-bold text-brand-green">Field Drills & Daily Practice</h2>
 
               <Card className="p-6 bg-gradient-to-br from-brand-green/10 to-brand-orange/10">
-                <p className="text-lg font-semibold">Your people need reps, not theory.</p>
+                <p className="text-lg font-semibold">Your people need practice, not theory.</p>
                 <p className="text-lg">This is the Swiftcourse daily regimen.</p>
               </Card>
 
@@ -2236,22 +2184,22 @@ export default function Module4Page() {
               </Card>
 
               <Card className="p-6">
-                <h3 className="text-xl font-semibold mb-4 text-brand-orange">Weekly Drills</h3>
+                <h3 className="text-xl font-semibold mb-4 text-brand-green">Weekly Drills</h3>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-brand-orange mt-0.5 flex-shrink-0" />
+                    <CheckCircle2 className="h-5 w-5 text-brand-green mt-0.5 flex-shrink-0" />
                     <span>Review 2 recorded calls</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-brand-orange mt-0.5 flex-shrink-0" />
+                    <CheckCircle2 className="h-5 w-5 text-brand-green mt-0.5 flex-shrink-0" />
                     <span>Isolate trait patterns (Compassion, Orderliness, etc.)</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-brand-orange mt-0.5 flex-shrink-0" />
+                    <CheckCircle2 className="h-5 w-5 text-brand-green mt-0.5 flex-shrink-0" />
                     <span>Roleplay adversity scenarios</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-brand-orange mt-0.5 flex-shrink-0" />
+                    <CheckCircle2 className="h-5 w-5 text-brand-green mt-0.5 flex-shrink-0" />
                     <span>"Say No" practice—5 scripted refusals</span>
                   </li>
                 </ul>
@@ -2285,83 +2233,8 @@ export default function Module4Page() {
             </div>
           )}
 
-          {/* Section 10: Performance Outcomes */}
-          {currentSectionIndex === 10 && (
-            <div className="space-y-6" id="performance-outcomes">
-              <h2 className="text-3xl font-bold text-brand-green">Performance Outcomes</h2>
-
-              <Card className="p-6 bg-gradient-to-br from-brand-green/10 to-brand-orange/10">
-                <p className="text-lg font-semibold mb-2">
-                  When the Big 10 model + Camp + Voss are mastered:
-                </p>
-              </Card>
-
-              <div className="grid md:grid-cols-2 gap-6">
-                <Card className="p-6">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="bg-brand-green text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">
-                      1
-                    </div>
-                    <h3 className="text-xl font-semibold">Personality → Income Disconnect</h3>
-                  </div>
-                  <p>Your personality no longer determines your income.</p>
-                </Card>
-
-                <Card className="p-6">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="bg-brand-orange text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">
-                      2
-                    </div>
-                    <h3 className="text-xl font-semibold">Emotional Stability</h3>
-                  </div>
-                  <p>Emotional volatility disappears from your calls.</p>
-                </Card>
-
-                <Card className="p-6">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="bg-brand-green text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">
-                      3
-                    </div>
-                    <h3 className="text-xl font-semibold">Boundary Respect</h3>
-                  </div>
-                  <p>Prospects respect your boundaries.</p>
-                </Card>
-
-                <Card className="p-6">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="bg-brand-orange text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">
-                      4
-                    </div>
-                    <h3 className="text-xl font-semibold">Mission-Driven Control</h3>
-                  </div>
-                  <p>You become a calm, controlled, mission-driven negotiator.</p>
-                </Card>
-
-                <Card className="p-6 md:col-span-2">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="bg-brand-green text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">
-                      5
-                    </div>
-                    <h3 className="text-xl font-semibold">Cleaner Pipeline</h3>
-                  </div>
-                  <p>You stop chasing, start qualifying, and create a cleaner pipeline.</p>
-                </Card>
-              </div>
-
-              <Card className="p-6 bg-gradient-to-br from-brand-orange/20 to-brand-green/20 border-2 border-brand-green">
-                <p className="text-xl font-semibold text-center text-brand-green">
-                  This is where Swiftcourse becomes identity-changing, not just skill-changing.
-                </p>
-              </Card>
-
-              <Button onClick={handleSectionComplete} size="lg" className="w-full sm:w-auto">
-                Continue <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </div>
-          )}
-
-          {/* Section 11: Module Assessment */}
-          {currentSectionIndex === 11 && (
+          {/* Section 9: Module Assessment */}
+          {currentSectionIndex === 9 && (
             <div className="space-y-6" id="module-assessment">
               <h2 className="text-3xl font-bold text-brand-green">Module Assessment</h2>
 
@@ -2399,7 +2272,6 @@ export default function Module4Page() {
                     feedback: "Traits indicate tendencies, but talent comes from applying systems consistently.",
                   },
                 ]}
-                explanation="Swiftcourse treats personality traits as tendencies—not limitations. They can be overridden with disciplined systems from Camp and emotional-control tools from Voss."
                 onAnswer={(correct) => handleQuizComplete("quiz1", correct)}
               />
 
@@ -2431,7 +2303,6 @@ export default function Module4Page() {
                     feedback: "Aggressive pushiness is more related to high Assertiveness or low Agreeableness.",
                   },
                 ]}
-                explanation="High Orderliness creates perfectionism, over-preparation, and fear of imperfect action, leading to analysis paralysis."
                 onAnswer={(correct) => handleQuizComplete("quiz2", correct)}
               />
 
@@ -2454,7 +2325,7 @@ export default function Module4Page() {
                     id: "c",
                     text: "Tactical Empathy to focus only on customer needs",
                     isCorrect: true,
-                    feedback: "Correct! Tactical empathy, combined with Camp's emotional detachment and Voss's labeling, helps volatile salespeople focus on customer needs instead of emotional reactions.",
+                    feedback: "Correct! Tactical empathy creates emotional stability by redirecting attention outward. When volatile sales representatives focus on understanding and labeling the prospect's emotions ('It seems like you're frustrated with your current solution'), their attention shifts from their own emotional reactions to the prospect's state. This external focus prevents the emotional flooding that triggers volatility. Combined with Camp's emotional detachment from outcomes and Voss's labeling techniques, tactical empathy transforms emotional reactivity into disciplined observation—the sales representative becomes a neutral diagnostician rather than a defensive participant.",
                   },
                   {
                     id: "d",
@@ -2463,7 +2334,6 @@ export default function Module4Page() {
                     feedback: "Asking for 'No' creates clarity but doesn't directly stabilize emotional volatility.",
                   },
                 ]}
-                explanation="Tactical empathy, combined with Camp's emotional detachment and Voss's labeling, helps volatile salespeople focus on customer needs instead of emotional reactions."
                 onAnswer={(correct) => handleQuizComplete("quiz3", correct)}
               />
 
@@ -2495,7 +2365,6 @@ export default function Module4Page() {
                     feedback: "Oversimplifying objections might be linked to low Intellect or high Enthusiasm.",
                   },
                 ]}
-                explanation="High Compassion leads to avoiding tension, fearing commitment questions, and struggling to push prospects when necessary."
                 onAnswer={(correct) => handleQuizComplete("quiz4", correct)}
               />
 
@@ -2518,7 +2387,7 @@ export default function Module4Page() {
                     id: "c",
                     text: "Late-night FM DJ tone and calibrated questions",
                     isCorrect: true,
-                    feedback: "Correct! Late-night FM DJ tone and calibrated questions slow down the conversation and force listening, countering the tendency to over-talk.",
+                    feedback: "Correct! Late-night FM DJ tone—a slow, deliberate, calm vocal style—physiologically forces the rep to slow their speech rate and reduces their natural energy level. This tone makes rapid-fire talking physically difficult to maintain. Calibrated questions ('How am I supposed to do that?' 'What about this is important to you?') transfer conversational control to the prospect, requiring the rep to stop talking and listen. Together, these tools create structural pauses that interrupt the enthusiasm-driven monologue pattern. The rep cannot simultaneously deliver calibrated questions and dominate airtime—the format itself enforces listening discipline.",
                   },
                   {
                     id: "d",
@@ -2527,7 +2396,6 @@ export default function Module4Page() {
                     feedback: "Boundary statements set limits but don't directly counter over-talking.",
                   },
                 ]}
-                explanation="Late-night FM DJ tone and calibrated questions slow down the conversation and force listening, countering the tendency to over-talk."
                 onAnswer={(correct) => handleQuizComplete("quiz5", correct)}
               />
 
@@ -2559,7 +2427,6 @@ export default function Module4Page() {
                     feedback: "Overselling without listening is typically from high Enthusiasm.",
                   },
                 ]}
-                explanation="Low Industriousness creates inconsistent work patterns and prospecting activity."
                 onAnswer={(correct) => handleQuizComplete("quiz6", correct)}
               />
 
@@ -2591,18 +2458,17 @@ export default function Module4Page() {
                     feedback: "Mission-focused thinking controls enthusiasm rather than maximizing it.",
                   },
                 ]}
-                explanation="Camp's mission-focused thinking anchors behavior in process instead of emotion, creating stability regardless of natural wiring."
                 onAnswer={(correct) => handleQuizComplete("quiz7", correct)}
               />
 
               <MultipleChoice
-                question="Which Voss tool slows down fast-talking, over-enthusiastic reps?"
+                question="Which Voss tool slows down fast-talking, over-enthusiastic sales representatives?"
                 options={[
                   {
                     id: "a",
                     text: "Mirroring",
                     isCorrect: true,
-                    feedback: "Correct! Mirroring forces listening and slows down the conversation, helping over-enthusiastic reps to pause and reflect.",
+                    feedback: "Correct! Mirroring forces listening and slows down the conversation, helping over-enthusiastic sales representatives to pause and reflect.",
                   },
                   {
                     id: "b",
@@ -2623,7 +2489,6 @@ export default function Module4Page() {
                     feedback: "Long explanations come from the rep—mirroring gets the prospect talking.",
                   },
                 ]}
-                explanation="Mirroring forces listening and slows down the conversation, helping over-enthusiastic reps to pause and reflect."
                 onAnswer={(correct) => handleQuizComplete("quiz8", correct)}
               />
 
@@ -2655,7 +2520,6 @@ export default function Module4Page() {
                     feedback: "Avoiding outreach is more related to high Withdrawal.",
                   },
                 ]}
-                explanation="High Intellect leads to overthinking and overanalyzing objections instead of simply asking calibrated questions."
                 onAnswer={(correct) => handleQuizComplete("quiz9", correct)}
               />
 
@@ -2676,7 +2540,7 @@ export default function Module4Page() {
                   },
                   {
                     id: "c",
-                    text: "To categorize reps into fixed roles",
+                    text: "To categorize sales representatives into fixed roles",
                     isCorrect: false,
                     feedback: "Swiftcourse aims to transcend personality limitations, not categorize people by them.",
                   },
@@ -2687,23 +2551,62 @@ export default function Module4Page() {
                     feedback: "Swiftcourse requires more structure, not less, to override personality tendencies.",
                   },
                 ]}
-                explanation="The goal is to make personality traits irrelevant to performance by using systems and tools to override natural tendencies."
                 onAnswer={(correct) => handleQuizComplete("quiz10", correct)}
               />
 
               <MatchingGame
                 title="Match the Item to Its Answer"
                 pairs={[
-                  { left: "Fear of asking commitment questions", right: "Big 10: High Compassion" },
-                  { left: '"No is a decision, not rejection"', right: "Camp's No-Based Decision Path" },
-                  { left: "Mirroring to slow a conversation", right: "Voss's Mirroring" },
-                  { left: "Over-preparing due to fear of imperfect action", right: "Big 10: High Orderliness" },
-                  { left: "Labeling the prospect's emotion", right: "Voss's Labeling" },
-                  { left: "Mission-before-ego principle", right: "Camp's Mission Clarity" },
-                  { left: "Taking rejection personally", right: "Big 10: Withdrawal and Volatility" },
-                  { left: "Tactical empathy during discovery", right: "Voss's Calibrated Questions" },
-                  { left: "One clear checklist for execution", right: "Swiftcourse Execution Framework" },
-                  { left: "Talking too much and rushing", right: "Big 10: High Enthusiasm" },
+                  { 
+                    id: "1", 
+                    term: "High Compassion",
+                    definition: "Avoids conflict and fears asking direct commitment questions"
+                  },
+                  { 
+                    id: "2", 
+                    term: "Camp's No-Based Decision Path",
+                    definition: "Reframes rejection as information, not personal failure"
+                  },
+                  { 
+                    id: "3", 
+                    term: "Voss's Mirroring",
+                    definition: "Repeating last 3 words to slow conversation and force listening"
+                  },
+                  { 
+                    id: "4", 
+                    term: "High Orderliness",
+                    definition: "Creates perfectionism and analysis paralysis through over-preparation"
+                  },
+                  { 
+                    id: "5", 
+                    term: "Voss's Labeling",
+                    definition: "Naming the prospect's emotion to redirect attention outward"
+                  },
+                  { 
+                    id: "6", 
+                    term: "Camp's Mission Clarity",
+                    definition: "Puts mission before ego to anchor behavior in process"
+                  },
+                  { 
+                    id: "7", 
+                    term: "Withdrawal and Volatility",
+                    definition: "Emotional reactivity that interprets rejection personally"
+                  },
+                  { 
+                    id: "8", 
+                    term: "Voss's Calibrated Questions",
+                    definition: "Open-ended questions that transfer conversational control"
+                  },
+                  { 
+                    id: "9", 
+                    term: "Swiftcourse Execution Framework",
+                    definition: "Systematic approach using checklists to override personality"
+                  },
+                  { 
+                    id: "10", 
+                    term: "High Enthusiasm",
+                    definition: "Over-talking and dominating airtime with excessive energy"
+                  },
                 ]}
                 onComplete={(correct) => handleQuizComplete("matching", correct)}
               />

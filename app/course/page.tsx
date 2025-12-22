@@ -389,14 +389,16 @@ export default function DashboardPage() {
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-2xl">Module 4</CardTitle>
-                    <span className={cn(
-                      "inline-block px-3 py-1 rounded-full text-xs font-semibold",
-                      moduleStatus4 === "Completed" ? "bg-green-100 text-green-800" :
-                      moduleStatus4 === "In Progress" ? "bg-orange-100 text-orange-800" :
-                      "bg-gray-100 text-gray-800"
-                    )}>
-                      {moduleStatus4}
-                    </span>
+                    {mounted && (
+                      <span className={cn(
+                        "inline-block px-3 py-1 rounded-full text-xs font-semibold",
+                        moduleStatus4 === "Completed" ? "bg-green-100 text-green-800" :
+                        moduleStatus4 === "In Progress" ? "bg-orange-100 text-orange-800" :
+                        "bg-gray-100 text-gray-800"
+                      )}>
+                        {moduleStatus4}
+                      </span>
+                    )}
                   </div>
                   <CardDescription className="text-xl text-brand-green font-semibold">Integrating Big 10 with Camp & Voss</CardDescription>
                 </CardHeader>
@@ -404,21 +406,25 @@ export default function DashboardPage() {
                   <p className="text-sm">
                     Learn how to override personality traits with systematic negotiation skills
                   </p>
-                  <div className="space-y-2">
-                    <p className="text-sm text-muted-foreground">
-                      {module4Progress.completed} of {module4Progress.total} sections complete
-                    </p>
-                    <ProgressBar current={module4Progress.completed} total={module4Progress.total} showPercentage={true} />
-                  </div>
+                  {mounted && (
+                    <div className="space-y-2">
+                      <p className="text-sm text-muted-foreground">
+                        {module4Progress.completed} of {module4Progress.total} sections complete
+                      </p>
+                      <ProgressBar current={module4Progress.completed} total={module4Progress.total} showPercentage={true} />
+                    </div>
+                  )}
                   <Button 
                     onClick={() => router.push("/course/module-4")} 
                     className="w-full bg-brand-green hover:bg-[#143d31] text-white"
                   >
-                    {module4Progress.completed === 0
-                      ? "Start Module 4"
-                      : module4Progress.completed === module4Progress.total
-                        ? "Review Module 4"
-                        : "Continue Module 4"}
+                    {mounted ? (
+                      module4Progress.completed === 0
+                        ? "Start Module 4"
+                        : module4Progress.completed === module4Progress.total
+                          ? "Review Module 4"
+                          : "Continue Module 4"
+                    ) : "Loading..."}
                   </Button>
                 </CardContent>
               </Card>
@@ -438,14 +444,16 @@ export default function DashboardPage() {
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-2xl">Module 5</CardTitle>
-                    <span className={cn(
-                      "inline-block px-3 py-1 rounded-full text-xs font-semibold",
-                      moduleStatus5 === "Completed" ? "bg-green-100 text-green-800" :
-                      moduleStatus5 === "In Progress" ? "bg-orange-100 text-orange-800" :
-                      "bg-gray-100 text-gray-800"
-                    )}>
-                      {moduleStatus5}
-                    </span>
+                    {mounted && (
+                      <span className={cn(
+                        "inline-block px-3 py-1 rounded-full text-xs font-semibold",
+                        moduleStatus5 === "Completed" ? "bg-green-100 text-green-800" :
+                        moduleStatus5 === "In Progress" ? "bg-orange-100 text-orange-800" :
+                        "bg-gray-100 text-gray-800"
+                      )}>
+                        {moduleStatus5}
+                      </span>
+                    )}
                   </div>
                   <CardDescription className="text-xl text-brand-green font-semibold">Change Agency</CardDescription>
                 </CardHeader>
@@ -453,21 +461,25 @@ export default function DashboardPage() {
                   <p className="text-sm">
                     Design environments and systems that make behavioral change sustainable in sales teams
                   </p>
-                  <div className="space-y-2">
-                    <p className="text-sm text-muted-foreground">
-                      {module5Progress.completed} of {module5Progress.total} sections complete
-                    </p>
-                    <ProgressBar current={module5Progress.completed} total={module5Progress.total} showPercentage={true} />
-                  </div>
+                  {mounted && (
+                    <div className="space-y-2">
+                      <p className="text-sm text-muted-foreground">
+                        {module5Progress.completed} of {module5Progress.total} sections complete
+                      </p>
+                      <ProgressBar current={module5Progress.completed} total={module5Progress.total} showPercentage={true} />
+                    </div>
+                  )}
                   <Button 
                     onClick={() => router.push("/course/module-5")} 
                     className="w-full bg-brand-green hover:bg-[#143d31] text-white"
                   >
-                    {module5Progress.completed === 0
-                      ? "Start Module 5"
-                      : module5Progress.completed === module5Progress.total
-                        ? "Review Module 5"
-                        : "Continue Module 5"}
+                    {mounted ? (
+                      module5Progress.completed === 0
+                        ? "Start Module 5"
+                        : module5Progress.completed === module5Progress.total
+                          ? "Review Module 5"
+                          : "Continue Module 5"
+                    ) : "Loading..."}
                   </Button>
                 </CardContent>
               </Card>
@@ -477,14 +489,16 @@ export default function DashboardPage() {
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-2xl">Module 6</CardTitle>
-                    <span className={cn(
-                      "inline-block px-3 py-1 rounded-full text-xs font-semibold",
-                      moduleStatus6 === "Completed" ? "bg-green-100 text-green-800" :
-                      moduleStatus6 === "In Progress" ? "bg-orange-100 text-orange-800" :
-                      "bg-gray-100 text-gray-800"
-                    )}>
-                      {moduleStatus6}
-                    </span>
+                    {mounted && (
+                      <span className={cn(
+                        "inline-block px-3 py-1 rounded-full text-xs font-semibold",
+                        moduleStatus6 === "Completed" ? "bg-green-100 text-green-800" :
+                        moduleStatus6 === "In Progress" ? "bg-orange-100 text-orange-800" :
+                        "bg-gray-100 text-gray-800"
+                      )}>
+                        {moduleStatus6}
+                      </span>
+                    )}
                   </div>
                   <CardDescription className="text-xl text-brand-green font-semibold">Measurement and Accountability</CardDescription>
                 </CardHeader>
@@ -492,21 +506,25 @@ export default function DashboardPage() {
                   <p className="text-sm">
                     Track transformation across personality, mindset, change agency, and sales activity with the 4D Growth Framework
                   </p>
-                  <div className="space-y-2">
-                    <p className="text-sm text-muted-foreground">
-                      {module6Progress.completed} of {module6Progress.total} sections complete
-                    </p>
-                    <ProgressBar current={module6Progress.completed} total={module6Progress.total} showPercentage={true} />
-                  </div>
+                  {mounted && (
+                    <div className="space-y-2">
+                      <p className="text-sm text-muted-foreground">
+                        {module6Progress.completed} of {module6Progress.total} sections complete
+                      </p>
+                      <ProgressBar current={module6Progress.completed} total={module6Progress.total} showPercentage={true} />
+                    </div>
+                  )}
                   <Button 
                     onClick={() => router.push("/course/module-6")} 
                     className="w-full bg-brand-green hover:bg-[#143d31] text-white"
                   >
-                    {module6Progress.completed === 0
-                      ? "Start Module 6"
-                      : module6Progress.completed === module6Progress.total
-                        ? "Review Module 6"
-                        : "Continue Module 6"}
+                    {mounted ? (
+                      module6Progress.completed === 0
+                        ? "Start Module 6"
+                        : module6Progress.completed === module6Progress.total
+                          ? "Review Module 6"
+                          : "Continue Module 6"
+                    ) : "Loading..."}
                   </Button>
                 </CardContent>
               </Card>
