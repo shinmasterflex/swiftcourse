@@ -104,6 +104,8 @@ export const courseStructure: CourseStructure = {
       sections: [
         { id: "module-overview", title: "Module Overview", completed: false },
         { id: "why-change-hard", title: "Why Behavioral Change Is Hard", completed: false },
+        { id: "hidden-potential", title: "Adam Grant's Hidden Potential", completed: false },
+        { id: "immunity-to-change", title: "Kegan & Lahey: Immunity to Change", completed: false },
         { id: "change-framework", title: "The Change Agency Framework", completed: false },
         { id: "implementation", title: "Implementation Strategy", completed: false },
         { id: "measuring-success", title: "Measuring Behavioral Change", completed: false },
