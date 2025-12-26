@@ -839,6 +839,1416 @@ function HiddenPotentialFormulaInteractive() {
   )
 }
 
+/**
+ * Interactive Paradox of Change Component
+ * Allows users to explore the mind's protective mechanisms
+ */
+function ParadoxOfChangeInteractive() {
+  const [selectedMechanism, setSelectedMechanism] = useState<number | null>(null)
+
+  const mechanisms = [
+    {
+      id: 1,
+      title: "Avoid Anxiety",
+      icon: Shield,
+      color: "text-red-500",
+      bgColor: "bg-red-500/10",
+      borderColor: "border-red-500",
+      summary: "The brain protects you from psychological discomfort",
+      details: [
+        "Change triggers uncertainty, which the amygdala interprets as threat",
+        "Anxiety is the body's early warning system, designed to keep you safe",
+        "Staying with familiar behaviors feels safer, even when they're ineffective",
+        "Sales Example: A rep avoids prospecting because the potential for rejection creates anticipatory anxiety—staying busy with 'research' feels safer"
+      ],
+      consequence: "Without addressing the underlying anxiety, pushing harder just increases avoidance behavior"
+    },
+    {
+      id: 2,
+      title: "Preserve Identity",
+      icon: User,
+      color: "text-blue-500",
+      bgColor: "bg-blue-500/10",
+      borderColor: "border-blue-500",
+      summary: "Your brain defends who you think you are",
+      details: [
+        "Self-concept is a cognitive structure the mind works to maintain",
+        "Behaviors that conflict with identity feel 'not like me' and get rejected",
+        "Changing behavior can feel like losing yourself or betraying your values",
+        "Sales Example: A rep who sees themselves as 'consultative' resists assertive closing techniques because 'I'm not pushy'—even when prospects need clear direction"
+      ],
+      consequence: "Identity-threatening change requires reframing who you are, not just what you do"
+    },
+    {
+      id: 3,
+      title: "Maintain Coherence",
+      icon: Brain,
+      color: "text-purple-500",
+      bgColor: "bg-purple-500/10",
+      borderColor: "border-purple-500",
+      summary: "The mind creates narratives to make sense of the world",
+      details: [
+        "Your brain builds stories that explain why things happen",
+        "New behaviors that contradict your narrative create cognitive dissonance",
+        "The mind will defend its existing story, even when evidence suggests otherwise",
+        "Sales Example: A rep believes 'People don't like being sold to'—when using direct techniques feels uncomfortable, they interpret it as proof the technique doesn't work, rather than recognizing their own discomfort"
+      ],
+      consequence: "Challenging core beliefs requires exposing the assumptions behind them, not just willpower"
+    }
+  ]
+
+  const toggleMechanism = (id: number) => {
+    setSelectedMechanism(selectedMechanism === id ? null : id)
+  }
+
+  return (
+    <div className="space-y-4">
+      {/* Header */}
+      <p className="text-sm text-muted-foreground mb-4">
+        Click each protective mechanism to understand how the mind actively resists change:
+      </p>
+
+      {/* Mechanism Cards */}
+      <div className="grid md:grid-cols-3 gap-4">
+        {mechanisms.map((mechanism) => {
+          const Icon = mechanism.icon
+          const isSelected = selectedMechanism === mechanism.id
+
+          return (
+            <div
+              key={mechanism.id}
+              className={`p-4 rounded-lg border-2 transition-all duration-300 cursor-pointer ${
+                isSelected
+                  ? `${mechanism.bgColor} ${mechanism.borderColor} shadow-lg`
+                  : "bg-muted border-transparent hover:border-muted-foreground/20 hover:shadow-md"
+              }`}
+              onClick={() => toggleMechanism(mechanism.id)}
+            >
+              <div className="flex flex-col items-center text-center">
+                <div className={`w-16 h-16 rounded-full ${mechanism.bgColor} flex items-center justify-center mb-3`}>
+                  <Icon className={`h-8 w-8 ${mechanism.color}`} />
+                </div>
+                <p className="font-bold text-base mb-2">{mechanism.title}</p>
+                <p className="text-xs text-muted-foreground mb-2">{mechanism.summary}</p>
+                
+                <ChevronDown
+                  className={`h-5 w-5 mt-2 transition-transform duration-300 ${
+                    isSelected ? "rotate-180" : ""
+                  }`}
+                />
+              </div>
+            </div>
+          )
+        })}
+      </div>
+
+      {/* Expanded Details */}
+      {selectedMechanism !== null && (
+        <div className="animate-in fade-in slide-in-from-top-2 duration-300">
+          {mechanisms
+            .filter(m => m.id === selectedMechanism)
+            .map((mechanism) => {
+              const Icon = mechanism.icon
+              return (
+                <div
+                  key={mechanism.id}
+                  className={`p-6 rounded-lg ${mechanism.bgColor} border-2 ${mechanism.borderColor}`}
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <Icon className={`h-6 w-6 ${mechanism.color}`} />
+                    <h4 className="text-lg font-semibold">{mechanism.title}</h4>
+                  </div>
+                  
+                  <div className="space-y-3 mb-4">
+                    {mechanism.details.map((detail, index) => (
+                      <div
+                        key={index}
+                        className={`pl-4 border-l-2 ${mechanism.borderColor} py-2`}
+                      >
+                        <p className="text-sm leading-relaxed">• {detail}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="p-4 bg-background/50 rounded border border-muted-foreground/20">
+                    <p className="text-sm font-semibold mb-2">💡 The Implication:</p>
+                    <p className="text-sm italic">{mechanism.consequence}</p>
+                  </div>
+                </div>
+              )
+            })}
+        </div>
+      )}
+
+      {/* Bottom Context */}
+      <div className="p-4 bg-muted rounded-lg">
+        <p className="text-sm italic text-center">
+          These protections operate outside conscious awareness—you genuinely want to change while simultaneously working to prevent it.
+        </p>
+      </div>
+    </div>
+  )
+}
+
+/**
+ * Interactive Technical vs Adaptive Challenges Component
+ * Visual comparison with interactive examples
+ */
+function TechnicalVsAdaptiveInteractive() {
+  const [selectedType, setSelectedType] = useState<'technical' | 'adaptive' | null>(null)
+
+  const technicalChallenges = {
+    type: 'technical',
+    title: 'Technical Challenges',
+    icon: Target,
+    color: 'text-green-500',
+    bgColor: 'bg-green-500/10',
+    borderColor: 'border-green-500',
+    accentColor: 'bg-green-500',
+    characteristics: [
+      { label: 'Can be solved with new skills', icon: CheckCircle2 },
+      { label: 'Information or procedures fix it', icon: CheckCircle2 },
+      { label: 'No mindset change required', icon: CheckCircle2 },
+      { label: 'Training addresses the gap', icon: CheckCircle2 }
+    ],
+    examples: [
+      {
+        scenario: 'Learning CRM Software',
+        problem: 'Rep doesn\'t know how to log activities in the CRM',
+        solution: 'Provide step-by-step training and documentation',
+        outcome: 'Rep successfully uses CRM after 2-hour training session'
+      },
+      {
+        scenario: 'Email Template Creation',
+        problem: 'Rep writes unclear follow-up emails',
+        solution: 'Share proven templates and formatting guidelines',
+        outcome: 'Email response rates improve with structured templates'
+      },
+      {
+        scenario: 'Product Knowledge',
+        problem: 'Rep can\'t answer technical questions about features',
+        solution: 'Product training sessions and reference materials',
+        outcome: 'Rep confidently explains features after study'
+      }
+    ]
+  }
+
+  const adaptiveChallenges = {
+    type: 'adaptive',
+    title: 'Adaptive/Developmental Challenges',
+    icon: Brain,
+    color: 'text-orange-500',
+    bgColor: 'bg-orange-500/10',
+    borderColor: 'border-orange-500',
+    accentColor: 'bg-orange-500',
+    characteristics: [
+      { label: 'Require change in identity or meaning', icon: User },
+      { label: 'Trigger fear or threat to self-concept', icon: Shield },
+      { label: 'Mindset transformation needed', icon: RefreshCw },
+      { label: 'Training alone doesn\'t work', icon: Brain }
+    ],
+    examples: [
+      {
+        scenario: 'Being Vulnerable in Calls',
+        problem: 'Rep avoids admitting gaps in knowledge to prospects',
+        solution: 'Must challenge belief that "admitting ignorance = incompetence"',
+        outcome: 'Requires identity shift to see vulnerability as strength'
+      },
+      {
+        scenario: 'Handling Direct Rejection',
+        problem: 'Rep personalizes "no" and avoids follow-up',
+        solution: 'Must reframe rejection as data, not judgment of self-worth',
+        outcome: 'Requires changing relationship to failure and self-image'
+      },
+      {
+        scenario: 'Assertive Closing',
+        problem: 'Rep fears being "pushy" and never asks for the sale',
+        solution: 'Must challenge assumption that "directness = manipulation"',
+        outcome: 'Requires reconciling assertiveness with being helpful'
+      }
+    ]
+  }
+
+  return (
+    <div className="space-y-6">
+      {/* Interactive Toggle Cards */}
+      <div className="grid md:grid-cols-2 gap-6">
+        {/* Technical Card */}
+        <div
+          className={`p-6 rounded-lg border-2 cursor-pointer transition-all duration-300 ${
+            selectedType === 'technical'
+              ? `${technicalChallenges.bgColor} ${technicalChallenges.borderColor} shadow-xl scale-[1.02]`
+              : 'bg-muted border-muted-foreground/20 hover:shadow-lg hover:scale-[1.01]'
+          }`}
+          onClick={() => setSelectedType(selectedType === 'technical' ? null : 'technical')}
+        >
+          <div className="flex items-center gap-3 mb-4">
+            <div className={`w-12 h-12 rounded-full ${technicalChallenges.bgColor} flex items-center justify-center`}>
+              <Target className={`h-6 w-6 ${technicalChallenges.color}`} />
+            </div>
+            <h4 className="text-lg font-bold">{technicalChallenges.title}</h4>
+          </div>
+
+          <div className="space-y-2">
+            {technicalChallenges.characteristics.map((char, idx) => {
+              const Icon = char.icon
+              return (
+                <div key={idx} className="flex items-start gap-2">
+                  <Icon className={`h-4 w-4 ${technicalChallenges.color} mt-0.5 flex-shrink-0`} />
+                  <span className="text-sm">{char.label}</span>
+                </div>
+              )
+            })}
+          </div>
+
+          <div className="mt-4 pt-4 border-t border-muted-foreground/20">
+            <p className="text-xs text-muted-foreground text-center">
+              {selectedType === 'technical' ? 'Click to collapse' : 'Click to see examples →'}
+            </p>
+          </div>
+        </div>
+
+        {/* Adaptive Card */}
+        <div
+          className={`p-6 rounded-lg border-2 cursor-pointer transition-all duration-300 ${
+            selectedType === 'adaptive'
+              ? `${adaptiveChallenges.bgColor} ${adaptiveChallenges.borderColor} shadow-xl scale-[1.02]`
+              : 'bg-muted border-muted-foreground/20 hover:shadow-lg hover:scale-[1.01]'
+          }`}
+          onClick={() => setSelectedType(selectedType === 'adaptive' ? null : 'adaptive')}
+        >
+          <div className="flex items-center gap-3 mb-4">
+            <div className={`w-12 h-12 rounded-full ${adaptiveChallenges.bgColor} flex items-center justify-center`}>
+              <Brain className={`h-6 w-6 ${adaptiveChallenges.color}`} />
+            </div>
+            <h4 className="text-lg font-bold">{adaptiveChallenges.title}</h4>
+          </div>
+
+          <div className="space-y-2">
+            {adaptiveChallenges.characteristics.map((char, idx) => {
+              const Icon = char.icon
+              return (
+                <div key={idx} className="flex items-start gap-2">
+                  <Icon className={`h-4 w-4 ${adaptiveChallenges.color} mt-0.5 flex-shrink-0`} />
+                  <span className="text-sm">{char.label}</span>
+                </div>
+              )
+            })}
+          </div>
+
+          <div className="mt-4 pt-4 border-t border-muted-foreground/20">
+            <p className="text-xs text-muted-foreground text-center">
+              {selectedType === 'adaptive' ? 'Click to collapse' : 'Click to see examples →'}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Examples Section */}
+      {selectedType === 'technical' && (
+        <div className="animate-in fade-in slide-in-from-top-2 duration-300">
+          <div className={`p-6 rounded-lg ${technicalChallenges.bgColor} border-2 ${technicalChallenges.borderColor}`}>
+            <h4 className="text-lg font-semibold mb-4 flex items-center gap-2">
+              <Target className={`h-5 w-5 ${technicalChallenges.color}`} />
+              Technical Challenge Examples
+            </h4>
+            <div className="grid gap-4">
+              {technicalChallenges.examples.map((example, idx) => (
+                <div key={idx} className="p-4 bg-background/80 rounded border border-muted-foreground/20">
+                  <p className="font-semibold mb-3 flex items-center gap-2">
+                    <span className={`inline-flex items-center justify-center w-6 h-6 rounded-full ${technicalChallenges.accentColor} text-white text-xs font-bold`}>
+                      {idx + 1}
+                    </span>
+                    {example.scenario}
+                  </p>
+                  <div className="space-y-2 text-sm ml-8">
+                    <p><span className="font-semibold">Problem:</span> {example.problem}</p>
+                    <p><span className="font-semibold text-green-600 dark:text-green-400">Solution:</span> {example.solution}</p>
+                    <p><span className="font-semibold text-blue-600 dark:text-blue-400">Outcome:</span> {example.outcome}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {selectedType === 'adaptive' && (
+        <div className="animate-in fade-in slide-in-from-top-2 duration-300">
+          <div className={`p-6 rounded-lg ${adaptiveChallenges.bgColor} border-2 ${adaptiveChallenges.borderColor}`}>
+            <h4 className="text-lg font-semibold mb-4 flex items-center gap-2">
+              <Brain className={`h-5 w-5 ${adaptiveChallenges.color}`} />
+              Adaptive Challenge Examples
+            </h4>
+            <div className="grid gap-4">
+              {adaptiveChallenges.examples.map((example, idx) => (
+                <div key={idx} className="p-4 bg-background/80 rounded border border-muted-foreground/20">
+                  <p className="font-semibold mb-3 flex items-center gap-2">
+                    <span className={`inline-flex items-center justify-center w-6 h-6 rounded-full ${adaptiveChallenges.accentColor} text-white text-xs font-bold`}>
+                      {idx + 1}
+                    </span>
+                    {example.scenario}
+                  </p>
+                  <div className="space-y-2 text-sm ml-8">
+                    <p><span className="font-semibold">Problem:</span> {example.problem}</p>
+                    <p><span className="font-semibold text-orange-600 dark:text-orange-400">Required Change:</span> {example.solution}</p>
+                    <p><span className="font-semibold text-purple-600 dark:text-purple-400">Why It's Hard:</span> {example.outcome}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Critical Warning */}
+      <div className="p-5 bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-950/30 dark:to-orange-950/30 rounded-lg border-2 border-red-200 dark:border-red-800">
+        <div className="flex items-start gap-3">
+          <div className="bg-red-500 text-white rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0 mt-1">
+            ⚠️
+          </div>
+          <div>
+            <p className="font-bold text-red-700 dark:text-red-400 mb-2">The Critical Mistake</p>
+            <p className="text-sm text-red-900 dark:text-red-300">
+              Most behavior change failures occur because <strong>adaptive challenges are treated as technical ones</strong>. 
+              When identity, fear, or core beliefs are involved, more training won't help—you need to address the underlying assumptions.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/**
+ * Interactive Behavior Scorecard Component
+ * Allows users to explore behavior tracking metrics with visual progress
+ */
+function InteractiveBehaviorScorecard() {
+  const [selectedMetric, setSelectedMetric] = useState<number | null>(null)
+  const [demoScores, setDemoScores] = useState({
+    consistency: 4,
+    quality: 3,
+    autonomy: 4,
+    environmental: 3
+  })
+
+  const metrics = [
+    {
+      id: 1,
+      title: "Consistency Score",
+      icon: CheckCircle2,
+      color: "text-blue-600",
+      bgColor: "bg-blue-50",
+      borderColor: "border-blue-300",
+      metric: "Days behavior was performed / 5",
+      target: "5/5 days for at least 3 consecutive weeks",
+      currentScore: demoScores.consistency,
+      maxScore: 5,
+      details: [
+        "Track whether the behavior happens daily, not whether it's perfect",
+        "Even 5 minutes counts—consistency beats intensity",
+        "Missing 2+ days signals the need for environmental redesign",
+        "Example: Rep completes 20 prospecting calls by 10 AM every day this week = 5/5"
+      ],
+      interpretation: [
+        "5/5 = Behavior is becoming automatic",
+        "4/5 = On track, but watch for patterns in missed days",
+        "3/5 or below = Intervention needed, redesign environment"
+      ]
+    },
+    {
+      id: 2,
+      title: "Quality Score",
+      icon: Award,
+      color: "text-purple-600",
+      bgColor: "bg-purple-50",
+      borderColor: "border-purple-300",
+      metric: "Manager observation rating (1-5)",
+      target: "Consistent 4+ with decreasing coaching needed",
+      currentScore: demoScores.quality,
+      maxScore: 5,
+      details: [
+        "Rate execution quality based on actual call reviews",
+        "Focus on technique adherence (e.g., using Camp/Voss correctly)",
+        "Quality can lag consistency—that's normal in skill development",
+        "Example: Manager reviews 3 recorded calls and rates objection handling technique as 4/5"
+      ],
+      interpretation: [
+        "5/5 = Mastery level execution",
+        "3-4/5 = Competent with room for refinement",
+        "1-2/5 = Needs focused coaching on technique"
+      ]
+    },
+    {
+      id: 3,
+      title: "Autonomy Score",
+      icon: User,
+      color: "text-green-600",
+      bgColor: "bg-green-50",
+      borderColor: "border-green-300",
+      metric: "Self-initiated vs. prompted",
+      target: "Behaviors happen without external reminders",
+      currentScore: demoScores.autonomy,
+      maxScore: 5,
+      details: [
+        "Track whether rep needs reminders to perform behavior",
+        "Autonomy increases as behavior becomes habitual",
+        "Low autonomy despite high consistency suggests external dependence",
+        "Example: Rep starts morning prospecting routine without manager check-ins = High autonomy"
+      ],
+      interpretation: [
+        "5/5 = Fully self-directed, behavior is habitual",
+        "3-4/5 = Occasionally needs prompting",
+        "1-2/5 = Relies heavily on external accountability"
+      ]
+    },
+    {
+      id: 4,
+      title: "Environmental Support",
+      icon: MapPin,
+      color: "text-orange-600",
+      bgColor: "bg-orange-50",
+      borderColor: "border-orange-300",
+      metric: "Setup completion checklist",
+      target: "All environmental supports in place and maintained",
+      currentScore: demoScores.environmental,
+      maxScore: 5,
+      details: [
+        "Checklist of environmental supports: templates, schedules, physical cues",
+        "Rate how many supports are actively maintained (not just created)",
+        "Degrading environment is an early warning sign",
+        "Example: Prospecting template saved, 9 AM calendar block exists, call list prepared nightly = 5/5"
+      ],
+      interpretation: [
+        "5/5 = All supports in place and actively used",
+        "3-4/5 = Most supports present, some need refreshing",
+        "1-2/5 = Environment lacks behavior triggers"
+      ]
+    }
+  ]
+
+  const toggleMetric = (id: number) => {
+    setSelectedMetric(selectedMetric === id ? null : id)
+  }
+
+  const adjustScore = (metricKey: keyof typeof demoScores, delta: number) => {
+    setDemoScores(prev => ({
+      ...prev,
+      [metricKey]: Math.max(0, Math.min(5, prev[metricKey] + delta))
+    }))
+  }
+
+  const getMetricKey = (id: number): keyof typeof demoScores => {
+    const keys: (keyof typeof demoScores)[] = ['consistency', 'quality', 'autonomy', 'environmental']
+    return keys[id - 1]
+  }
+
+  const getProgressColor = (score: number, max: number) => {
+    const percentage = (score / max) * 100
+    if (percentage >= 80) return 'bg-green-500'
+    if (percentage >= 60) return 'bg-yellow-500'
+    return 'bg-red-500'
+  }
+
+  return (
+    <Card className="p-6">
+      <div className="flex items-center gap-3 mb-4">
+        <Target className="h-7 w-7 text-brand-green" />
+        <div>
+          <h3 className="text-xl font-semibold">The Behavior Scorecard</h3>
+          <p className="text-sm text-muted-foreground">Track these metrics weekly for each rep (click to explore)</p>
+        </div>
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-4">
+        {metrics.map((metric) => {
+          const Icon = metric.icon
+          const isSelected = selectedMetric === metric.id
+          const metricKey = getMetricKey(metric.id)
+          const currentScore = metric.currentScore
+
+          return (
+            <div key={metric.id} className="space-y-2">
+              <div
+                className={`p-4 rounded-lg border-2 transition-all duration-300 cursor-pointer ${
+                  isSelected
+                    ? `${metric.bgColor} ${metric.borderColor} shadow-lg`
+                    : 'bg-muted border-transparent hover:border-muted-foreground/20 hover:shadow-md'
+                }`}
+                onClick={() => toggleMetric(metric.id)}
+              >
+                <div className="flex items-start gap-3">
+                  <Icon className={`h-6 w-6 ${metric.color} flex-shrink-0 mt-0.5`} />
+                  <div className="flex-1">
+                    <div className="flex items-start justify-between gap-2 mb-2">
+                      <div>
+                        <p className="font-semibold">{metric.title}</p>
+                        <p className="text-xs text-muted-foreground">{metric.metric}</p>
+                      </div>
+                      <ChevronDown
+                        className={`h-4 w-4 transition-transform duration-300 flex-shrink-0 ${
+                          isSelected ? 'rotate-180' : ''
+                        }`}
+                      />
+                    </div>
+
+                    {/* Progress Bar */}
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="text-muted-foreground">Score</span>
+                        <span className="font-bold">
+                          {currentScore}/{metric.maxScore}
+                        </span>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+                        <div
+                          className={`h-full ${getProgressColor(currentScore, metric.maxScore)} transition-all duration-500 rounded-full`}
+                          style={{ width: `${(currentScore / metric.maxScore) * 100}%` }}
+                        />
+                      </div>
+                      
+                      {/* Interactive Adjuster */}
+                      <div className="flex items-center gap-2 justify-center pt-1">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            adjustScore(metricKey, -1)
+                          }}
+                          disabled={currentScore === 0}
+                          className="h-7 w-7 p-0"
+                        >
+                          -
+                        </Button>
+                        <span className="text-xs text-muted-foreground">Adjust demo score</span>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            adjustScore(metricKey, 1)
+                          }}
+                          disabled={currentScore === metric.maxScore}
+                          className="h-7 w-7 p-0"
+                        >
+                          +
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {isSelected && (
+                  <div className="mt-4 space-y-3 animate-in fade-in slide-in-from-top-2 duration-300">
+                    <div>
+                      <p className="text-sm font-semibold mb-2">🎯 Target: {metric.target}</p>
+                      <div className="space-y-2">
+                        {metric.details.map((detail, index) => (
+                          <div key={index} className={`pl-4 border-l-2 ${metric.borderColor} py-1`}>
+                            <p className="text-sm leading-relaxed">• {detail}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    <div className={`p-3 ${metric.bgColor} rounded border ${metric.borderColor}`}>
+                      <p className="text-sm font-semibold mb-2">📊 Interpretation:</p>
+                      <div className="space-y-1">
+                        {metric.interpretation.map((interp, index) => (
+                          <p key={index} className="text-xs">{interp}</p>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          )
+        })}
+      </div>
+
+      <div className="mt-6 p-4 bg-gradient-to-r from-brand-green/10 to-brand-orange/10 rounded-lg border border-brand-green/30">
+        <p className="text-sm font-semibold mb-2">💡 Weekly Review Protocol:</p>
+        <p className="text-sm leading-relaxed">
+          Score all four metrics each Friday. If any metric drops below target for 2 consecutive weeks, 
+          schedule an immediate 1-on-1 to diagnose barriers and redesign the environment or approach.
+        </p>
+      </div>
+    </Card>
+  )
+}
+
+/**
+ * Interactive Red Flags Component
+ * Allows users to explore warning signs of regression
+ */
+function InteractiveRedFlags() {
+  const [selectedFlag, setSelectedFlag] = useState<number | null>(null)
+  const [checkedFlags, setCheckedFlags] = useState<number[]>([])
+
+  const redFlags = [
+    {
+      id: 1,
+      title: "Consistency drops below 4/5 days",
+      icon: "📉",
+      severity: "high",
+      timeframe: "For two consecutive weeks",
+      details: [
+        "Missing one day per week is normal variance",
+        "Missing 2+ days consistently indicates environmental breakdown",
+        "Often the first visible signal that motivation is waning",
+        "Common causes: competing priorities, removed calendar blocks, unclear process"
+      ],
+      intervention: [
+        "Review and strengthen environmental cues",
+        "Identify what changed in the last 2 weeks",
+        "Simplify the behavior if it feels too complex",
+        "Add accountability partner or daily check-in"
+      ]
+    },
+    {
+      id: 2,
+      title: "Excuses or rationalizations increase",
+      icon: "💬",
+      severity: "high",
+      timeframe: "Multiple instances per week",
+      warning: '"I\'ll do it later," "It doesn\'t work for this prospect," "I\'m too busy today"',
+      details: [
+        "Language shifts from 'I will' to 'I can't' or 'I shouldn't have to'",
+        "Rationalizations are the mind protecting against discomfort",
+        "Often accompanies a return to old, familiar behaviors",
+        "Indicates the behavior hasn't become identity-based yet"
+      ],
+      intervention: [
+        "Revisit the 'why'—reconnect behavior to identity or values",
+        "Reduce barrier to entry (make it easier to start)",
+        "Address underlying fears or beliefs blocking action",
+        "Celebrate small wins to rebuild momentum"
+      ]
+    },
+    {
+      id: 3,
+      title: "Environmental supports are removed",
+      icon: "🗑️",
+      severity: "critical",
+      timeframe: "Any removal is a red flag",
+      warning: "Scripts deleted, calendar blocks canceled, templates abandoned",
+      details: [
+        "Physical or digital cues that trigger behavior are gone",
+        "Often done unconsciously when reverting to old patterns",
+        "Indicates rep has mentally 'given up' on the system",
+        "Without cues, behavior relies entirely on willpower (which fails)"
+      ],
+      intervention: [
+        "Immediately restore all environmental supports",
+        "Have rep verbally commit to maintaining them",
+        "Add redundant cues (multiple triggers for same behavior)",
+        "Manager spot-check that supports remain in place"
+      ]
+    },
+    {
+      id: 4,
+      title: "Rep stops self-reporting or tracking",
+      icon: "📊",
+      severity: "critical",
+      timeframe: "Missed tracking for 3+ days",
+      warning: "No longer filling out scorecards, sharing progress, or logging behaviors",
+      details: [
+        "Tracking creates awareness; stopping tracking creates blind spots",
+        "Often the last step before complete regression",
+        "May indicate shame about performance or belief that tracking 'doesn't matter'",
+        "Without data, you can't course-correct"
+      ],
+      intervention: [
+        "1-on-1 conversation: Why did tracking stop?",
+        "Simplify tracking to absolute minimum (one metric only)",
+        "Make tracking public or shared with peer (social pressure)",
+        "Frame tracking as 'learning data' not 'performance evaluation'"
+      ]
+    }
+  ]
+
+  const toggleFlag = (id: number) => {
+    setSelectedFlag(selectedFlag === id ? null : id)
+  }
+
+  const toggleCheck = (id: number, e: React.MouseEvent) => {
+    e.stopPropagation()
+    setCheckedFlags(prev =>
+      prev.includes(id) ? prev.filter(f => f !== id) : [...prev, id]
+    )
+  }
+
+  const getSeverityColor = (severity: string) => {
+    switch (severity) {
+      case 'critical': return 'text-red-600 bg-red-50 border-red-300'
+      case 'high': return 'text-orange-600 bg-orange-50 border-orange-300'
+      default: return 'text-yellow-600 bg-yellow-50 border-yellow-300'
+    }
+  }
+
+  const checkedCount = checkedFlags.length
+
+  return (
+    <Card className="p-6 border-2 border-red-200">
+      <div className="flex items-center gap-3 mb-4">
+        <Shield className="h-7 w-7 text-red-600" />
+        <div>
+          <h3 className="text-xl font-semibold text-red-700">Red Flags for Regression</h3>
+          <p className="text-sm text-muted-foreground">Watch for these warning signs (check any you've observed)</p>
+        </div>
+      </div>
+
+      {checkedCount > 0 && (
+        <div className="mb-4 p-4 bg-red-100 border-2 border-red-400 rounded-lg">
+          <p className="font-semibold text-red-800 mb-1">
+            ⚠️ {checkedCount} red flag{checkedCount > 1 ? 's' : ''} detected!
+          </p>
+          <p className="text-sm text-red-700">
+            Immediate action required: Schedule 1-on-1 coaching to diagnose and address barriers.
+          </p>
+        </div>
+      )}
+
+      <div className="space-y-3">
+        {redFlags.map((flag) => {
+          const isSelected = selectedFlag === flag.id
+          const isChecked = checkedFlags.includes(flag.id)
+          const severityClass = getSeverityColor(flag.severity)
+
+          return (
+            <div
+              key={flag.id}
+              className={`p-4 rounded-lg border-2 transition-all duration-300 cursor-pointer ${
+                isSelected
+                  ? severityClass
+                  : 'bg-muted border-transparent hover:border-red-300 hover:shadow-md'
+              }`}
+              onClick={() => toggleFlag(flag.id)}
+            >
+              <div className="flex items-start gap-3">
+                <span className="text-2xl flex-shrink-0">{flag.icon}</span>
+                <div className="flex-1">
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="flex items-start gap-2 flex-1">
+                      <input
+                        type="checkbox"
+                        checked={isChecked}
+                        onChange={(e) => toggleCheck(flag.id, e as any)}
+                        onClick={(e) => e.stopPropagation()}
+                        className="mt-1 cursor-pointer"
+                      />
+                      <div>
+                        <p className="font-semibold">{flag.title}</p>
+                        <p className="text-xs text-muted-foreground mt-1">
+                          <span className="font-medium">Timeframe:</span> {flag.timeframe}
+                        </p>
+                        {flag.warning && (
+                          <p className="text-xs italic text-red-600 mt-1">
+                            {flag.warning}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                    <ChevronDown
+                      className={`h-4 w-4 transition-transform duration-300 flex-shrink-0 ${
+                        isSelected ? 'rotate-180' : ''
+                      }`}
+                    />
+                  </div>
+
+                  {isSelected && (
+                    <div className="mt-4 space-y-4 animate-in fade-in slide-in-from-top-2 duration-300">
+                      <div>
+                        <p className="text-sm font-semibold mb-2">🔍 What to watch for:</p>
+                        <div className="space-y-2">
+                          {flag.details.map((detail, index) => (
+                            <div key={index} className="pl-4 border-l-2 border-red-500 py-1">
+                              <p className="text-sm leading-relaxed">• {detail}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="p-3 bg-green-50 rounded border border-green-300">
+                        <p className="text-sm font-semibold text-green-800 mb-2">✅ Intervention Steps:</p>
+                        <div className="space-y-1">
+                          {flag.intervention.map((step, index) => (
+                            <p key={index} className="text-sm text-green-800">
+                              {index + 1}. {step}
+                            </p>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          )
+        })}
+      </div>
+
+      <div className="mt-4 p-4 bg-red-50 rounded-lg border-2 border-red-300">
+        <p className="font-semibold text-red-700 mb-2">🚨 Critical Principle:</p>
+        <p className="text-sm text-red-800">
+          Don't wait for complete regression—intervene at the first warning sign. Early intervention has a 90% 
+          success rate; waiting until multiple flags appear drops success to &lt;30%.
+        </p>
+      </div>
+    </Card>
+  )
+}
+
+/**
+ * Interactive Pitfalls Explorer Component
+ * An engaging, visual way to explore common implementation pitfalls
+ */
+function InteractivePitfallsExplorer() {
+  const [selectedPitfall, setSelectedPitfall] = useState<number | null>(null)
+  const [checkedPitfalls, setCheckedPitfalls] = useState<number[]>([])
+  const [showImpactVisualization, setShowImpactVisualization] = useState(false)
+
+  const pitfalls = [
+    {
+      id: 1,
+      title: "Too Much, Too Fast",
+      icon: "🏃💨",
+      severity: "critical",
+      impactScore: 95,
+      color: "red",
+      gradient: "from-red-500 to-orange-500",
+      bgColor: "bg-red-50",
+      borderColor: "border-red-300",
+      problem: "Trying to implement all Camp principles, all Voss techniques, and personality assessment simultaneously.",
+      realWorldExample: "A sales manager launches 'Camp + Voss + Personality Training Week' where sales representatives are expected to master 15+ new techniques immediately. Within 2 weeks, sales representatives are overwhelmed, revert to old habits, and training ROI = $0.",
+      whyItHappens: [
+        "Pressure from leadership for quick wins",
+        "Assumption that 'more content = more value'",
+        "Underestimating cognitive load of behavior change",
+        "Belief that adults can absorb unlimited information"
+      ],
+      consequences: [
+        {
+          label: "Cognitive Overload",
+          description: "Sales representatives can't remember which technique to use when",
+          severity: "high"
+        },
+        {
+          label: "Analysis Paralysis",
+          description: "Too many choices lead to decision fatigue and inaction",
+          severity: "high"
+        },
+        {
+          label: "Regression to Default",
+          description: "Under pressure, sales representatives revert to familiar (ineffective) behaviors",
+          severity: "critical"
+        },
+        {
+          label: "Decreased Confidence",
+          description: "Failure to execute perfectly creates self-doubt",
+          severity: "medium"
+        }
+      ],
+      theFix: {
+        principle: "Sequential Mastery: One Behavior at a Time",
+        steps: [
+          "Choose ONE keystone behavior (e.g., daily prospecting)",
+          "Practice that behavior for 21 consecutive days until automatic",
+          "Add second behavior only after first shows consistency",
+          "Maximum 1-2 new behaviors per month"
+        ],
+        timeline: "3-6 months for comprehensive implementation",
+        successMetric: "Behavior becomes automatic (can do while distracted) before adding next"
+      },
+      diagnosticQuestions: [
+        "Are your sales representatives trying to apply 3+ new techniques simultaneously?",
+        "Do training sessions introduce 5+ concepts in a single day?",
+        "Have you launched multiple initiatives in the same quarter?"
+      ]
+    },
+    {
+      id: 2,
+      title: "No Environmental Support",
+      icon: "🌪️",
+      severity: "critical",
+      impactScore: 90,
+      color: "orange",
+      gradient: "from-orange-500 to-yellow-500",
+      bgColor: "bg-orange-50",
+      borderColor: "border-orange-300",
+      problem: "Teaching concepts in a training session, then sending sales representatives back to the same desk, same distractions, same triggers.",
+      realWorldExample: "Sales representatives attend an excellent Camp training workshop, return to their desks with no templates, no scheduled prospecting time, and a CRM that doesn't prompt for discovery questions. The training content fades within 72 hours.",
+      whyItHappens: [
+        "Training teams focus on content delivery, not environment design",
+        "Belief that motivation + knowledge = behavior change",
+        "Lack of authority to change physical/digital workspace",
+        "Separation between 'training' and 'operations'"
+      ],
+      consequences: [
+        {
+          label: "Knowledge-Action Gap",
+          description: "Sales representatives know what to do but environment prevents execution",
+          severity: "critical"
+        },
+        {
+          label: "Friction Decay",
+          description: "Every barrier reduces likelihood of behavior by 30-50%",
+          severity: "high"
+        },
+        {
+          label: "Willpower Depletion",
+          description: "Relying on motivation exhausts mental resources",
+          severity: "high"
+        },
+        {
+          label: "Invisible Regression",
+          description: "Sales representatives think they're trying but environment sabotages them",
+          severity: "medium"
+        }
+      ],
+      theFix: {
+        principle: "Design the Environment Before Teaching Behavior",
+        steps: [
+          "Create templates (email, call scripts, discovery frameworks) in advance",
+          "Block calendar time for new behaviors before training",
+          "Add environmental cues (sticky notes, desktop wallpapers, Slack reminders)",
+          "Modify CRM to prompt desired behaviors automatically",
+          "Assign accountability partners who check in daily"
+        ],
+        timeline: "1-2 weeks of environment prep before behavior training",
+        successMetric: "Desired behavior becomes the path of least resistance"
+      },
+      diagnosticQuestions: [
+        "Do sales representatives have templates/tools ready to use immediately?",
+        "Is the behavior scheduled or just 'expected'?",
+        "Are there physical/digital cues triggering the behavior?"
+      ]
+    },
+    {
+      id: 3,
+      title: "Focusing Only on Outcomes",
+      icon: "🎯💰",
+      severity: "high",
+      impactScore: 85,
+      color: "purple",
+      gradient: "from-purple-500 to-pink-500",
+      bgColor: "bg-purple-50",
+      borderColor: "border-purple-300",
+      problem: "Celebrating deals closed but ignoring whether Camp/Voss behaviors were used.",
+      realWorldExample: "A sales representative closes a big deal using old-school pressure tactics. Leadership celebrates publicly. Other sales representatives see: 'Why bother learning Camp/Voss if pressure still works?' The new system loses credibility.",
+      whyItHappens: [
+        "Quarterly targets create outcome obsession",
+        "Easier to measure results than behavior quality",
+        "Belief that 'results justify methods'",
+        "Short-term pressure overrides long-term development"
+      ],
+      consequences: [
+        {
+          label: "Wrong Behaviors Reinforced",
+          description: "Sales representatives learn what gets rewarded, not what's taught",
+          severity: "critical"
+        },
+        {
+          label: "System Credibility Loss",
+          description: "If old methods still work, why change?",
+          severity: "high"
+        },
+        {
+          label: "Cherry-Picking Execution",
+          description: "Sales representatives use new system only when convenient",
+          severity: "high"
+        },
+        {
+          label: "Learning Plateau",
+          description: "Without process feedback, skill development stalls",
+          severity: "medium"
+        }
+      ],
+      theFix: {
+        principle: "Reward Process Adherence, Not Just Results",
+        steps: [
+          "Track leading indicators: # of discovery questions asked, use of accusation audits, etc.",
+          "Celebrate 'perfect process, no close' as much as 'closed deal'",
+          "Review call recordings for technique quality, not just win rate",
+          "Create dual scoreboard: Process Execution + Results",
+          "Publicly recognize sales representatives who execute system perfectly even during slumps"
+        ],
+        timeline: "Immediate—change recognition criteria this week",
+        successMetric: "Sales representatives can articulate: 'I'm rewarded for how I sell, not just what I sell'"
+      },
+      diagnosticQuestions: [
+        "Do your celebrations mention HOW the deal was won?",
+        "Can sales representatives get recognized for great execution even without a close?",
+        "Are leading indicators tracked as closely as revenue?"
+      ]
+    },
+    {
+      id: 4,
+      title: "No Feedback Loop",
+      icon: "🔇",
+      severity: "high",
+      impactScore: 80,
+      color: "blue",
+      gradient: "from-blue-500 to-cyan-500",
+      bgColor: "bg-blue-50",
+      borderColor: "border-blue-300",
+      problem: "Sales representatives don't know if they're doing it right until weeks later when results (or lack of results) appear.",
+      realWorldExample: "A sales representative practices calibrated questions for 3 weeks but receives no coaching. They unknowingly develop a habit of leading questions that feel like interrogations. By the time poor results show up, the bad habit is ingrained.",
+      whyItHappens: [
+        "Managers too busy to provide real-time feedback",
+        "Belief that 'practice makes perfect' (vs. perfect practice makes perfect)",
+        "Lack of systems for rapid feedback (call recording review, peer observation)",
+        "Fear of micro-managing or over-coaching"
+      ],
+      consequences: [
+        {
+          label: "Ingrained Bad Habits",
+          description: "Incorrect execution becomes automatic before correction",
+          severity: "critical"
+        },
+        {
+          label: "Wasted Practice Time",
+          description: "Hours of practice reinforcing wrong technique",
+          severity: "high"
+        },
+        {
+          label: "Confidence Erosion",
+          description: "Sales representatives question their ability without understanding what's wrong",
+          severity: "high"
+        },
+        {
+          label: "Late Course Corrections",
+          description: "Problems discovered only after results tank",
+          severity: "medium"
+        }
+      ],
+      theFix: {
+        principle: "Rapid, Specific Feedback Within 24-48 Hours",
+        steps: [
+          "Require all sales representatives to record 2-3 calls per week for review",
+          "Managers commit to 24-hour feedback turnaround on recordings",
+          "Implement peer review: sales representatives review each other's calls using rubric",
+          "Weekly 1-on-1s focused on technique quality, not just metrics",
+          "Create feedback loops: Sales representative executes → Records → Reviews → Adjusts → Repeats"
+        ],
+        timeline: "Weekly feedback cycles minimum, daily for new behaviors",
+        successMetric: "Sales representatives can describe what they're doing well/poorly before results appear"
+      },
+      diagnosticQuestions: [
+        "How long between sales representative execution and manager feedback?",
+        "Do sales representatives receive feedback on HOW they executed vs. just outcomes?",
+        "Is call recording + review a standard practice?"
+      ]
+    },
+    {
+      id: 5,
+      title: "Leadership Doesn't Model the Behavior",
+      icon: "👔🚫",
+      severity: "critical",
+      impactScore: 100,
+      color: "gray",
+      gradient: "from-gray-500 to-gray-700",
+      bgColor: "bg-gray-50",
+      borderColor: "border-gray-400",
+      problem: "Sales managers tell sales representatives to use Camp/Voss but don't use it themselves in meetings, coaching sessions, or their own prospecting.",
+      realWorldExample: "A sales VP mandates that all sales representatives use discovery-first selling, then opens the quarterly business review with: 'Here's what you're going to do this quarter.' No discovery questions, pure directive communication. Sales representatives see the hypocrisy and disengage.",
+      whyItHappens: [
+        "'Do as I say, not as I do' leadership culture",
+        "Belief that managers are exempt from new systems",
+        "Time pressure makes shortcuts tempting",
+        "Lack of accountability for leadership behavior"
+      ],
+      consequences: [
+        {
+          label: "Credibility Collapse",
+          description: "If leaders don't use it, why should sales representatives?",
+          severity: "critical"
+        },
+        {
+          label: "Behavioral Permission",
+          description: "Sales representatives learn shortcuts are acceptable",
+          severity: "critical"
+        },
+        {
+          label: "Cultural Dissonance",
+          description: "'We say X but do Y' creates cynicism",
+          severity: "high"
+        },
+        {
+          label: "Learning Ceiling",
+          description: "Sales representatives won't surpass leadership's visible skill level",
+          severity: "high"
+        }
+      ],
+      theFix: {
+        principle: "Leaders Go First and Make Their Practice Visible",
+        steps: [
+          "Managers record their own calls and share for team critique",
+          "Use Camp/Voss in all internal meetings (team meetings, 1-on-1s, QBRs)",
+          "Leaders practice new behaviors publicly before rolling to sales representatives",
+          "Create 'Manager Practice Sessions' where leaders demonstrate techniques",
+          "Hold leadership accountable: Track whether managers use the system"
+        ],
+        timeline: "Continuous—leadership modeling is ongoing, not one-time",
+        successMetric: "Sales representatives can point to specific examples of leaders using the system"
+      },
+      diagnosticQuestions: [
+        "Do managers use Camp/Voss in internal meetings?",
+        "Have leaders demonstrated the behavior publicly?",
+        "Can sales representatives name times they've seen leadership struggle/learn the system?"
+      ]
+    }
+  ]
+
+  const togglePitfall = (id: number) => {
+    setSelectedPitfall(selectedPitfall === id ? null : id)
+  }
+
+  const toggleCheck = (id: number) => {
+    setCheckedPitfalls(prev => 
+      prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]
+    )
+  }
+
+  const getSeverityColor = (severity: string) => {
+    switch (severity) {
+      case 'critical': return 'text-red-600'
+      case 'high': return 'text-orange-600'
+      case 'medium': return 'text-yellow-600'
+      default: return 'text-gray-600'
+    }
+  }
+
+  const getImpactColor = (score: number) => {
+    if (score >= 90) return 'bg-red-500'
+    if (score >= 80) return 'bg-orange-500'
+    if (score >= 70) return 'bg-yellow-500'
+    return 'bg-green-500'
+  }
+
+  const getRiskLevel = () => {
+    const totalImpact = checkedPitfalls.reduce((sum, id) => {
+      const pitfall = pitfalls.find(p => p.id === id)
+      return sum + (pitfall?.impactScore || 0)
+    }, 0)
+    
+    if (totalImpact >= 200) return { level: 'CRITICAL', color: 'red', message: 'Immediate intervention required' }
+    if (totalImpact >= 150) return { level: 'HIGH', color: 'orange', message: 'Significant risk of failure' }
+    if (totalImpact >= 80) return { level: 'MODERATE', color: 'yellow', message: 'Address before proceeding' }
+    return { level: 'LOW', color: 'green', message: 'Implementation on track' }
+  }
+
+  const riskLevel = getRiskLevel()
+
+  return (
+    <div className="space-y-6">
+      {/* Interactive Diagnostic */}
+      <Card className="p-6">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="bg-red-500 text-white rounded-full w-12 h-12 flex items-center justify-center text-2xl">
+            ⚠️
+          </div>
+          <div>
+            <h3 className="text-xl font-semibold">Interactive Pitfall Diagnostic</h3>
+            <p className="text-sm text-muted-foreground">Check any pitfalls you're experiencing to see your implementation risk</p>
+          </div>
+        </div>
+
+        {checkedPitfalls.length > 0 && (
+          <div className={`mb-6 p-4 bg-${riskLevel.color}-100 border-2 border-${riskLevel.color}-400 rounded-lg`}>
+            <div className="flex items-center justify-between mb-2">
+              <span className="font-bold text-lg">Risk Level: {riskLevel.level}</span>
+              <span className="text-sm font-semibold">{riskLevel.message}</span>
+            </div>
+            <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+              <div
+                className={`h-full bg-${riskLevel.color}-500 transition-all duration-500`}
+                style={{ 
+                  width: `${Math.min(100, (checkedPitfalls.reduce((sum, id) => {
+                    const pitfall = pitfalls.find(p => p.id === id)
+                    return sum + (pitfall?.impactScore || 0)
+                  }, 0) / 300) * 100)}%` 
+                }}
+              />
+            </div>
+          </div>
+        )}
+
+        <div className="space-y-4">
+          {pitfalls.map((pitfall) => {
+            const isSelected = selectedPitfall === pitfall.id
+            const isChecked = checkedPitfalls.includes(pitfall.id)
+
+            return (
+              <div
+                key={pitfall.id}
+                className={`rounded-lg border-2 transition-all duration-300 ${
+                  isSelected
+                    ? `${pitfall.bgColor} ${pitfall.borderColor} shadow-lg`
+                    : isChecked
+                    ? `${pitfall.bgColor} ${pitfall.borderColor} shadow-md`
+                    : 'bg-muted border-transparent hover:border-muted-foreground/20 hover:shadow-md'
+                }`}
+              >
+                <div
+                  className="p-5 cursor-pointer"
+                  onClick={() => togglePitfall(pitfall.id)}
+                >
+                  <div className="flex items-start gap-4">
+                    <input
+                      type="checkbox"
+                      checked={isChecked}
+                      onChange={() => toggleCheck(pitfall.id)}
+                      onClick={(e) => e.stopPropagation()}
+                      className="mt-1 cursor-pointer w-5 h-5"
+                    />
+                    <span className="text-3xl flex-shrink-0">{pitfall.icon}</span>
+                    <div className="flex-1">
+                      <div className="flex items-start justify-between gap-3">
+                        <div>
+                          <p className="text-xl font-bold mb-1">{pitfall.title}</p>
+                          <p className="text-sm text-muted-foreground">{pitfall.problem}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {isSelected && (
+                  <div className="px-5 pb-5 space-y-5 animate-in fade-in slide-in-from-top-2 duration-300">
+                    {/* Real-World Example */}
+                    <div className={`p-4 bg-gradient-to-r ${pitfall.gradient} bg-opacity-10 rounded-lg border-l-4 ${pitfall.borderColor}`}>
+                      <p className="font-semibold mb-2">💡 Real-World Example:</p>
+                      <p className="text-sm leading-relaxed italic">{pitfall.realWorldExample}</p>
+                    </div>
+
+                    {/* Why It Happens */}
+                    <div>
+                      <p className="font-semibold mb-2">🔍 Why This Pitfall Happens:</p>
+                      <div className="grid md:grid-cols-2 gap-2">
+                        {pitfall.whyItHappens.map((reason, index) => (
+                          <div key={index} className="flex items-start gap-2 p-2 bg-muted rounded">
+                            <span className="text-red-500">•</span>
+                            <p className="text-sm">{reason}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Consequences */}
+                    <div>
+                      <p className="font-semibold mb-3">⚡ Cascading Consequences:</p>
+                      <div className="space-y-2">
+                        {pitfall.consequences.map((consequence, index) => (
+                          <div key={index} className="flex items-start gap-3 p-3 bg-white dark:bg-gray-800 rounded-lg border">
+                            <div className={`w-2 h-2 rounded-full mt-2 flex-shrink-0 ${
+                              consequence.severity === 'critical' ? 'bg-red-500' :
+                              consequence.severity === 'high' ? 'bg-orange-500' :
+                              consequence.severity === 'medium' ? 'bg-yellow-500' :
+                              'bg-gray-500'
+                            }`} />
+                            <div className="flex-1">
+                              <p className="font-semibold text-sm">{consequence.label}</p>
+                              <p className="text-xs text-muted-foreground">{consequence.description}</p>
+                            </div>
+                            <span className={`text-xs font-bold uppercase ${getSeverityColor(consequence.severity)}`}>
+                              {consequence.severity}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* The Fix */}
+                    <div className="p-5 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 rounded-lg border-2 border-green-300 dark:border-green-700">
+                      <p className="text-lg font-bold text-green-700 dark:text-green-400 mb-3">
+                        ✅ The Fix: {pitfall.theFix.principle}
+                      </p>
+                      
+                      <div className="space-y-3">
+                        <div>
+                          <p className="font-semibold text-sm mb-2">Implementation Steps:</p>
+                          <div className="space-y-2">
+                            {pitfall.theFix.steps.map((step, index) => (
+                              <div key={index} className="flex items-start gap-2 pl-2">
+                                <span className="bg-green-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs flex-shrink-0 mt-0.5">
+                                  {index + 1}
+                                </span>
+                                <p className="text-sm">{step}</p>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div className="grid md:grid-cols-2 gap-3 pt-2">
+                          <div className="p-3 bg-white dark:bg-gray-800 rounded border">
+                            <p className="text-xs font-semibold text-muted-foreground mb-1">Timeline</p>
+                            <p className="text-sm font-semibold">{pitfall.theFix.timeline}</p>
+                          </div>
+                          <div className="p-3 bg-white dark:bg-gray-800 rounded border">
+                            <p className="text-xs font-semibold text-muted-foreground mb-1">Success Metric</p>
+                            <p className="text-sm font-semibold">{pitfall.theFix.successMetric}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Diagnostic Questions */}
+                    <div className="p-4 bg-blue-50 dark:bg-blue-950/30 rounded-lg border border-blue-300">
+                      <p className="font-semibold mb-2">🎯 Self-Diagnostic Questions:</p>
+                      <div className="space-y-1">
+                        {pitfall.diagnosticQuestions.map((question, index) => (
+                          <p key={index} className="text-sm">
+                            <span className="text-blue-600 font-semibold">?</span> {question}
+                          </p>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )
+          })}
+        </div>
+      </Card>
+
+      {/* Compound Effect Warning */}
+      <Card className="p-6 bg-gradient-to-br from-red-50 to-orange-50 dark:from-red-950/20 dark:to-orange-950/20 border-2 border-red-300">
+        <div className="flex items-start gap-4">
+          <div className="bg-red-500 text-white rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0 text-xl">
+            🔥
+          </div>
+          <div>
+            <p className="text-lg font-bold text-red-700 dark:text-red-400 mb-2">
+              The Compound Effect: Pitfalls Multiply, Not Add
+            </p>
+            <p className="text-sm leading-relaxed text-red-900 dark:text-red-300 mb-3">
+              When multiple pitfalls exist simultaneously, their impact doesn't add—it multiplies. 
+              <strong> Pitfall 1 × Pitfall 2 × Pitfall 5 = Near-certain failure.</strong>
+            </p>
+            <div className="space-y-2">
+              <div className="p-3 bg-white dark:bg-gray-800 rounded">
+                <p className="text-sm"><strong>Example Cascade:</strong> Too Much Too Fast (#1) + No Environmental Support (#2) = 
+                Sales representatives overwhelmed with content they can't execute because environment blocks them = Immediate regression.</p>
+              </div>
+              <div className="p-3 bg-white dark:bg-gray-800 rounded">
+                <p className="text-sm"><strong>Critical Combination:</strong> Leadership Doesn't Model (#5) + Focusing Only on Outcomes (#3) = 
+                Sales representatives see leaders ignore new system while being judged only on old metrics = Total system failure within 30 days.</p>
+              </div>
+            </div>
+            <p className="text-sm font-semibold text-red-700 dark:text-red-400 mt-3">
+              ⚠️ Action Required: Address checked pitfalls before proceeding with implementation. One pitfall can derail months of work.
+            </p>
+          </div>
+        </div>
+      </Card>
+    </div>
+  )
+}
+
 export default function Module5Page() {
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -1206,88 +2616,214 @@ export default function Module5Page() {
                   People genuinely want to change and often know what to do—yet consistently do the opposite. This is not
                   resistance or laziness. It is self-protection.
                 </p>
-                <div className="p-4 bg-muted rounded">
-                  <p className="font-semibold mb-2">The mind works to:</p>
-                  <ul className="space-y-1 text-sm">
-                    <li>• Avoid anxiety</li>
-                    <li>• Preserve identity</li>
-                    <li>• Maintain coherence</li>
-                  </ul>
-                  <p className="text-sm mt-3 italic">These protections operate outside conscious awareness.</p>
-                </div>
+                <ParadoxOfChangeInteractive />
               </Card>
 
               <Card className="p-6">
                 <h3 className="text-xl font-semibold mb-3">Technical vs. Adaptive Challenges</h3>
-                <ComparisonCard
-                  leftSide={{
-                    title: "Technical Challenges",
-                    items: [
-                      "Can be solved with new skills",
-                      "Information or procedures fix it",
-                      "No mindset change required",
-                      "Training addresses the gap",
-                      "Example: Learning CRM software"
-                    ]
-                  }}
-                  rightSide={{
-                    title: "Adaptive/Developmental Challenges",
-                    items: [
-                      "Require change in identity or meaning",
-                      "Trigger fear or threat to self-concept",
-                      "Mindset transformation needed",
-                      "Training alone doesn't work",
-                      "Example: Being vulnerable in calls"
-                    ]
-                  }}
-                />
-                <div className="p-4 bg-red-50 dark:bg-red-950/30 rounded mt-4">
-                  <p className="font-semibold text-red-700 dark:text-red-400">
-                    ⚠️ Most behavior change failures occur because adaptive challenges are treated as technical ones.
-                  </p>
-                </div>
+                <p className="leading-relaxed mb-4 text-muted-foreground">
+                  Understanding the difference between these two types of challenges is critical for effective change implementation. Click each type to explore real examples:
+                </p>
+                <TechnicalVsAdaptiveInteractive />
               </Card>
 
               <Card className="p-6">
-                <h3 className="text-xl font-semibold mb-3">The Immunity to Change Map (Four Columns)</h3>
-                <div className="space-y-4">
-                  <div className="p-4 bg-muted rounded">
-                    <p className="font-semibold mb-2">Column 1: Improvement Goal</p>
-                    <p className="text-sm mb-2">A genuine, heartfelt change the person wants to make.</p>
-                    <p className="text-sm italic text-brand-green">Example: "I want to make more cold calls daily."</p>
+                <h3 className="text-xl font-semibold mb-3">The Immunity to Change Map</h3>
+                <p className="text-sm text-muted-foreground mb-6">
+                  This four-step process reveals the hidden immune system protecting old behaviors. Follow the flow from left to right to understand why change feels impossible:
+                </p>
+                
+                {/* Four Column Grid - Desktop */}
+                <div className="hidden lg:grid lg:grid-cols-4 gap-4 mb-6">
+                  {/* Column 1 */}
+                  <div className="relative">
+                    <div className="bg-gradient-to-br from-blue-500/10 to-blue-600/10 rounded-lg p-5 border-2 border-blue-500/30 h-full flex flex-col">
+                      <div className="flex items-center gap-2 mb-3">
+                        <div className="w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold text-sm">
+                          1
+                        </div>
+                        <p className="font-bold text-sm">Improvement Goal</p>
+                      </div>
+                      <p className="text-xs mb-3 text-muted-foreground flex-grow">
+                        A genuine, heartfelt change the person wants to make.
+                      </p>
+                      <div className="p-3 bg-background/80 rounded border border-blue-500/20">
+                        <p className="text-xs italic text-blue-600 dark:text-blue-400">
+                          "I want to make more cold calls daily."
+                        </p>
+                      </div>
+                    </div>
+                    {/* Arrow */}
+                    <div className="absolute -right-2 top-1/2 -translate-y-1/2 text-muted-foreground">
+                      <ArrowRight className="h-5 w-5" />
+                    </div>
                   </div>
 
-                  <div className="p-4 bg-muted rounded">
-                    <p className="font-semibold mb-2">Column 2: Doing / Not Doing</p>
-                    <p className="text-sm mb-2">Behaviors that work directly against the stated goal.</p>
-                    <p className="text-sm italic text-brand-orange">
-                      Example: "I spend hours perfecting my list, research each prospect excessively, avoid dialing."
-                    </p>
+                  {/* Column 2 */}
+                  <div className="relative">
+                    <div className="bg-gradient-to-br from-orange-500/10 to-orange-600/10 rounded-lg p-5 border-2 border-orange-500/30 h-full flex flex-col">
+                      <div className="flex items-center gap-2 mb-3">
+                        <div className="w-8 h-8 rounded-full bg-orange-500 text-white flex items-center justify-center font-bold text-sm">
+                          2
+                        </div>
+                        <p className="font-bold text-sm">Doing / Not Doing</p>
+                      </div>
+                      <p className="text-xs mb-3 text-muted-foreground flex-grow">
+                        Behaviors that work directly against the stated goal.
+                      </p>
+                      <div className="p-3 bg-background/80 rounded border border-orange-500/20">
+                        <p className="text-xs italic text-orange-600 dark:text-orange-400">
+                          "I spend hours perfecting my list, research each prospect excessively, avoid dialing."
+                        </p>
+                      </div>
+                    </div>
+                    {/* Arrow */}
+                    <div className="absolute -right-2 top-1/2 -translate-y-1/2 text-muted-foreground">
+                      <ArrowRight className="h-5 w-5" />
+                    </div>
                   </div>
 
-                  <div className="p-4 bg-muted rounded">
-                    <p className="font-semibold mb-2">Column 3: Hidden Competing Commitments</p>
-                    <p className="text-sm mb-2">Unspoken commitments that make the counterproductive behaviors necessary.</p>
-                    <p className="text-sm italic text-brand-green">
-                      Examples:
-                      <br />• Commitment to not looking incompetent
-                      <br />• Commitment to staying in control
-                      <br />• Commitment to being liked
-                      <br />• Commitment to avoiding conflict
-                    </p>
+                  {/* Column 3 */}
+                  <div className="relative">
+                    <div className="bg-gradient-to-br from-purple-500/10 to-purple-600/10 rounded-lg p-5 border-2 border-purple-500/30 h-full flex flex-col">
+                      <div className="flex items-center gap-2 mb-3">
+                        <div className="w-8 h-8 rounded-full bg-purple-500 text-white flex items-center justify-center font-bold text-sm">
+                          3
+                        </div>
+                        <p className="font-bold text-sm">Hidden Competing Commitments</p>
+                      </div>
+                      <p className="text-xs mb-3 text-muted-foreground flex-grow">
+                        Unspoken commitments that make the counterproductive behaviors necessary.
+                      </p>
+                      <div className="p-3 bg-background/80 rounded border border-purple-500/20 space-y-1">
+                        <p className="text-xs text-purple-600 dark:text-purple-400">• Not looking incompetent</p>
+                        <p className="text-xs text-purple-600 dark:text-purple-400">• Staying in control</p>
+                        <p className="text-xs text-purple-600 dark:text-purple-400">• Being liked</p>
+                        <p className="text-xs text-purple-600 dark:text-purple-400">• Avoiding conflict</p>
+                      </div>
+                    </div>
+                    {/* Arrow */}
+                    <div className="absolute -right-2 top-1/2 -translate-y-1/2 text-muted-foreground">
+                      <ArrowRight className="h-5 w-5" />
+                    </div>
                   </div>
 
-                  <div className="p-4 bg-muted rounded">
-                    <p className="font-semibold mb-2">Column 4: Big Assumptions</p>
-                    <p className="text-sm mb-2">Beliefs that make the competing commitments feel essential.</p>
-                    <p className="text-sm italic text-brand-orange">
-                      Examples:
-                      <br />• "If I fail, I'll lose respect."
-                      <br />• "If I assert myself, I'll be rejected."
-                      <br />• "If I let go of control, things will fall apart."
-                    </p>
-                    <p className="text-sm mt-2 font-semibold">These assumptions are rarely tested—they are treated as facts.</p>
+                  {/* Column 4 */}
+                  <div>
+                    <div className="bg-gradient-to-br from-red-500/10 to-red-600/10 rounded-lg p-5 border-2 border-red-500/30 h-full flex flex-col">
+                      <div className="flex items-center gap-2 mb-3">
+                        <div className="w-8 h-8 rounded-full bg-red-500 text-white flex items-center justify-center font-bold text-sm">
+                          4
+                        </div>
+                        <p className="font-bold text-sm">Big Assumptions</p>
+                      </div>
+                      <p className="text-xs mb-3 text-muted-foreground flex-grow">
+                        Beliefs that make the competing commitments feel essential.
+                      </p>
+                      <div className="p-3 bg-background/80 rounded border border-red-500/20 space-y-1">
+                        <p className="text-xs text-red-600 dark:text-red-400">"If I fail, I'll lose respect."</p>
+                        <p className="text-xs text-red-600 dark:text-red-400">"If I assert myself, I'll be rejected."</p>
+                        <p className="text-xs text-red-600 dark:text-red-400">"If I let go of control, things will fall apart."</p>
+                      </div>
+                      <p className="text-xs mt-3 font-semibold text-red-600 dark:text-red-400">
+                        These assumptions are rarely tested—they are treated as facts.
+                      </p>
+                    </div>
                   </div>
+                </div>
+
+                {/* Mobile/Tablet View - Stacked */}
+                <div className="lg:hidden space-y-4">
+                  <div className="bg-gradient-to-br from-blue-500/10 to-blue-600/10 rounded-lg p-5 border-2 border-blue-500/30">
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold text-sm">
+                        1
+                      </div>
+                      <p className="font-bold">Improvement Goal</p>
+                    </div>
+                    <p className="text-sm mb-3 text-muted-foreground">
+                      A genuine, heartfelt change the person wants to make.
+                    </p>
+                    <div className="p-3 bg-background/80 rounded border border-blue-500/20">
+                      <p className="text-sm italic text-blue-600 dark:text-blue-400">
+                        Example: "I want to make more cold calls daily."
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex justify-center">
+                    <ArrowRight className="h-6 w-6 text-muted-foreground rotate-90" />
+                  </div>
+
+                  <div className="bg-gradient-to-br from-orange-500/10 to-orange-600/10 rounded-lg p-5 border-2 border-orange-500/30">
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="w-8 h-8 rounded-full bg-orange-500 text-white flex items-center justify-center font-bold text-sm">
+                        2
+                      </div>
+                      <p className="font-bold">Doing / Not Doing</p>
+                    </div>
+                    <p className="text-sm mb-3 text-muted-foreground">
+                      Behaviors that work directly against the stated goal.
+                    </p>
+                    <div className="p-3 bg-background/80 rounded border border-orange-500/20">
+                      <p className="text-sm italic text-orange-600 dark:text-orange-400">
+                        Example: "I spend hours perfecting my list, research each prospect excessively, avoid dialing."
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex justify-center">
+                    <ArrowRight className="h-6 w-6 text-muted-foreground rotate-90" />
+                  </div>
+
+                  <div className="bg-gradient-to-br from-purple-500/10 to-purple-600/10 rounded-lg p-5 border-2 border-purple-500/30">
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="w-8 h-8 rounded-full bg-purple-500 text-white flex items-center justify-center font-bold text-sm">
+                        3
+                      </div>
+                      <p className="font-bold">Hidden Competing Commitments</p>
+                    </div>
+                    <p className="text-sm mb-3 text-muted-foreground">
+                      Unspoken commitments that make the counterproductive behaviors necessary.
+                    </p>
+                    <div className="p-3 bg-background/80 rounded border border-purple-500/20 space-y-1">
+                      <p className="text-sm text-purple-600 dark:text-purple-400">• Commitment to not looking incompetent</p>
+                      <p className="text-sm text-purple-600 dark:text-purple-400">• Commitment to staying in control</p>
+                      <p className="text-sm text-purple-600 dark:text-purple-400">• Commitment to being liked</p>
+                      <p className="text-sm text-purple-600 dark:text-purple-400">• Commitment to avoiding conflict</p>
+                    </div>
+                  </div>
+
+                  <div className="flex justify-center">
+                    <ArrowRight className="h-6 w-6 text-muted-foreground rotate-90" />
+                  </div>
+
+                  <div className="bg-gradient-to-br from-red-500/10 to-red-600/10 rounded-lg p-5 border-2 border-red-500/30">
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="w-8 h-8 rounded-full bg-red-500 text-white flex items-center justify-center font-bold text-sm">
+                        4
+                      </div>
+                      <p className="font-bold">Big Assumptions</p>
+                    </div>
+                    <p className="text-sm mb-3 text-muted-foreground">
+                      Beliefs that make the competing commitments feel essential.
+                    </p>
+                    <div className="p-3 bg-background/80 rounded border border-red-500/20 space-y-1">
+                      <p className="text-sm text-red-600 dark:text-red-400">"If I fail, I'll lose respect."</p>
+                      <p className="text-sm text-red-600 dark:text-red-400">"If I assert myself, I'll be rejected."</p>
+                      <p className="text-sm text-red-600 dark:text-red-400">"If I let go of control, things will fall apart."</p>
+                    </div>
+                    <p className="text-sm mt-3 font-semibold text-red-600 dark:text-red-400">
+                      These assumptions are rarely tested—they are treated as facts.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Bottom Context */}
+                <div className="p-4 bg-muted/50 rounded-lg border border-muted-foreground/20 mt-6">
+                  <p className="text-sm text-center">
+                    <strong>The Flow:</strong> Your goal triggers counter-behaviors, which protect competing commitments, which are powered by untested assumptions. Change requires working backwards from Column 4.
+                  </p>
                 </div>
               </Card>
 
@@ -1329,30 +2865,30 @@ export default function Module5Page() {
                   Transformation happens when individuals:
                 </p>
                 <div className="space-y-3">
-                  <div className="flex items-start gap-3">
-                    <div className="bg-brand-green text-white rounded-full w-8 h-8 flex items-center justify-center font-bold flex-shrink-0">
+                  <div className="group flex items-start gap-3 p-3 rounded-lg transition-all duration-300 hover:bg-brand-green/5 hover:shadow-md hover:scale-[1.02] cursor-pointer">
+                    <div className="bg-brand-green text-white rounded-full w-8 h-8 flex items-center justify-center font-bold flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
                       1
                     </div>
-                    <div>
-                      <p className="font-semibold">Make competing commitments visible</p>
+                    <div className="transition-all duration-300 group-hover:translate-x-1">
+                      <p className="font-semibold group-hover:text-brand-green transition-colors duration-300">Make competing commitments visible</p>
                       <p className="text-sm text-muted-foreground">Surface the hidden commitments protecting old behavior</p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <div className="bg-brand-orange text-white rounded-full w-8 h-8 flex items-center justify-center font-bold flex-shrink-0">
+                  <div className="group flex items-start gap-3 p-3 rounded-lg transition-all duration-300 hover:bg-brand-green/5 hover:shadow-md hover:scale-[1.02] cursor-pointer">
+                    <div className="bg-brand-green text-white rounded-full w-8 h-8 flex items-center justify-center font-bold flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
                       2
                     </div>
-                    <div>
-                      <p className="font-semibold">Identify the assumptions behind them</p>
+                    <div className="transition-all duration-300 group-hover:translate-x-1">
+                      <p className="font-semibold group-hover:text-brand-green transition-colors duration-300">Identify the assumptions behind them</p>
                       <p className="text-sm text-muted-foreground">Uncover the big assumptions treated as facts</p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <div className="bg-brand-green text-white rounded-full w-8 h-8 flex items-center justify-center font-bold flex-shrink-0">
+                  <div className="group flex items-start gap-3 p-3 rounded-lg transition-all duration-300 hover:bg-brand-green/5 hover:shadow-md hover:scale-[1.02] cursor-pointer">
+                    <div className="bg-brand-green text-white rounded-full w-8 h-8 flex items-center justify-center font-bold flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
                       3
                     </div>
-                    <div>
-                      <p className="font-semibold">Design safe, small tests to challenge those assumptions</p>
+                    <div className="transition-all duration-300 group-hover:translate-x-1">
+                      <p className="font-semibold group-hover:text-brand-green transition-colors duration-300">Design safe, small tests to challenge those assumptions</p>
                       <p className="text-sm text-muted-foreground">Gather evidence through low-risk experiments</p>
                     </div>
                   </div>
@@ -1368,19 +2904,19 @@ export default function Module5Page() {
                   Kegan & Lahey emphasize modest, low-risk experiments rather than heroic transformations:
                 </p>
                 <div className="grid md:grid-cols-3 gap-4">
-                  <div className="p-4 bg-muted rounded">
-                    <Target className="h-6 w-6 text-brand-green mb-2" />
-                    <p className="font-semibold text-sm mb-1">Modest, Low-Risk</p>
+                  <div className="group p-4 bg-muted rounded cursor-pointer transition-all duration-300 hover:bg-brand-green/10 hover:shadow-lg hover:scale-105 hover:-translate-y-1">
+                    <Target className="h-6 w-6 text-brand-green mb-2 group-hover:scale-110 transition-transform duration-300" />
+                    <p className="font-semibold text-sm mb-1 group-hover:text-brand-green transition-colors duration-300">Modest, Low-Risk</p>
                     <p className="text-xs">Small experiments that feel safe enough to try</p>
                   </div>
-                  <div className="p-4 bg-muted rounded">
-                    <Brain className="h-6 w-6 text-brand-orange mb-2" />
-                    <p className="font-semibold text-sm mb-1">Data Gathering</p>
+                  <div className="group p-4 bg-muted rounded cursor-pointer transition-all duration-300 hover:bg-brand-orange/10 hover:shadow-lg hover:scale-105 hover:-translate-y-1">
+                    <Brain className="h-6 w-6 text-brand-orange mb-2 group-hover:scale-110 transition-transform duration-300" />
+                    <p className="font-semibold text-sm mb-1 group-hover:text-brand-orange transition-colors duration-300">Data Gathering</p>
                     <p className="text-xs">Not self-judgment, just evidence collection</p>
                   </div>
-                  <div className="p-4 bg-muted rounded">
-                    <Zap className="h-6 w-6 text-brand-green mb-2" />
-                    <p className="font-semibold text-sm mb-1">Curiosity Over Courage</p>
+                  <div className="group p-4 bg-muted rounded cursor-pointer transition-all duration-300 hover:bg-brand-green/10 hover:shadow-lg hover:scale-105 hover:-translate-y-1">
+                    <Zap className="h-6 w-6 text-brand-green mb-2 group-hover:scale-110 transition-transform duration-300" />
+                    <p className="font-semibold text-sm mb-1 group-hover:text-brand-green transition-colors duration-300">Curiosity Over Courage</p>
                     <p className="text-xs">Approach with scientific interest, not pressure</p>
                   </div>
                 </div>
@@ -1391,15 +2927,172 @@ export default function Module5Page() {
 
               <Card className="p-6">
                 <h3 className="text-xl font-semibold mb-3">Sales Application: Working With Immunity</h3>
+                <p className="text-sm text-muted-foreground mb-6">
+                  See how the Immunity to Change framework applies to common sales challenges. Click each scenario to explore the full map:
+                </p>
                 <div className="space-y-4">
-                  <div className="p-4 bg-brand-green/10 rounded">
-                    <p className="font-semibold mb-2">Example: Rep who avoids cold calls</p>
-                    <div className="space-y-2 text-sm">
-                      <p><strong>Goal:</strong> Make 20 calls daily</p>
-                      <p><strong>Doing Instead:</strong> Research, list building, email prospecting</p>
-                      <p><strong>Hidden Commitment:</strong> "I'm committed to not sounding desperate or pushy"</p>
-                      <p><strong>Big Assumption:</strong> "If I sound desperate, prospects will reject me and tell others I'm incompetent"</p>
-                      <p className="mt-2"><strong>Safe Test:</strong> Make 3 calls where you deliberately use a more direct opener. Track: Do people actually respond negatively? Do they tell others? What actually happens?</p>
+                  {/* Example 1: Cold Calls */}
+                  <div className="group border-2 border-muted rounded-lg overflow-hidden transition-all duration-300 hover:border-brand-green/50 hover:shadow-lg">
+                    <div className="p-4 bg-gradient-to-r from-brand-green/5 to-brand-green/10 cursor-pointer">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-full bg-brand-green/20 flex items-center justify-center">
+                            <span className="text-xl">📞</span>
+                          </div>
+                          <div>
+                            <p className="font-bold text-base group-hover:text-brand-green transition-colors duration-300">
+                              Rep Who Avoids Cold Calls
+                            </p>
+                            <p className="text-xs text-muted-foreground">Common prospecting avoidance pattern</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="p-5 bg-background border-t">
+                      <div className="grid md:grid-cols-4 gap-4">
+                        <div className="space-y-2">
+                          <div className="flex items-center gap-2 mb-2">
+                            <div className="w-6 h-6 rounded-full bg-blue-500 text-white flex items-center justify-center text-xs font-bold">1</div>
+                            <p className="text-xs font-bold text-blue-600 dark:text-blue-400">GOAL</p>
+                          </div>
+                          <p className="text-sm">Make 20 calls daily</p>
+                        </div>
+                        <div className="space-y-2">
+                          <div className="flex items-center gap-2 mb-2">
+                            <div className="w-6 h-6 rounded-full bg-orange-500 text-white flex items-center justify-center text-xs font-bold">2</div>
+                            <p className="text-xs font-bold text-orange-600 dark:text-orange-400">DOING INSTEAD</p>
+                          </div>
+                          <p className="text-sm">Research, list building, email prospecting</p>
+                        </div>
+                        <div className="space-y-2">
+                          <div className="flex items-center gap-2 mb-2">
+                            <div className="w-6 h-6 rounded-full bg-purple-500 text-white flex items-center justify-center text-xs font-bold">3</div>
+                            <p className="text-xs font-bold text-purple-600 dark:text-purple-400">HIDDEN COMMITMENT</p>
+                          </div>
+                          <p className="text-sm">"I'm committed to not sounding desperate or pushy"</p>
+                        </div>
+                        <div className="space-y-2">
+                          <div className="flex items-center gap-2 mb-2">
+                            <div className="w-6 h-6 rounded-full bg-red-500 text-white flex items-center justify-center text-xs font-bold">4</div>
+                            <p className="text-xs font-bold text-red-600 dark:text-red-400">BIG ASSUMPTION</p>
+                          </div>
+                          <p className="text-sm">"If I sound desperate, prospects will reject me and tell others I'm incompetent"</p>
+                        </div>
+                      </div>
+                      <div className="mt-4 p-4 bg-brand-green/5 rounded-lg border border-brand-green/20">
+                        <p className="text-xs font-semibold text-brand-green mb-2">💡 Safe Test:</p>
+                        <p className="text-sm">Make 3 calls where you deliberately use a more direct opener. Track: Do people actually respond negatively? Do they tell others? What actually happens?</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Example 2: Objection Handling */}
+                  <div className="group border-2 border-muted rounded-lg overflow-hidden transition-all duration-300 hover:border-brand-orange/50 hover:shadow-lg">
+                    <div className="p-4 bg-gradient-to-r from-brand-orange/5 to-brand-orange/10 cursor-pointer">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-full bg-brand-orange/20 flex items-center justify-center">
+                            <span className="text-xl">🛡️</span>
+                          </div>
+                          <div>
+                            <p className="font-bold text-base group-hover:text-brand-orange transition-colors duration-300">
+                              Rep Who Deflects Objections
+                            </p>
+                            <p className="text-xs text-muted-foreground">Avoiding difficult conversations</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="p-5 bg-background border-t">
+                      <div className="grid md:grid-cols-4 gap-4">
+                        <div className="space-y-2">
+                          <div className="flex items-center gap-2 mb-2">
+                            <div className="w-6 h-6 rounded-full bg-blue-500 text-white flex items-center justify-center text-xs font-bold">1</div>
+                            <p className="text-xs font-bold text-blue-600 dark:text-blue-400">GOAL</p>
+                          </div>
+                          <p className="text-sm">Address pricing objections directly</p>
+                        </div>
+                        <div className="space-y-2">
+                          <div className="flex items-center gap-2 mb-2">
+                            <div className="w-6 h-6 rounded-full bg-orange-500 text-white flex items-center justify-center text-xs font-bold">2</div>
+                            <p className="text-xs font-bold text-orange-600 dark:text-orange-400">DOING INSTEAD</p>
+                          </div>
+                          <p className="text-sm">Offering discounts immediately, changing subject, sending more materials</p>
+                        </div>
+                        <div className="space-y-2">
+                          <div className="flex items-center gap-2 mb-2">
+                            <div className="w-6 h-6 rounded-full bg-purple-500 text-white flex items-center justify-center text-xs font-bold">3</div>
+                            <p className="text-xs font-bold text-purple-600 dark:text-purple-400">HIDDEN COMMITMENT</p>
+                          </div>
+                          <p className="text-sm">"I'm committed to avoiding conflict and being liked"</p>
+                        </div>
+                        <div className="space-y-2">
+                          <div className="flex items-center gap-2 mb-2">
+                            <div className="w-6 h-6 rounded-full bg-red-500 text-white flex items-center justify-center text-xs font-bold">4</div>
+                            <p className="text-xs font-bold text-red-600 dark:text-red-400">BIG ASSUMPTION</p>
+                          </div>
+                          <p className="text-sm">"If I push back on objections, prospects will think I'm argumentative and walk away"</p>
+                        </div>
+                      </div>
+                      <div className="mt-4 p-4 bg-brand-orange/5 rounded-lg border border-brand-orange/20">
+                        <p className="text-xs font-semibold text-brand-orange mb-2">💡 Safe Test:</p>
+                        <p className="text-sm">On next 2 pricing objections, pause and ask: "Help me understand what's driving that concern?" Test if curiosity creates conflict or deepens trust.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Example 3: Follow-up */}
+                  <div className="group border-2 border-muted rounded-lg overflow-hidden transition-all duration-300 hover:border-purple-500/50 hover:shadow-lg">
+                    <div className="p-4 bg-gradient-to-r from-purple-500/5 to-purple-500/10 cursor-pointer">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center">
+                            <span className="text-xl">⏰</span>
+                          </div>
+                          <div>
+                            <p className="font-bold text-base group-hover:text-purple-500 transition-colors duration-300">
+                              Rep Who Won't Follow Up
+                            </p>
+                            <p className="text-xs text-muted-foreground">Letting opportunities die</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="p-5 bg-background border-t">
+                      <div className="grid md:grid-cols-4 gap-4">
+                        <div className="space-y-2">
+                          <div className="flex items-center gap-2 mb-2">
+                            <div className="w-6 h-6 rounded-full bg-blue-500 text-white flex items-center justify-center text-xs font-bold">1</div>
+                            <p className="text-xs font-bold text-blue-600 dark:text-blue-400">GOAL</p>
+                          </div>
+                          <p className="text-sm">Follow up persistently on warm leads</p>
+                        </div>
+                        <div className="space-y-2">
+                          <div className="flex items-center gap-2 mb-2">
+                            <div className="w-6 h-6 rounded-full bg-orange-500 text-white flex items-center justify-center text-xs font-bold">2</div>
+                            <p className="text-xs font-bold text-orange-600 dark:text-orange-400">DOING INSTEAD</p>
+                          </div>
+                          <p className="text-sm">Sends one email then waits for prospect to respond, assumes silence = no interest</p>
+                        </div>
+                        <div className="space-y-2">
+                          <div className="flex items-center gap-2 mb-2">
+                            <div className="w-6 h-6 rounded-full bg-purple-500 text-white flex items-center justify-center text-xs font-bold">3</div>
+                            <p className="text-xs font-bold text-purple-600 dark:text-purple-400">HIDDEN COMMITMENT</p>
+                          </div>
+                          <p className="text-sm">"I'm committed to not being annoying or needy"</p>
+                        </div>
+                        <div className="space-y-2">
+                          <div className="flex items-center gap-2 mb-2">
+                            <div className="w-6 h-6 rounded-full bg-red-500 text-white flex items-center justify-center text-xs font-bold">4</div>
+                            <p className="text-xs font-bold text-red-600 dark:text-red-400">BIG ASSUMPTION</p>
+                          </div>
+                          <p className="text-sm">"If I follow up multiple times, prospects will see me as desperate and lose respect for me"</p>
+                        </div>
+                      </div>
+                      <div className="mt-4 p-4 bg-purple-500/5 rounded-lg border border-purple-500/20">
+                        <p className="text-xs font-semibold text-purple-600 dark:text-purple-400 mb-2">💡 Safe Test:</p>
+                        <p className="text-sm">Follow up 3 times over two weeks with one lead. Track their actual response. Do they complain? Block you? Or appreciate the persistence?</p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1432,104 +3125,210 @@ export default function Module5Page() {
             <div className="space-y-6" id="change-framework">
               <h2 className="text-3xl font-bold text-brand-green">The Change Agency Framework</h2>
 
-              <Card className="p-6 bg-gradient-to-br from-brand-green/10 to-brand-orange/10">
-                <p className="text-lg leading-relaxed">
-                  Instead of trying to force willpower, successful change agents design environments where the desired
-                  behavior becomes the path of least resistance.
-                </p>
-              </Card>
-
-              <Card className="p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="bg-brand-green text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">
-                    1
+              {/* Core Principle Card */}
+              <Card className="p-6 bg-gradient-to-br from-brand-green/20 to-brand-green/10 border-2 border-brand-green/30">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-full bg-brand-green/20 flex items-center justify-center flex-shrink-0">
+                    <Brain className="h-6 w-6 text-brand-green" />
                   </div>
-                  <h3 className="text-xl font-semibold">Make It Obvious</h3>
-                </div>
-                <div className="space-y-3">
-                  <p className="leading-relaxed">
-                    Design the environment so the right behavior is visible, easy to start, and hard to avoid.
-                  </p>
-                  <div className="p-4 bg-muted rounded">
-                    <p className="font-semibold mb-2">Sales Application:</p>
-                    <ul className="space-y-1 text-sm">
-                      <li>• Script templates saved as desktop shortcuts</li>
-                      <li>• Daily call blocks pre-scheduled in calendar</li>
-                      <li>• Prospecting list automatically opens at 9 AM</li>
-                      <li>• Camp/Voss question cards on every desk</li>
-                    </ul>
+                  <div>
+                    <h4 className="text-lg font-bold text-brand-green mb-2">The Core Principle</h4>
+                    <p className="text-sm leading-relaxed">
+                      Sustainable behavior change doesn't come from willpower—it comes from designing an environment where the desired behavior is the easiest option. When you make it obvious, attractive, easy, and satisfying, you work with human nature instead of fighting against it.
+                    </p>
                   </div>
                 </div>
               </Card>
 
-              <Card className="p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="bg-brand-orange text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">
-                    2
+              <div className="grid gap-6">
+                {/* Principle 1: Make It Obvious */}
+                <div className="group border-2 border-muted rounded-lg overflow-hidden transition-all duration-300 hover:border-brand-green hover:shadow-xl">
+                  <div className="p-5 bg-gradient-to-r from-brand-green/10 to-brand-green/5 cursor-pointer">
+                    <div className="flex items-center gap-3">
+                      <div className="bg-brand-green text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform duration-300">
+                        1
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-xl font-semibold group-hover:text-brand-green transition-colors duration-300">
+                          Make It Obvious
+                        </h3>
+                        <p className="text-sm text-muted-foreground">Design visible cues and triggers</p>
+                      </div>
+                      <Lightbulb className="h-6 w-6 text-brand-green group-hover:scale-110 transition-transform duration-300" />
+                    </div>
                   </div>
-                  <h3 className="text-xl font-semibold">Make It Attractive</h3>
-                </div>
-                <div className="space-y-3">
-                  <p className="leading-relaxed">
-                    Bundle new behaviors with immediate rewards or social proof to trigger dopamine.
-                  </p>
-                  <div className="p-4 bg-muted rounded">
-                    <p className="font-semibold mb-2">Sales Application:</p>
-                    <ul className="space-y-1 text-sm">
-                      <li>• Public leaderboards for activity metrics (not just results)</li>
-                      <li>• Team celebration after 100 collective "No's" received</li>
-                      <li>• Pair new behaviors with preferred activities (calls before coffee)</li>
-                      <li>• Highlight top performers using the new system</li>
-                    </ul>
+                  <div className="p-5 bg-background border-t">
+                    <p className="leading-relaxed mb-4">
+                      Design the environment so the right behavior is visible, easy to start, and hard to avoid.
+                    </p>
+                    <div className="bg-brand-green/5 rounded-lg p-4 border border-brand-green/20">
+                      <p className="font-semibold mb-3 text-brand-green flex items-center gap-2">
+                        <Target className="h-4 w-4" />
+                        Sales Applications:
+                      </p>
+                      <div className="space-y-2">
+                        <div className="flex items-start gap-2 group/item hover:translate-x-1 transition-transform duration-200">
+                          <CheckCircle2 className="h-4 w-4 text-brand-green mt-0.5 flex-shrink-0" />
+                          <span className="text-sm">Script templates saved as desktop shortcuts</span>
+                        </div>
+                        <div className="flex items-start gap-2 group/item hover:translate-x-1 transition-transform duration-200">
+                          <CheckCircle2 className="h-4 w-4 text-brand-green mt-0.5 flex-shrink-0" />
+                          <span className="text-sm">Daily call blocks pre-scheduled in calendar</span>
+                        </div>
+                        <div className="flex items-start gap-2 group/item hover:translate-x-1 transition-transform duration-200">
+                          <CheckCircle2 className="h-4 w-4 text-brand-green mt-0.5 flex-shrink-0" />
+                          <span className="text-sm">Prospecting list automatically opens at 9 AM</span>
+                        </div>
+                        <div className="flex items-start gap-2 group/item hover:translate-x-1 transition-transform duration-200">
+                          <CheckCircle2 className="h-4 w-4 text-brand-green mt-0.5 flex-shrink-0" />
+                          <span className="text-sm">Camp/Voss question cards on every desk</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </Card>
 
-              <Card className="p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="bg-brand-green text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">
-                    3
+                {/* Principle 2: Make It Attractive */}
+                <div className="group border-2 border-muted rounded-lg overflow-hidden transition-all duration-300 hover:border-brand-green hover:shadow-xl">
+                  <div className="p-5 bg-gradient-to-r from-brand-green/10 to-brand-green/5 cursor-pointer">
+                    <div className="flex items-center gap-3">
+                      <div className="bg-brand-green text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform duration-300">
+                        2
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-xl font-semibold group-hover:text-brand-green transition-colors duration-300">
+                          Make It Attractive
+                        </h3>
+                        <p className="text-sm text-muted-foreground">Bundle with immediate rewards</p>
+                      </div>
+                      <Zap className="h-6 w-6 text-brand-green group-hover:scale-110 transition-transform duration-300" />
+                    </div>
                   </div>
-                  <h3 className="text-xl font-semibold">Make It Easy</h3>
-                </div>
-                <div className="space-y-3">
-                  <p className="leading-relaxed">
-                    Reduce friction for the desired behavior and increase friction for old patterns.
-                  </p>
-                  <div className="p-4 bg-muted rounded">
-                    <p className="font-semibold mb-2">Sales Application:</p>
-                    <ul className="space-y-1 text-sm">
-                      <li>• Pre-load CRM with calibrated questions</li>
-                      <li>• Two-click access to mission/purpose statements</li>
-                      <li>• Auto-fill templates for accusation audits</li>
-                      <li>• Remove distractions during call blocks (close email, Slack)</li>
-                    </ul>
+                  <div className="p-5 bg-background border-t">
+                    <p className="leading-relaxed mb-4">
+                      Bundle new behaviors with immediate rewards or social proof to trigger dopamine.
+                    </p>
+                    <div className="bg-brand-green/5 rounded-lg p-4 border border-brand-green/20">
+                      <p className="font-semibold mb-3 text-brand-green flex items-center gap-2">
+                        <Target className="h-4 w-4" />
+                        Sales Applications:
+                      </p>
+                      <div className="space-y-2">
+                        <div className="flex items-start gap-2 group/item hover:translate-x-1 transition-transform duration-200">
+                          <CheckCircle2 className="h-4 w-4 text-brand-green mt-0.5 flex-shrink-0" />
+                          <span className="text-sm">Public leaderboards for activity metrics (not just results)</span>
+                        </div>
+                        <div className="flex items-start gap-2 group/item hover:translate-x-1 transition-transform duration-200">
+                          <CheckCircle2 className="h-4 w-4 text-brand-green mt-0.5 flex-shrink-0" />
+                          <span className="text-sm">Team celebration after 100 collective "No's" received</span>
+                        </div>
+                        <div className="flex items-start gap-2 group/item hover:translate-x-1 transition-transform duration-200">
+                          <CheckCircle2 className="h-4 w-4 text-brand-green mt-0.5 flex-shrink-0" />
+                          <span className="text-sm">Pair new behaviors with preferred activities (calls before coffee)</span>
+                        </div>
+                        <div className="flex items-start gap-2 group/item hover:translate-x-1 transition-transform duration-200">
+                          <CheckCircle2 className="h-4 w-4 text-brand-green mt-0.5 flex-shrink-0" />
+                          <span className="text-sm">Highlight top performers using the new system</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </Card>
 
-              <Card className="p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="bg-brand-orange text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">
-                    4
+                {/* Principle 3: Make It Easy */}
+                <div className="group border-2 border-muted rounded-lg overflow-hidden transition-all duration-300 hover:border-brand-green hover:shadow-xl">
+                  <div className="p-5 bg-gradient-to-r from-brand-green/10 to-brand-green/5 cursor-pointer">
+                    <div className="flex items-center gap-3">
+                      <div className="bg-brand-green text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform duration-300">
+                        3
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-xl font-semibold group-hover:text-brand-green transition-colors duration-300">
+                          Make It Easy
+                        </h3>
+                        <p className="text-sm text-muted-foreground">Reduce friction for desired behaviors</p>
+                      </div>
+                      <Target className="h-6 w-6 text-brand-green group-hover:scale-110 transition-transform duration-300" />
+                    </div>
                   </div>
-                  <h3 className="text-xl font-semibold">Make It Satisfying</h3>
-                </div>
-                <div className="space-y-3">
-                  <p className="leading-relaxed">
-                    Provide immediate feedback loops so the brain gets rewarded for the new behavior.
-                  </p>
-                  <div className="p-4 bg-muted rounded">
-                    <p className="font-semibold mb-2">Sales Application:</p>
-                    <ul className="space-y-1 text-sm">
-                      <li>• Visual habit tracker (streak counter for daily prospecting)</li>
-                      <li>• Instant Slack notification when goals are hit</li>
-                      <li>• Weekly 1-on-1 recognition for process adherence</li>
-                      <li>• Gamify "No" collection with points/badges</li>
-                    </ul>
+                  <div className="p-5 bg-background border-t">
+                    <p className="leading-relaxed mb-4">
+                      Reduce friction for the desired behavior and increase friction for old patterns.
+                    </p>
+                    <div className="bg-brand-green/5 rounded-lg p-4 border border-brand-green/20">
+                      <p className="font-semibold mb-3 text-brand-green flex items-center gap-2">
+                        <Target className="h-4 w-4" />
+                        Sales Applications:
+                      </p>
+                      <div className="space-y-2">
+                        <div className="flex items-start gap-2 group/item hover:translate-x-1 transition-transform duration-200">
+                          <CheckCircle2 className="h-4 w-4 text-brand-green mt-0.5 flex-shrink-0" />
+                          <span className="text-sm">Pre-load CRM with calibrated questions</span>
+                        </div>
+                        <div className="flex items-start gap-2 group/item hover:translate-x-1 transition-transform duration-200">
+                          <CheckCircle2 className="h-4 w-4 text-brand-green mt-0.5 flex-shrink-0" />
+                          <span className="text-sm">Two-click access to mission/purpose statements</span>
+                        </div>
+                        <div className="flex items-start gap-2 group/item hover:translate-x-1 transition-transform duration-200">
+                          <CheckCircle2 className="h-4 w-4 text-brand-green mt-0.5 flex-shrink-0" />
+                          <span className="text-sm">Auto-fill templates for accusation audits</span>
+                        </div>
+                        <div className="flex items-start gap-2 group/item hover:translate-x-1 transition-transform duration-200">
+                          <CheckCircle2 className="h-4 w-4 text-brand-green mt-0.5 flex-shrink-0" />
+                          <span className="text-sm">Remove distractions during call blocks (close email, Slack)</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </Card>
+
+                {/* Principle 4: Make It Satisfying */}
+                <div className="group border-2 border-muted rounded-lg overflow-hidden transition-all duration-300 hover:border-brand-green hover:shadow-xl">
+                  <div className="p-5 bg-gradient-to-r from-brand-green/10 to-brand-green/5 cursor-pointer">
+                    <div className="flex items-center gap-3">
+                      <div className="bg-brand-green text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform duration-300">
+                        4
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-xl font-semibold group-hover:text-brand-green transition-colors duration-300">
+                          Make It Satisfying
+                        </h3>
+                        <p className="text-sm text-muted-foreground">Create immediate feedback loops</p>
+                      </div>
+                      <Award className="h-6 w-6 text-brand-green group-hover:scale-110 transition-transform duration-300" />
+                    </div>
+                  </div>
+                  <div className="p-5 bg-background border-t">
+                    <p className="leading-relaxed mb-4">
+                      Provide immediate feedback loops so the brain gets rewarded for the new behavior.
+                    </p>
+                    <div className="bg-brand-green/5 rounded-lg p-4 border border-brand-green/20">
+                      <p className="font-semibold mb-3 text-brand-green flex items-center gap-2">
+                        <Target className="h-4 w-4" />
+                        Sales Applications:
+                      </p>
+                      <div className="space-y-2">
+                        <div className="flex items-start gap-2 group/item hover:translate-x-1 transition-transform duration-200">
+                          <CheckCircle2 className="h-4 w-4 text-brand-green mt-0.5 flex-shrink-0" />
+                          <span className="text-sm">Visual habit tracker (streak counter for daily prospecting)</span>
+                        </div>
+                        <div className="flex items-start gap-2 group/item hover:translate-x-1 transition-transform duration-200">
+                          <CheckCircle2 className="h-4 w-4 text-brand-green mt-0.5 flex-shrink-0" />
+                          <span className="text-sm">Instant Slack notification when goals are hit</span>
+                        </div>
+                        <div className="flex items-start gap-2 group/item hover:translate-x-1 transition-transform duration-200">
+                          <CheckCircle2 className="h-4 w-4 text-brand-green mt-0.5 flex-shrink-0" />
+                          <span className="text-sm">Weekly 1-on-1 recognition for process adherence</span>
+                        </div>
+                        <div className="flex items-start gap-2 group/item hover:translate-x-1 transition-transform duration-200">
+                          <CheckCircle2 className="h-4 w-4 text-brand-green mt-0.5 flex-shrink-0" />
+                          <span className="text-sm">Real-time dashboard showing daily activity completion</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
               <Button onClick={handleSectionComplete} size="lg" className="w-full sm:w-auto">
                 Continue <ArrowRight className="ml-2 h-5 w-5" />
@@ -1659,109 +3458,94 @@ export default function Module5Page() {
             <div className="space-y-6" id="measuring-success">
               <h2 className="text-3xl font-bold text-brand-green">Measuring Behavioral Change</h2>
 
-              <Card className="p-6 bg-gradient-to-br from-brand-green/10 to-brand-orange/10">
-                <p className="text-lg leading-relaxed">
-                  Traditional sales metrics focus on outcomes (deals closed, revenue). Change agency requires leading
-                  indicators that measure behavior adoption.
-                </p>
-              </Card>
-
-              <ComparisonCard
-                leftSide={{
-                  title: "Lagging Indicators (Outcomes)",
-                  items: [
-                    "Deals closed",
-                    "Revenue generated",
-                    "Win rate",
-                    "Average deal size",
-                    "Sales cycle length",
-                  ],
-                }}
-                rightSide={{
-                  title: "Leading Indicators (Behaviors)",
-                  items: [
-                    "Daily prospecting completion rate",
-                    "Number of calibrated questions asked",
-                    "Mission statements documented",
-                    '"No\'s" received per week',
-                    "Camp/Voss technique usage frequency",
-                  ],
-                }}
-              />
-
-              <Card className="p-6">
-                <h3 className="text-xl font-semibold mb-3">The Behavior Scorecard</h3>
-                <p className="leading-relaxed mb-4">Track these metrics weekly for each rep:</p>
-                <div className="space-y-3">
-                  <div className="p-4 bg-muted rounded">
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="font-semibold">Consistency Score</span>
-                      <span className="text-sm text-muted-foreground">Days behavior was performed / 5</span>
-                    </div>
-                    <p className="text-sm">Target: 5/5 days for at least 3 consecutive weeks</p>
-                  </div>
-
-                  <div className="p-4 bg-muted rounded">
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="font-semibold">Quality Score</span>
-                      <span className="text-sm text-muted-foreground">Manager observation rating</span>
-                    </div>
-                    <p className="text-sm">
-                      Rate execution quality 1-5 based on call reviews (using Camp/Voss correctly)
+              <Card className="p-6 bg-gradient-to-br from-brand-green/10 to-brand-orange/10 border-2 border-brand-green/20">
+                <div className="flex items-start gap-3">
+                  <Target className="h-8 w-8 text-brand-green flex-shrink-0 mt-1" />
+                  <div>
+                    <p className="text-lg font-semibold mb-2">The Shift from Outcomes to Behaviors</p>
+                    <p className="leading-relaxed">
+                      Traditional sales metrics focus on outcomes (deals closed, revenue). Change agency requires <strong>leading
+                      indicators</strong> that measure behavior adoption—the actions you control that predict future results.
                     </p>
-                  </div>
-
-                  <div className="p-4 bg-muted rounded">
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="font-semibold">Autonomy Score</span>
-                      <span className="text-sm text-muted-foreground">Self-initiated vs prompted</span>
-                    </div>
-                    <p className="text-sm">Track if rep needs reminders or performs behavior automatically</p>
-                  </div>
-
-                  <div className="p-4 bg-muted rounded">
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="font-semibold">Environmental Support</span>
-                      <span className="text-sm text-muted-foreground">Setup completion</span>
-                    </div>
-                    <p className="text-sm">Checklist of environmental supports in place (templates, schedules, etc.)</p>
                   </div>
                 </div>
               </Card>
 
-              <Card className="p-6">
-                <h3 className="text-xl font-semibold mb-3">Red Flags for Regression</h3>
-                <p className="leading-relaxed mb-3">Watch for these warning signs:</p>
-                <ul className="space-y-2">
-                  <li className="flex items-start gap-2">
-                    <span className="text-red-500 mt-0.5">⚠️</span>
-                    <span>
-                      <strong>Consistency drops below 4/5 days</strong> for two consecutive weeks
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-red-500 mt-0.5">⚠️</span>
-                    <span>
-                      <strong>Excuses or rationalizations</strong> increase ("I'll do it later," "It doesn't work for
-                      this prospect")
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-red-500 mt-0.5">⚠️</span>
-                    <span>
-                      <strong>Environmental supports are removed</strong> (scripts deleted, calendar blocks canceled)
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-red-500 mt-0.5">⚠️</span>
-                    <span>
-                      <strong>Rep stops self-reporting</strong> or tracking their own behavior
-                    </span>
-                  </li>
-                </ul>
-                <div className="p-4 bg-red-50 rounded mt-3">
-                  <p className="font-semibold text-red-600">Action: Address immediately with 1-on-1 coaching</p>
-                  <p className="text-sm mt-1">Don't wait for complete regression—intervene at first warning sign</p>
+              <div className="grid md:grid-cols-2 gap-6">
+                {/* Lagging Indicators */}
+                <Card className="p-6 border-2 border-red-200 bg-red-50/50">
+                  <div className="flex items-center gap-2 mb-4">
+                    <Clock className="h-6 w-6 text-red-600" />
+                    <h3 className="text-xl font-semibold text-red-700">Lagging Indicators</h3>
+                  </div>
+                  <p className="text-sm text-muted-foreground mb-4">Outcomes you measure after the work is done</p>
+                  <div className="space-y-3">
+                    {[
+                      { icon: "💰", label: "Deals closed", desc: "Result of past behaviors" },
+                      { icon: "📊", label: "Revenue generated", desc: "Depends on market factors" },
+                      { icon: "🎯", label: "Win rate percentage", desc: "Tells you what happened" },
+                      { icon: "💵", label: "Average deal size", desc: "Influenced by external factors" },
+                      { icon: "⏱️", label: "Sales cycle length", desc: "Reflects past decisions" },
+                    ].map((item, index) => (
+                      <div 
+                        key={index} 
+                        className="flex items-start gap-3 p-3 bg-white rounded-lg border border-red-200 hover:shadow-md transition-shadow"
+                      >
+                        <span className="text-2xl flex-shrink-0">{item.icon}</span>
+                        <div>
+                          <p className="font-medium">{item.label}</p>
+                          <p className="text-xs text-muted-foreground">{item.desc}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </Card>
+
+                {/* Leading Indicators */}
+                <Card className="p-6 border-2 border-green-200 bg-green-50/50">
+                  <div className="flex items-center gap-2 mb-4">
+                    <Zap className="h-6 w-6 text-green-600" />
+                    <h3 className="text-xl font-semibold text-green-700">Leading Indicators</h3>
+                  </div>
+                  <p className="text-sm text-muted-foreground mb-4">Behaviors you control that predict results</p>
+                  <div className="space-y-3">
+                    {[
+                      { icon: "📞", label: "Daily prospecting completion", desc: "Action you control today" },
+                      { icon: "❓", label: "Calibrated questions asked", desc: "Skill execution you track" },
+                      { icon: "📝", label: "Mission statements documented", desc: "Process adherence" },
+                      { icon: "🚫", label: '"No\'s" received per week', desc: "Activity leading to discovery" },
+                      { icon: "🎪", label: "Camp/Voss technique usage", desc: "System implementation" },
+                    ].map((item, index) => (
+                      <div 
+                        key={index} 
+                        className="flex items-start gap-3 p-3 bg-white rounded-lg border border-green-200 hover:shadow-md transition-shadow"
+                      >
+                        <span className="text-2xl flex-shrink-0">{item.icon}</span>
+                        <div>
+                          <p className="font-medium">{item.label}</p>
+                          <p className="text-xs text-muted-foreground">{item.desc}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </Card>
+              </div>
+
+              <InteractiveBehaviorScorecard />
+
+              <InteractiveRedFlags />
+
+              <Card className="p-6 bg-gradient-to-br from-blue-50 to-purple-50 border-2 border-blue-200">
+                <div className="flex items-start gap-3">
+                  <Lightbulb className="h-7 w-7 text-blue-600 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <h3 className="text-lg font-semibold mb-2 text-blue-900">The Golden Rule of Measurement</h3>
+                    <p className="leading-relaxed text-blue-800">
+                      Track behaviors daily, review outcomes weekly, adjust strategy monthly. When behaviors are consistent but 
+                      outcomes lag, trust the process—results follow behavior with a delay. When outcomes drop AND behaviors 
+                      drop, intervene immediately on the behaviors.
+                    </p>
+                  </div>
                 </div>
               </Card>
 
@@ -1776,105 +3560,24 @@ export default function Module5Page() {
             <div className="space-y-6" id="common-pitfalls">
               <h2 className="text-3xl font-bold text-brand-green">Common Implementation Pitfalls</h2>
 
-              <Card className="p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="text-3xl">❌</span>
-                  <h3 className="text-xl font-semibold">Pitfall 1: Too Much, Too Fast</h3>
-                </div>
-                <div className="space-y-3">
-                  <p className="leading-relaxed">
-                    <strong>The Problem:</strong> Trying to implement all Camp principles, all Voss techniques, and
-                    personality assessment simultaneously.
-                  </p>
-                  <div className="p-4 bg-brand-green/10 rounded">
-                    <p className="font-semibold mb-2">The Fix:</p>
-                    <p className="text-sm">
-                      One behavior at a time. Master daily prospecting before adding calibrated questions. Get
-                      calibrated questions automatic before introducing accusation audits.
+              <Card className="p-6 bg-gradient-to-br from-red-50 to-orange-50 dark:from-red-950/20 dark:to-orange-950/20 border-2 border-red-200 dark:border-red-800">
+                <div className="flex items-start gap-4">
+                  <div className="bg-red-500 text-white rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0 text-2xl">
+                    ⚠️
+                  </div>
+                  <div>
+                    <p className="text-lg font-bold text-red-700 dark:text-red-400 mb-2">
+                      Why Most Implementations Fail
+                    </p>
+                    <p className="text-sm leading-relaxed text-red-900 dark:text-red-300">
+                      Even the best change frameworks fail when these pitfalls aren't avoided. Each pitfall compounds the others, 
+                      creating a cascade of failure. Use the interactive explorer below to diagnose which pitfalls might be affecting your implementation.
                     </p>
                   </div>
                 </div>
               </Card>
 
-              <Card className="p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="text-3xl">❌</span>
-                  <h3 className="text-xl font-semibold">Pitfall 2: No Environmental Support</h3>
-                </div>
-                <div className="space-y-3">
-                  <p className="leading-relaxed">
-                    <strong>The Problem:</strong> Teaching concepts in a training session, then sending reps back to
-                    the same desk, same distractions, same triggers.
-                  </p>
-                  <div className="p-4 bg-brand-green/10 rounded">
-                    <p className="font-semibold mb-2">The Fix:</p>
-                    <p className="text-sm">
-                      Redesign the environment first. Physical cues, digital tools, and social accountability must be in
-                      place before the behavior is introduced.
-                    </p>
-                  </div>
-                </div>
-              </Card>
-
-              <Card className="p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="text-3xl">❌</span>
-                  <h3 className="text-xl font-semibold">Pitfall 3: Focusing Only on Outcomes</h3>
-                </div>
-                <div className="space-y-3">
-                  <p className="leading-relaxed">
-                    <strong>The Problem:</strong> Celebrating deals closed but ignoring whether Camp/Voss behaviors
-                    were used.
-                  </p>
-                  <div className="p-4 bg-brand-green/10 rounded">
-                    <p className="font-semibold mb-2">The Fix:</p>
-                    <p className="text-sm">
-                      Reward process adherence as much as results. A rep who follows the system perfectly but doesn't
-                      close this week should be celebrated, not punished.
-                    </p>
-                  </div>
-                </div>
-              </Card>
-
-              <Card className="p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="text-3xl">❌</span>
-                  <h3 className="text-xl font-semibold">Pitfall 4: No Feedback Loop</h3>
-                </div>
-                <div className="space-y-3">
-                  <p className="leading-relaxed">
-                    <strong>The Problem:</strong> Reps don't know if they're doing it right until weeks later when
-                    results (or lack of results) appear.
-                  </p>
-                  <div className="p-4 bg-brand-green/10 rounded">
-                    <p className="font-semibold mb-2">The Fix:</p>
-                    <p className="text-sm">
-                      Daily or weekly check-ins. Real-time feedback on technique execution. Managers review recorded
-                      calls within 24 hours and provide specific coaching.
-                    </p>
-                  </div>
-                </div>
-              </Card>
-
-              <Card className="p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="text-3xl">❌</span>
-                  <h3 className="text-xl font-semibold">Pitfall 5: Leadership Doesn't Model the Behavior</h3>
-                </div>
-                <div className="space-y-3">
-                  <p className="leading-relaxed">
-                    <strong>The Problem:</strong> Sales managers tell reps to use Camp/Voss but don't use it
-                    themselves in meetings, coaching sessions, or their own prospecting.
-                  </p>
-                  <div className="p-4 bg-brand-green/10 rounded">
-                    <p className="font-semibold mb-2">The Fix:</p>
-                    <p className="text-sm">
-                      Leaders go first. Managers should be the best practitioners of the system and make their own
-                      behavior visible (recorded demos, live shadowing, public self-reflection).
-                    </p>
-                  </div>
-                </div>
-              </Card>
+              <InteractivePitfallsExplorer />
 
               <Button onClick={handleSectionComplete} size="lg" className="w-full sm:w-auto">
                 Continue <ArrowRight className="ml-2 h-5 w-5" />
