@@ -12,7 +12,7 @@ import { Sidebar } from "@/components/layout/sidebar"
 import { ProgressBar } from "@/components/learning/progress-bar"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { ArrowRight, CheckCircle2, Brain, Target, Zap, Users, Lightbulb, User, MapPin, Clock, ChevronDown, Award, Compass, MessageCircle, Shield, RefreshCw } from "lucide-react"
+import { ArrowRight, CheckCircle2, Brain, Target, Zap, Users, Lightbulb, User, MapPin, Clock, ChevronDown, Award, Compass, MessageCircle, Shield, RefreshCw, ClipboardList, Focus, Layers, Link2, TrendingUp, Sparkles } from "lucide-react"
 import { useProgress } from "@/hooks/use-progress"
 import { MultipleChoice } from "@/components/learning/multiple-choice"
 import { GridDisplay } from "@/components/learning/grid-display"
@@ -39,7 +39,7 @@ function CharacterSkillsInteractive() {
         "Building habits that persist when motivation wanes",
         "Creating environmental cues that trigger desired behaviors",
         "Showing up consistently, even when it's uncomfortable",
-        "Example: A top rep makes 20 prospecting calls every morning at 9 AM, regardless of mood or previous day's results"
+        "Example: A top sales representative makes 20 prospecting calls every morning at 9 AM, regardless of mood or previous day's results"
       ]
     },
     {
@@ -54,7 +54,7 @@ function CharacterSkillsInteractive() {
         "Staying committed to long-term goals while adjusting tactics",
         "Knowing when to pivot vs. when to push through",
         "Resilience that learns from failure rather than just enduring it",
-        "Example: A rep maintains the goal of enterprise sales mastery but adapts their pitch approach after feedback reveals a disconnect with technical buyers"
+        "Example: A sales representative maintains the goal of enterprise sales mastery but adapts their pitch approach after feedback reveals a disconnect with technical buyers"
       ]
     },
     {
@@ -69,7 +69,7 @@ function CharacterSkillsInteractive() {
         "Asking questions that reveal blind spots",
         "Seeking diverse perspectives and approaches",
         "Experimenting with new techniques without fear of failure",
-        "Example: A sales rep regularly asks 'What would happen if I framed this objection as an opportunity?' and tests variations in real calls"
+        "Example: A sales representative regularly asks 'What would happen if I framed this objection as an opportunity?' and tests variations in real calls"
       ]
     },
     {
@@ -84,7 +84,7 @@ function CharacterSkillsInteractive() {
         "Tracking metrics that reflect effort, not just outcomes",
         "Owning mistakes without deflecting to external factors",
         "Sharing goals publicly to create external commitment",
-        "Example: A rep tracks not just deals closed but also quality of discovery questions asked, accepting that poor questions lead to lost deals"
+        "Example: A sales representative tracks not just deals closed but also quality of discovery questions asked, accepting that poor questions lead to lost deals"
       ]
     },
     {
@@ -99,7 +99,7 @@ function CharacterSkillsInteractive() {
         "Recognizing when current methods aren't working",
         "Actively seeking feedback, especially critical feedback",
         "Viewing plateaus as signals to adjust, not just work harder",
-        "Example: After three months of stagnant conversion rates, a rep seeks peer review of recorded calls and discovers they're rushing the discovery phase"
+        "Example: After three months of stagnant conversion rates, a sales representative seeks peer review of recorded calls and discovers they're rushing the discovery phase"
       ]
     }
   ]
@@ -210,7 +210,7 @@ function ScaffoldingInteractive() {
         "Teams that frame errors as data rather than failures enable faster iteration",
         "Safety means you can share lost deals for group analysis without fear of judgment",
         "Leaders model vulnerability by sharing their own failures and what they learned",
-        "Example: Weekly 'failure forums' where reps present deals they lost and the team collaboratively identifies what could be tested differently next time"
+        "Example: Weekly 'failure forums' where sales representatives present deals they lost and the team collaboratively identifies what could be tested differently next time"
       ]
     },
     {
@@ -240,7 +240,7 @@ function ScaffoldingInteractive() {
         "When everyone shares challenges openly, struggle becomes part of the growth process rather than a sign of inadequacy",
         "Peer learning accelerates when the group values 'productive struggle' over appearing competent",
         "Communities provide accountability and shared problem-solving",
-        "Example: A Slack channel where reps post daily learning struggles ('Can't figure out how to handle the pricing objection with technical buyers') and peers share their experiments"
+        "Example: A Slack channel where sales representatives post daily learning struggles ('Can't figure out how to handle the pricing objection with technical buyers') and peers share their experiments"
       ]
     }
   ]
@@ -488,7 +488,7 @@ function SystemsOverGoalsInteractive() {
     },
     {
       id: 4,
-      title: "Get promoted to Senior Rep",
+      title: "Get promoted to Senior Sales Representative",
       icon: Target,
       problem: "Why this is less effective:",
       details: [
@@ -698,7 +698,7 @@ function HiddenPotentialFormulaInteractive() {
         "These are the traits that determine who keeps improving when others plateau",
         "Unlike IQ or innate talent, character skills can be deliberately developed",
         "They enable you to persist through difficulty, adapt strategies, and seek corrective feedback",
-        "Example: A rep with high character skills doesn't give up after 20 rejections—they analyze what's not working and adjust their approach"
+        "Example: A sales representative with high character skills doesn't give up after 20 rejections—they analyze what's not working and adjust their approach"
       ],
       multiplierEffect: "If character skills = 0 (no discipline, no grit, no curiosity), the entire equation = 0. You can't compensate with talent alone."
     },
@@ -859,7 +859,7 @@ function ParadoxOfChangeInteractive() {
         "Change triggers uncertainty, which the amygdala interprets as threat",
         "Anxiety is the body's early warning system, designed to keep you safe",
         "Staying with familiar behaviors feels safer, even when they're ineffective",
-        "Sales Example: A rep avoids prospecting because the potential for rejection creates anticipatory anxiety—staying busy with 'research' feels safer"
+        "Sales Example: A sales representative avoids prospecting because the potential for rejection creates anticipatory anxiety—staying busy with 'research' feels safer"
       ],
       consequence: "Without addressing the underlying anxiety, pushing harder just increases avoidance behavior"
     },
@@ -875,7 +875,7 @@ function ParadoxOfChangeInteractive() {
         "Self-concept is a cognitive structure the mind works to maintain",
         "Behaviors that conflict with identity feel 'not like me' and get rejected",
         "Changing behavior can feel like losing yourself or betraying your values",
-        "Sales Example: A rep who sees themselves as 'consultative' resists assertive closing techniques because 'I'm not pushy'—even when prospects need clear direction"
+        "Sales Example: A sales representative who sees themselves as 'consultative' resists assertive closing techniques because 'I'm not pushy'—even when prospects need clear direction"
       ],
       consequence: "Identity-threatening change requires reframing who you are, not just what you do"
     },
@@ -891,7 +891,7 @@ function ParadoxOfChangeInteractive() {
         "Your brain builds stories that explain why things happen",
         "New behaviors that contradict your narrative create cognitive dissonance",
         "The mind will defend its existing story, even when evidence suggests otherwise",
-        "Sales Example: A rep believes 'People don't like being sold to'—when using direct techniques feels uncomfortable, they interpret it as proof the technique doesn't work, rather than recognizing their own discomfort"
+        "Sales Example: A sales representative believes 'People don't like being sold to'—when using direct techniques feels uncomfortable, they interpret it as proof the technique doesn't work, rather than recognizing their own discomfort"
       ],
       consequence: "Challenging core beliefs requires exposing the assumptions behind them, not just willpower"
     }
@@ -1014,21 +1014,21 @@ function TechnicalVsAdaptiveInteractive() {
     examples: [
       {
         scenario: 'Learning CRM Software',
-        problem: 'Rep doesn\'t know how to log activities in the CRM',
+        problem: 'Sales representative doesn\'t know how to log activities in the CRM',
         solution: 'Provide step-by-step training and documentation',
-        outcome: 'Rep successfully uses CRM after 2-hour training session'
+        outcome: 'Sales representative successfully uses CRM after 2-hour training session'
       },
       {
         scenario: 'Email Template Creation',
-        problem: 'Rep writes unclear follow-up emails',
+        problem: 'Sales representative writes unclear follow-up emails',
         solution: 'Share proven templates and formatting guidelines',
         outcome: 'Email response rates improve with structured templates'
       },
       {
         scenario: 'Product Knowledge',
-        problem: 'Rep can\'t answer technical questions about features',
+        problem: 'Sales representative can\'t answer technical questions about features',
         solution: 'Product training sessions and reference materials',
-        outcome: 'Rep confidently explains features after study'
+        outcome: 'Sales representative confidently explains features after study'
       }
     ]
   }
@@ -1050,19 +1050,19 @@ function TechnicalVsAdaptiveInteractive() {
     examples: [
       {
         scenario: 'Being Vulnerable in Calls',
-        problem: 'Rep avoids admitting gaps in knowledge to prospects',
+        problem: 'Sales representative avoids admitting gaps in knowledge to prospects',
         solution: 'Must challenge belief that "admitting ignorance = incompetence"',
         outcome: 'Requires identity shift to see vulnerability as strength'
       },
       {
         scenario: 'Handling Direct Rejection',
-        problem: 'Rep personalizes "no" and avoids follow-up',
+        problem: 'Sales representative personalizes "no" and avoids follow-up',
         solution: 'Must reframe rejection as data, not judgment of self-worth',
         outcome: 'Requires changing relationship to failure and self-image'
       },
       {
         scenario: 'Assertive Closing',
-        problem: 'Rep fears being "pushy" and never asks for the sale',
+        problem: 'Sales representative fears being "pushy" and never asks for the sale',
         solution: 'Must challenge assumption that "directness = manipulation"',
         outcome: 'Requires reconciling assertiveness with being helpful'
       }
@@ -1249,7 +1249,7 @@ function InteractiveBehaviorScorecard() {
         "Track whether the behavior happens daily, not whether it's perfect",
         "Even 5 minutes counts—consistency beats intensity",
         "Missing 2+ days signals the need for environmental redesign",
-        "Example: Rep completes 20 prospecting calls by 10 AM every day this week = 5/5"
+        "Example: Sales representative completes 20 prospecting calls by 10 AM every day this week = 5/5"
       ],
       interpretation: [
         "5/5 = Behavior is becoming automatic",
@@ -1292,10 +1292,10 @@ function InteractiveBehaviorScorecard() {
       currentScore: demoScores.autonomy,
       maxScore: 5,
       details: [
-        "Track whether rep needs reminders to perform behavior",
+        "Track whether sales representative needs reminders to perform behavior",
         "Autonomy increases as behavior becomes habitual",
         "Low autonomy despite high consistency suggests external dependence",
-        "Example: Rep starts morning prospecting routine without manager check-ins = High autonomy"
+        "Example: Sales representative starts morning prospecting routine without manager check-ins = High autonomy"
       ],
       interpretation: [
         "5/5 = Fully self-directed, behavior is habitual",
@@ -1357,7 +1357,7 @@ function InteractiveBehaviorScorecard() {
         <Target className="h-7 w-7 text-brand-green" />
         <div>
           <h3 className="text-xl font-semibold">The Behavior Scorecard</h3>
-          <p className="text-sm text-muted-foreground">Track these metrics weekly for each rep (click to explore)</p>
+          <p className="text-sm text-muted-foreground">Track these metrics weekly for each sales representative (click to explore)</p>
         </div>
       </div>
 
@@ -1486,7 +1486,6 @@ function InteractiveBehaviorScorecard() {
  */
 function InteractiveRedFlags() {
   const [selectedFlag, setSelectedFlag] = useState<number | null>(null)
-  const [checkedFlags, setCheckedFlags] = useState<number[]>([])
 
   const redFlags = [
     {
@@ -1538,19 +1537,19 @@ function InteractiveRedFlags() {
       details: [
         "Physical or digital cues that trigger behavior are gone",
         "Often done unconsciously when reverting to old patterns",
-        "Indicates rep has mentally 'given up' on the system",
+        "Indicates sales representative has mentally 'given up' on the system",
         "Without cues, behavior relies entirely on willpower (which fails)"
       ],
       intervention: [
         "Immediately restore all environmental supports",
-        "Have rep verbally commit to maintaining them",
+        "Have sales representative verbally commit to maintaining them",
         "Add redundant cues (multiple triggers for same behavior)",
         "Manager spot-check that supports remain in place"
       ]
     },
     {
       id: 4,
-      title: "Rep stops self-reporting or tracking",
+      title: "Sales representative stops self-reporting or tracking",
       icon: "📊",
       severity: "critical",
       timeframe: "Missed tracking for 3+ days",
@@ -1574,13 +1573,6 @@ function InteractiveRedFlags() {
     setSelectedFlag(selectedFlag === id ? null : id)
   }
 
-  const toggleCheck = (id: number, e: React.MouseEvent) => {
-    e.stopPropagation()
-    setCheckedFlags(prev =>
-      prev.includes(id) ? prev.filter(f => f !== id) : [...prev, id]
-    )
-  }
-
   const getSeverityColor = (severity: string) => {
     switch (severity) {
       case 'critical': return 'text-red-600 bg-red-50 border-red-300'
@@ -1589,33 +1581,19 @@ function InteractiveRedFlags() {
     }
   }
 
-  const checkedCount = checkedFlags.length
-
   return (
     <Card className="p-6 border-2 border-red-200">
       <div className="flex items-center gap-3 mb-4">
         <Shield className="h-7 w-7 text-red-600" />
         <div>
           <h3 className="text-xl font-semibold text-red-700">Red Flags for Regression</h3>
-          <p className="text-sm text-muted-foreground">Watch for these warning signs (check any you've observed)</p>
+          <p className="text-sm text-muted-foreground">Watch for these warning signs</p>
         </div>
       </div>
-
-      {checkedCount > 0 && (
-        <div className="mb-4 p-4 bg-red-100 border-2 border-red-400 rounded-lg">
-          <p className="font-semibold text-red-800 mb-1">
-            ⚠️ {checkedCount} red flag{checkedCount > 1 ? 's' : ''} detected!
-          </p>
-          <p className="text-sm text-red-700">
-            Immediate action required: Schedule 1-on-1 coaching to diagnose and address barriers.
-          </p>
-        </div>
-      )}
 
       <div className="space-y-3">
         {redFlags.map((flag) => {
           const isSelected = selectedFlag === flag.id
-          const isChecked = checkedFlags.includes(flag.id)
           const severityClass = getSeverityColor(flag.severity)
 
           return (
@@ -1632,25 +1610,16 @@ function InteractiveRedFlags() {
                 <span className="text-2xl flex-shrink-0">{flag.icon}</span>
                 <div className="flex-1">
                   <div className="flex items-start justify-between gap-2">
-                    <div className="flex items-start gap-2 flex-1">
-                      <input
-                        type="checkbox"
-                        checked={isChecked}
-                        onChange={(e) => toggleCheck(flag.id, e as any)}
-                        onClick={(e) => e.stopPropagation()}
-                        className="mt-1 cursor-pointer"
-                      />
-                      <div>
-                        <p className="font-semibold">{flag.title}</p>
-                        <p className="text-xs text-muted-foreground mt-1">
-                          <span className="font-medium">Timeframe:</span> {flag.timeframe}
+                    <div className="flex-1">
+                      <p className="font-semibold">{flag.title}</p>
+                      <p className="text-xs text-muted-foreground mt-1">
+                        <span className="font-medium">Timeframe:</span> {flag.timeframe}
+                      </p>
+                      {flag.warning && (
+                        <p className="text-xs italic text-red-600 mt-1">
+                          {flag.warning}
                         </p>
-                        {flag.warning && (
-                          <p className="text-xs italic text-red-600 mt-1">
-                            {flag.warning}
-                          </p>
-                        )}
-                      </div>
+                      )}
                     </div>
                     <ChevronDown
                       className={`h-4 w-4 transition-transform duration-300 flex-shrink-0 ${
@@ -2044,95 +2013,55 @@ function InteractivePitfallsExplorer() {
   const riskLevel = getRiskLevel()
 
   return (
-    <div className="space-y-6">
-      {/* Interactive Diagnostic */}
-      <Card className="p-6">
-        <div className="flex items-center gap-3 mb-4">
-          <div className="bg-red-500 text-white rounded-full w-12 h-12 flex items-center justify-center text-2xl">
-            ⚠️
-          </div>
-          <div>
-            <h3 className="text-xl font-semibold">Interactive Pitfall Diagnostic</h3>
-            <p className="text-sm text-muted-foreground">Check any pitfalls you're experiencing to see your implementation risk</p>
-          </div>
-        </div>
-
-        {checkedPitfalls.length > 0 && (
-          <div className={`mb-6 p-4 bg-${riskLevel.color}-100 border-2 border-${riskLevel.color}-400 rounded-lg`}>
-            <div className="flex items-center justify-between mb-2">
-              <span className="font-bold text-lg">Risk Level: {riskLevel.level}</span>
-              <span className="text-sm font-semibold">{riskLevel.message}</span>
-            </div>
-            <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
-              <div
-                className={`h-full bg-${riskLevel.color}-500 transition-all duration-500`}
-                style={{ 
-                  width: `${Math.min(100, (checkedPitfalls.reduce((sum, id) => {
-                    const pitfall = pitfalls.find(p => p.id === id)
-                    return sum + (pitfall?.impactScore || 0)
-                  }, 0) / 300) * 100)}%` 
-                }}
-              />
-            </div>
-          </div>
-        )}
-
-        <div className="space-y-4">
-          {pitfalls.map((pitfall) => {
+    <div className="space-y-4">
+      {pitfalls.map((pitfall) => {
             const isSelected = selectedPitfall === pitfall.id
             const isChecked = checkedPitfalls.includes(pitfall.id)
 
             return (
               <div
                 key={pitfall.id}
-                className={`rounded-lg border-2 transition-all duration-300 ${
+                className={`rounded-lg border-2 transition-all duration-300 cursor-pointer ${
                   isSelected
                     ? `${pitfall.bgColor} ${pitfall.borderColor} shadow-lg`
                     : isChecked
                     ? `${pitfall.bgColor} ${pitfall.borderColor} shadow-md`
                     : 'bg-muted border-transparent hover:border-muted-foreground/20 hover:shadow-md'
                 }`}
+                onClick={() => togglePitfall(pitfall.id)}
               >
-                <div
-                  className="p-5 cursor-pointer"
-                  onClick={() => togglePitfall(pitfall.id)}
-                >
-                  <div className="flex items-start gap-4">
-                    <input
-                      type="checkbox"
-                      checked={isChecked}
-                      onChange={() => toggleCheck(pitfall.id)}
-                      onClick={(e) => e.stopPropagation()}
-                      className="mt-1 cursor-pointer w-5 h-5"
-                    />
-                    <span className="text-3xl flex-shrink-0">{pitfall.icon}</span>
+                <div className="p-5">
+                  <div className="flex items-start justify-between gap-3">
                     <div className="flex-1">
-                      <div className="flex items-start justify-between gap-3">
-                        <div>
-                          <p className="text-xl font-bold mb-1">{pitfall.title}</p>
-                          <p className="text-sm text-muted-foreground">{pitfall.problem}</p>
-                        </div>
-                      </div>
+                      <h3 className="text-lg font-bold mb-1">{pitfall.title}</h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{pitfall.problem}</p>
+                    </div>
+                    <div className="flex-shrink-0">
+                      <ChevronDown 
+                        className={`h-6 w-6 text-muted-foreground transition-transform duration-300 ${
+                          isSelected ? 'rotate-180' : ''
+                        }`}
+                      />
                     </div>
                   </div>
                 </div>
 
                 {isSelected && (
-                  <div className="px-5 pb-5 space-y-5 animate-in fade-in slide-in-from-top-2 duration-300">
+                  <div className="px-5 pb-5 space-y-4 animate-in fade-in slide-in-from-top-2 duration-300">
                     {/* Real-World Example */}
                     <div className={`p-4 bg-gradient-to-r ${pitfall.gradient} bg-opacity-10 rounded-lg border-l-4 ${pitfall.borderColor}`}>
-                      <p className="font-semibold mb-2">💡 Real-World Example:</p>
+                      <p className="text-sm font-semibold mb-2">💡 Real-World Example:</p>
                       <p className="text-sm leading-relaxed italic">{pitfall.realWorldExample}</p>
                     </div>
 
                     {/* Why It Happens */}
                     <div>
-                      <p className="font-semibold mb-2">🔍 Why This Pitfall Happens:</p>
+                      <p className="text-sm font-semibold mb-2">🔍 Why This Pitfall Happens:</p>
                       <div className="grid md:grid-cols-2 gap-2">
                         {pitfall.whyItHappens.map((reason, index) => (
                           <div key={index} className="flex items-start gap-2 p-2 bg-muted rounded">
-                            <span className="text-red-500">•</span>
-                            <p className="text-sm">{reason}</p>
+                            <span className="text-red-500 text-sm">•</span>
+                            <p className="text-sm leading-relaxed">{reason}</p>
                           </div>
                         ))}
                       </div>
@@ -2140,70 +2069,49 @@ function InteractivePitfallsExplorer() {
 
                     {/* Consequences */}
                     <div>
-                      <p className="font-semibold mb-3">⚡ Cascading Consequences:</p>
-                      <div className="space-y-2">
+                      <p className="text-sm font-semibold mb-2">⚠️ Consequences:</p>
+                      <div className="grid md:grid-cols-2 gap-2">
                         {pitfall.consequences.map((consequence, index) => (
-                          <div key={index} className="flex items-start gap-3 p-3 bg-white dark:bg-gray-800 rounded-lg border">
-                            <div className={`w-2 h-2 rounded-full mt-2 flex-shrink-0 ${
-                              consequence.severity === 'critical' ? 'bg-red-500' :
-                              consequence.severity === 'high' ? 'bg-orange-500' :
-                              consequence.severity === 'medium' ? 'bg-yellow-500' :
-                              'bg-gray-500'
-                            }`} />
-                            <div className="flex-1">
-                              <p className="font-semibold text-sm">{consequence.label}</p>
-                              <p className="text-xs text-muted-foreground">{consequence.description}</p>
-                            </div>
-                            <span className={`text-xs font-bold uppercase ${getSeverityColor(consequence.severity)}`}>
-                              {consequence.severity}
-                            </span>
+                          <div key={index} className="p-3 bg-muted rounded border-l-2 border-red-500">
+                            <p className="text-sm font-semibold mb-1">{consequence.label}</p>
+                            <p className="text-sm leading-relaxed">{consequence.description}</p>
                           </div>
                         ))}
                       </div>
                     </div>
 
                     {/* The Fix */}
-                    <div className="p-5 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 rounded-lg border-2 border-green-300 dark:border-green-700">
-                      <p className="text-lg font-bold text-green-700 dark:text-green-400 mb-3">
-                        ✅ The Fix: {pitfall.theFix.principle}
-                      </p>
-                      
-                      <div className="space-y-3">
+                    <div className="p-4 bg-green-50 dark:bg-green-950/20 rounded-lg border border-green-300 dark:border-green-800">
+                      <p className="text-sm font-semibold mb-2">✅ The Fix: {pitfall.theFix.principle}</p>
+                      <div className="space-y-2 mb-3">
+                        {pitfall.theFix.steps.map((step, index) => (
+                          <div key={index} className="flex items-start gap-2">
+                            <span className="text-green-600 dark:text-green-400 text-sm font-semibold">{index + 1}.</span>
+                            <p className="text-sm leading-relaxed">{step}</p>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="grid md:grid-cols-2 gap-2 pt-2 border-t border-green-300 dark:border-green-800">
                         <div>
-                          <p className="font-semibold text-sm mb-2">Implementation Steps:</p>
-                          <div className="space-y-2">
-                            {pitfall.theFix.steps.map((step, index) => (
-                              <div key={index} className="flex items-start gap-2 pl-2">
-                                <span className="bg-green-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs flex-shrink-0 mt-0.5">
-                                  {index + 1}
-                                </span>
-                                <p className="text-sm">{step}</p>
-                              </div>
-                            ))}
-                          </div>
+                          <p className="text-xs font-semibold text-green-700 dark:text-green-400">Timeline:</p>
+                          <p className="text-sm">{pitfall.theFix.timeline}</p>
                         </div>
-
-                        <div className="grid md:grid-cols-2 gap-3 pt-2">
-                          <div className="p-3 bg-white dark:bg-gray-800 rounded border">
-                            <p className="text-xs font-semibold text-muted-foreground mb-1">Timeline</p>
-                            <p className="text-sm font-semibold">{pitfall.theFix.timeline}</p>
-                          </div>
-                          <div className="p-3 bg-white dark:bg-gray-800 rounded border">
-                            <p className="text-xs font-semibold text-muted-foreground mb-1">Success Metric</p>
-                            <p className="text-sm font-semibold">{pitfall.theFix.successMetric}</p>
-                          </div>
+                        <div>
+                          <p className="text-xs font-semibold text-green-700 dark:text-green-400">Success Metric:</p>
+                          <p className="text-sm">{pitfall.theFix.successMetric}</p>
                         </div>
                       </div>
                     </div>
 
                     {/* Diagnostic Questions */}
-                    <div className="p-4 bg-blue-50 dark:bg-blue-950/30 rounded-lg border border-blue-300">
-                      <p className="font-semibold mb-2">🎯 Self-Diagnostic Questions:</p>
+                    <div>
+                      <p className="text-sm font-semibold mb-2">🔎 Diagnostic Questions:</p>
                       <div className="space-y-1">
                         {pitfall.diagnosticQuestions.map((question, index) => (
-                          <p key={index} className="text-sm">
-                            <span className="text-blue-600 font-semibold">?</span> {question}
-                          </p>
+                          <div key={index} className="flex items-start gap-2 p-2 bg-muted rounded">
+                            <span className="text-blue-500 text-sm">?</span>
+                            <p className="text-sm leading-relaxed">{question}</p>
+                          </div>
                         ))}
                       </div>
                     </div>
@@ -2212,40 +2120,7 @@ function InteractivePitfallsExplorer() {
               </div>
             )
           })}
-        </div>
-      </Card>
-
-      {/* Compound Effect Warning */}
-      <Card className="p-6 bg-gradient-to-br from-red-50 to-orange-50 dark:from-red-950/20 dark:to-orange-950/20 border-2 border-red-300">
-        <div className="flex items-start gap-4">
-          <div className="bg-red-500 text-white rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0 text-xl">
-            🔥
-          </div>
-          <div>
-            <p className="text-lg font-bold text-red-700 dark:text-red-400 mb-2">
-              The Compound Effect: Pitfalls Multiply, Not Add
-            </p>
-            <p className="text-sm leading-relaxed text-red-900 dark:text-red-300 mb-3">
-              When multiple pitfalls exist simultaneously, their impact doesn't add—it multiplies. 
-              <strong> Pitfall 1 × Pitfall 2 × Pitfall 5 = Near-certain failure.</strong>
-            </p>
-            <div className="space-y-2">
-              <div className="p-3 bg-white dark:bg-gray-800 rounded">
-                <p className="text-sm"><strong>Example Cascade:</strong> Too Much Too Fast (#1) + No Environmental Support (#2) = 
-                Sales representatives overwhelmed with content they can't execute because environment blocks them = Immediate regression.</p>
-              </div>
-              <div className="p-3 bg-white dark:bg-gray-800 rounded">
-                <p className="text-sm"><strong>Critical Combination:</strong> Leadership Doesn't Model (#5) + Focusing Only on Outcomes (#3) = 
-                Sales representatives see leaders ignore new system while being judged only on old metrics = Total system failure within 30 days.</p>
-              </div>
-            </div>
-            <p className="text-sm font-semibold text-red-700 dark:text-red-400 mt-3">
-              ⚠️ Action Required: Address checked pitfalls before proceeding with implementation. One pitfall can derail months of work.
-            </p>
-          </div>
-        </div>
-      </Card>
-    </div>
+      </div>
   )
 }
 
@@ -2267,7 +2142,6 @@ export default function Module5Page() {
     q9: boolean
     q10: boolean
     q11: boolean
-    q12: boolean
   }>({
     q1: false,
     q2: false,
@@ -2280,8 +2154,10 @@ export default function Module5Page() {
     q9: false,
     q10: false,
     q11: false,
-    q12: false,
   })
+
+  const [attemptedQuestions, setAttemptedQuestions] = useState<Set<string>>(new Set())
+  const [assessmentSubmitted, setAssessmentSubmitted] = useState(false)
 
   const MODULE_ID = "module-5"
   const courseStructure = getCourseStructure()
@@ -2304,13 +2180,31 @@ export default function Module5Page() {
   useEffect(() => {
     const savedQuiz = localStorage.getItem(`${MODULE_ID}-quiz-results`)
     if (savedQuiz) {
-      setQuizResults(JSON.parse(savedQuiz))
+      const parsed = JSON.parse(savedQuiz)
+      // Remove any old q12 property that might exist from previous version
+      delete parsed.q12
+      setQuizResults(parsed)
+      // Save the cleaned version back to localStorage
+      localStorage.setItem(`${MODULE_ID}-quiz-results`, JSON.stringify(parsed))
+    }
+    const savedAttempted = localStorage.getItem(`${MODULE_ID}-attempted-questions`)
+    if (savedAttempted) {
+      const parsed = JSON.parse(savedAttempted)
+      // Filter out q12 if it exists
+      const filtered = parsed.filter((q: string) => q !== 'q12')
+      setAttemptedQuestions(new Set(filtered))
+      // Save the cleaned version back to localStorage
+      localStorage.setItem(`${MODULE_ID}-attempted-questions`, JSON.stringify(filtered))
     }
   }, [])
 
   useEffect(() => {
     localStorage.setItem(`${MODULE_ID}-quiz-results`, JSON.stringify(quizResults))
   }, [quizResults])
+
+  useEffect(() => {
+    localStorage.setItem(`${MODULE_ID}-attempted-questions`, JSON.stringify(Array.from(attemptedQuestions)))
+  }, [attemptedQuestions])
 
   const handleSectionComplete = () => {
     const currentSection = sections[currentSectionIndex]
@@ -2330,9 +2224,25 @@ export default function Module5Page() {
     }
   }
 
+  const allQuizAnswered = attemptedQuestions.size === 11
   const allQuizComplete = Object.values(quizResults).every((result) => result === true)
 
+  useEffect(() => {
+    if (assessmentSubmitted && allQuizComplete && currentSectionIndex === 8) {
+      const assessmentSection = sections[8]
+      if (assessmentSection) {
+        markSectionComplete(MODULE_ID, assessmentSection.id)
+        setCurrentPosition(MODULE_ID, assessmentSection.id)
+      }
+    }
+  }, [assessmentSubmitted, allQuizComplete, currentSectionIndex, sections, MODULE_ID, markSectionComplete, setCurrentPosition])
+
+  const handleSubmitAssessment = () => {
+    setAssessmentSubmitted(true)
+  }
+
   const handleQuizComplete = (quizKey: keyof typeof quizResults, correct: boolean) => {
+    setAttemptedQuestions((prev) => new Set(prev).add(quizKey))
     setQuizResults((prev) => ({
       ...prev,
       [quizKey]: correct,
@@ -2941,7 +2851,7 @@ export default function Module5Page() {
                           </div>
                           <div>
                             <p className="font-bold text-base group-hover:text-brand-green transition-colors duration-300">
-                              Rep Who Avoids Cold Calls
+                              Sales Representative Who Avoids Cold Calls
                             </p>
                             <p className="text-xs text-muted-foreground">Common prospecting avoidance pattern</p>
                           </div>
@@ -2996,7 +2906,7 @@ export default function Module5Page() {
                           </div>
                           <div>
                             <p className="font-bold text-base group-hover:text-brand-orange transition-colors duration-300">
-                              Rep Who Deflects Objections
+                              Sales Representative Who Deflects Objections
                             </p>
                             <p className="text-xs text-muted-foreground">Avoiding difficult conversations</p>
                           </div>
@@ -3051,7 +2961,7 @@ export default function Module5Page() {
                           </div>
                           <div>
                             <p className="font-bold text-base group-hover:text-purple-500 transition-colors duration-300">
-                              Rep Who Won't Follow Up
+                              Sales Representative Who Won't Follow Up
                             </p>
                             <p className="text-xs text-muted-foreground">Letting opportunities die</p>
                           </div>
@@ -3339,110 +3249,191 @@ export default function Module5Page() {
           {/* Section 5: Implementation Strategy */}
           {currentSectionIndex === 5 && (
             <div className="space-y-6" id="implementation">
-              <h2 className="text-3xl font-bold text-brand-green">Implementation Strategy for Sales Teams</h2>
+              <div className="space-y-4">
+                <h2 className="text-3xl font-bold text-brand-green">Implementation Strategy for Sales Teams</h2>
+                <p className="text-lg text-muted-foreground">
+                  A five-phase approach to embedding behavioral change systems in your sales organization
+                </p>
+              </div>
 
-              <Card className="p-6">
-                <h3 className="text-xl font-semibold mb-3">Phase 1: Baseline Assessment (Week 1)</h3>
-                <p className="leading-relaxed mb-3">Before implementing any change, establish the current state:</p>
-                <ul className="space-y-2">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-brand-green mt-0.5 flex-shrink-0" />
-                    <span>Record current activity levels (calls, emails, meetings)</span>
+              {/* Phase 1 */}
+              <Card className="p-6 bg-gradient-to-br from-blue-500/5 to-blue-500/10 border-l-4 border-blue-500">
+                <div className="flex items-start gap-4 mb-4">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center">
+                    <ClipboardList className="h-6 w-6 text-blue-600" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-2">
+                      <span className="text-xs font-bold text-blue-600 bg-blue-500/20 px-2 py-1 rounded">PHASE 1</span>
+                      <h3 className="text-xl font-bold">Baseline Assessment</h3>
+                    </div>
+                    <p className="text-muted-foreground mb-4">Before implementing any change, establish the current state</p>
+                  </div>
+                </div>
+                <ul className="space-y-3 ml-16">
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                    <span className="text-sm">Record current activity levels (calls, emails, meetings)</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-brand-green mt-0.5 flex-shrink-0" />
-                    <span>Shadow 3-5 reps to observe natural behavior</span>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                    <span className="text-sm">Shadow 3-5 sales representatives to observe natural behavior</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-brand-green mt-0.5 flex-shrink-0" />
-                    <span>Identify existing environmental triggers</span>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                    <span className="text-sm">Identify existing environmental triggers</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-brand-green mt-0.5 flex-shrink-0" />
-                    <span>Map out the current "default" workday flow</span>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                    <span className="text-sm">Map out the current "default" workday flow</span>
                   </li>
                 </ul>
               </Card>
 
-              <Card className="p-6">
-                <h3 className="text-xl font-semibold mb-3">Phase 2: Single Behavior Focus (Weeks 2-4)</h3>
-                <div className="space-y-3">
-                  <p className="leading-relaxed">Don't try to change everything. Pick ONE keystone behavior:</p>
-                  <div className="p-4 bg-brand-green/10 rounded">
-                    <p className="font-semibold mb-2">Example Keystone Behaviors:</p>
-                    <ul className="space-y-1 text-sm">
-                      <li>• 20 minutes of daily prospecting at 9 AM</li>
-                      <li>• Starting every call with mission clarity</li>
-                      <li>• Using one calibrated question per conversation</li>
-                      <li>• Tracking "No's" received instead of "Yes's"</li>
-                    </ul>
+              {/* Phase 2 */}
+              <Card className="p-6 bg-gradient-to-br from-purple-500/5 to-purple-500/10 border-l-4 border-purple-500">
+                <div className="flex items-start gap-4 mb-4">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center">
+                    <Focus className="h-6 w-6 text-purple-600" />
                   </div>
-                  <p className="text-sm italic">
-                    Keystone behaviors create momentum and prove that change is possible, making subsequent changes
-                    easier.
-                  </p>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-2">
+                      <span className="text-xs font-bold text-purple-600 bg-purple-500/20 px-2 py-1 rounded">PHASE 2</span>
+                      <h3 className="text-xl font-bold">Single Behavior Focus</h3>
+                    </div>
+                    <p className="text-muted-foreground mb-4">Don't try to change everything. Pick ONE keystone behavior</p>
+                  </div>
+                </div>
+                
+                <div className="ml-16 space-y-4">
+                  <div className="p-4 bg-brand-green/10 rounded-lg border border-brand-green/20">
+                    <div className="flex items-start gap-3 mb-3">
+                      <Sparkles className="h-5 w-5 text-brand-green mt-0.5 flex-shrink-0" />
+                      <div>
+                        <p className="font-semibold text-brand-green mb-2">What is a Keystone Behavior?</p>
+                        <p className="text-sm leading-relaxed">
+                          A keystone behavior is a single habit that, when established, naturally triggers other positive behaviors and creates cascading improvements. Like a keystone in an arch that holds all other stones in place, these behaviors are small but disproportionately powerful—they make subsequent changes easier by building confidence, proving change is possible, and creating momentum.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="p-4 bg-purple-500/10 rounded-lg border border-purple-500/20">
+                    <p className="font-semibold mb-3 text-purple-700">Example Keystone Behaviors:</p>
+                    <div className="grid sm:grid-cols-2 gap-2">
+                      <div className="flex items-start gap-2">
+                        <Target className="h-4 w-4 text-purple-600 mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">20 minutes of daily prospecting at 9 AM</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <Target className="h-4 w-4 text-purple-600 mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">Starting every call with mission clarity</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <Target className="h-4 w-4 text-purple-600 mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">Using one calibrated question per conversation</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <Target className="h-4 w-4 text-purple-600 mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">Tracking "No's" received instead of "Yes's"</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </Card>
 
-              <Card className="p-6">
-                <h3 className="text-xl font-semibold mb-3">Phase 3: Environment Design (Week 3)</h3>
-                <p className="leading-relaxed mb-3">Redesign the workspace to support the new behavior:</p>
-                <div className="grid md:grid-cols-2 gap-3">
-                  <div className="p-3 bg-muted rounded">
-                    <p className="font-semibold text-sm mb-1">Physical Environment</p>
-                    <p className="text-xs">Visual cues, reference cards, quiet zones for calls</p>
+              {/* Phase 3 */}
+              <Card className="p-6 bg-gradient-to-br from-emerald-500/5 to-emerald-500/10 border-l-4 border-emerald-500">
+                <div className="flex items-start gap-4 mb-4">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                    <Layers className="h-6 w-6 text-emerald-600" />
                   </div>
-                  <div className="p-3 bg-muted rounded">
-                    <p className="font-semibold text-sm mb-1">Digital Environment</p>
-                    <p className="text-xs">Browser bookmarks, CRM templates, auto-blocking calendar</p>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-2">
+                      <span className="text-xs font-bold text-emerald-600 bg-emerald-500/20 px-2 py-1 rounded">PHASE 3</span>
+                      <h3 className="text-xl font-bold">Environment Design</h3>
+                    </div>
+                    <p className="text-muted-foreground mb-4">Redesign the workspace to support the new behavior</p>
                   </div>
-                  <div className="p-3 bg-muted rounded">
-                    <p className="font-semibold text-sm mb-1">Social Environment</p>
-                    <p className="text-xs">Accountability partners, public commitment, team challenges</p>
+                </div>
+                <div className="grid sm:grid-cols-2 gap-3 ml-16">
+                  <div className="p-4 bg-emerald-500/10 rounded-lg border border-emerald-500/20">
+                    <p className="font-semibold text-sm mb-2 text-emerald-700">Physical Environment</p>
+                    <p className="text-xs text-muted-foreground">Visual cues, reference cards, quiet zones for calls</p>
                   </div>
-                  <div className="p-3 bg-muted rounded">
-                    <p className="font-semibold text-sm mb-1">Feedback Environment</p>
-                    <p className="text-xs">Daily check-ins, visual progress tracking, immediate recognition</p>
+                  <div className="p-4 bg-emerald-500/10 rounded-lg border border-emerald-500/20">
+                    <p className="font-semibold text-sm mb-2 text-emerald-700">Digital Environment</p>
+                    <p className="text-xs text-muted-foreground">Browser bookmarks, CRM templates, auto-blocking calendar</p>
+                  </div>
+                  <div className="p-4 bg-emerald-500/10 rounded-lg border border-emerald-500/20">
+                    <p className="font-semibold text-sm mb-2 text-emerald-700">Social Environment</p>
+                    <p className="text-xs text-muted-foreground">Accountability partners, public commitment, team challenges</p>
+                  </div>
+                  <div className="p-4 bg-emerald-500/10 rounded-lg border border-emerald-500/20">
+                    <p className="font-semibold text-sm mb-2 text-emerald-700">Feedback Environment</p>
+                    <p className="text-xs text-muted-foreground">Daily check-ins, visual progress tracking, immediate recognition</p>
                   </div>
                 </div>
               </Card>
 
-              <Card className="p-6">
-                <h3 className="text-xl font-semibold mb-3">Phase 4: Habit Stacking (Weeks 5-8)</h3>
-                <div className="space-y-3">
-                  <p className="leading-relaxed">Once the first behavior is automatic, add the next one:</p>
-                  <div className="p-4 bg-brand-orange/10 rounded">
-                    <p className="font-semibold mb-2">Formula:</p>
-                    <p className="text-sm">
-                      "After [EXISTING BEHAVIOR], I will [NEW BEHAVIOR], followed by [REWARD]."
+              {/* Phase 4 */}
+              <Card className="p-6 bg-gradient-to-br from-amber-500/5 to-amber-500/10 border-l-4 border-amber-500">
+                <div className="flex items-start gap-4 mb-4">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center">
+                    <Link2 className="h-6 w-6 text-amber-600" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-2">
+                      <span className="text-xs font-bold text-amber-600 bg-amber-500/20 px-2 py-1 rounded">PHASE 4</span>
+                      <h3 className="text-xl font-bold">Habit Stacking</h3>
+                    </div>
+                    <p className="text-muted-foreground mb-4">Once the first behavior is automatic, add the next one</p>
+                  </div>
+                </div>
+                <div className="ml-16 space-y-3">
+                  <div className="p-4 bg-amber-500/10 rounded-lg border border-amber-500/20">
+                    <p className="font-semibold mb-3 text-amber-700">Habit Stacking Formula:</p>
+                    <div className="p-3 bg-background rounded border-2 border-amber-500/30">
+                      <p className="text-sm font-mono">
+                        "After <span className="text-brand-green font-semibold">[EXISTING BEHAVIOR]</span>, I will <span className="text-brand-orange font-semibold">[NEW BEHAVIOR]</span>, followed by <span className="text-blue-600 font-semibold">[REWARD]</span>."
+                      </p>
+                    </div>
+                  </div>
+                  <div className="p-4 bg-brand-orange/10 rounded-lg border border-brand-orange/20">
+                    <p className="text-xs font-semibold mb-2 text-brand-orange">Example:</p>
+                    <p className="text-sm italic">
+                      "After I finish my 9 AM prospecting block, I will review my mission statement, then get my coffee."
                     </p>
-                    <p className="text-sm mt-2 italic">
-                      Example: "After I finish my 9 AM prospecting block, I will review my mission statement, then get
-                      my coffee."
-                    </p>
                   </div>
                 </div>
               </Card>
 
-              <Card className="p-6">
-                <h3 className="text-xl font-semibold mb-3">Phase 5: System Reinforcement (Weeks 9-12)</h3>
-                <p className="leading-relaxed mb-3">Prevent regression by building in long-term accountability:</p>
-                <ul className="space-y-2">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-brand-green mt-0.5 flex-shrink-0" />
-                    <span>Weekly team reviews of adherence (not just results)</span>
+              {/* Phase 5 */}
+              <Card className="p-6 bg-gradient-to-br from-rose-500/5 to-rose-500/10 border-l-4 border-rose-500">
+                <div className="flex items-start gap-4 mb-4">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-rose-500/20 flex items-center justify-center">
+                    <TrendingUp className="h-6 w-6 text-rose-600" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-2">
+                      <span className="text-xs font-bold text-rose-600 bg-rose-500/20 px-2 py-1 rounded">PHASE 5</span>
+                      <h3 className="text-xl font-bold">System Reinforcement</h3>
+                    </div>
+                    <p className="text-muted-foreground mb-4">Prevent regression by building in long-term accountability</p>
+                  </div>
+                </div>
+                <ul className="space-y-3 ml-16">
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="h-5 w-5 text-rose-600 mt-0.5 flex-shrink-0" />
+                    <span className="text-sm">Weekly team reviews of adherence (not just results)</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-brand-green mt-0.5 flex-shrink-0" />
-                    <span>Monthly re-training on Camp/Voss principles</span>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="h-5 w-5 text-rose-600 mt-0.5 flex-shrink-0" />
+                    <span className="text-sm">Celebrate process wins publicly</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-brand-green mt-0.5 flex-shrink-0" />
-                    <span>Celebrate process wins publicly</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-brand-green mt-0.5 flex-shrink-0" />
-                    <span>Adjust environment based on observed friction points</span>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="h-5 w-5 text-rose-600 mt-0.5 flex-shrink-0" />
+                    <span className="text-sm">Adjust environment based on observed friction points</span>
                   </li>
                 </ul>
               </Card>
@@ -3561,23 +3552,48 @@ export default function Module5Page() {
               <h2 className="text-3xl font-bold text-brand-green">Common Implementation Pitfalls</h2>
 
               <Card className="p-6 bg-gradient-to-br from-red-50 to-orange-50 dark:from-red-950/20 dark:to-orange-950/20 border-2 border-red-200 dark:border-red-800">
+                <div>
+                  <p className="text-lg font-bold text-red-700 dark:text-red-400 mb-2">
+                    Why Most Implementations Fail
+                  </p>
+                  <p className="text-sm leading-relaxed text-red-900 dark:text-red-300 mb-6">
+                    Even the best change frameworks fail when these pitfalls aren't avoided. Each pitfall compounds the others, 
+                    creating a cascade of failure. Use the interactive explorer below to diagnose which pitfalls might be affecting your implementation.
+                  </p>
+
+                  <InteractivePitfallsExplorer />
+                </div>
+              </Card>
+
+              <Card className="p-6 bg-gradient-to-br from-red-50 to-orange-50 dark:from-red-950/20 dark:to-orange-950/20 border-2 border-red-300">
                 <div className="flex items-start gap-4">
-                  <div className="bg-red-500 text-white rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0 text-2xl">
-                    ⚠️
+                  <div className="bg-red-500 text-white rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0 text-xl">
+                    🔥
                   </div>
                   <div>
                     <p className="text-lg font-bold text-red-700 dark:text-red-400 mb-2">
-                      Why Most Implementations Fail
+                      The Compound Effect: Pitfalls Multiply, Not Add
                     </p>
-                    <p className="text-sm leading-relaxed text-red-900 dark:text-red-300">
-                      Even the best change frameworks fail when these pitfalls aren't avoided. Each pitfall compounds the others, 
-                      creating a cascade of failure. Use the interactive explorer below to diagnose which pitfalls might be affecting your implementation.
+                    <p className="text-sm leading-relaxed text-red-900 dark:text-red-300 mb-3">
+                      When multiple pitfalls exist simultaneously, their impact doesn't add—it multiplies. 
+                      <strong> Pitfall 1 × Pitfall 2 × Pitfall 5 = Near-certain failure.</strong>
+                    </p>
+                    <div className="space-y-2">
+                      <div className="p-3 bg-white dark:bg-gray-800 rounded">
+                        <p className="text-sm"><strong>Example Cascade:</strong> Too Much Too Fast (#1) + No Environmental Support (#2) = 
+                        Sales representatives overwhelmed with content they can't execute because environment blocks them = Immediate regression.</p>
+                      </div>
+                      <div className="p-3 bg-white dark:bg-gray-800 rounded">
+                        <p className="text-sm"><strong>Critical Combination:</strong> Leadership Doesn't Model (#5) + Focusing Only on Outcomes (#3) = 
+                        Sales representatives see leaders ignore new system while being judged only on old metrics = Total system failure within 30 days.</p>
+                      </div>
+                    </div>
+                    <p className="text-sm font-semibold text-red-700 dark:text-red-400 mt-3">
+                      ⚠️ Action Required: Address checked pitfalls before proceeding with implementation. One pitfall can derail months of work.
                     </p>
                   </div>
                 </div>
               </Card>
-
-              <InteractivePitfallsExplorer />
 
               <Button onClick={handleSectionComplete} size="lg" className="w-full sm:w-auto">
                 Continue <ArrowRight className="ml-2 h-5 w-5" />
@@ -3595,391 +3611,361 @@ export default function Module5Page() {
               </Card>
 
               <MultipleChoice
-                question="Why does most sales training fail to produce lasting behavioral change?"
+                question="What is the main difference between a technical challenge and an adaptive challenge?"
                 options={[
                   {
                     id: "a",
-                    text: "Reps don't pay attention during training",
+                    text: "Technical challenges are harder than adaptive challenges because they require more specialized knowledge and training to solve effectively",
                     isCorrect: false,
-                    feedback: "Attention isn't the issue—most reps pay attention but lack environmental support to change behavior.",
+                    feedback: "Both can be difficult, but they require different approaches to solve.",
                   },
                   {
                     id: "b",
-                    text: "Training focuses on knowledge transfer rather than creating environmental support for new behaviors",
-                    isCorrect: true,
-                    feedback: "Correct! Most sales training fails because it focuses on transferring knowledge (concepts, theories) without creating the environmental structures, accountability systems, and feedback loops necessary to support new behaviors. Knowledge alone doesn't create action.",
+                    text: "Technical challenges are about technology and systems, while adaptive challenges are about managing people and relationships in the workplace",
+                    isCorrect: false,
+                    feedback: "The terms aren't about technology vs. people. Technical challenges are knowledge-based; adaptive challenges are identity-based.",
                   },
                   {
                     id: "c",
-                    text: "The concepts taught are too complex",
-                    isCorrect: false,
-                    feedback: "Complexity isn't the problem—the lack of environmental support for behavior change is.",
+                    text: "Technical challenges can be solved with new skills or information, while adaptive challenges require changes in identity, beliefs, or mindset",
+                    isCorrect: true,
+                    feedback: "Correct! Technical challenges are solved by learning new information or skills (like how to use a CRM). Adaptive challenges require deeper changes in how you see yourself or the world (like becoming comfortable with rejection). Most behavior change in sales involves adaptive challenges, which is why training alone often fails.",
                   },
                   {
                     id: "d",
-                    text: "Sales managers don't follow up enough",
+                    text: "Only adaptive challenges require training and ongoing support, while technical challenges can be solved through self-study and practice",
                     isCorrect: false,
-                    feedback: "Follow-up helps, but without environmental design, even follow-up won't create lasting change.",
+                    feedback: "Technical challenges often need training, but adaptive challenges require more than just training.",
                   },
                 ]}
-                explanation="Most sales training fails because it focuses on transferring knowledge (concepts, theories) without creating the environmental structures, accountability systems, and feedback loops necessary to support new behaviors. Knowledge alone doesn't create action."
                 onAnswer={(correct) => handleQuizComplete("q1", correct)}
               />
 
               <MultipleChoice
-                question="According to the Change Agency framework, what does 'Make It Obvious' mean?"
+                question="According to Adam Grant's Hidden Potential formula (Character Skills × Deliberate Practice × Supportive Scaffolding), why do the three components multiply instead of add?"
                 options={[
                   {
                     id: "a",
-                    text: "Tell people exactly what to do",
-                    isCorrect: false,
-                    feedback: "Telling isn't enough—the environment must be designed to make the behavior visible and easy.",
+                    text: "If any single component is zero or very low, the entire result becomes zero—you can't compensate for one missing piece by having more of another",
+                    isCorrect: true,
+                    feedback: "Correct! Multiplication means all three components must be present. If you have zero character skills, it doesn't matter how much practice or scaffolding you have—the result is still zero. You can't make up for missing discipline by just having better mentorship. All three must work together.",
                   },
                   {
                     id: "b",
-                    text: "Design the environment so the right behavior is visible, easy to start, and hard to avoid",
-                    isCorrect: true,
-                    feedback: "Correct! 'Make It Obvious' means designing the physical, digital, and social environment so that the desired behavior is clearly visible and the easiest action to take. This includes visual cues, pre-scheduled activities, templates, and environmental triggers.",
+                    text: "Multiplication makes the math more complicated and sophisticated, which better reflects the complexity of human potential development over time",
+                    isCorrect: false,
+                    feedback: "The multiplication has a specific meaning—it's not just about making calculations harder.",
                   },
                   {
                     id: "c",
-                    text: "Make training presentations clearer",
+                    text: "Adding the three components would give a number that's too small to accurately represent the exponential growth that occurs with skill development",
                     isCorrect: false,
-                    feedback: "Clearer presentations are about knowledge transfer, not environmental design.",
+                    feedback: "It's not about the size of the number—it's about showing that all three components are essential.",
                   },
                   {
                     id: "d",
-                    text: "Send daily reminder emails",
+                    text: "Multiplication is the traditional way to calculate potential in psychology and has been used in research for decades to measure human capacity",
                     isCorrect: false,
-                    feedback: "Reminder emails are a form of environmental cue, but 'Make It Obvious' is much broader.",
+                    feedback: "The multiplication is chosen specifically to show interdependence, not because of tradition.",
                   },
                 ]}
-                explanation="'Make It Obvious' means designing the physical, digital, and social environment so that the desired behavior is clearly visible and the easiest action to take. This includes visual cues, pre-scheduled activities, templates, and environmental triggers."
                 onAnswer={(correct) => handleQuizComplete("q2", correct)}
               />
 
               <MultipleChoice
-                question="What is a 'keystone behavior' in the context of change agency?"
+                question="What is the main advantage of focusing on systems (process-based goals) rather than outcomes (result-based goals)?"
                 options={[
                   {
                     id: "a",
-                    text: "The most important skill in sales",
+                    text: "Systems are easier to achieve than outcome goals because they don't require as much effort or commitment to maintain over long periods",
                     isCorrect: false,
-                    feedback: "A keystone behavior is about creating momentum for change, not just importance.",
+                    feedback: "Systems aren't necessarily easier—they're more controllable and provide consistent feedback.",
                   },
                   {
                     id: "b",
-                    text: "A single foundational behavior that creates momentum and makes subsequent changes easier",
+                    text: "Systems focus on behaviors you control and provide daily feedback, while outcome goals depend on factors outside your control and only provide feedback when it's too late",
                     isCorrect: true,
-                    feedback: "Correct! A keystone behavior is one foundational behavior that, when mastered, creates momentum and proves that change is possible. This makes subsequent behavior changes easier. Examples include daily prospecting or starting calls with mission clarity.",
+                    feedback: "Correct! Systems like '20 prospecting calls every morning' give you daily feedback you can act on. Outcome goals like 'close 10 deals this month' depend on customer decisions, timing, and market factors you don't control. When you're behind on an outcome goal, you don't know what to do differently. Systems tell you every day if you're on track and what to adjust.",
                   },
                   {
                     id: "c",
-                    text: "The first thing taught in training",
+                    text: "Systems don't require any discipline or effort once they're established, making them more sustainable for long-term success and growth",
                     isCorrect: false,
-                    feedback: "The first thing taught may not be a keystone behavior—keystone behaviors are strategic choices.",
+                    feedback: "Systems require consistent effort—they just make that effort more sustainable through routine.",
                   },
                   {
                     id: "d",
-                    text: "The behavior that generates the most revenue",
+                    text: "Outcome goals are outdated and no longer used in sales because modern research has proven they don't work in today's business environment",
                     isCorrect: false,
-                    feedback: "Keystone behaviors create momentum for change, not necessarily the most revenue.",
+                    feedback: "Outcome goals still exist, but systems-based approaches create more sustainable behavior change.",
                   },
                 ]}
-                explanation="A keystone behavior is one foundational behavior that, when mastered, creates momentum and proves that change is possible. This makes subsequent behavior changes easier. Examples include daily prospecting or starting calls with mission clarity."
                 onAnswer={(correct) => handleQuizComplete("q3", correct)}
               />
 
               <MultipleChoice
-                question="Why should you measure 'leading indicators' rather than just 'lagging indicators'?"
+                question="In the Change Agency framework, what does 'Make It Obvious' mean?"
                 options={[
                   {
                     id: "a",
-                    text: "Leading indicators are easier to measure",
+                    text: "Tell people clearly what they need to do through explicit verbal instructions and written documentation that everyone can reference",
                     isCorrect: false,
-                    feedback: "Leading indicators aren't necessarily easier—they're more useful for behavior change.",
+                    feedback: "Telling people isn't enough—the environment needs to be designed to trigger the behavior.",
                   },
                   {
                     id: "b",
-                    text: "Leading indicators (behaviors) can be corrected immediately, while lagging indicators (outcomes) appear too late to adjust",
-                    isCorrect: true,
-                    feedback: "Correct! Leading indicators measure the behaviors that drive outcomes. They provide early feedback, allowing for immediate course correction. Lagging indicators (like deals closed) appear too late to adjust behavior during the change process.",
+                    text: "Make training presentations clearer and easier to understand by using better visuals, simpler language, and more engaging delivery methods",
+                    isCorrect: false,
+                    feedback: "This is about knowledge transfer, not environmental design for behavior change.",
                   },
                   {
                     id: "c",
-                    text: "Lagging indicators are not important",
+                    text: "Be transparent about performance expectations and communicate goals regularly so everyone understands what success looks like in measurable terms",
                     isCorrect: false,
-                    feedback: "Lagging indicators are important for outcomes, but leading indicators drive behavior change.",
+                    feedback: "While transparency helps, 'Make It Obvious' specifically refers to environmental cues that trigger behaviors.",
                   },
                   {
                     id: "d",
-                    text: "Leading indicators are more impressive to executives",
-                    isCorrect: false,
-                    feedback: "The value of leading indicators is in enabling behavior change, not impressing executives.",
+                    text: "Design the environment with visual cues and triggers so the desired behavior is easy to see and hard to forget",
+                    isCorrect: true,
+                    feedback: "Correct! 'Make It Obvious' means creating environmental cues like: templates saved on desktop, calendar blocks pre-scheduled, question cards on desks, or CRM that auto-opens prospecting lists. These physical and digital cues make the behavior visible and easy to start without requiring willpower or memory.",
                   },
                 ]}
-                explanation="Leading indicators measure the behaviors that drive outcomes. They provide early feedback, allowing for immediate course correction. Lagging indicators (like deals closed) appear too late to adjust behavior during the change process."
                 onAnswer={(correct) => handleQuizComplete("q4", correct)}
               />
 
               <MultipleChoice
-                question="What does 'habit stacking' mean in the implementation strategy?"
+                question="Which of these is an example of a 'character skill' according to Adam Grant's Hidden Potential model?"
                 options={[
                   {
                     id: "a",
-                    text: "Learning multiple habits at the same time",
+                    text: "IQ and cognitive ability, which determine how quickly you can learn new concepts and solve complex problems in your work",
                     isCorrect: false,
-                    feedback: "Habit stacking is about linking habits sequentially, not learning them simultaneously.",
+                    feedback: "IQ is a cognitive skill, not a character skill. Grant emphasizes we overvalue IQ.",
                   },
                   {
                     id: "b",
-                    text: "Layering new behaviors on top of existing routines using a trigger-behavior-reward sequence",
-                    isCorrect: true,
-                    feedback: "Correct! Habit stacking is the practice of linking a new behavior to an existing routine using the formula: 'After [EXISTING BEHAVIOR], I will [NEW BEHAVIOR], followed by [REWARD].' This leverages existing neural pathways to make new behaviors stick.",
+                    text: "Product knowledge and technical expertise that comes from years of experience working in your industry and understanding your customers",
+                    isCorrect: false,
+                    feedback: "These are technical/knowledge skills, not character skills.",
                   },
                   {
                     id: "c",
-                    text: "Stacking books about habits on your desk",
-                    isCorrect: false,
-                    feedback: "This is a literal interpretation—habit stacking is about linking behaviors.",
+                    text: "Discipline—the ability to show up consistently even when motivation is low",
+                    isCorrect: true,
+                    feedback: "Correct! Discipline is one of the five character skills, along with grit with flexibility, curiosity, accountability, and humility to recalibrate. These determine who keeps improving when others plateau. Unlike IQ or talent, character skills can be deliberately developed.",
                   },
                   {
                     id: "d",
-                    text: "Teaching habits in a specific order",
+                    text: "Natural sales talent and charisma that allows you to connect with people easily and build rapport quickly in any situation",
                     isCorrect: false,
-                    feedback: "While order matters, habit stacking specifically refers to linking new behaviors to existing ones.",
+                    feedback: "These are innate traits or talents, not character skills that can be developed.",
                   },
                 ]}
-                explanation="Habit stacking is the practice of linking a new behavior to an existing routine using the formula: 'After [EXISTING BEHAVIOR], I will [NEW BEHAVIOR], followed by [REWARD].' This leverages existing neural pathways to make new behaviors stick."
                 onAnswer={(correct) => handleQuizComplete("q5", correct)}
               />
 
               <MultipleChoice
-                question="What is the most critical warning sign that a rep is regressing to old behaviors?"
+                question="Why are rapid feedback loops important for behavioral change?"
                 options={[
                   {
                     id: "a",
-                    text: "They miss one day of the new behavior",
+                    text: "Feedback loops make people feel better about their performance and help maintain motivation throughout the learning process over time",
                     isCorrect: false,
-                    feedback: "Missing one day isn't necessarily a critical sign—look for sustained patterns.",
+                    feedback: "The goal isn't just feeling better—it's getting corrective input that drives improvement.",
                   },
                   {
                     id: "b",
-                    text: "Consistency drops below 4/5 days for two consecutive weeks",
+                    text: "They provide immediate, specific information about what to adjust before bad habits become ingrained",
                     isCorrect: true,
-                    feedback: "Correct! When consistency drops below 4/5 days for two consecutive weeks, it indicates the behavior is not becoming automatic and regression is likely. This requires immediate intervention with 1-on-1 coaching.",
+                    feedback: "Correct! Without rapid feedback, you might practice the wrong technique for weeks, ingraining bad habits. Fast feedback (like reviewing recorded calls within 24 hours) lets you correct mistakes immediately. The brain needs timely input to know what's working and what needs adjustment. Delayed feedback means you've already built muscle memory around incorrect execution.",
                   },
                   {
                     id: "c",
-                    text: "They ask questions during training",
+                    text: "Managers can avoid giving negative feedback if it's done quickly, which helps maintain positive relationships and team morale in the workplace",
                     isCorrect: false,
-                    feedback: "Asking questions is a sign of engagement, not regression.",
+                    feedback: "Rapid feedback should include both positive and corrective input—speed doesn't eliminate the need for honesty.",
                   },
                   {
                     id: "d",
-                    text: "They achieve lower results in one week",
+                    text: "Feedback loops are only useful for new employees who are still learning the basics and don't yet have established work patterns",
                     isCorrect: false,
-                    feedback: "One week of lower results may be normal variation—watch for sustained behavioral patterns.",
+                    feedback: "Everyone benefits from rapid feedback, regardless of experience level.",
                   },
                 ]}
-                explanation="When consistency drops below 4/5 days for two consecutive weeks, it indicates the behavior is not becoming automatic and regression is likely. This requires immediate intervention with 1-on-1 coaching."
                 onAnswer={(correct) => handleQuizComplete("q6", correct)}
               />
 
               <MultipleChoice
-                question="Why is environmental support more important than willpower in creating change?"
+                question="Why is environmental design more reliable than willpower for creating lasting behavior change?"
                 options={[
                   {
                     id: "a",
-                    text: "Because willpower doesn't exist",
-                    isCorrect: false,
-                    feedback: "Willpower exists but is limited—environmental design is more reliable.",
+                    text: "Willpower is a limited resource that gets exhausted throughout the day, while a well-designed environment makes good behavior automatic",
+                    isCorrect: true,
+                    feedback: "Correct! Willpower depletes as you make decisions and resist temptations during the day. By evening, you have less willpower left. Environmental design removes the need for willpower by making the desired behavior the easiest option (like having templates pre-loaded or calendar blocks automatically scheduled). The environment persists even when motivation fades.",
                   },
                   {
                     id: "b",
-                    text: "Because willpower is a limited resource that depletes, while environmental design makes desired behaviors automatic",
-                    isCorrect: true,
-                    feedback: "Correct! Willpower is a limited cognitive resource that depletes throughout the day. Environmental design creates structures where the desired behavior becomes the path of least resistance, requiring minimal willpower to maintain.",
+                    text: "Willpower doesn't exist as a real psychological construct and is just a myth that has been perpetuated by popular culture over time",
+                    isCorrect: false,
+                    feedback: "Willpower exists, but it's a limited resource that can be depleted.",
                   },
                   {
                     id: "c",
-                    text: "Because environmental support is cheaper",
+                    text: "Environmental design is cheaper than relying on willpower and requires less investment in training and development programs for employees",
                     isCorrect: false,
-                    feedback: "Cost isn't the issue—effectiveness and sustainability are.",
+                    feedback: "Cost isn't the main reason—reliability and sustainability are what matter.",
                   },
                   {
                     id: "d",
-                    text: "Because managers prefer environmental changes",
+                    text: "Only weak people need environmental support, while strong performers can rely on their willpower and self-discipline to succeed consistently",
                     isCorrect: false,
-                    feedback: "Manager preference isn't the reason—neuroscience supports environmental design.",
+                    feedback: "Everyone's willpower is limited. Even highly disciplined people benefit from environmental design.",
                   },
                 ]}
-                explanation="Willpower is a limited cognitive resource that depletes throughout the day. Environmental design creates structures where the desired behavior becomes the path of least resistance, requiring minimal willpower to maintain."
                 onAnswer={(correct) => handleQuizComplete("q7", correct)}
               />
 
               <MultipleChoice
-                question="What should managers celebrate during the behavior change process?"
+                question="What is a 'keystone behavior' in behavior change?"
                 options={[
                   {
                     id: "a",
-                    text: "Only closed deals",
+                    text: "The most difficult behavior to master, requiring the highest level of skill and dedication to execute consistently over time",
                     isCorrect: false,
-                    feedback: "Closed deals matter, but celebrating only outcomes can discourage reps during the learning phase.",
+                    feedback: "Keystone behaviors aren't necessarily the hardest—they're strategically chosen for their momentum-creating effect.",
                   },
                   {
                     id: "b",
-                    text: "Both process adherence (correct behavior execution) and results",
-                    isCorrect: true,
-                    feedback: "Correct! Managers should celebrate process adherence as much as results. A rep who perfectly follows the Camp/Voss system but doesn't close deals this week should be recognized, as consistent process execution will eventually drive results.",
+                    text: "Any behavior mentioned in the training materials that employees are expected to learn and demonstrate in their daily work activities",
+                    isCorrect: false,
+                    feedback: "Not all behaviors are keystone behaviors—only those that create cascading positive effects.",
                   },
                   {
                     id: "c",
-                    text: "Only revenue numbers",
+                    text: "The behavior that generates the most immediate revenue and has the strongest direct impact on short-term sales performance metrics",
                     isCorrect: false,
-                    feedback: "Revenue is important, but celebrating only revenue ignores the behaviors that drive it.",
+                    feedback: "Keystone behaviors create momentum for change, not necessarily immediate revenue.",
                   },
                   {
                     id: "d",
-                    text: "Only reps who exceed quota",
-                    isCorrect: false,
-                    feedback: "This overlooks reps who are executing behaviors correctly and building toward quota.",
+                    text: "One foundational behavior that, when mastered, creates momentum and makes subsequent changes easier",
+                    isCorrect: true,
+                    feedback: "Correct! A keystone behavior is like the first domino—when you get it right, other behaviors become easier. For example, establishing a daily morning prospecting routine (one behavior) might naturally lead to better pipeline management, more confidence, and improved closing skills. Focus on one keystone behavior at a time rather than trying to change everything at once.",
                   },
                 ]}
-                explanation="Managers should celebrate process adherence as much as results. A rep who perfectly follows the Camp/Voss system but doesn't close deals this week should be recognized, as consistent process execution will eventually drive results."
                 onAnswer={(correct) => handleQuizComplete("q8", correct)}
               />
 
               <MultipleChoice
-                question="Why is 'Make It Satisfying' important in the four-part framework?"
+                question="During behavior change, what should managers celebrate?"
                 options={[
                   {
                     id: "a",
-                    text: "It keeps people happy",
+                    text: "Only final results like closed deals and revenue, because that's what ultimately matters most to the business and stakeholders",
                     isCorrect: false,
-                    feedback: "Happiness is a bonus, but the real purpose is neurological reinforcement.",
+                    feedback: "Celebrating only results ignores the process that creates them and can demotivate sales representatives during the learning phase.",
                   },
                   {
                     id: "b",
-                    text: "The brain needs immediate feedback and rewards to reinforce new behaviors and create positive associations",
+                    text: "Both process adherence (doing the behaviors correctly) and results",
                     isCorrect: true,
-                    feedback: "Correct! 'Make It Satisfying' provides immediate feedback loops and rewards so the brain gets reinforcement for the new behavior. This creates positive associations and accelerates habit formation through dopamine release.",
+                    feedback: "Correct! A sales representative who perfectly executes Camp/Voss techniques but doesn't close a deal this week should still be recognized—they're building the skills that will drive future results. Celebrating process adherence reinforces the behaviors you want to see, even before they produce outcomes. Eventually, consistent process execution drives consistent results.",
                   },
                   {
                     id: "c",
-                    text: "It makes training more fun",
+                    text: "Nothing—celebration is for after the change is complete and employees have fully mastered the new behaviors and proven their effectiveness",
                     isCorrect: false,
-                    feedback: "Fun is good, but the purpose is to create neurological reinforcement for behavior change.",
+                    feedback: "Regular celebration during the change process is crucial for motivation and reinforcement.",
                   },
                   {
                     id: "d",
-                    text: "It reduces complaints",
+                    text: "Only effort, not results, because focusing on outcomes during the learning phase can create unhealthy pressure and anxiety",
                     isCorrect: false,
-                    feedback: "Reducing complaints isn't the goal—creating brain-based habit reinforcement is.",
+                    feedback: "Results matter too, but celebrating process adherence is equally important during behavior change.",
                   },
                 ]}
-                explanation="'Make It Satisfying' provides immediate feedback loops and rewards so the brain gets reinforcement for the new behavior. This creates positive associations and accelerates habit formation through dopamine release."
                 onAnswer={(correct) => handleQuizComplete("q9", correct)}
               />
 
               <MultipleChoice
-                question="What is the biggest pitfall when implementing behavioral change in sales teams?"
+                question="What is psychological safety and why does it matter for behavior change?"
                 options={[
                   {
                     id: "a",
-                    text: "Not having enough budget for training",
-                    isCorrect: false,
-                    feedback: "Budget helps, but behavioral change requires environmental design, not just funding.",
+                    text: "It's an environment where mistakes are treated as learning opportunities rather than failures, allowing people to practice and experiment without fear",
+                    isCorrect: true,
+                    feedback: "Correct! Psychological safety means sales representatives can share lost deals, admit when they're confused, or try new techniques without fear of judgment or punishment. This is critical because behavior change requires practice at the edge of competence—where you'll inevitably make mistakes. Without safety, people avoid challenges and hide problems, which prevents learning.",
                   },
                   {
                     id: "b",
-                    text: "Trying to change too many behaviors at once without environmental support or feedback systems",
-                    isCorrect: true,
-                    feedback: "Correct! The biggest pitfall is attempting to change too many behaviors simultaneously without creating environmental support structures or feedback systems. This cognitive overload leads to failure. Focus on one keystone behavior at a time with proper environmental design.",
+                    text: "It means never giving negative feedback to protect people's feelings and ensure they remain comfortable in their roles and responsibilities",
+                    isCorrect: false,
+                    feedback: "Psychological safety doesn't mean avoiding feedback—it means creating an environment where people can receive it without fear.",
                   },
                   {
                     id: "c",
-                    text: "Choosing the wrong behaviors to change",
+                    text: "It's a legal requirement for workplace safety that all companies must follow to comply with OSHA regulations and labor laws",
                     isCorrect: false,
-                    feedback: "Behavior selection matters, but even correct behaviors fail without environmental support.",
+                    feedback: "Psychological safety is about learning and growth culture, not physical workplace safety regulations.",
                   },
                   {
                     id: "d",
-                    text: "Not having a good CRM system",
+                    text: "It only matters for new employees who lack confidence and haven't yet developed the skills needed to perform at a high level",
                     isCorrect: false,
-                    feedback: "CRMs are tools, but behavioral change requires environmental design and support systems.",
+                    feedback: "Everyone needs psychological safety to take risks and grow, regardless of experience level.",
                   },
                 ]}
-                explanation="The biggest pitfall is attempting to change too many behaviors simultaneously without creating environmental support structures or feedback systems. This cognitive overload leads to failure. Focus on one keystone behavior at a time with proper environmental design."
                 onAnswer={(correct) => handleQuizComplete("q10", correct)}
               />
 
               <MultipleChoice
-                question="According to Adam Grant's Hidden Potential model, what is more important than talent in determining long-term success?"
+                question="According to Kegan & Lahey's Immunity to Change model, what is a 'hidden competing commitment'?"
                 options={[
                   {
                     id: "a",
-                    text: "IQ and cognitive ability",
+                    text: "A secret goal that someone doesn't want to share with their manager because it might conflict with organizational priorities",
                     isCorrect: false,
-                    feedback: "Grant argues we overvalue IQ—character skills matter more for sustained improvement.",
+                    feedback: "It's not about secrecy—hidden commitments operate outside conscious awareness and protect against perceived threats.",
                   },
                   {
                     id: "b",
-                    text: "Character skills like discipline, grit with flexibility, curiosity, and accountability",
-                    isCorrect: true,
-                    feedback: "Correct! Grant emphasizes that character skills—discipline, grit with flexibility, curiosity, accountability, and humility to recalibrate—determine who keeps improving when others plateau. These skills enable continuous progress regardless of starting talent level.",
+                    text: "When someone is committed to multiple projects at the same time and struggles to balance competing demands on their attention",
+                    isCorrect: false,
+                    feedback: "This is about competing priorities, not the immunity to change concept of hidden commitments.",
                   },
                   {
                     id: "c",
-                    text: "Years of experience",
+                    text: "A promise made to a competitor or another organization that prevents them from fully committing to their current employer",
                     isCorrect: false,
-                    feedback: "Experience helps, but character skills and deliberate practice drive improvement more than time alone.",
+                    feedback: "Hidden commitments are internal psychological protections, not external business agreements.",
                   },
                   {
                     id: "d",
-                    text: "Natural charisma",
-                    isCorrect: false,
-                    feedback: "Charisma may help initially, but character skills enable sustained growth.",
+                    text: "An unconscious commitment that works against your stated goal, often to protect your identity or avoid discomfort",
+                    isCorrect: true,
+                    feedback: "Correct! For example, you might consciously want to make more cold calls (stated goal), but have a hidden commitment to 'not sounding desperate' that prevents you from taking action. This isn't resistance or laziness—it's your mind protecting you from what it perceives as a threat. Real change requires surfacing these hidden commitments and testing the assumptions behind them.",
                   },
                 ]}
-                explanation="Grant emphasizes that character skills—discipline, grit with flexibility, curiosity, accountability, and humility to recalibrate—determine who keeps improving when others plateau. These skills enable continuous progress regardless of starting talent level."
                 onAnswer={(correct) => handleQuizComplete("q11", correct)}
               />
 
-              <MultipleChoice
-                question="According to Kegan & Lahey's Immunity to Change model, why do people fail to change even when they genuinely want to?"
-                options={[
-                  {
-                    id: "a",
-                    text: "They lack willpower and discipline",
-                    isCorrect: false,
-                    feedback: "Kegan & Lahey show that willpower isn't the issue—hidden immune systems are.",
-                  },
-                  {
-                    id: "b",
-                    text: "They have an internal immune system with hidden commitments and big assumptions that actively protect against change",
-                    isCorrect: true,
-                    feedback: "Correct! People have hidden competing commitments (like 'not looking incompetent') and big untested assumptions (like 'if I fail, I'll lose respect') that create an immunity to change. This is self-protection, not resistance. Real change requires surfacing and testing these assumptions.",
-                  },
-                  {
-                    id: "c",
-                    text: "They don't really want to change",
-                    isCorrect: false,
-                    feedback: "The desire to change is genuine—the immune system operates outside conscious awareness.",
-                  },
-                  {
-                    id: "d",
-                    text: "They need better training",
-                    isCorrect: false,
-                    feedback: "This treats change as a technical problem, but immunity to change is an adaptive/developmental challenge.",
-                  },
-                ]}
-                explanation="People have hidden competing commitments (like 'not looking incompetent') and big untested assumptions (like 'if I fail, I'll lose respect') that create an immunity to change. This is self-protection, not resistance. Real change requires surfacing and testing these assumptions."
-                onAnswer={(correct) => handleQuizComplete("q12", correct)}
-              />
+              {!assessmentSubmitted && (
+                <div className="mt-8 flex justify-center">
+                  <Button
+                    onClick={handleSubmitAssessment}
+                    disabled={!allQuizAnswered}
+                    className="bg-brand-green hover:bg-[#143d31] text-white px-8 py-6 text-lg"
+                    size="lg"
+                  >
+                    Complete Assessment
+                  </Button>
+                </div>
+              )}
 
-              {allQuizComplete && (
-                <Card className="p-6 bg-green-50 dark:bg-green-950 border-2 border-green-500">
+              {assessmentSubmitted && allQuizComplete && (
+                <Card className="p-6 bg-green-50 dark:bg-green-950 border-2 border-green-500 mt-8">
                   <div className="flex items-start gap-4">
                     <CheckCircle2 className="h-8 w-8 text-green-600 flex-shrink-0 mt-1" />
                     <div className="flex-1">
@@ -3992,8 +3978,30 @@ export default function Module5Page() {
                         sustainable change in sales teams using the four-part framework: Make It Obvious, Make It
                         Attractive, Make It Easy, and Make It Satisfying.
                       </p>
+                      <p className="text-green-800 dark:text-green-200 mb-4 font-semibold">
+                        Perfect score! You answered all questions correctly. 🌟
+                      </p>
                       <Button onClick={() => router.push("/course")} className="bg-brand-green hover:bg-[#143d31] text-white">
                         Return to Dashboard
+                      </Button>
+                    </div>
+                  </div>
+                </Card>
+              )}
+
+              {assessmentSubmitted && !allQuizComplete && (
+                <Card className="p-6 bg-amber-50 dark:bg-amber-950 border-2 border-amber-500 mt-8">
+                  <div className="flex items-start gap-4">
+                    <RefreshCw className="h-8 w-8 text-amber-600 flex-shrink-0 mt-1" />
+                    <div className="flex-1">
+                      <h3 className="text-xl font-semibold text-amber-900 dark:text-amber-100 mb-2">
+                        Review Your Answers
+                      </h3>
+                      <p className="text-amber-800 dark:text-amber-200 mb-4">
+                        You've answered all questions, but some answers are incorrect. Please review the module content and try again. You need to answer all questions correctly to complete this module.
+                      </p>
+                      <Button onClick={() => window.location.reload()} className="bg-amber-600 hover:bg-amber-700 text-white">
+                        Try Again
                       </Button>
                     </div>
                   </div>

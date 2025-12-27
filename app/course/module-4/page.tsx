@@ -63,6 +63,9 @@ export default function Module4Page() {
     quiz10: false,
   })
 
+  const [attemptedQuestions, setAttemptedQuestions] = useState<Set<string>>(new Set())
+  const [assessmentSubmitted, setAssessmentSubmitted] = useState(false)
+
   const MODULE_ID = "module-4"
   const courseStructure = getCourseStructure()
   const module = courseStructure.modules.find((m) => m.id === MODULE_ID)
@@ -84,7 +87,13 @@ export default function Module4Page() {
   useEffect(() => {
     const savedQuiz = localStorage.getItem(`${MODULE_ID}-quiz-results`)
     if (savedQuiz) {
-      setQuizResults(JSON.parse(savedQuiz))
+      const parsed = JSON.parse(savedQuiz)
+      setQuizResults(parsed)
+    }
+    const savedAttempted = localStorage.getItem(`${MODULE_ID}-attempted-questions`)
+    if (savedAttempted) {
+      const parsed = JSON.parse(savedAttempted)
+      setAttemptedQuestions(new Set(parsed))
     }
   }, [])
 
@@ -92,17 +101,26 @@ export default function Module4Page() {
     localStorage.setItem(`${MODULE_ID}-quiz-results`, JSON.stringify(quizResults))
   }, [quizResults])
 
+  useEffect(() => {
+    localStorage.setItem(`${MODULE_ID}-attempted-questions`, JSON.stringify(Array.from(attemptedQuestions)))
+  }, [attemptedQuestions])
+
+  const allQuizAnswered = attemptedQuestions.size === 11
   const allQuizComplete = Object.values(quizResults).every((result) => result === true)
 
   useEffect(() => {
-    if (allQuizComplete && currentSectionIndex === 9) {
+    if (assessmentSubmitted && allQuizComplete && currentSectionIndex === 9) {
       const assessmentSection = sections[9]
       if (assessmentSection) {
         markSectionComplete(MODULE_ID, assessmentSection.id)
         setCurrentPosition(MODULE_ID, assessmentSection.id)
       }
     }
-  }, [allQuizComplete, currentSectionIndex, sections, MODULE_ID, markSectionComplete, setCurrentPosition])
+  }, [assessmentSubmitted, allQuizComplete, currentSectionIndex, sections, MODULE_ID, markSectionComplete, setCurrentPosition])
+
+  const handleSubmitAssessment = () => {
+    setAssessmentSubmitted(true)
+  }
 
   const handleSectionComplete = () => {
     const currentSection = sections[currentSectionIndex]
@@ -123,6 +141,7 @@ export default function Module4Page() {
   }
 
   const handleQuizComplete = (quizKey: keyof typeof quizResults, correct: boolean) => {
+    setAttemptedQuestions((prev) => new Set(prev).add(quizKey))
     setQuizResults((prev) => ({
       ...prev,
       [quizKey]: correct,
@@ -2387,7 +2406,7 @@ export default function Module4Page() {
                     id: "c",
                     text: "Late-night FM DJ tone and calibrated questions",
                     isCorrect: true,
-                    feedback: "Correct! Late-night FM DJ tone—a slow, deliberate, calm vocal style—physiologically forces the rep to slow their speech rate and reduces their natural energy level. This tone makes rapid-fire talking physically difficult to maintain. Calibrated questions ('How am I supposed to do that?' 'What about this is important to you?') transfer conversational control to the prospect, requiring the rep to stop talking and listen. Together, these tools create structural pauses that interrupt the enthusiasm-driven monologue pattern. The rep cannot simultaneously deliver calibrated questions and dominate airtime—the format itself enforces listening discipline.",
+                    feedback: "Correct! Late-night FM DJ tone—a slow, deliberate, calm vocal style—physiologically forces the sales representative to slow their speech rate and reduces their natural energy level. This tone makes rapid-fire talking physically difficult to maintain. Calibrated questions ('How am I supposed to do that?' 'What about this is important to you?') transfer conversational control to the prospect, requiring the sales representative to stop talking and listen. Together, these tools create structural pauses that interrupt the enthusiasm-driven monologue pattern. The sales representative cannot simultaneously deliver calibrated questions and dominate airtime—the format itself enforces listening discipline.",
                   },
                   {
                     id: "d",
@@ -2486,7 +2505,7 @@ export default function Module4Page() {
                     id: "d",
                     text: "Long explanations",
                     isCorrect: false,
-                    feedback: "Long explanations come from the rep—mirroring gets the prospect talking.",
+                    feedback: "Long explanations come from the sales representative—mirroring gets the prospect talking.",
                   },
                 ]}
                 onAnswer={(correct) => handleQuizComplete("quiz8", correct)}
@@ -2611,8 +2630,21 @@ export default function Module4Page() {
                 onComplete={(correct) => handleQuizComplete("matching", correct)}
               />
 
-              {allQuizComplete && (
-                <Card className="p-6 bg-green-50 dark:bg-green-950 border-2 border-green-500">
+              {!assessmentSubmitted && (
+                <div className="mt-8 flex justify-center">
+                  <Button
+                    onClick={handleSubmitAssessment}
+                    disabled={!allQuizAnswered}
+                    className="bg-brand-green hover:bg-[#143d31] text-white px-8 py-6 text-lg"
+                    size="lg"
+                  >
+                    Complete Assessment
+                  </Button>
+                </div>
+              )}
+
+              {assessmentSubmitted && allQuizComplete && (
+                <Card className="p-6 bg-green-50 dark:bg-green-950 border-2 border-green-500 mt-8">
                   <div className="flex items-start gap-4">
                     <CheckCircle2 className="h-8 w-8 text-green-600 flex-shrink-0 mt-1" />
                     <div className="flex-1">
@@ -2624,8 +2656,30 @@ export default function Module4Page() {
                         negotiation systems. You now have the tools to make your personality traits irrelevant to your
                         performance.
                       </p>
+                      <p className="text-green-800 dark:text-green-200 mb-4 font-semibold">
+                        Perfect score! You answered all questions correctly. 🌟
+                      </p>
                       <Button onClick={() => router.push("/course")} className="bg-brand-green hover:bg-[#143d31] text-white">
                         Return to Dashboard
+                      </Button>
+                    </div>
+                  </div>
+                </Card>
+              )}
+
+              {assessmentSubmitted && !allQuizComplete && (
+                <Card className="p-6 bg-amber-50 dark:bg-amber-950 border-2 border-amber-500 mt-8">
+                  <div className="flex items-start gap-4">
+                    <RefreshCw className="h-8 w-8 text-amber-600 flex-shrink-0 mt-1" />
+                    <div className="flex-1">
+                      <h3 className="text-xl font-semibold text-amber-900 dark:text-amber-100 mb-2">
+                        Review Your Answers
+                      </h3>
+                      <p className="text-amber-800 dark:text-amber-200 mb-4">
+                        You've answered all questions, but some answers are incorrect. Please review the module content and try again. You need to answer all questions correctly to complete this module.
+                      </p>
+                      <Button onClick={() => window.location.reload()} className="bg-amber-600 hover:bg-amber-700 text-white">
+                        Try Again
                       </Button>
                     </div>
                   </div>
