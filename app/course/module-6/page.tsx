@@ -16,6 +16,7 @@ import { ArrowRight, CheckCircle2, BarChart3, Target, Eye, TrendingUp } from "lu
 import { useProgress } from "@/hooks/use-progress"
 import { MultipleChoice } from "@/components/learning/multiple-choice"
 import { GridDisplay } from "@/components/learning/grid-display"
+import { DailyCallSheet } from "@/components/learning/daily-call-sheet"
 
 export default function Module6Page() {
   const router = useRouter()
@@ -23,22 +24,7 @@ export default function Module6Page() {
   const { markSectionComplete, setCurrentPosition, getCompletedSections, getCourseStructure } = useProgress()
 
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0)
-  const [quizResults, setQuizResults] = useState<{
-    q1: boolean
-    q2: boolean
-    q3: boolean
-    q4: boolean
-    q5: boolean
-  }>({
-    q1: false,
-    q2: false,
-    q3: false,
-    q4: false,
-    q5: false,
-  })
-
-  const [attemptedQuestions, setAttemptedQuestions] = useState<Set<string>>(new Set())
-  const [assessmentSubmitted, setAssessmentSubmitted] = useState(false)
+  const [callSheetCompleted, setCallSheetCompleted] = useState(false)
 
   const MODULE_ID = "module-6"
   const courseStructure = getCourseStructure()
@@ -59,21 +45,26 @@ export default function Module6Page() {
   }, [searchParams, sections, currentSectionIndex])
 
   useEffect(() => {
-    const savedQuiz = localStorage.getItem(`${MODULE_ID}-quiz-results`)
-    if (savedQuiz) {
-      const parsed = JSON.parse(savedQuiz)
-      setQuizResults(parsed)
-    }
-    const savedAttempted = localStorage.getItem(`${MODULE_ID}-attempted-questions`)
-    if (savedAttempted) {
-      const parsed = JSON.parse(savedAttempted)
-      setAttemptedQuestions(new Set(parsed))
+    const savedCallSheet = localStorage.getItem(`${MODULE_ID}-call-sheet-completed`)
+    if (savedCallSheet) {
+      setCallSheetCompleted(JSON.parse(savedCallSheet))
     }
   }, [])
 
   useEffect(() => {
-    localStorage.setItem(`${MODULE_ID}-quiz-results`, JSON.stringify(quizResults))
-  }, [quizResults])
+    if (callSheetCompleted && currentSectionIndex === 7) {
+      const assessmentSection = sections[7]
+      if (assessmentSection) {
+        markSectionComplete(MODULE_ID, assessmentSection.id)
+        setCurrentPosition(MODULE_ID, assessmentSection.id)
+      }
+    }
+  }, [callSheetCompleted, currentSectionIndex, sections, MODULE_ID, markSectionComplete, setCurrentPosition])
+
+  const handleCallSheetComplete = () => {
+    setCallSheetCompleted(true)
+    localStorage.setItem(`${MODULE_ID}-call-sheet-completed`, JSON.stringify(true))
+  }
 
   const handleSectionComplete = () => {
     const currentSection = sections[currentSectionIndex]
@@ -91,35 +82,6 @@ export default function Module6Page() {
       }
       window.scrollTo({ top: 0, behavior: "smooth" })
     }
-  }
-
-  useEffect(() => {
-    localStorage.setItem(`${MODULE_ID}-attempted-questions`, JSON.stringify(Array.from(attemptedQuestions)))
-  }, [attemptedQuestions])
-
-  const allQuizAnswered = attemptedQuestions.size === 5
-  const allQuizComplete = Object.values(quizResults).every((result) => result === true)
-
-  useEffect(() => {
-    if (assessmentSubmitted && allQuizComplete && currentSectionIndex === 7) {
-      const assessmentSection = sections[7]
-      if (assessmentSection) {
-        markSectionComplete(MODULE_ID, assessmentSection.id)
-        setCurrentPosition(MODULE_ID, assessmentSection.id)
-      }
-    }
-  }, [assessmentSubmitted, allQuizComplete, currentSectionIndex, sections, MODULE_ID, markSectionComplete, setCurrentPosition])
-
-  const handleSubmitAssessment = () => {
-    setAssessmentSubmitted(true)
-  }
-
-  const handleQuizComplete = (quizKey: keyof typeof quizResults, correct: boolean) => {
-    setAttemptedQuestions((prev) => new Set(prev).add(quizKey))
-    setQuizResults((prev) => ({
-      ...prev,
-      [quizKey]: correct,
-    }))
   }
 
   return (
@@ -888,192 +850,24 @@ export default function Module6Page() {
             </div>
           )}
 
-          {/* Section 7: Module Assessment */}
+          {/* Section 7: Daily Call Sheet */}
           {currentSectionIndex === 7 && (
-            <div className="space-y-6" id="module-assessment">
-              <h2 className="text-3xl font-bold text-brand-green">Module 6 Assessment</h2>
+            <div className="space-y-6" id="daily-call-sheet">
+              <h2 className="text-3xl font-bold text-brand-green">Daily Call Sheet: KPI Tracking</h2>
 
               <Card className="p-6 bg-gradient-to-br from-brand-green/10 to-brand-orange/10">
                 <p className="text-lg leading-relaxed">
-                  Test your understanding of the 4D Growth Framework and the principles of measurement and
-                  accountability.
+                  Use this daily call sheet to track your key performance indicators (KPIs) with emphasis on leading
+                  indicators that drive your pipeline health and ensure commitment to your mission and purpose.
                 </p>
               </Card>
 
-              <MultipleChoice
-                question="What is the primary purpose of measurement in the SwiftCourse framework?"
-                options={[
-                  {
-                    id: "a",
-                    text: "To judge and rank participants",
-                    isCorrect: false,
-                    feedback: "Judgment and ranking are not the purpose—measurement is about clarity, not comparison.",
-                  },
-                  {
-                    id: "b",
-                    text: "To create pressure and competition",
-                    isCorrect: false,
-                    feedback: "Pressure and competition are byproducts, not the purpose of measurement.",
-                  },
-                  {
-                    id: "c",
-                    text: "To see reality clearly enough to change it and eliminate self-deception",
-                    isCorrect: true,
-                    feedback: "Correct! Measurement is about seeing reality clearly enough to change it. It eliminates willful blindness, rationalization, and false progress—not about judgment or pressure.",
-                  },
-                  {
-                    id: "d",
-                    text: "To satisfy training requirements",
-                    isCorrect: false,
-                    feedback: "Compliance is not the purpose—creating clarity and enabling change is.",
-                  },
-                ]}
-                explanation="Measurement is about seeing reality clearly enough to change it. It eliminates willful blindness, rationalization, and false progress—not about judgment or pressure."
-                onAnswer={(correct) => handleQuizComplete("q1", correct)}
+              <DailyCallSheet
+                onComplete={handleCallSheetComplete}
+                storageKey={`${MODULE_ID}-call-sheet`}
               />
 
-              <MultipleChoice
-                question="In the Big 10 Integration Index (D1), what does a score of 4 represent?"
-                options={[
-                  {
-                    id: "a",
-                    text: "Basic awareness of personality traits",
-                    isCorrect: false,
-                    feedback: "Basic awareness is score 1—score 4 represents full mastery.",
-                  },
-                  {
-                    id: "b",
-                    text: "Ability to recognize traits but not regulate them",
-                    isCorrect: false,
-                    feedback: "Recognition without regulation is score 2—score 4 requires full self-management.",
-                  },
-                  {
-                    id: "c",
-                    text: "Inconsistent attempts at self-regulation",
-                    isCorrect: false,
-                    feedback: "Inconsistent regulation is score 3—score 4 demonstrates consistent mastery.",
-                  },
-                  {
-                    id: "d",
-                    text: "Full self-management in high-stress sales contexts",
-                    isCorrect: true,
-                    feedback: "Correct! A score of 4 in D1 represents full mastery: the ability to manage trait-driven tendencies even in high-stress sales situations, using effective compensation strategies.",
-                  },
-                ]}
-                explanation="A score of 4 in D1 represents full mastery: the ability to manage trait-driven tendencies even in high-stress sales situations, using effective compensation strategies."
-                onAnswer={(correct) => handleQuizComplete("q2", correct)}
-              />
-
-              <MultipleChoice
-                question="Which of these is NOT one of the five core mindset shifts measured in D2?"
-                options={[
-                  {
-                    id: "a",
-                    text: "From outcome-focused to process-focused",
-                    isCorrect: false,
-                    feedback: "This is one of the five core mindset shifts measured in D2.",
-                  },
-                  {
-                    id: "b",
-                    text: "From fear of 'No' to using 'No' as a resource",
-                    isCorrect: false,
-                    feedback: "This is one of the five core mindset shifts measured in D2.",
-                  },
-                  {
-                    id: "c",
-                    text: "From high activity to high conversion rates",
-                    isCorrect: true,
-                    feedback: "Correct! The five mindset shifts focus on cognitive and behavioral patterns, not conversion outcomes. They measure shifts in thinking (process vs outcome, using 'No', tactical empathy, etc.), not results metrics.",
-                  },
-                  {
-                    id: "d",
-                    text: "From emotional reactivity to tactical empathy and curiosity",
-                    isCorrect: false,
-                    feedback: "This is one of the five core mindset shifts measured in D2.",
-                  },
-                ]}
-                explanation="The five mindset shifts focus on cognitive and behavioral patterns, not conversion outcomes. They measure shifts in thinking (process vs outcome, using 'No', tactical empathy, etc.), not results metrics."
-                onAnswer={(correct) => handleQuizComplete("q3", correct)}
-              />
-
-              <MultipleChoice
-                question="What does the D4 (Sales Activity) score primarily reward?"
-                options={[
-                  {
-                    id: "a",
-                    text: "Number of deals closed and revenue generated",
-                    isCorrect: false,
-                    feedback: "D4 rewards behavior, not outcomes—deals closed are lagging indicators.",
-                  },
-                  {
-                    id: "b",
-                    text: "Behavior quality and mission-driven activity, not outcomes",
-                    isCorrect: true,
-                    feedback: "Correct! D4 is designed to reward behavior, not results, consistent with Jim Camp's principles. It measures activity quality, discipline, and proper execution of the system—not deals closed.",
-                  },
-                  {
-                    id: "c",
-                    text: "Win rate and average deal size",
-                    isCorrect: false,
-                    feedback: "Win rate and deal size are outcome metrics, not behaviors—D4 measures behaviors.",
-                  },
-                  {
-                    id: "d",
-                    text: "Meeting quota targets",
-                    isCorrect: false,
-                    feedback: "Quota is an outcome metric—D4 measures the behaviors that lead to quota.",
-                  },
-                ]}
-                explanation="D4 is designed to reward behavior, not results, consistent with Jim Camp's principles. It measures activity quality, discipline, and proper execution of the system—not deals closed."
-                onAnswer={(correct) => handleQuizComplete("q4", correct)}
-              />
-
-              <MultipleChoice
-                question="A participant with an SCTI score of 2.9 falls into which category?"
-                options={[
-                  {
-                    id: "a",
-                    text: "Needs Intensive Coaching (0-1.7)",
-                    isCorrect: false,
-                    feedback: "This range is for those needing intensive coaching—2.9 is higher.",
-                  },
-                  {
-                    id: "b",
-                    text: "Emerging Capability (1.8-2.5)",
-                    isCorrect: false,
-                    feedback: "This range is for emerging capability—2.9 is above this threshold.",
-                  },
-                  {
-                    id: "c",
-                    text: "Strong Growth (2.6-3.4)",
-                    isCorrect: true,
-                    feedback: "Correct! A score of 2.9 falls in the Strong Growth category (2.6-3.4), indicating reliable application of principles with occasional regression under stress and periodic coaching needs.",
-                  },
-                  {
-                    id: "d",
-                    text: "Transformational (3.5-4.0)",
-                    isCorrect: false,
-                    feedback: "This is the highest category—2.9 hasn't reached transformational level yet.",
-                  },
-                ]}
-                explanation="A score of 2.9 falls in the Strong Growth category (2.6-3.4), indicating reliable application of principles with occasional regression under stress and periodic coaching needs."
-                onAnswer={(correct) => handleQuizComplete("q5", correct)}
-              />
-
-              {!assessmentSubmitted && (
-                <div className="mt-8 flex justify-center">
-                  <Button
-                    onClick={handleSubmitAssessment}
-                    disabled={!allQuizAnswered}
-                    className="bg-brand-green hover:bg-[#143d31] text-white px-8 py-6 text-lg"
-                    size="lg"
-                  >
-                    Complete Assessment
-                  </Button>
-                </div>
-              )}
-
-              {assessmentSubmitted && allQuizComplete && (
+              {callSheetCompleted && (
                 <Card className="p-6 bg-green-50 dark:bg-green-950 border-2 border-green-500 mt-8">
                   <div className="flex items-start gap-4">
                     <CheckCircle2 className="h-8 w-8 text-green-600 flex-shrink-0 mt-1" />
@@ -1082,37 +876,18 @@ export default function Module6Page() {
                         🎉 Module 6 Complete!
                       </h3>
                       <p className="text-green-800 dark:text-green-200 mb-4">
-                        Congratulations! You've mastered the 4D Growth Framework for measuring behavioral transformation.
-                        You now understand how to track personality work, mindset shifts, change agency, and sales activity
-                        through structured measurement that creates clarity, discipline, and transformation.
+                        Congratulations! You've completed your Daily Call Sheet and understand the importance of tracking
+                        both leading and lagging indicators. Remember to use this tool daily to maintain discipline and
+                        focus on the activities that drive success.
                       </p>
                       <p className="text-green-800 dark:text-green-200 mb-4 font-semibold">
-                        Perfect score! You answered all questions correctly. 🌟
+                        Keep tracking your KPIs consistently—what gets measured gets managed. 🌟
                       </p>
                       <p className="text-green-800 dark:text-green-200 mb-4 font-semibold">
-                        Remember: What you don't measure, you tolerate. What you tolerate, you reinforce.
+                        Remember: Leading indicators drive your success. Stay committed to your daily disciplines.
                       </p>
                       <Button onClick={() => router.push("/course")} className="bg-brand-green hover:bg-[#143d31] text-white">
                         Return to Dashboard
-                      </Button>
-                    </div>
-                  </div>
-                </Card>
-              )}
-
-              {assessmentSubmitted && !allQuizComplete && (
-                <Card className="p-6 bg-amber-50 dark:bg-amber-950 border-2 border-amber-500 mt-8">
-                  <div className="flex items-start gap-4">
-                    <RefreshCw className="h-8 w-8 text-amber-600 flex-shrink-0 mt-1" />
-                    <div className="flex-1">
-                      <h3 className="text-xl font-semibold text-amber-900 dark:text-amber-100 mb-2">
-                        Review Your Answers
-                      </h3>
-                      <p className="text-amber-800 dark:text-amber-200 mb-4">
-                        You've answered all questions, but some answers are incorrect. Please review the module content and try again. You need to answer all questions correctly to complete this module.
-                      </p>
-                      <Button onClick={() => window.location.reload()} className="bg-amber-600 hover:bg-amber-700 text-white">
-                        Try Again
                       </Button>
                     </div>
                   </div>

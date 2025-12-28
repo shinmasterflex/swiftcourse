@@ -11,6 +11,12 @@ export function Sidebar() {
   const { getCourseStructure, getCompletedSections, currentModule, currentSection, setCurrentPosition } = useProgress()
 
   const [isCollapsed, setIsCollapsed] = useState(false)
+  const [isClient, setIsClient] = useState(false)
+
+  // Mark as client-side after hydration
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
 
   // Load collapsed state from localStorage on mount
   useEffect(() => {
@@ -92,8 +98,9 @@ export function Sidebar() {
                 {isActiveModule && (
                   <div className="ml-4 mt-2 space-y-1">
                     {module.sections.map((section, index) => {
-                      const isCompleted = completedSectionIds.includes(section.id)
-                      const isActive = currentModule === module.id && currentSection === section.id
+                      // Don't show completion or active status until client-side hydration is complete
+                      const isCompleted = isClient && completedSectionIds.includes(section.id)
+                      const isActive = isClient && currentModule === module.id && currentSection === section.id
 
                       return (
                         <button

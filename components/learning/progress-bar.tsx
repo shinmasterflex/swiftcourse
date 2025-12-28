@@ -3,7 +3,10 @@
  * Visual indicator of course/module completion
  */
 
+"use client"
+
 import { cn } from "@/lib/utils"
+import { useState, useEffect } from "react"
 
 interface ProgressBarProps {
   current: number
@@ -14,7 +17,15 @@ interface ProgressBarProps {
 }
 
 export function ProgressBar({ current, total, label, showPercentage = true, className }: ProgressBarProps) {
-  const percentage = Math.min(Math.max(Math.round((current / total) * 100), 0), 100)
+  const [isClient, setIsClient] = useState(false)
+  
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+  
+  // Use 0 for SSR to avoid hydration mismatch
+  const displayCurrent = isClient ? current : 0
+  const percentage = Math.min(Math.max(Math.round((displayCurrent / total) * 100), 0), 100)
 
   return (
     <div className={cn("space-y-2", className)}>
@@ -42,7 +53,7 @@ export function ProgressBar({ current, total, label, showPercentage = true, clas
 
       {/* Current/Total */}
       <div className="text-xs text-muted-foreground text-right">
-        {current} of {total} completed
+        {displayCurrent} of {total} completed
       </div>
     </div>
   )

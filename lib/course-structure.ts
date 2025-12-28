@@ -124,7 +124,7 @@ export const courseStructure: CourseStructure = {
         { id: "d4-sales-activity", title: "D4: Sales Activity", completed: false },
         { id: "composite-score", title: "The SwiftCourse Transformation Index", completed: false },
         { id: "module-summary", title: "Module Summary", completed: false },
-        { id: "module-assessment", title: "Module Assessment", completed: false },
+        { id: "daily-call-sheet", title: "Daily Call Sheet", completed: false },
       ],
     },
   ],
