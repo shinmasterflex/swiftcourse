@@ -853,13 +853,32 @@ export default function Module6Page() {
           {/* Section 7: Daily Call Sheet */}
           {currentSectionIndex === 7 && (
             <div className="space-y-6" id="daily-call-sheet">
-              <h2 className="text-3xl font-bold text-brand-green">Daily Call Sheet: KPI Tracking</h2>
+              <h2 className="text-3xl font-bold text-brand-green">Call Sheet: KPI Tracking</h2>
 
               <Card className="p-6 bg-gradient-to-br from-brand-green/10 to-brand-orange/10">
-                <p className="text-lg leading-relaxed">
-                  Use this daily call sheet to track your key performance indicators (KPIs) with emphasis on leading
-                  indicators that drive your pipeline health and ensure commitment to your mission and purpose.
+                <p className="text-lg leading-relaxed mb-4">
+                  We are mostly concerned with leading indicators of sales activity. Thus, we will keep daily track of:
                 </p>
+                
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="font-semibold text-brand-green mb-2">Outbound Prospecting Activity:</h4>
+                    <ol className="list-decimal list-inside space-y-1 ml-2">
+                      <li>Number of outbound calls</li>
+                      <li>Contacts made with prospects</li>
+                      <li>New prospects generated through outreach</li>
+                    </ol>
+                  </div>
+                  
+                  <div>
+                    <h4 className="font-semibold text-brand-orange mb-2">Follow Up Calling Activities:</h4>
+                    <ol className="list-decimal list-inside space-y-1 ml-2" start={4}>
+                      <li>Lead follow up calls</li>
+                      <li>Appointment generated with agenda set</li>
+                      <li>Leads that do not have an advancing agenda</li>
+                    </ol>
+                  </div>
+                </div>
               </Card>
 
               <DailyCallSheet
@@ -876,7 +895,7 @@ export default function Module6Page() {
                         🎉 Module 6 Complete!
                       </h3>
                       <p className="text-green-800 dark:text-green-200 mb-4">
-                        Congratulations! You've completed your Daily Call Sheet and understand the importance of tracking
+                        Congratulations! You've completed your Call Sheet and understand the importance of tracking
                         both leading and lagging indicators. Remember to use this tool daily to maintain discipline and
                         focus on the activities that drive success.
                       </p>

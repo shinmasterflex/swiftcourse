@@ -2,32 +2,23 @@
 
 import { useState, useEffect } from "react"
 import { Card } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
-import { CheckCircle2, TrendingUp, Phone, Users, Calendar, UserPlus, DollarSign } from "lucide-react"
+import { CheckCircle2, Phone, MessageSquare, UserPlus, Calendar, X, DollarSign } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Legend, ResponsiveContainer } from "recharts"
 
-interface KPI {
-  id: string
-  label: string
-  goal: number
-  outcome: number
-  icon: React.ReactNode
-  category: "leading" | "lagging"
-}
+type CallState = "none" | "called" | "contacted" | "lead"
+type OutcomeState = "none" | "appointment" | "no-interest" | "sale"
 
-type CallState = "none" | "called" | "answered" | "lead"
-
-interface CallLogState {
-  outboundCalls: CallState[]
-  followUpCalls: CallState[]
-}
-
-interface Lead {
-  name: string
-  email: string
-  phone: string
+interface DailyStats {
+  date: string
+  totalCalls: number
+  contacted: number
+  leads: number
+  appointments: number
+  noInterest: number
+  sales: number
 }
 
 interface DailyCallSheetProps {
@@ -40,12 +31,12 @@ function CallStateIndicator({ state }: { state: CallState }) {
   return (
     <svg viewBox="0 0 24 24" className="w-full h-full">
       {/* Diagonal line for "called" */}
-      {(state === "called" || state === "answered" || state === "lead") && (
+      {(state === "called" || state === "contacted" || state === "lead") && (
         <line x1="2" y1="22" x2="22" y2="2" stroke="currentColor" strokeWidth="2" />
       )}
       
-      {/* Second diagonal for "answered" (creates X) */}
-      {(state === "answered" || state === "lead") && (
+      {/* Second diagonal for "contacted" (creates X) */}
+      {(state === "contacted" || state === "lead") && (
         <line x1="2" y1="2" x2="22" y2="22" stroke="currentColor" strokeWidth="2" />
       )}
       
@@ -57,58 +48,41 @@ function CallStateIndicator({ state }: { state: CallState }) {
   )
 }
 
-export function DailyCallSheet({ onComplete, storageKey = "daily-call-sheet" }: DailyCallSheetProps) {
-  const [kpis, setKpis] = useState<KPI[]>([
-    {
-      id: "outbound-calls",
-      label: "Outbound Calls",
-      goal: 0,
-      outcome: 0,
-      icon: <Phone className="h-5 w-5" />,
-      category: "leading",
-    },
-    {
-      id: "follow-up-calls",
-      label: "Follow Up Calls",
-      goal: 0,
-      outcome: 0,
-      icon: <Phone className="h-5 w-5" />,
-      category: "leading",
-    },
-    {
-      id: "appointments-set",
-      label: "Appointments Set",
-      goal: 0,
-      outcome: 0,
-      icon: <Calendar className="h-5 w-5" />,
-      category: "leading",
-    },
-    {
-      id: "new-accounts",
-      label: "New Accounts",
-      goal: 0,
-      outcome: 0,
-      icon: <UserPlus className="h-5 w-5" />,
-      category: "lagging",
-    },
-    {
-      id: "referrals",
-      label: "Referrals",
-      goal: 0,
-      outcome: 0,
-      icon: <Users className="h-5 w-5" />,
-      category: "lagging",
-    },
-  ])
+// Component to render outcome state visuals
+function OutcomeStateIndicator({ state }: { state: OutcomeState }) {
+  return (
+    <svg viewBox="0 0 24 24" className="w-full h-full">
+      {/* Checkmark for "appointment" */}
+      {state === "appointment" && (
+        <path d="M20 6L9 17L4 12" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      )}
+      
+      {/* X for "no-interest" */}
+      {state === "no-interest" && (
+        <>
+          <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" strokeWidth="2" />
+          <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" strokeWidth="2" />
+        </>
+      )}
+      
+      {/* Dollar sign for "sale" */}
+      {state === "sale" && (
+        <>
+          <line x1="12" y1="2" x2="12" y2="22" stroke="currentColor" strokeWidth="2" />
+          <path d="M17 5H9.5C8.57174 5 7.6815 5.36875 7.02513 6.02513C6.36875 6.6815 6 7.57174 6 8.5C6 9.42826 6.36875 10.3185 7.02513 10.9749C7.6815 11.6313 8.57174 12 9.5 12H14.5C15.4283 12 16.3185 12.3687 16.9749 13.0251C17.6313 13.6815 18 14.5717 18 15.5C18 16.4283 17.6313 17.3185 16.9749 17.9749C16.3185 18.6313 15.4283 19 14.5 19H6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </>
+      )}
+    </svg>
+  )
+}
 
+export function DailyCallSheet({ onComplete, storageKey = "daily-call-sheet" }: DailyCallSheetProps) {
   const [date, setDate] = useState<string>("")
   const [isClient, setIsClient] = useState(false)
-  const [callLog, setCallLog] = useState<CallLogState>({
-    outboundCalls: Array.from({ length: 200 }, () => "none" as CallState),
-    followUpCalls: Array.from({ length: 60 }, () => "none" as CallState),
-  })
-  const [leads, setLeads] = useState<Lead[]>(Array(8).fill({ name: "", email: "", phone: "" }))
+  const [callLog, setCallLog] = useState<CallState[]>(Array.from({ length: 200 }, () => "none"))
+  const [outcomeLog, setOutcomeLog] = useState<OutcomeState[]>(Array.from({ length: 200 }, () => "none"))
   const [showCompletion, setShowCompletion] = useState(false)
+  const [historicalStats, setHistoricalStats] = useState<DailyStats[]>([])
 
   // Initialize date on client side only
   useEffect(() => {
@@ -121,131 +95,43 @@ export function DailyCallSheet({ onComplete, storageKey = "daily-call-sheet" }: 
   useEffect(() => {
     if (!isClient || !date) return
     
-    const savedData = localStorage.getItem(`${storageKey}-${date}`)
     const savedCallLog = localStorage.getItem(`${storageKey}-calllog-${date}`)
-    const savedLeads = localStorage.getItem(`${storageKey}-leads-${date}`)
-    
-    if (savedData) {
-      try {
-        const parsed = JSON.parse(savedData)
-        // Restore icons to the parsed data
-        const kpisWithIcons = [
-          {
-            ...parsed[0],
-            icon: <Phone className="h-5 w-5" />,
-          },
-          {
-            ...parsed[1],
-            icon: <Phone className="h-5 w-5" />,
-          },
-          {
-            ...parsed[2],
-            icon: <Calendar className="h-5 w-5" />,
-          },
-          {
-            ...parsed[3],
-            icon: <UserPlus className="h-5 w-5" />,
-          },
-          {
-            ...parsed[4],
-            icon: <Users className="h-5 w-5" />,
-          },
-        ]
-        setKpis(kpisWithIcons)
-      } catch (e) {
-        console.error("Failed to load saved data", e)
-      }
-    } else {
-      // Reset to default KPIs for new date
-      setKpis([
-        {
-          id: "outbound-calls",
-          label: "Outbound Calls",
-          goal: 0,
-          outcome: 0,
-          icon: <Phone className="h-5 w-5" />,
-          category: "leading",
-        },
-        {
-          id: "follow-up-calls",
-          label: "Follow Up Calls",
-          goal: 0,
-          outcome: 0,
-          icon: <Phone className="h-5 w-5" />,
-          category: "leading",
-        },
-        {
-          id: "appointments-set",
-          label: "Appointments Set",
-          goal: 0,
-          outcome: 0,
-          icon: <Calendar className="h-5 w-5" />,
-          category: "leading",
-        },
-        {
-          id: "new-accounts",
-          label: "New Accounts",
-          goal: 0,
-          outcome: 0,
-          icon: <UserPlus className="h-5 w-5" />,
-          category: "lagging",
-        },
-        {
-          id: "referrals",
-          label: "Referrals",
-          goal: 0,
-          outcome: 0,
-          icon: <Users className="h-5 w-5" />,
-          category: "lagging",
-        },
-      ])
-    }
+    const savedOutcomeLog = localStorage.getItem(`${storageKey}-outcomelog-${date}`)
     
     if (savedCallLog) {
       try {
         const parsed = JSON.parse(savedCallLog)
-        // Migrate old boolean format to new CallState format
-        const migratedCallLog = {
-          outboundCalls: parsed.outboundCalls.map((val: any) => {
-            if (val === true || val === "true") return "called" as CallState
-            if (val === false || val === "false") return "none" as CallState
-            return val as CallState
-          }),
-          followUpCalls: parsed.followUpCalls.map((val: any) => {
-            if (val === true || val === "true") return "called" as CallState
-            if (val === false || val === "false") return "none" as CallState
-            return val as CallState
-          }),
+        // Handle migration from old format to new format
+        if (Array.isArray(parsed)) {
+          // New format - already an array
+          setCallLog(parsed)
+        } else if (parsed.outboundCalls && Array.isArray(parsed.outboundCalls)) {
+          // Old format - has outboundCalls property
+          setCallLog(parsed.outboundCalls)
+        } else {
+          // Unknown format - reset
+          setCallLog(Array.from({ length: 200 }, () => "none"))
         }
-        setCallLog(migratedCallLog)
       } catch (e) {
         console.error("Failed to load call log", e)
+        setCallLog(Array.from({ length: 200 }, () => "none"))
       }
     } else {
-      setCallLog({
-        outboundCalls: Array.from({ length: 200 }, () => "none" as CallState),
-        followUpCalls: Array.from({ length: 60 }, () => "none" as CallState),
-      })
+      setCallLog(Array.from({ length: 200 }, () => "none"))
     }
     
-    if (savedLeads) {
+    if (savedOutcomeLog) {
       try {
-        setLeads(JSON.parse(savedLeads))
+        const parsed = JSON.parse(savedOutcomeLog)
+        setOutcomeLog(Array.isArray(parsed) ? parsed : Array.from({ length: 200 }, () => "none"))
       } catch (e) {
-        console.error("Failed to load leads", e)
+        console.error("Failed to load outcome log", e)
+        setOutcomeLog(Array.from({ length: 200 }, () => "none"))
       }
     } else {
-      setLeads(Array(8).fill({ name: "", email: "", phone: "" }))
+      setOutcomeLog(Array.from({ length: 200 }, () => "none"))
     }
   }, [date, storageKey, isClient])
-
-  // Auto-save when KPIs change (exclude icons from serialization)
-  useEffect(() => {
-    if (!isClient || !date) return
-    // Remove icons before saving to avoid circular structure
-    const kpisToSave = kpis.map(({ icon, ...rest }) => rest)
-    localStorage.setItem(`${storageKey}-${date}`, JSON.stringify(kpisToSave))
-  }, [kpis, date, storageKey, isClient])
   
   // Auto-save call log
   useEffect(() => {
@@ -253,95 +139,98 @@ export function DailyCallSheet({ onComplete, storageKey = "daily-call-sheet" }: 
     localStorage.setItem(`${storageKey}-calllog-${date}`, JSON.stringify(callLog))
   }, [callLog, date, storageKey, isClient])
   
-  // Auto-save leads
+  // Auto-save outcome log
   useEffect(() => {
     if (!isClient || !date) return
-    localStorage.setItem(`${storageKey}-leads-${date}`, JSON.stringify(leads))
-  }, [leads, date, storageKey, isClient])
-
-  const updateKPI = (id: string, field: "goal" | "outcome", value: number) => {
-    setKpis((prev) =>
-      prev.map((kpi) => (kpi.id === id ? { ...kpi, [field]: Math.max(0, value) } : kpi))
-    )
-  }
+    localStorage.setItem(`${storageKey}-outcomelog-${date}`, JSON.stringify(outcomeLog))
+  }, [outcomeLog, date, storageKey, isClient])
   
-  const toggleCallLog = (type: "outbound" | "followup", index: number) => {
-    if (type === "outbound") {
-      setCallLog((prev) => {
-        const currentState = prev.outboundCalls[index]
-        console.log(`Clicking outbound call ${index}: current state = "${currentState}"`)
-        
-        return {
-          ...prev,
-          outboundCalls: prev.outboundCalls.map((val, i) => {
-            if (i !== index) return val
-            // Cycle through states: none -> called -> answered -> lead -> none
-            let newState: CallState
-            if (val === "none") newState = "called"
-            else if (val === "called") newState = "answered"
-            else if (val === "answered") newState = "lead"
-            else newState = "none"
-            
-            console.log(`  -> new state = "${newState}"`)
-            return newState
-          }),
-        }
-      })
-    } else {
-      setCallLog((prev) => {
-        const currentState = prev.followUpCalls[index]
-        console.log(`Clicking followup call ${index}: current state = "${currentState}"`)
-        
-        return {
-          ...prev,
-          followUpCalls: prev.followUpCalls.map((val, i) => {
-            if (i !== index) return val
-            // Cycle through states: none -> called -> answered -> lead -> none
-            let newState: CallState
-            if (val === "none") newState = "called"
-            else if (val === "called") newState = "answered"
-            else if (val === "answered") newState = "lead"
-            else newState = "none"
-            
-            console.log(`  -> new state = "${newState}"`)
-            return newState
-          }),
-        }
-      })
+  // Calculate stats
+  const totalCalls = callLog.filter((s) => s !== "none").length
+  const totalContacted = callLog.filter((s) => s === "contacted" || s === "lead").length
+  const totalLeads = callLog.filter((s) => s === "lead").length
+  const totalAppointments = outcomeLog.filter((s) => s === "appointment").length
+  const totalNoInterest = outcomeLog.filter((s) => s === "no-interest").length
+  const totalSales = outcomeLog.filter((s) => s === "sale").length
+  
+  // Load historical stats for chart
+  useEffect(() => {
+    if (!isClient) return
+    const savedHistory = localStorage.getItem(`${storageKey}-history`)
+    if (savedHistory) {
+      try {
+        setHistoricalStats(JSON.parse(savedHistory))
+      } catch (e) {
+        console.error("Failed to load historical stats", e)
+      }
     }
+  }, [storageKey, isClient])
+  
+  // Save daily stats to history
+  useEffect(() => {
+    if (!isClient || !date) return
+    
+    const stats: DailyStats = {
+      date,
+      totalCalls,
+      contacted: totalContacted,
+      leads: totalLeads,
+      appointments: totalAppointments,
+      noInterest: totalNoInterest,
+      sales: totalSales
+    }
+    
+    setHistoricalStats(prev => {
+      // Remove existing entry for this date and add new one
+      const filtered = prev.filter(s => s.date !== date)
+      const updated = [...filtered, stats].sort((a, b) => a.date.localeCompare(b.date))
+      // Keep only last 30 days
+      const recent = updated.slice(-30)
+      localStorage.setItem(`${storageKey}-history`, JSON.stringify(recent))
+      return recent
+    })
+  }, [date, totalCalls, totalContacted, totalLeads, totalAppointments, totalNoInterest, totalSales, storageKey, isClient])
+  
+  const toggleCallLog = (index: number) => {
+    setCallLog((prev) => {
+      const currentState = prev[index]
+      
+      return prev.map((val, i) => {
+        if (i !== index) return val
+        // Cycle through states: none -> called -> contacted -> lead -> none
+        let newState: CallState
+        if (val === "none") newState = "called"
+        else if (val === "called") newState = "contacted"
+        else if (val === "contacted") newState = "lead"
+        else newState = "none"
+        
+        return newState
+      })
+    })
   }
   
-  const updateLead = (index: number, field: keyof Lead, value: string) => {
-    setLeads((prev) => prev.map((lead, i) => (i === index ? { ...lead, [field]: value } : lead)))
+  const toggleOutcomeLog = (index: number) => {
+    setOutcomeLog((prev) => {
+      return prev.map((val, i) => {
+        if (i !== index) return val
+        // Cycle through states: none -> appointment -> no-interest -> sale -> none
+        let newState: OutcomeState
+        if (val === "none") newState = "appointment"
+        else if (val === "appointment") newState = "no-interest"
+        else if (val === "no-interest") newState = "sale"
+        else newState = "none"
+        
+        return newState
+      })
+    })
   }
-
-  const calculateProgress = (kpi: KPI) => {
-    if (kpi.goal === 0) return 0
-    return Math.min(100, Math.round((kpi.outcome / kpi.goal) * 100))
-  }
-
-  const calculateOverallProgress = () => {
-    const leadingKpis = kpis.filter((k) => k.category === "leading")
-    const totalProgress = leadingKpis.reduce((sum, kpi) => sum + calculateProgress(kpi), 0)
-    return leadingKpis.length > 0 ? Math.round(totalProgress / leadingKpis.length) : 0
-  }
-
-  const allGoalsSet = kpis.every((kpi) => kpi.goal > 0)
-  const overallProgress = calculateOverallProgress()
 
   const handleComplete = () => {
-    if (onComplete && allGoalsSet) {
+    if (onComplete) {
       setShowCompletion(true)
       onComplete()
     }
   }
-  
-  const outboundCallCount = callLog.outboundCalls.filter((s) => s !== "none").length
-  const followUpCallCount = callLog.followUpCalls.filter((s) => s !== "none").length
-  const outboundAnsweredCount = callLog.outboundCalls.filter((s) => s === "answered" || s === "lead").length
-  const outboundLeadCount = callLog.outboundCalls.filter((s) => s === "lead").length
-  const followUpAnsweredCount = callLog.followUpCalls.filter((s) => s === "answered" || s === "lead").length
-  const followUpLeadCount = callLog.followUpCalls.filter((s) => s === "lead").length
 
   // Don't render date input until client-side hydration is complete
   if (!isClient) {
@@ -350,9 +239,9 @@ export function DailyCallSheet({ onComplete, storageKey = "daily-call-sheet" }: 
         <Card className="p-6 bg-gradient-to-br from-brand-green/10 to-brand-orange/10">
           <div className="flex items-start justify-between mb-4">
             <div>
-              <h2 className="text-2xl font-bold mb-2">Daily Call Sheet</h2>
+              <h2 className="text-2xl font-bold mb-2">Outbound Prospecting Activity</h2>
               <p className="text-muted-foreground">
-                Track your leading and lagging indicators to maintain a healthy prospect pipeline
+                Track your calls, conversations, and leads
               </p>
             </div>
           </div>
@@ -363,215 +252,101 @@ export function DailyCallSheet({ onComplete, storageKey = "daily-call-sheet" }: 
 
   return (
     <div className="space-y-6">
+      {/* Header Card with Stats */}
       <Card className="p-6 bg-gradient-to-br from-brand-green/10 to-brand-orange/10">
-        <div className="flex items-start justify-between mb-4">
-          <div>
-            <h2 className="text-2xl font-bold mb-2">Daily Call Sheet</h2>
-            <p className="text-muted-foreground">
-              Track your leading and lagging indicators to maintain a healthy prospect pipeline
-            </p>
-          </div>
-          <div className="flex flex-col items-end">
-            <Label className="text-sm mb-1">Date</Label>
-            <Input
-              type="date"
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-              className="w-40"
-            />
-          </div>
-        </div>
-
-        {allGoalsSet && (
-          <div className="mb-4 p-4 bg-background rounded-lg">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-sm font-medium">Overall Progress (Leading Indicators)</span>
-              <span className="text-2xl font-bold text-brand-green">{overallProgress}%</span>
+        <h1 className="text-3xl font-bold">Leading Indicators</h1>
+        
+        {/* Stats Summary */}
+        <div className="grid grid-cols-3 gap-4 mt-6">
+          <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border-2 border-blue-500/30">
+            <div className="flex items-center gap-2 mb-2">
+              <Phone className="h-5 w-5 text-blue-600" />
+              <h3 className="font-semibold text-sm text-muted-foreground">Total Calls</h3>
             </div>
-            <div className="w-full bg-muted rounded-full h-3">
-              <div
-                className="bg-brand-green rounded-full h-3 transition-all duration-300"
-                style={{ width: `${overallProgress}%` }}
-              />
+            <p className="text-3xl font-bold text-blue-600">{totalCalls}</p>
+            <p className="text-xs text-muted-foreground mt-1">out of 200</p>
+          </div>
+          
+          <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border-2 border-orange-500/30">
+            <div className="flex items-center gap-2 mb-2">
+              <MessageSquare className="h-5 w-5 text-orange-600" />
+              <h3 className="font-semibold text-sm text-muted-foreground">Contacted</h3>
             </div>
+            <p className="text-3xl font-bold text-orange-600">{totalContacted}</p>
+            <p className="text-xs text-muted-foreground mt-1">spoken conversations</p>
           </div>
-        )}
-      </Card>
-
-      <Card className="p-6">
-        <div className="mb-4">
-          <div className="flex items-center gap-2 mb-2">
-            <TrendingUp className="h-5 w-5 text-brand-green" />
-            <h3 className="text-xl font-semibold">Leading Indicators</h3>
+          
+          <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border-2 border-brand-green/30">
+            <div className="flex items-center gap-2 mb-2">
+              <UserPlus className="h-5 w-5 text-brand-green" />
+              <h3 className="font-semibold text-sm text-muted-foreground">Leads</h3>
+            </div>
+            <p className="text-3xl font-bold text-brand-green">{totalLeads}</p>
+            <p className="text-xs text-muted-foreground mt-1">qualified prospects</p>
           </div>
-          <p className="text-sm text-muted-foreground">
-            Priority activities that drive your pipeline health and ensure commitment to mission
-          </p>
-        </div>
-
-        <div className="space-y-4">
-          {kpis
-            .filter((kpi) => kpi.category === "leading")
-            .map((kpi) => (
-              <div key={kpi.id} className="p-4 bg-muted/50 rounded-lg">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="text-brand-green">{kpi.icon}</div>
-                  <h4 className="font-semibold">{kpi.label}</h4>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4 mb-3">
-                  <div>
-                    <Label htmlFor={`${kpi.id}-goal`} className="text-xs mb-1">
-                      Goal
-                    </Label>
-                    <Input
-                      id={`${kpi.id}-goal`}
-                      type="number"
-                      min="0"
-                      value={kpi.goal}
-                      onChange={(e) => updateKPI(kpi.id, "goal", parseInt(e.target.value) || 0)}
-                      className="text-lg font-semibold"
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor={`${kpi.id}-outcome`} className="text-xs mb-1">
-                      Actual
-                    </Label>
-                    <Input
-                      id={`${kpi.id}-outcome`}
-                      type="number"
-                      min="0"
-                      value={kpi.outcome}
-                      onChange={(e) => updateKPI(kpi.id, "outcome", parseInt(e.target.value) || 0)}
-                      className="text-lg font-semibold"
-                    />
-                  </div>
-                </div>
-
-                {kpi.goal > 0 && (
-                  <div>
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="text-xs text-muted-foreground">Progress</span>
-                      <span className="text-sm font-semibold">{calculateProgress(kpi)}%</span>
-                    </div>
-                    <div className="w-full bg-background rounded-full h-2">
-                      <div
-                        className={`rounded-full h-2 transition-all duration-300 ${
-                          calculateProgress(kpi) >= 100
-                            ? "bg-brand-green"
-                            : calculateProgress(kpi) >= 50
-                            ? "bg-brand-orange"
-                            : "bg-yellow-500"
-                        }`}
-                        style={{ width: `${calculateProgress(kpi)}%` }}
-                      />
-                    </div>
-                  </div>
-                )}
-              </div>
-            ))}
+          
+          <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border-2 border-purple-500/30">
+            <div className="flex items-center gap-2 mb-2">
+              <Calendar className="h-5 w-5 text-purple-600" />
+              <h3 className="font-semibold text-sm text-muted-foreground">Appointments</h3>
+            </div>
+            <p className="text-3xl font-bold text-purple-600">{totalAppointments}</p>
+            <p className="text-xs text-muted-foreground mt-1">scheduled meetings</p>
+          </div>
+          
+          <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border-2 border-red-500/30">
+            <div className="flex items-center gap-2 mb-2">
+              <X className="h-5 w-5 text-red-600" />
+              <h3 className="font-semibold text-sm text-muted-foreground">No Interest</h3>
+            </div>
+            <p className="text-3xl font-bold text-red-600">{totalNoInterest}</p>
+            <p className="text-xs text-muted-foreground mt-1">not interested</p>
+          </div>
+          
+          <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border-2 border-emerald-500/30">
+            <div className="flex items-center gap-2 mb-2">
+              <DollarSign className="h-5 w-5 text-emerald-600" />
+              <h3 className="font-semibold text-sm text-muted-foreground">Sales</h3>
+            </div>
+            <p className="text-3xl font-bold text-emerald-600">{totalSales}</p>
+            <p className="text-xs text-muted-foreground mt-1">closed deals</p>
+          </div>
         </div>
       </Card>
 
-      <Card className="p-6">
-        <div className="mb-4">
-          <div className="flex items-center gap-2 mb-2">
-            <DollarSign className="h-5 w-5 text-brand-orange" />
-            <h3 className="text-xl font-semibold">Lagging Indicators</h3>
-          </div>
-          <p className="text-sm text-muted-foreground">
-            Important outcomes that result from consistent leading indicator activity
-          </p>
-        </div>
-
-        <div className="space-y-4">
-          {kpis
-            .filter((kpi) => kpi.category === "lagging")
-            .map((kpi) => (
-              <div key={kpi.id} className="p-4 bg-muted/50 rounded-lg">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="text-brand-orange">{kpi.icon}</div>
-                  <h4 className="font-semibold">{kpi.label}</h4>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4 mb-3">
-                  <div>
-                    <Label htmlFor={`${kpi.id}-goal`} className="text-xs mb-1">
-                      Goal
-                    </Label>
-                    <Input
-                      id={`${kpi.id}-goal`}
-                      type="number"
-                      min="0"
-                      value={kpi.goal}
-                      onChange={(e) => updateKPI(kpi.id, "goal", parseInt(e.target.value) || 0)}
-                      className="text-lg font-semibold"
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor={`${kpi.id}-outcome`} className="text-xs mb-1">
-                      Actual
-                    </Label>
-                    <Input
-                      id={`${kpi.id}-outcome`}
-                      type="number"
-                      min="0"
-                      value={kpi.outcome}
-                      onChange={(e) => updateKPI(kpi.id, "outcome", parseInt(e.target.value) || 0)}
-                      className="text-lg font-semibold"
-                    />
-                  </div>
-                </div>
-
-                {kpi.goal > 0 && (
-                  <div>
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="text-xs text-muted-foreground">Progress</span>
-                      <span className="text-sm font-semibold">{calculateProgress(kpi)}%</span>
-                    </div>
-                    <div className="w-full bg-background rounded-full h-2">
-                      <div
-                        className={`rounded-full h-2 transition-all duration-300 ${
-                          calculateProgress(kpi) >= 100
-                            ? "bg-brand-green"
-                            : calculateProgress(kpi) >= 50
-                            ? "bg-brand-orange"
-                            : "bg-yellow-500"
-                        }`}
-                        style={{ width: `${calculateProgress(kpi)}%` }}
-                      />
-                    </div>
-                  </div>
-                )}
-              </div>
-            ))}
-        </div>
-      </Card>
-
+      {/* Main Call Grid */}
       <Card className="p-6">
         <div className="mb-4">
           <div className="flex items-center gap-2 mb-2">
             <Phone className="h-5 w-5 text-brand-green" />
-            <h3 className="text-xl font-semibold">Outbound Call Log</h3>
+            <h3 className="text-xl font-semibold">Call Tracking Grid</h3>
           </div>
           <p className="text-sm text-muted-foreground mb-2">
-            Click to cycle: Call Made → Answered → Lead → Clear • Calls: {outboundCallCount}/200 • Answered: {outboundAnsweredCount} • Leads: {outboundLeadCount}
+            Click each square to cycle through: Empty → Call Made → Contacted → Lead
           </p>
         </div>
         
         <div className="grid grid-cols-20 gap-1 mb-4">
-          {callLog.outboundCalls.map((callState, index) => (
+          {callLog.map((callState, index) => (
             <button
               key={index}
-              onClick={() => toggleCallLog("outbound", index)}
+              onClick={() => toggleCallLog(index)}
               className={cn(
                 "aspect-square text-[10px] font-mono flex items-center justify-center border rounded transition-all relative",
                 callState === "none" && "bg-background border-muted-foreground/20 hover:border-brand-green/50",
                 callState === "called" && "bg-blue-50 dark:bg-blue-950 border-blue-500 text-blue-600",
-                callState === "answered" && "bg-orange-50 dark:bg-orange-950 border-orange-500 text-orange-600",
+                callState === "contacted" && "bg-orange-50 dark:bg-orange-950 border-orange-500 text-orange-600",
                 callState === "lead" && "bg-brand-green/10 border-brand-green text-brand-green"
               )}
-              title={`Call ${index + 1}: ${callState === "none" ? "Not called" : callState === "called" ? "Called" : callState === "answered" ? "Answered" : "Lead"}`}
+              title={`Call ${index + 1}: ${
+                callState === "none" 
+                  ? "Empty" 
+                  : callState === "called" 
+                  ? "Call Made" 
+                  : callState === "contacted" 
+                  ? "Contacted" 
+                  : "Lead"
+              }`}
             >
               <div className="absolute inset-1">
                 <CallStateIndicator state={callState} />
@@ -580,153 +355,240 @@ export function DailyCallSheet({ onComplete, storageKey = "daily-call-sheet" }: 
           ))}
         </div>
         
-        <div className="text-xs text-muted-foreground mb-3">
-          <p className="mb-2"><strong>How to use:</strong></p>
-          <div className="grid grid-cols-1 gap-2">
+        <div className="text-xs text-muted-foreground">
+          <p className="mb-3 font-semibold">Legend:</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             <div className="flex items-start gap-3">
-              <div className="w-8 h-8 border border-blue-500 rounded flex items-center justify-center flex-shrink-0 bg-blue-50 dark:bg-blue-950">
+              <div className="w-10 h-10 border border-blue-500 rounded flex items-center justify-center flex-shrink-0 bg-blue-50 dark:bg-blue-950">
                 <CallStateIndicator state="called" />
               </div>
               <div>
                 <p className="font-semibold text-foreground">/ = Call Made</p>
-                <p className="text-xs">Represents that call was made, but it did not result in a spoken conversation or lead</p>
+                <p className="text-xs">The call was attempted (voicemail, no answer, etc.)</p>
               </div>
             </div>
             <div className="flex items-start gap-3">
-              <div className="w-8 h-8 border border-orange-500 rounded flex items-center justify-center flex-shrink-0 bg-orange-50 dark:bg-orange-950">
-                <CallStateIndicator state="answered" />
+              <div className="w-10 h-10 border border-orange-500 rounded flex items-center justify-center flex-shrink-0 bg-orange-50 dark:bg-orange-950">
+                <CallStateIndicator state="contacted" />
               </div>
               <div>
-                <p className="font-semibold text-foreground">X = Answered</p>
-                <p className="text-xs">Represents that you spoke to a person, but the call did not result in a lead</p>
+                <p className="font-semibold text-foreground">X = Contacted</p>
+                <p className="text-xs">Had a spoken conversation with a person</p>
               </div>
             </div>
             <div className="flex items-start gap-3">
-              <div className="w-8 h-8 border border-brand-green rounded flex items-center justify-center flex-shrink-0 bg-brand-green/10">
+              <div className="w-10 h-10 border border-brand-green rounded flex items-center justify-center flex-shrink-0 bg-brand-green/10">
                 <CallStateIndicator state="lead" />
               </div>
               <div>
-                <p className="font-semibold text-foreground">⊗ = Lead Generated</p>
-                <p className="text-xs">Represents that the call resulted in a lead—add their contact information below</p>
+                <p className="font-semibold text-foreground">⊗ = Lead</p>
+                <p className="text-xs">Qualified prospect - potential customer identified</p>
               </div>
             </div>
           </div>
         </div>
       </Card>
 
+      {/* Outcome Tracking Grid */}
       <Card className="p-6">
         <div className="mb-4">
           <div className="flex items-center gap-2 mb-2">
-            <Phone className="h-5 w-5 text-brand-orange" />
-            <h3 className="text-xl font-semibold">Follow-Up Call Log</h3>
+            <Calendar className="h-5 w-5 text-purple-600" />
+            <h3 className="text-xl font-semibold">Follow Up Calling Activities</h3>
           </div>
           <p className="text-sm text-muted-foreground mb-2">
-            Click to cycle through states • Calls: {followUpCallCount}/60 • Answered: {followUpAnsweredCount} • Leads: {followUpLeadCount}
+            Click each square to cycle through: Empty → Appointment → No Interest → Sale
           </p>
         </div>
         
         <div className="grid grid-cols-20 gap-1 mb-4">
-          {callLog.followUpCalls.map((callState, index) => (
+          {outcomeLog.map((outcomeState, index) => (
             <button
               key={index}
-              onClick={() => toggleCallLog("followup", index)}
+              onClick={() => toggleOutcomeLog(index)}
               className={cn(
                 "aspect-square text-[10px] font-mono flex items-center justify-center border rounded transition-all relative",
-                callState === "none" && "bg-background border-muted-foreground/20 hover:border-brand-orange/50",
-                callState === "called" && "bg-blue-50 dark:bg-blue-950 border-blue-500 text-blue-600",
-                callState === "answered" && "bg-orange-50 dark:bg-orange-950 border-orange-500 text-orange-600",
-                callState === "lead" && "bg-brand-orange/10 border-brand-orange text-brand-orange"
+                outcomeState === "none" && "bg-background border-muted-foreground/20 hover:border-purple-500/50",
+                outcomeState === "appointment" && "bg-purple-50 dark:bg-purple-950 border-purple-500 text-purple-600",
+                outcomeState === "no-interest" && "bg-red-50 dark:bg-red-950 border-red-500 text-red-600",
+                outcomeState === "sale" && "bg-emerald-50 dark:bg-emerald-950 border-emerald-500 text-emerald-600"
               )}
-              title={`Follow-up ${index + 1}: ${callState === "none" ? "Not called" : callState === "called" ? "Called" : callState === "answered" ? "Answered" : "Lead"}`}
+              title={`Outcome ${index + 1}: ${
+                outcomeState === "none" 
+                  ? "Empty" 
+                  : outcomeState === "appointment" 
+                  ? "Appointment" 
+                  : outcomeState === "no-interest" 
+                  ? "No Interest" 
+                  : "Sale"
+              }`}
             >
               <div className="absolute inset-1">
-                <CallStateIndicator state={callState} />
+                <OutcomeStateIndicator state={outcomeState} />
               </div>
             </button>
           ))}
         </div>
-      </Card>
-
-      <Card className="p-6">
-        <div className="mb-4">
-          <div className="flex items-center gap-2 mb-2">
-            <Users className="h-5 w-5 text-brand-green" />
-            <h3 className="text-xl font-semibold">Lead Tracking</h3>
-          </div>
-          <p className="text-sm text-muted-foreground">
-            Record contact information for leads you connect with
-          </p>
-        </div>
         
-        <div className="space-y-3">
-          {leads.map((lead, index) => (
-            <div key={index} className="grid grid-cols-3 gap-3 p-3 bg-muted/50 rounded-lg">
-              <div>
-                <Label className="text-xs mb-1">Name</Label>
-                <Input
-                  value={lead.name}
-                  onChange={(e) => updateLead(index, "name", e.target.value)}
-                  placeholder="Lead name"
-                  className="text-sm"
-                />
+        <div className="text-xs text-muted-foreground">
+          <p className="mb-3 font-semibold">Legend:</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <div className="flex items-start gap-3">
+              <div className="w-10 h-10 border border-purple-500 rounded flex items-center justify-center flex-shrink-0 bg-purple-50 dark:bg-purple-950">
+                <OutcomeStateIndicator state="appointment" />
               </div>
               <div>
-                <Label className="text-xs mb-1">Email</Label>
-                <Input
-                  value={lead.email}
-                  onChange={(e) => updateLead(index, "email", e.target.value)}
-                  placeholder="email@example.com"
-                  type="email"
-                  className="text-sm"
-                />
-              </div>
-              <div>
-                <Label className="text-xs mb-1">Phone</Label>
-                <Input
-                  value={lead.phone}
-                  onChange={(e) => updateLead(index, "phone", e.target.value)}
-                  placeholder="(555) 555-5555"
-                  type="tel"
-                  className="text-sm"
-                />
+                <p className="font-semibold text-foreground">✓ = Appointment</p>
+                <p className="text-xs">Scheduled a meeting or follow-up appointment</p>
               </div>
             </div>
-          ))}
+            <div className="flex items-start gap-3">
+              <div className="w-10 h-10 border border-red-500 rounded flex items-center justify-center flex-shrink-0 bg-red-50 dark:bg-red-950">
+                <OutcomeStateIndicator state="no-interest" />
+              </div>
+              <div>
+                <p className="font-semibold text-foreground">✕ = No Interest</p>
+                <p className="text-xs">Contact expressed no interest or not qualified</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <div className="w-10 h-10 border border-emerald-500 rounded flex items-center justify-center flex-shrink-0 bg-emerald-50 dark:bg-emerald-950">
+                <OutcomeStateIndicator state="sale" />
+              </div>
+              <div>
+                <p className="font-semibold text-foreground">$ = Sale</p>
+                <p className="text-xs">Successfully closed the deal - converted to sale</p>
+              </div>
+            </div>
+          </div>
         </div>
       </Card>
 
-      <Card className="p-6 border-2 border-brand-green/30">
-        <h3 className="text-lg font-semibold mb-3">The Philosophy Behind This Tracker</h3>
-        <div className="space-y-3 text-sm">
-          <p>
-            <strong className="text-brand-green">Leading Indicators First:</strong> We prioritize prospecting activities
-            (calls, follow-ups, appointments) because they are within your direct control and drive future success.
-          </p>
-          <p>
-            <strong className="text-brand-orange">Lagging Indicators Matter:</strong> While new accounts and referrals
-            are important outcomes, they result from consistent leading indicator behavior.
-          </p>
-          <p>
-            <strong>Mission-Driven Approach:</strong> This tracker helps you maintain commitment to daily disciplines that
-            create a healthy pipeline—ensuring you stay focused on your purpose rather than just outcomes.
-          </p>
-          <p className="text-muted-foreground italic">
-            "What gets measured gets managed. What gets managed gets improved."
-          </p>
-        </div>
-      </Card>
-
-      {allGoalsSet && onComplete && !showCompletion && (
-        <div className="flex justify-center">
-          <Button
-            onClick={handleComplete}
-            size="lg"
-            className="bg-brand-green hover:bg-[#143d31] text-white px-8"
-          >
-            <CheckCircle2 className="mr-2 h-5 w-5" />
-            Complete Call Sheet
-          </Button>
-        </div>
+      {/* Historical Trends Chart */}
+      {isClient && (
+        <Card className="p-6">
+          <div className="mb-4">
+            <h3 className="text-xl font-semibold mb-2">Daily Progress Chart</h3>
+            <p className="text-sm text-muted-foreground">
+              Cumulative metrics as you progress through the call grid
+            </p>
+          </div>
+          
+          <div className="h-[400px] w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart data={(() => {
+                // Generate data points for every 10 squares
+                const dataPoints = []
+                for (let i = 10; i <= 200; i += 10) {
+                  const callsUpToHere = callLog.slice(0, i).filter((s) => s !== "none").length
+                  const contactedUpToHere = callLog.slice(0, i).filter((s) => s === "contacted" || s === "lead").length
+                  const leadsUpToHere = callLog.slice(0, i).filter((s) => s === "lead").length
+                  const appointmentsUpToHere = outcomeLog.slice(0, i).filter((s) => s === "appointment").length
+                  const noInterestUpToHere = outcomeLog.slice(0, i).filter((s) => s === "no-interest").length
+                  const salesUpToHere = outcomeLog.slice(0, i).filter((s) => s === "sale").length
+                  
+                  dataPoints.push({
+                    square: i,
+                    totalCalls: callsUpToHere,
+                    contacted: contactedUpToHere,
+                    leads: leadsUpToHere,
+                    appointments: appointmentsUpToHere,
+                    noInterest: noInterestUpToHere,
+                    sales: salesUpToHere
+                  })
+                }
+                return dataPoints
+              })()}>
+                <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
+                <XAxis 
+                  dataKey="square" 
+                  className="text-xs"
+                />
+                <YAxis 
+                  className="text-xs" 
+                />
+                <ChartTooltip 
+                  content={({ active, payload }) => {
+                    if (active && payload && payload.length) {
+                      return (
+                        <div className="bg-background border border-border rounded-lg shadow-lg p-3">
+                          <p className="font-semibold mb-2">
+                            Square {payload[0].payload.square}
+                          </p>
+                          {payload.map((entry: any) => (
+                            <div key={entry.name} className="flex items-center gap-2 text-sm">
+                              <div 
+                                className="w-3 h-3 rounded-full" 
+                                style={{ backgroundColor: entry.color }}
+                              />
+                              <span>{entry.name}: {entry.value}</span>
+                            </div>
+                          ))}
+                        </div>
+                      )
+                    }
+                    return null
+                  }}
+                />
+                <Legend />
+                <Line 
+                  type="monotone" 
+                  dataKey="totalCalls" 
+                  name="Total Calls"
+                  stroke="#3b82f6" 
+                  strokeWidth={2}
+                  dot={{ r: 4 }}
+                  activeDot={{ r: 6 }}
+                />
+                <Line 
+                  type="monotone" 
+                  dataKey="contacted" 
+                  name="Contacted"
+                  stroke="#f97316" 
+                  strokeWidth={2}
+                  dot={{ r: 4 }}
+                  activeDot={{ r: 6 }}
+                />
+                <Line 
+                  type="monotone" 
+                  dataKey="leads" 
+                  name="Leads"
+                  stroke="#1a5940" 
+                  strokeWidth={2}
+                  dot={{ r: 4 }}
+                  activeDot={{ r: 6 }}
+                />
+                <Line 
+                  type="monotone" 
+                  dataKey="appointments" 
+                  name="Appointments"
+                  stroke="#a855f7" 
+                  strokeWidth={2}
+                  dot={{ r: 4 }}
+                  activeDot={{ r: 6 }}
+                />
+                <Line 
+                  type="monotone" 
+                  dataKey="noInterest" 
+                  name="No Interest"
+                  stroke="#ef4444" 
+                  strokeWidth={2}
+                  dot={{ r: 4 }}
+                  activeDot={{ r: 6 }}
+                />
+                <Line 
+                  type="monotone" 
+                  dataKey="sales" 
+                  name="Sales"
+                  stroke="#10b981" 
+                  strokeWidth={2}
+                  dot={{ r: 4 }}
+                  activeDot={{ r: 6 }}
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+        </Card>
       )}
     </div>
   )
