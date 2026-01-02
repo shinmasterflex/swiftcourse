@@ -13,7 +13,7 @@ interface GridItem {
 
 interface GridDisplayProps {
   title: string
-  items: [GridItem, GridItem, GridItem, GridItem] // Exactly 4 items
+  items: GridItem[] // Array of items
   xAxisLabel?: string
   yAxisLabel?: string
 }

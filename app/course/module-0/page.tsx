@@ -90,24 +90,24 @@ export default function Module0Page() {
               <TextDisplay content="So, if you are the type of person who always looks for a competitive edge, then a look inside yourself may be the answer." />
 
               <Card className="p-6 bg-gradient-to-br from-brand-green/10 to-brand-orange/10">
-                <h3 className="text-xl font-semibold mb-3">Why Personality Matters in Sales</h3>
-                <p className="mb-3">Understanding your personality traits helps you:</p>
+                <h3 className="text-xl font-semibold mb-3">Personality Traits Are Tendencies. Mindset Is Character.</h3>
+                <p className="mb-3">Understanding the difference:</p>
                 <ul className="space-y-2 ml-6">
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="h-5 w-5 text-brand-green mt-0.5 flex-shrink-0" />
-                    <span>Identify your natural strengths and leverage them effectively</span>
+                    <span>Personality traits are your natural tendencies—how you're inclined to think, feel, and behave</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="h-5 w-5 text-brand-green mt-0.5 flex-shrink-0" />
-                    <span>Recognize potential weaknesses before they impact performance</span>
+                    <span>Mindset is your character—the conscious choices you make despite your tendencies</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="h-5 w-5 text-brand-green mt-0.5 flex-shrink-0" />
-                    <span>Develop counter-strategies for personality-driven challenges</span>
+                    <span>You can't change your personality traits, but you can develop strategies to work with them</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="h-5 w-5 text-brand-green mt-0.5 flex-shrink-0" />
-                    <span>Build more effective teams based on complementary traits</span>
+                    <span>Character develops through awareness, discipline, and intentional action aligned with your goals</span>
                   </li>
                 </ul>
               </Card>

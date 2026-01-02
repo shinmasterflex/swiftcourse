@@ -14,7 +14,7 @@ import { ComparisonCard } from "@/components/learning/comparison-card"
 import { GridDisplay } from "@/components/learning/grid-display"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { ArrowRight, CheckCircle2 } from "lucide-react"
+import { ArrowRight, CheckCircle2, RefreshCw } from "lucide-react"
 import { useProgress } from "@/hooks/use-progress"
 import Image from "next/image"
 import { MatchingGame } from "@/components/learning/matching-game"
@@ -194,7 +194,7 @@ export default function Module2Page() {
                   {
                     author: "Adam Grant",
                     title: "Hidden Potential: The Science of Achieving Greater Things",
-                    link: "https://www.adamgrant.net/book/hidden-potential/",
+                    url: "https://www.adamgrant.net/book/hidden-potential/",
                   },
                 ]}
               />
@@ -289,7 +289,7 @@ export default function Module2Page() {
                   {
                     author: "Andrew Huberman",
                     title: "Huberman Lab Podcast",
-                    link: "https://www.youtube.com/@hubermanlab",
+                    url: "https://www.youtube.com/@hubermanlab",
                   },
                 ]}
               />
@@ -369,22 +369,22 @@ export default function Module2Page() {
                   {
                     author: "Andrew Huberman",
                     title: "Huberman Lab Podcast",
-                    link: "https://www.youtube.com/@hubermanlab",
+                    url: "https://www.youtube.com/@hubermanlab",
                   },
                   {
                     author: "Adam Grant",
                     title: "Hidden Potential",
-                    link: "https://www.adamgrant.net/book/hidden-potential/",
+                    url: "https://www.adamgrant.net/book/hidden-potential/",
                   },
                   {
                     author: "Carol Dweck",
                     title: "Mindset: The New Psychology of Success",
-                    link: "https://www.penguinrandomhouse.com/books/44330/mindset-by-carol-s-dweck-phd/",
+                    url: "https://www.penguinrandomhouse.com/books/44330/mindset-by-carol-s-dweck-phd/",
                   },
                   {
                     author: "David Yeager",
                     title: "10 to 25: The Science of Motivating Young People",
-                    link: "https://www.davidyeagerphd.com/10-to-25",
+                    url: "https://www.davidyeagerphd.com/10-to-25",
                   },
                 ]}
               />
@@ -464,7 +464,7 @@ export default function Module2Page() {
                   {
                     author: "Adam Grant",
                     title: "Hidden Potential, Page 41",
-                    link: "https://www.adamgrant.net/book/hidden-potential/",
+                    url: "https://www.adamgrant.net/book/hidden-potential/",
                   },
                 ]}
               />
@@ -898,7 +898,7 @@ export default function Module2Page() {
                   {
                     author: "Andrew Huberman",
                     title: "Huberman Lab Podcast - Task Bracketing Protocol",
-                    link: "https://www.youtube.com/@hubermanlab",
+                    url: "https://www.youtube.com/@hubermanlab",
                   },
                 ]}
               />
@@ -1394,27 +1394,6 @@ Habit 2: ..."
                       <Button onClick={() => window.location.reload()} className="bg-amber-600 hover:bg-amber-700 text-white">
                         Try Again
                       </Button>
-                    </div>
-                  </div>
-                </Card>
-              )}
-                        <div className="flex items-center gap-2">
-                          {quizResults.quiz2 ? (
-                            <CheckCircle2 className="h-4 w-4 text-green-600" />
-                          ) : (
-                            <div className="h-4 w-4 rounded-full border-2 border-yellow-600" />
-                          )}
-                          <span>Question 4: Context-Independent vs Dependent Habits</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          {quizResults.quiz3 ? (
-                            <CheckCircle2 className="h-4 w-4 text-green-600" />
-                          ) : (
-                            <div className="h-4 w-4 rounded-full border-2 border-yellow-600" />
-                          )}
-                          <span>Question 5: Absorptive Capacity Matrix</span>
-                        </div>
-                      </div>
                     </div>
                   </div>
                 </Card>
