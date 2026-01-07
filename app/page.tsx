@@ -52,7 +52,7 @@ export default function HomePage() {
                     <Link href="/demo">Try Module 0</Link>
                   </Button>
                   <Button asChild size="lg" variant="outline" className="text-lg px-8">
-                    <Link href="https://calendly.com/your-calendly-link" target="_blank" rel="noopener noreferrer">
+                    <Link href="https://calendly.com/lfederico-swiftcourse/30min?month=2026-01" target="_blank" rel="noopener noreferrer">
                       Schedule a Call
                     </Link>
                   </Button>
@@ -457,7 +457,7 @@ export default function HomePage() {
               <Button
                 asChild size="lg" variant="outline" className="text-lg px-8"
               >
-                <Link href="https://calendly.com/your-calendly-link" target="_blank" rel="noopener noreferrer">
+                <Link href="https://calendly.com/lfederico-swiftcourse/30min?month=2026-01" target="_blank" rel="noopener noreferrer">
                   Schedule a Call
                 </Link>
               </Button>

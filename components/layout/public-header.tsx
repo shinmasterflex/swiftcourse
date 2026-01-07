@@ -21,7 +21,7 @@ export function PublicHeader() {
             <Link href="/demo">Try Module 0</Link>
           </Button>
           <Button asChild variant="outline">
-            <Link href="https://calendly.com/your-calendly-link" target="_blank" rel="noopener noreferrer">
+            <Link href="https://calendly.com/lfederico-swiftcourse/30min?month=2026-01" target="_blank" rel="noopener noreferrer">
               Schedule a Call
             </Link>
           </Button>
