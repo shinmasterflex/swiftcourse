@@ -15,7 +15,7 @@ import { Slideshow } from "@/components/learning/slideshow"
 import { ProgressBar } from "@/components/learning/progress-bar"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { ChevronRight, CheckCircle2 } from "lucide-react"
+import { ChevronRight, CheckCircle2, Target, Users, TrendingDown, Clock } from "lucide-react"
 import { FlipCard } from "@/components/learning/flip-card"
 import { SourceCard } from "@/components/learning/source-card"
 
@@ -85,24 +85,24 @@ export default function DemoPage() {
               <TextDisplay content="So, if you are the type of person who always looks for a competitive edge, then a look inside yourself may be the answer." />
 
               <Card className="p-6 bg-gradient-to-br from-brand-green/10 to-brand-orange/10">
-                <h3 className="text-xl font-semibold mb-3">Why Personality Matters in Sales</h3>
-                <p className="mb-3">Understanding your personality traits helps you:</p>
+                <h3 className="text-xl font-semibold mb-3">Personality Traits Are Tendencies. Mindset Is Character.</h3>
+                <p className="mb-3">Understanding the difference:</p>
                 <ul className="space-y-2 ml-6">
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="h-5 w-5 text-brand-green mt-0.5 flex-shrink-0" />
-                    <span>Identify your natural strengths and leverage them effectively</span>
+                    <span>Personality traits are your natural tendencies—how you're inclined to think, feel, and behave</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="h-5 w-5 text-brand-green mt-0.5 flex-shrink-0" />
-                    <span>Recognize potential weaknesses before they impact performance</span>
+                    <span>Mindset is your character—the conscious choices you make despite your tendencies</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="h-5 w-5 text-brand-green mt-0.5 flex-shrink-0" />
-                    <span>Develop counter-strategies for personality-driven challenges</span>
+                    <span>You can't change your personality traits, but you can develop strategies to work with them</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="h-5 w-5 text-brand-green mt-0.5 flex-shrink-0" />
-                    <span>Build more effective teams based on complementary traits</span>
+                    <span>Character develops through awareness, discipline, and intentional action aligned with your goals</span>
                   </li>
                 </ul>
               </Card>
@@ -170,39 +170,131 @@ export default function DemoPage() {
                 content="Swiftcourse provides the most comprehensive personality-driven sales training in the market today."
               />
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Card className="p-6">
-                  <h3 className="text-xl font-semibold mb-3 text-brand-green">Close the Gap</h3>
-                  <p>
-                    Our approach is the most comprehensive in the market today. Other personality assessments measure
-                    segments of personality. Only the BFAM gives a complete picture of temperament.
-                  </p>
-                </Card>
+              <TextDisplay
+                variant="callout"
+                content="Click each card to discover more details about our solution."
+              />
 
-                <Card className="p-6">
-                  <h3 className="text-xl font-semibold mb-3 text-brand-green">Target Audience</h3>
-                  <p>
-                    Our target audience are entrepreneurs and sales personnel that are struggling to achieve their
-                    performance goals. Our program is designed to specifically target the issues that hold them back
-                    while strengthening their positive traits.
-                  </p>
-                </Card>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <FlipCard
+                  frontTitle="Close the Gap"
+                  frontContent={
+                    <div className="space-y-4">
+                      <div className="flex justify-center">
+                        <div className="bg-brand-green/10 p-4 rounded-full">
+                          <Target className="h-10 w-10 text-brand-green" />
+                        </div>
+                      </div>
+                      <p className="text-sm">
+                        Our approach is the most comprehensive in the market today for personality-driven sales training.
+                      </p>
+                    </div>
+                  }
+                  backTitle="Complete Picture"
+                  backContent={
+                    <div className="space-y-3">
+                      <div className="flex justify-center">
+                        <CheckCircle2 className="h-8 w-8 text-brand-green" />
+                      </div>
+                      <p className="text-sm">
+                        Other personality assessments measure segments of personality. Only the Big Five Aspects Model (BFAM) gives a complete picture of temperament.
+                      </p>
+                      <p className="text-sm font-semibold text-brand-green">
+                        We measure all 10 aspects across 5 major traits for complete insight.
+                      </p>
+                    </div>
+                  }
+                />
 
-                <Card className="p-6">
-                  <h3 className="text-xl font-semibold mb-3 text-brand-orange">Cost Savings</h3>
-                  <p>
-                    Massive savings in reducing poor hires and spending on training for existing personnel that do not
-                    adapt their behavior.
-                  </p>
-                </Card>
+                <FlipCard
+                  frontTitle="Target Audience"
+                  frontContent={
+                    <div className="space-y-4">
+                      <div className="flex justify-center">
+                        <div className="bg-brand-green/10 p-4 rounded-full">
+                          <Users className="h-10 w-10 text-brand-green" />
+                        </div>
+                      </div>
+                      <p className="text-sm">
+                        Designed for entrepreneurs and sales personnel struggling to achieve their performance goals.
+                      </p>
+                    </div>
+                  }
+                  backTitle="Personalized Approach"
+                  backContent={
+                    <div className="space-y-3">
+                      <div className="flex justify-center">
+                        <CheckCircle2 className="h-8 w-8 text-brand-green" />
+                      </div>
+                      <p className="text-sm">
+                        Our program specifically targets the issues that hold you back while strengthening your positive traits.
+                      </p>
+                      <p className="text-sm font-semibold text-brand-green">
+                        Work with your personality, not against it.
+                      </p>
+                    </div>
+                  }
+                />
 
-                <Card className="p-6">
-                  <h3 className="text-xl font-semibold mb-3 text-brand-orange">Easy to Use</h3>
-                  <p>
-                    The Big Five Aspects Model is a short personality assessment that takes about 15 minutes. A
-                    comprehensive analysis is created to identify how to best approach a strategy for improvement.
-                  </p>
-                </Card>
+                <FlipCard
+                  frontTitle="Cost Savings"
+                  frontContent={
+                    <div className="space-y-4">
+                      <div className="flex justify-center">
+                        <div className="bg-brand-orange/10 p-4 rounded-full">
+                          <TrendingDown className="h-10 w-10 text-brand-orange" />
+                        </div>
+                      </div>
+                      <p className="text-sm">
+                        Massive savings through better hiring decisions and more effective training investments.
+                      </p>
+                    </div>
+                  }
+                  backTitle="Smart Investment"
+                  backContent={
+                    <div className="space-y-3">
+                      <div className="flex justify-center">
+                        <CheckCircle2 className="h-8 w-8 text-brand-orange" />
+                      </div>
+                      <p className="text-sm">
+                        Reduce costs from poor hires and eliminate wasted spending on training personnel who don't adapt their behavior.
+                      </p>
+                      <p className="text-sm font-semibold text-brand-orange">
+                        Invest in what works, eliminate what doesn't.
+                      </p>
+                    </div>
+                  }
+                />
+
+                <FlipCard
+                  frontTitle="Easy to Use"
+                  frontContent={
+                    <div className="space-y-4">
+                      <div className="flex justify-center">
+                        <div className="bg-brand-orange/10 p-4 rounded-full">
+                          <Clock className="h-10 w-10 text-brand-orange" />
+                        </div>
+                      </div>
+                      <p className="text-sm">
+                        The Big Five Aspects Model assessment takes just 15 minutes to complete.
+                      </p>
+                    </div>
+                  }
+                  backTitle="Comprehensive Analysis"
+                  backContent={
+                    <div className="space-y-3">
+                      <div className="flex justify-center">
+                        <CheckCircle2 className="h-8 w-8 text-brand-orange" />
+                      </div>
+                      <p className="text-sm">
+                        A detailed analysis is created to identify the best approach for your personal improvement strategy.
+                      </p>
+                      <p className="text-sm font-semibold text-brand-orange">
+                        Quick assessment, lasting impact.
+                      </p>
+                    </div>
+                  }
+                />
               </div>
 
               <Button onClick={handleSectionComplete} className="bg-brand-orange hover:bg-[#e64a19] text-white">
@@ -251,7 +343,7 @@ export default function DemoPage() {
                   },
                   {
                     id: "benefit-2",
-                    title: "Hyper Focused Sales Personal",
+                    title: "Hyper Focused Sales Personnel",
                     content:
                       "Develop laser-like focus by understanding which personality traits help or hinder your concentration and goal pursuit. Eliminate distractions that stem from your temperament.",
                   },
@@ -299,7 +391,7 @@ export default function DemoPage() {
                   </div>
 
                   <div className="flex gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-brand-orange text-white flex items-center justify-center font-bold text-xl">
+                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-brand-green text-white flex items-center justify-center font-bold text-xl">
                       2
                     </div>
                     <div>
@@ -552,144 +644,129 @@ export default function DemoPage() {
             </div>
           )}
 
-          {/* Section 6: Two-Phase Action Plan (was section 7) */}
+          {/* Section 6: Three-Phase Action Plan */}
           {currentSectionIndex === 6 && (
             <div className="space-y-6" id="action-plan">
-              <h2 className="text-3xl font-bold text-brand-green">Two-Phase Action Plan</h2>
+              <h2 className="text-3xl font-bold text-brand-green">Three-Phase Action Plan</h2>
 
               <TextDisplay
                 variant="callout"
-                content="Our comprehensive 12-week program is divided into Strategic (Weeks 1-6) and Tactical (Weeks 7-12) phases."
+                content="Our comprehensive program is divided into three strategic phases to build salespeople who can override their personality defaults and operate with discipline."
               />
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* Strategic Phase */}
+              <div className="space-y-6">
+                {/* Phase 1 */}
                 <Card className="p-6 bg-gradient-to-br from-brand-green/10 to-brand-green/5">
-                  <h3 className="text-2xl font-bold mb-4 text-brand-green">Strategic Phase (Weeks 1-6)</h3>
-                  <div className="space-y-3">
-                    <div className="flex gap-3">
-                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-green text-white flex items-center justify-center text-sm font-bold">
-                        1
+                  <h3 className="text-2xl font-bold mb-4 text-brand-green">Phase 1: Personality Traits and Introduction to Neurobiology</h3>
+                  <div className="space-y-4">
+                    <p className="text-sm text-muted-foreground">
+                      Understand your Big 10 traits and the neuroscience of goal-seeking and growth mindset
+                    </p>
+                    <div className="space-y-3">
+                      <div className="flex gap-3">
+                        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-green text-white flex items-center justify-center text-sm font-bold">
+                          0
+                        </div>
+                        <div>
+                          <h4 className="font-semibold">Module 0: Introduction</h4>
+                          <p className="text-sm text-muted-foreground">
+                            The Big Five OCEAN model and 10 personality aspects
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="font-semibold">Labeling</h4>
-                        <p className="text-sm text-muted-foreground">Understanding your personality profile</p>
-                      </div>
-                    </div>
 
-                    <div className="flex gap-3">
-                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-green text-white flex items-center justify-center text-sm font-bold">
-                        2
-                      </div>
-                      <div>
-                        <h4 className="font-semibold">Temperament and Goal Attainment</h4>
-                        <p className="text-sm text-muted-foreground">How personality affects your goals</p>
-                      </div>
-                    </div>
-
-                    <div className="flex gap-3">
-                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-green text-white flex items-center justify-center text-sm font-bold">
-                        3
-                      </div>
-                      <div>
-                        <h4 className="font-semibold">Purpose Planning</h4>
-                        <p className="text-sm text-muted-foreground">Creating your personalized strategy</p>
-                      </div>
-                    </div>
-
-                    <div className="flex gap-3">
-                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-green text-white flex items-center justify-center text-sm font-bold">
-                        4
-                      </div>
-                      <div>
-                        <h4 className="font-semibold">Habit Formation</h4>
-                        <p className="text-sm text-muted-foreground">Building sustainable behaviors</p>
-                      </div>
-                    </div>
-
-                    <div className="flex gap-3">
-                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-green text-white flex items-center justify-center text-sm font-bold">
-                        5
-                      </div>
-                      <div>
-                        <h4 className="font-semibold">Measurement</h4>
-                        <p className="text-sm text-muted-foreground">Tracking progress and adjusting</p>
-                      </div>
-                    </div>
-
-                    <div className="flex gap-3">
-                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-green text-white flex items-center justify-center text-sm font-bold">
-                        6
-                      </div>
-                      <div>
-                        <h4 className="font-semibold">Intro to Tactical</h4>
-                        <p className="text-sm text-muted-foreground">Preparing for tactical skills</p>
+                      <div className="flex gap-3">
+                        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-green text-white flex items-center justify-center text-sm font-bold">
+                          1
+                        </div>
+                        <div>
+                          <h4 className="font-semibold">Module 1: Neurobiology & Growth Mindset</h4>
+                          <p className="text-sm text-muted-foreground">
+                            Neural mechanisms, growth mindset, and MAD Analysis
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </Card>
 
-                {/* Tactical Phase */}
-                <Card className="p-6 bg-gradient-to-br from-brand-orange/10 to-brand-orange/5">
-                  <h3 className="text-2xl font-bold mb-4 text-brand-orange">Tactical Phase (Weeks 7-12)</h3>
-                  <div className="space-y-3">
-                    <div className="flex gap-3">
-                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-orange text-white flex items-center justify-center text-sm font-bold">
-                        7
+                {/* Phase 2 */}
+                <Card className="p-6 bg-gradient-to-br from-brand-green/10 to-brand-green/5">
+                  <h3 className="text-2xl font-bold mb-4 text-brand-green">Phase 2: Systematic Negotiation</h3>
+                  <div className="space-y-4">
+                    <p className="text-sm text-muted-foreground">
+                      Master Jim Camp's "Start With No" and Chris Voss's FBI tactics to stay calm and in control
+                    </p>
+                    <div className="space-y-3">
+                      <div className="flex gap-3">
+                        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-green text-white flex items-center justify-center text-sm font-bold">
+                          2
+                        </div>
+                        <div>
+                          <h4 className="font-semibold">Module 2: Learning, Habits & Measurement</h4>
+                          <p className="text-sm text-muted-foreground">
+                            Science of learning, habit formation, and the 21-day protocol
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="font-semibold">Tactical Empathy</h4>
-                        <p className="text-sm text-muted-foreground">Understanding client emotions</p>
+
+                      <div className="flex gap-3">
+                        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-green text-white flex items-center justify-center text-sm font-bold">
+                          3
+                        </div>
+                        <div>
+                          <h4 className="font-semibold">Module 3: Win With NO</h4>
+                          <p className="text-sm text-muted-foreground">
+                            Jim Camp's system and Chris Voss's tactical empathy
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex gap-3">
+                        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-green text-white flex items-center justify-center text-sm font-bold">
+                          4
+                        </div>
+                        <div>
+                          <h4 className="font-semibold">Module 4: Integrating Big 10 with Camp & Voss</h4>
+                          <p className="text-sm text-muted-foreground">
+                            Override personality traits with systematic negotiation skills
+                          </p>
+                        </div>
                       </div>
                     </div>
+                  </div>
+                </Card>
 
-                    <div className="flex gap-3">
-                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-orange text-white flex items-center justify-center text-sm font-bold">
-                        8
+                {/* Phase 3 */}
+                <Card className="p-6 bg-gradient-to-br from-brand-green/10 to-brand-green/5">
+                  <h3 className="text-2xl font-bold mb-4 text-brand-green">Phase 3: Implementation & Accountability</h3>
+                  <div className="space-y-4">
+                    <p className="text-sm text-muted-foreground">
+                      Build sustainable change agency and master the Participant Self-Training Model for weekly self-assessment and growth tracking
+                    </p>
+                    <div className="space-y-3">
+                      <div className="flex gap-3">
+                        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-green text-white flex items-center justify-center text-sm font-bold">
+                          5
+                        </div>
+                        <div>
+                          <h4 className="font-semibold">Module 5: Change Agency</h4>
+                          <p className="text-sm text-muted-foreground">
+                            Creating sustainable environments for behavior change
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="font-semibold">Mirroring</h4>
-                        <p className="text-sm text-muted-foreground">Building rapport through reflection</p>
-                      </div>
-                    </div>
 
-                    <div className="flex gap-3">
-                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-orange text-white flex items-center justify-center text-sm font-bold">
-                        9
-                      </div>
-                      <div>
-                        <h4 className="font-semibold">Paraphrase & Summarize</h4>
-                        <p className="text-sm text-muted-foreground">Active listening techniques</p>
-                      </div>
-                    </div>
-
-                    <div className="flex gap-3">
-                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-orange text-white flex items-center justify-center text-sm font-bold">
-                        10
-                      </div>
-                      <div>
-                        <h4 className="font-semibold">Types of Yes</h4>
-                        <p className="text-sm text-muted-foreground">Getting commitment effectively</p>
-                      </div>
-                    </div>
-
-                    <div className="flex gap-3">
-                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-orange text-white flex items-center justify-center text-sm font-bold">
-                        11
-                      </div>
-                      <div>
-                        <h4 className="font-semibold">Calibrated Questions</h4>
-                        <p className="text-sm text-muted-foreground">Guiding conversations strategically</p>
-                      </div>
-                    </div>
-
-                    <div className="flex gap-3">
-                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-orange text-white flex items-center justify-center text-sm font-bold">
-                        12
-                      </div>
-                      <div>
-                        <h4 className="font-semibold">Accusation Audit & Black Swan</h4>
-                        <p className="text-sm text-muted-foreground">Advanced negotiation tactics</p>
+                      <div className="flex gap-3">
+                        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-green text-white flex items-center justify-center text-sm font-bold">
+                          6
+                        </div>
+                        <div>
+                          <h4 className="font-semibold">Module 6: Participant Self-Training Model</h4>
+                          <p className="text-sm text-muted-foreground">
+                            Weekly self-assessment and continuous improvement
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -727,7 +804,7 @@ export default function DemoPage() {
                   </div>
 
                   <div className="flex gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-brand-orange text-white flex items-center justify-center font-bold text-xl">
+                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-brand-green text-white flex items-center justify-center font-bold text-xl">
                       2
                     </div>
                     <div>
@@ -801,23 +878,27 @@ export default function DemoPage() {
               </Card>
 
               <Card className="p-8 bg-brand-green/5 border-2 border-brand-green">
-                <h3 className="text-2xl font-bold mb-4 text-center">What You've Learned</h3>
+                <h3 className="text-2xl font-bold mb-4 text-center">What You'll Achieve</h3>
                 <ul className="space-y-3 max-w-2xl mx-auto">
-                  <li className="flex items-start gap-2">
+                  <li className="flex items-start gap-3">
                     <CheckCircle2 className="h-5 w-5 text-brand-green mt-0.5 flex-shrink-0" />
-                    <span>Complete overview of the Big 5 personality model (OCEAN)</span>
+                    <span>Deep understanding of how your personality affects your sales performance</span>
                   </li>
-                  <li className="flex items-start gap-2">
+                  <li className="flex items-start gap-3">
                     <CheckCircle2 className="h-5 w-5 text-brand-green mt-0.5 flex-shrink-0" />
-                    <span>How personality traits directly affect sales performance</span>
+                    <span>Personalized strategies to overcome personality-driven challenges</span>
                   </li>
-                  <li className="flex items-start gap-2">
+                  <li className="flex items-start gap-3">
                     <CheckCircle2 className="h-5 w-5 text-brand-green mt-0.5 flex-shrink-0" />
-                    <span>Strategic and tactical frameworks for the 12-week program</span>
+                    <span>Advanced tactical negotiation skills aligned with your strengths</span>
                   </li>
-                  <li className="flex items-start gap-2">
+                  <li className="flex items-start gap-3">
                     <CheckCircle2 className="h-5 w-5 text-brand-green mt-0.5 flex-shrink-0" />
-                    <span>Interactive personality assessment and trait analysis</span>
+                    <span>Measurable improvements in prospecting and closing activities</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="h-5 w-5 text-brand-green mt-0.5 flex-shrink-0" />
+                    <span>Sustainable behavior changes that last beyond the program</span>
                   </li>
                 </ul>
               </Card>
@@ -835,7 +916,7 @@ export default function DemoPage() {
                       Talk to our team about the full course and how it can transform your sales approach. Get personalized insights and discuss your goals.
                     </p>
                     <Button asChild className="w-full bg-brand-orange hover:bg-[#e64a19] text-white" size="lg">
-                      <Link href="https://calendly.com/your-calendly-link" target="_blank" rel="noopener noreferrer">
+                      <Link href="https://calendly.com/lfederico-swiftcourse/30min?month=2026-01" target="_blank" rel="noopener noreferrer">
                         Book an Appointment
                       </Link>
                     </Button>
