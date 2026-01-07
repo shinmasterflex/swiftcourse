@@ -933,34 +933,7 @@ export default function DemoPage() {
                   </Card>
                 </div>
               </div>
-
-              <Card className="p-6 bg-gradient-to-br from-brand-orange/5 to-brand-green/5">
-                <h3 className="text-xl font-bold mb-4 text-center">The Full Course Includes</h3>
-                <div className="space-y-4 max-w-2xl mx-auto">
-                  <div className="flex gap-3">
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-orange text-white flex items-center justify-center font-bold">
-                      1
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-brand-orange mb-1">Module 1: Neurobiology & Growth Mindset</h4>
-                      <p className="text-sm text-muted-foreground">
-                        Learn the neuroscience behind goal-seeking, develop a growth mindset, and understand how stress affects performance.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex gap-3">
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-green text-white flex items-center justify-center font-bold">
-                      2
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-brand-green mb-1">Module 2: Learning, Habits & Measurement</h4>
-                      <p className="text-sm text-muted-foreground">
-                        Master the learning process, build sustainable habits with the 21-day protocol, and measure your progress.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </Card>
+              
             </div>
           )}
         </main>
