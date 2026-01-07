@@ -48,8 +48,13 @@ export default function HomePage() {
                   Strengthen entrepreneurial and sales success through personality trait assessment with the Big 5 Model
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                  <Button asChild size="lg" className="bg-brand-orange hover:bg-[#e64a19] text-white text-lg px-8">
+                  <Button asChild size="lg" variant="outline" className="text-lg px-8">
                     <Link href="/demo">Try Module 0</Link>
+                  </Button>
+                  <Button asChild size="lg" variant="outline" className="text-lg px-8">
+                    <Link href="https://calendly.com/your-calendly-link" target="_blank" rel="noopener noreferrer">
+                      Schedule a Call
+                    </Link>
                   </Button>
                 </div>
               </div>
@@ -103,10 +108,10 @@ export default function HomePage() {
               <h2 className="text-4xl font-bold">About Swiftcourse</h2>
             </div>
 
-            <Card className="border-2 border-brand-green/20">
-              <CardContent className="space-y-4">
+            <Card className="border-2 border-brand-green/20 hover:shadow-xl hover:border-brand-green/40 transition-all duration-300 bg-gradient-to-br from-white to-brand-green/5">
+              <CardContent className="space-y-4 pt-6">
                 <p className="text-lg leading-relaxed">
-                  Our mission is to equip sales teams with the skills to outgrow their default traits and operate with disciplined, repeatable negotiation behaviors. We use the Big 10 Aspects Model to reveal each salesperson's instinctive patterns, then train them to counterbalance these tendencies through Jim Camp's systematic thinking, Chris Voss's tactical empathy, and a metrics-driven approach to productive activity.
+                  Our mission is to equip sales teams with the skills to outgrow their default personality traits and operate with disciplined, repeatable negotiation behaviors. We use the Big 10 Aspects Model to reveal each salesperson's instinctive patterns, then train them to counterbalance these tendencies through Jim Camp's systematic thinking, Chris Voss's tactical empathy, and a metrics-driven approach to productive activity.
                 </p>
                 <p className="text-lg leading-relaxed font-semibold text-brand-green">
                   We aim to build salespeople who can stay calm, assertive, and in control—no matter their personality—so they can navigate complex conversations and drive meaningful results.
@@ -116,37 +121,43 @@ export default function HomePage() {
 
             {/* Features Grid */}
             <div className="grid md:grid-cols-3 gap-6 pt-8">
-              <Card>
+              <Card className="border-2 hover:border-brand-green hover:shadow-2xl transition-all duration-300 group bg-gradient-to-br from-white to-brand-green/5">
                 <CardHeader>
-                  <Brain className="h-10 w-10 text-brand-green mb-2" />
-                  <CardTitle>Science-Based</CardTitle>
+                  <div className="bg-brand-green/10 w-16 h-16 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <Brain className="h-10 w-10 text-brand-green" />
+                  </div>
+                  <CardTitle className="text-lg">Science-Based</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">
+                  <p className="text-muted-foreground leading-relaxed">
                     Built on the Big 5 personality model, the most scientifically validated framework in psychology
                   </p>
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="border-2 hover:border-brand-orange hover:shadow-2xl transition-all duration-300 group bg-gradient-to-br from-white to-brand-orange/5">
                 <CardHeader>
-                  <Target className="h-10 w-10 text-brand-orange mb-2" />
-                  <CardTitle>Actionable Insights</CardTitle>
+                  <div className="bg-brand-orange/10 w-16 h-16 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <Target className="h-10 w-10 text-brand-orange" />
+                  </div>
+                  <CardTitle className="text-lg">Actionable Insights</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">
+                  <p className="text-muted-foreground leading-relaxed">
                     Get specific strategies tailored to your personality traits to maximize your sales potential
                   </p>
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="border-2 hover:border-brand-green hover:shadow-2xl transition-all duration-300 group bg-gradient-to-br from-white to-brand-green/5">
                 <CardHeader>
-                  <TrendingUp className="h-10 w-10 text-brand-green mb-2" />
-                  <CardTitle>Proven Results</CardTitle>
+                  <div className="bg-brand-green/10 w-16 h-16 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <TrendingUp className="h-10 w-10 text-brand-green" />
+                  </div>
+                  <CardTitle className="text-lg">Proven Results</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">
+                  <p className="text-muted-foreground leading-relaxed">
                     Learn from neuroscience research and proven techniques used by top sales professionals
                   </p>
                 </CardContent>
@@ -162,7 +173,7 @@ export default function HomePage() {
           <div className="max-w-4xl mx-auto space-y-12">
             <div className="space-y-6">
               <h2 className="text-4xl font-bold text-center">The Problem</h2>
-              <Card className="border-2 border-destructive/20">
+              <Card className="border-2 border-destructive/20 hover:shadow-2xl hover:border-destructive/40 transition-all duration-300 bg-gradient-to-br from-white to-red-50/50">
                 <CardContent className="pt-6 space-y-4">
                   <p className="text-lg">
                     Most sales training programs focus on techniques and scripts, but they ignore three fundamental challenges:
@@ -194,7 +205,7 @@ export default function HomePage() {
 
             <div className="space-y-6">
               <h2 className="text-4xl font-bold text-center">Our Solution</h2>
-              <Card className="border-2 border-brand-green/20">
+              <Card className="border-2 border-brand-green/20 hover:shadow-2xl hover:border-brand-green/40 transition-all duration-300 bg-gradient-to-br from-white to-brand-green/5">
                 <CardContent className="pt-6 space-y-4">
                   <p className="text-lg">
                     Swiftcourse uses the Big 10 Aspects Model combined with systematic negotiation training and change agency frameworks to build salespeople who can override their personality defaults and operate with discipline.
@@ -215,7 +226,7 @@ export default function HomePage() {
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="h-5 w-5 text-brand-green mt-0.5 flex-shrink-0" />
                       <span>
-                        <strong>Phase 3 - Change Agency & Measurement:</strong> Design environments for sustained behavior change and track progress with the 4D Growth Framework
+                        <strong>Phase 3 - Implementation & Accountability:</strong> Build sustainable change agency and master the Participant Self-Training Model for weekly self-assessment and growth tracking
                       </span>
                     </li>
                     <li className="flex items-start gap-2">
@@ -246,19 +257,19 @@ export default function HomePage() {
             <div className="space-y-6">
               {/* Phase 1 */}
               <div className="pt-4">
-                <h3 className="text-2xl font-bold text-brand-green mb-4">Phase 1: Personality Traits and Introduction to Neurobiology</h3>
+                <h3 className="text-3xl font-bold text-brand-green mb-4">Phase 1: Personality Traits and Introduction to Neurobiology</h3>
               </div>
 
-              <Card>
+              <Card className="border-2 hover:border-brand-green hover:shadow-2xl transition-all duration-300 group bg-gradient-to-br from-white to-brand-green/5">
                 <CardHeader>
                   <div className="flex items-start gap-4">
-                    <div className="bg-brand-green/10 p-3 rounded-lg">
+                    <div className="bg-brand-green/10 p-3 rounded-lg group-hover:bg-brand-green/20 transition-colors duration-300">
                       <BookOpen className="h-6 w-6 text-brand-green" />
                     </div>
                     <div className="flex-1">
-                      <CardTitle className="text-2xl mb-2">Module 0: Introduction</CardTitle>
+                      <CardTitle className="text-xl mb-2">Module 0: Introduction</CardTitle>
                       <CardDescription className="text-base">
-                        Understanding the Big Five personality model and how it applies to sales success
+                        Learn about the Big Five personality model and how it applies to sales success
                       </CardDescription>
                     </div>
                   </div>
@@ -273,16 +284,16 @@ export default function HomePage() {
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="border-2 hover:border-brand-orange hover:shadow-2xl transition-all duration-300 group bg-gradient-to-br from-white to-brand-orange/5">
                 <CardHeader>
                   <div className="flex items-start gap-4">
-                    <div className="bg-brand-orange/10 p-3 rounded-lg">
+                    <div className="bg-brand-orange/10 p-3 rounded-lg group-hover:bg-brand-orange/20 transition-colors duration-300">
                       <Brain className="h-6 w-6 text-brand-orange" />
                     </div>
                     <div className="flex-1">
-                      <CardTitle className="text-2xl mb-2">Module 1: Neurobiology & Growth Mindset</CardTitle>
+                      <CardTitle className="text-xl mb-2">Module 1: Neurobiology & Growth Mindset</CardTitle>
                       <CardDescription className="text-base">
-                        The neuroscience of goal-seeking and developing a growth mindset
+                        Understand the brain science behind goal achievement and develop a growth mindset
                       </CardDescription>
                     </div>
                   </div>
@@ -299,19 +310,19 @@ export default function HomePage() {
 
               {/* Phase 2 */}
               <div className="pt-8">
-                <h3 className="text-2xl font-bold text-brand-green mb-4">Phase 2: Growth Mindset and Growth Perspectives</h3>
+                <h3 className="text-3xl font-bold text-brand-green mb-4">Phase 2: Growth Mindset and Growth Perspectives</h3>
               </div>
 
-              <Card>
+              <Card className="border-2 hover:border-brand-green hover:shadow-2xl transition-all duration-300 group bg-gradient-to-br from-white to-brand-green/5">
                 <CardHeader>
                   <div className="flex items-start gap-4">
-                    <div className="bg-brand-green/10 p-3 rounded-lg">
+                    <div className="bg-brand-green/10 p-3 rounded-lg group-hover:bg-brand-green/20 transition-colors duration-300">
                       <Target className="h-6 w-6 text-brand-green" />
                     </div>
                     <div className="flex-1">
-                      <CardTitle className="text-2xl mb-2">Module 2: Learning, Habits & Measurement</CardTitle>
+                      <CardTitle className="text-xl mb-2">Module 2: Learning, Habits & Measurement</CardTitle>
                       <CardDescription className="text-base">
-                        Building sustainable habits and measuring progress with KPIs
+                        Master the learning process, build lasting habits, and track your progress with KPIs
                       </CardDescription>
                     </div>
                   </div>
@@ -326,16 +337,16 @@ export default function HomePage() {
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="border-2 hover:border-brand-orange hover:shadow-2xl transition-all duration-300 group bg-gradient-to-br from-white to-brand-orange/5">
                 <CardHeader>
                   <div className="flex items-start gap-4">
-                    <div className="bg-brand-orange/10 p-3 rounded-lg">
+                    <div className="bg-brand-orange/10 p-3 rounded-lg group-hover:bg-brand-orange/20 transition-colors duration-300">
                       <TrendingUp className="h-6 w-6 text-brand-orange" />
                     </div>
                     <div className="flex-1">
-                      <CardTitle className="text-2xl mb-2">Module 3: Win With NO</CardTitle>
+                      <CardTitle className="text-xl mb-2">Module 3: Win With NO</CardTitle>
                       <CardDescription className="text-base">
-                        Mastering Jim Camp&apos;s and Chris Voss&apos;s negotiation frameworks
+                        Master Jim Camp&apos;s "Start With No" and Chris Voss&apos;s FBI negotiation tactics
                       </CardDescription>
                     </div>
                   </div>
@@ -350,16 +361,16 @@ export default function HomePage() {
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="border-2 hover:border-brand-green hover:shadow-2xl transition-all duration-300 group bg-gradient-to-br from-white to-brand-green/5">
                 <CardHeader>
                   <div className="flex items-start gap-4">
-                    <div className="bg-brand-green/10 p-3 rounded-lg">
+                    <div className="bg-brand-green/10 p-3 rounded-lg group-hover:bg-brand-green/20 transition-colors duration-300">
                       <Brain className="h-6 w-6 text-brand-green" />
                     </div>
                     <div className="flex-1">
-                      <CardTitle className="text-2xl mb-2">Module 4: Integrating Big 10 with Camp & Voss</CardTitle>
+                      <CardTitle className="text-xl mb-2">Module 4: Integrating Big 10 with Camp & Voss</CardTitle>
                       <CardDescription className="text-base">
-                        Using systematic skills to override personality defaults
+                        Learn how to override personality traits with systematic negotiation skills
                       </CardDescription>
                     </div>
                   </div>
@@ -376,19 +387,19 @@ export default function HomePage() {
 
               {/* Phase 3 */}
               <div className="pt-8">
-                <h3 className="text-2xl font-bold text-brand-green mb-4">Phase 3: Implementation and Change Agency</h3>
+                <h3 className="text-3xl font-bold text-brand-green mb-4">Phase 3: Implementation and Change Agency</h3>
               </div>
 
-              <Card>
+              <Card className="border-2 hover:border-brand-orange hover:shadow-2xl transition-all duration-300 group bg-gradient-to-br from-white to-brand-orange/5">
                 <CardHeader>
                   <div className="flex items-start gap-4">
-                    <div className="bg-brand-orange/10 p-3 rounded-lg">
+                    <div className="bg-brand-orange/10 p-3 rounded-lg group-hover:bg-brand-orange/20 transition-colors duration-300">
                       <Target className="h-6 w-6 text-brand-orange" />
                     </div>
                     <div className="flex-1">
-                      <CardTitle className="text-2xl mb-2">Module 5: Change Agency</CardTitle>
+                      <CardTitle className="text-xl mb-2">Module 5: Change Agency</CardTitle>
                       <CardDescription className="text-base">
-                        Designing environments that support sustained behavioral change
+                        Design environments and systems that make behavioral change sustainable in sales teams
                       </CardDescription>
                     </div>
                   </div>
@@ -403,35 +414,29 @@ export default function HomePage() {
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="border-2 hover:border-brand-green hover:shadow-2xl transition-all duration-300 group bg-gradient-to-br from-white to-brand-green/5">
                 <CardHeader>
                   <div className="flex items-start gap-4">
-                    <div className="bg-brand-green/10 p-3 rounded-lg">
+                    <div className="bg-brand-green/10 p-3 rounded-lg group-hover:bg-brand-green/20 transition-colors duration-300">
                       <TrendingUp className="h-6 w-6 text-brand-green" />
                     </div>
                     <div className="flex-1">
-                      <CardTitle className="text-2xl mb-2">Module 6: Measurement and Accountability</CardTitle>
+                      <CardTitle className="text-xl mb-2">Module 6: Measurement and Accountability</CardTitle>
                       <CardDescription className="text-base">
-                        The 4D Growth Framework for tracking transformation
+                        Master the Participant Self-Training Model: a structured weekly framework for self-assessment and growth through personality work, mindset shifts, and change agency
                       </CardDescription>
                     </div>
                   </div>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2 ml-6">
-                    <li>• D1: SCTI personality reassessment for trait awareness</li>
-                    <li>• D2: Mindset tracking (growth vs. fixed)</li>
-                    <li>• D3: Change agency metrics (habits, environment, accountability)</li>
-                    <li>• D4: Sales activity KPIs (calls, meetings, proposals)</li>
+                    <li>• Personality Work: Track how Big 10 traits impact behavior and apply compensating tools</li>
+                    <li>• Mindset Shift Work: Strengthen the internal psychological structure of a world-class negotiator</li>
+                    <li>• Change Agency: Self-directed transformation using the Immunity to Change process</li>
+                    <li>• Weekly self-assessment framework for sustained growth and accountability</li>
                   </ul>
                 </CardContent>
               </Card>
-            </div>
-
-            <div className="text-center pt-8">
-              <Button asChild size="lg" className="bg-brand-green hover:bg-brand-green/90 text-white text-lg px-8">
-                <Link href="/demo">Start With Module 0</Link>
-              </Button>
             </div>
           </div>
         </div>
@@ -446,7 +451,7 @@ export default function HomePage() {
               Start with Module 0 to experience how personality-based training can give you a competitive edge
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button asChild size="lg" className="bg-brand-orange hover:bg-[#e64a19] text-white text-lg px-8">
+              <Button asChild size="lg" variant="outline" className="text-lg px-8">
                 <Link href="/demo">Try Module 0 Now</Link>
               </Button>
               <Button

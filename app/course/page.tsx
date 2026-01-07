@@ -504,7 +504,7 @@ export default function DashboardPage() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <p className="text-sm">
-                    Track transformation across personality, mindset, change agency, and sales activity with the 4D Growth Framework
+                    Master the Participant Self-Training Model: a structured weekly framework for self-assessment and growth through personality work, mindset shifts, and change agency
                   </p>
                   {mounted && (
                     <div className="space-y-2">

@@ -17,14 +17,13 @@ export function PublicHeader() {
         </Link>
 
         <nav className="hidden md:flex items-center gap-6">
-          <Link href="/#about" className="text-sm font-medium text-foreground hover:text-brand-orange transition-colors">
-            About
-          </Link>
-          <Link href="/demo" className="text-sm font-medium text-foreground hover:text-brand-orange transition-colors">
-            Module 0
-          </Link>
-          <Button asChild className="bg-brand-orange hover:bg-[#e64a19] text-white">
+          <Button asChild variant="outline">
             <Link href="/demo">Try Module 0</Link>
+          </Button>
+          <Button asChild variant="outline">
+            <Link href="https://calendly.com/your-calendly-link" target="_blank" rel="noopener noreferrer">
+              Schedule a Call
+            </Link>
           </Button>
         </nav>
       </div>
